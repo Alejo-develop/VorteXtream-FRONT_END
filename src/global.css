@@ -1,0 +1,14 @@
+/*Global styles*/
+
+* {
+    margin: 0;
+    background-color: #4C5270;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Technor', sans-serif;
+}
+
+p, section, article, div{
+    font-family: 'Satoshi', sans-serif;
+}
