@@ -3,7 +3,7 @@ import { Lock } from "lucide-react";
 import "./styles/loginstyles.css";
 import InputLogin from "./components/Input.component";
 
-const LoginForm = () => {
+const LoginComponent = () => {
   return (
     <div className="login-container">
       <h1 className="title-login">Login</h1>
@@ -37,4 +37,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default LoginComponent;
