@@ -1,0 +1,57 @@
+.registerPage-containet{
+    display: flex;
+    justify-content: center;
+    background-color: #2F3241;
+    height: 100vh;
+    align-items: center;
+}
+
+.form-container{
+    border-radius: 1rem;
+    display: flex;
+    width: 70rem;
+    overflow: hidden;
+}
+
+.modal-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 37rem;
+    align-items: center;
+    background-color: #4C5270;
+    color: white;
+    border-radius: 0px 1rem 1rem 0px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3)
+}
+
+.button-modal{
+    background: none; 
+    border: none; 
+    color: inherit;
+    font-size: x-large;
+    font-family: 'Satoshi', sans-serif;
+    color: #F08080;
+}
+
+.button-modal:hover{
+    text-decoration: underline;
+}
+
+.register-div{
+    right: 0;
+    transform: translateX(-90%);
+    border-radius: 1rem 0px 0px 1rem;
+}
+
+.form-modal-translate{
+    right: 0;
+    position: relative;
+    left: 36.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.register-div button{
+    color: #BCECE0 ;
+}
