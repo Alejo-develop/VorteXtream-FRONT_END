@@ -1,5 +1,5 @@
 import LabelComponent from "./components/label.component";
-import "./stylesRegister/style.register.css";
+import "./styles/style.register.css";
 import { User, Lock, Mail } from "lucide-react";
 
 const RegisterComponent = () => {
