@@ -1,7 +1,7 @@
 import { User } from "lucide-react";
 import { Lock } from "lucide-react";
-import "./loginstyles.css";
-import InputLogin from "./Input.component";
+import "./styles/loginstyles.css";
+import InputLogin from "./components/Input.component";
 
 const LoginForm = () => {
   return (

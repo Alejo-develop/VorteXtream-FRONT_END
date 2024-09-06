@@ -1,4 +1,4 @@
-import LabelComponent from "./label.component";
+import LabelComponent from "./components/label.component";
 import "./stylesRegister/style.register.css";
 import { User, Lock, Mail } from "lucide-react";
 
