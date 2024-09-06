@@ -1,5 +1,9 @@
+import LoginForm from "./LoginForm.component";
+
 export default function RegisterPage(){
     return (
-        <h1>Hola desde la Register</h1>
+        <div>
+            <LoginForm />
+        </div>
     )
 }
