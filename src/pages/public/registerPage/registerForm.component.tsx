@@ -1,32 +1,115 @@
+// Import the LabelComponent
+import { SetStateAction, useState } from "react";
 import LabelComponent from "./components/label.component";
-import "./styles/style.register.css";
-import { User, Lock, Mail } from "lucide-react";
+import "./styles/style.register.css"; // Import the CSS styles for the registration component.
+import { User, Lock, Mail } from "lucide-react"; // Import icons from the lucide-react 
+import { AuthResponseError } from "../../../common/interfaces/authResponse.interface";
 
-const RegisterComponent = () => {
+interface registerProps{
+  onChange: React.Dispatch<SetStateAction<boolean>>
+}
+
+// Define the RegisterComponent functional component.
+const RegisterComponent = (props: registerProps) => {
+  const [ username, setUsername ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState<string>('');
+  const [ confirmPassword, setConfirmPassword ] = useState<string>('');
+  const [ errorMessage, setErrorMessage ] = useState<string>(' ')
+
+  const createUser = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    
+    try {
+      if(password !== confirmPassword){
+        setErrorMessage('The passwords must be same')
+        throw new Error('The passwords must be same')
+      }
+
+      const response = await fetch('http://www.rfwef.com', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username,
+          email,
+          password
+        })
+      })
+
+      if(!response.ok){
+        const errorToJson = await response.json() as AuthResponseError
+        setErrorMessage(errorToJson ? errorToJson.body.error : 'nada pa')
+        throw new Error('Something went wrong with the server')
+      }
+
+      props.onChange(true)
+    } catch (err){
+      console.log(err);
+      if (err instanceof Error) {
+        setErrorMessage(err.message);
+      } else {
+        setErrorMessage('An unexpected error occurred');
+      }
+    }
+  }
+
   return (
     <div className="register">
       <h1>Create account</h1>
 
+      {!!errorMessage && <div className="error-message">{errorMessage}</div>}
+
       <div className="container-form">
-        <form className="register-form">
-          <LabelComponent icon={<User style={{ position: 'relative', left: '35px', top: '7px'}} />} placeholder="Username" />
-          <LabelComponent icon={<Mail style={{ position: 'relative', left: '35px', top: '7px'}} />}  placeholder="Email"/>
-          <LabelComponent icon={<Lock style={{ position: 'relative', left: '35px', top: '7px'}} />} placeholder="Password"/>
-          <LabelComponent icon={<Lock style={{ position: 'relative', left: '35px', top: '7px'}} />} placeholder="Confirm password"/>
+        {/* Form element for user registration */}
+        <form className="register-form" onSubmit={createUser}>
+          {/* Label component for inputs */}
+          <LabelComponent onChange={(e) => setUsername(e.target.value)} value={username} type="text"
+            icon={
+              <User
+                style={{ position: "relative", left: "35px", top: "7px" }}
+              />
+            }
+            placeholder="Username"
+          />
+          <LabelComponent onChange={(e) => setEmail(e.target.value)} value={email} type="email"
+            icon={
+              <Mail
+                style={{ position: "relative", left: "35px", top: "7px" }}
+              />
+            }
+            placeholder="Email"
+          />
+          <LabelComponent onChange={(e) => setPassword(e.target.value)} value={password} type="password"
+            icon={
+              <Lock
+                style={{ position: "relative", left: "35px", top: "7px" }}
+              />
+            }
+            placeholder="Password"
+          
+          />
+          <LabelComponent onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} type="password"
+            icon={
+              <Lock
+                style={{ position: "relative", left: "35px", top: "7px" }}
+              />
+            }
+            placeholder="Confirm password"
+          />
 
-          <button>
-            Submit
-          </button>
+          <button type="submit">Submit</button>
         </form>
-
-        <h3>OR</h3>
-
+        <h3>OR</h3>  {/* Section for alternative login method */}
         <div className="google-container">
-          <h5>Certificacion con google</h5>
+          
+          <h5>Certificacion con google</h5> {/* Header for Google certification option */}
         </div>
       </div>
     </div>
   );
 };
 
+// Export the RegisterComponent to be used in other parts of the application.
 export default RegisterComponent;

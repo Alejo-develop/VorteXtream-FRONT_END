@@ -1,3 +1,5 @@
+/* Styles of the register and login page (general)*/
+
 .registerPage-containet{
     display: flex;
     justify-content: center;
@@ -58,4 +60,14 @@
 
 .logo{
     width: 7rem;
+}
+
+.error-message{
+    background-color: #F08080 ;
+    color: white;
+    position: relative;
+    top: -15px;
+    padding-left: 35px;
+    padding-right: 35px;
+    border-radius: 10px;
 }

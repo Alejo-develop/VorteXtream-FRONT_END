@@ -1,3 +1,6 @@
+/* Styles of register component */ 
+
+/* Register container */ 
 .register{
     background-color: white;
     display: flex;
@@ -9,6 +12,7 @@
     border-radius: 0rem 1rem 1rem 0px;
 }
 
+/* Container form  */
 .container-form{
     background-color: #2F3241;
     padding: 30px;
@@ -19,6 +23,7 @@
     align-items: center;
 }
 
+/* registration form container*/
 .register-form{
     display: flex;
     flex-direction: column;
@@ -26,6 +31,7 @@
     gap: 25px;
 }
 
+/*style inputs: username, email, password, confirm password */
 .register-form input{
     width: 16rem;
     height: 35px;
@@ -36,6 +42,7 @@
     margin-right: 20px;
 }
 
+/*style of submit button*/
 .register-form button{
     width: 9rem;
     padding: 0.5rem;
@@ -46,10 +53,12 @@
     background-color: #BCECE0;
 }
 
+/*style to organize the label with the icons in a coherent way */
 .register-form div{
     display: flex;
 }
 
+/*style of authentication with google*/
 .google-container{
     background-color: white;
     width: 13rem;
