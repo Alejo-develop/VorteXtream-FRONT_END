@@ -1,4 +1,4 @@
-
+import smallLogo from '../../../assets/img/smallLogo.png'
 import { useState } from "react";
 import LoginComponent from "./LoginForm.component";
 import "./styles/index.css";
@@ -22,6 +22,7 @@ export default function RegisterPage() {
         </div>
 
         <div className={`modal-div ${isLogin ? 'modal-div' : 'register-div'}`}>
+          <img src={smallLogo} className='logo'/>
           <h1>{isLogin ? "Don't have an account?" : "Already have an account?"}</h1>
           <button className="button-modal" onClick={putRegister}>
             {isLogin ? "Register!" : "Login!"}
