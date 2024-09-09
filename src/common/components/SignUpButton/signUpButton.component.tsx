@@ -1,6 +1,15 @@
+import { useNavigate } from 'react-router-dom'
+import './style.css'
+
 const SignUpButtonComponent = () => {
+    const goTo = useNavigate()
+
+    const handleClick = () => {
+        goTo('/register')
+    }
+
     return (
-        <button>Sign Up</button>
+        <button onClick={handleClick} className="signUp-button">Sign Up</button>
     )
 }
 
