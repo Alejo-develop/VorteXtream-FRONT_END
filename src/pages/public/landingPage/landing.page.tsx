@@ -1,5 +1,7 @@
+import HeaderComponent from "../../../common/components/header.component";
+
 export default function LandingPage(){
     return (
-        <h1>Hola desde la landing</h1>
+        <HeaderComponent />
     )
 }
