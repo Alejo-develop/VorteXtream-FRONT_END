@@ -9,6 +9,6 @@ h1, h2, h3, h4, h5 {
     font-family: 'Technor', sans-serif;
 }
 
-p, section, article, div{
+p, section, article, div, button, input{
     font-family: 'Satoshi', sans-serif;
 }
