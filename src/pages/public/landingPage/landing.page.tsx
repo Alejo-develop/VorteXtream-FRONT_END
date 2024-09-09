@@ -4,12 +4,11 @@ import { NavBarLayout } from "../../../layouts/NavBar.Layout";
 export default function LandingPage(){
     return (
         <div>
-            <NavBarLayout />
             <HeaderComponent />
 
 
-            <div>
-                Most watched in Colombia
+            <div className="container-page">
+                <h2>Most watched in colombia</h2>
             </div>
         </div>
     )
