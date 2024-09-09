@@ -1,0 +1,8 @@
+.container{
+    display: grid;
+    grid-column: auto;
+}
+
+.header{
+    display: flex;
+}
