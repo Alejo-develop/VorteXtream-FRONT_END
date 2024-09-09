@@ -9,14 +9,62 @@
     display: flex;
     margin-right: 5rem;
     gap: 2rem;
+    align-items: center;
 }
 
 .container-explorer{
     display: flex;
     margin-left: 5rem;
     gap: 2rem;
+    align-items: center;
 }
 
 .logo{
-    height: 7rem;
+    min-width: 10rem
+}
+
+.input-search{
+    width: 23rem;
+    height: 2.8rem;
+    background-color:#2F3241;
+    border: 2px solid;
+    border-color: #BCECE0;
+    border-radius: 30px;
+    text-align: center;
+    text-decoration: none;
+    outline: none; 
+    color: white;
+}
+
+.input-search:focus {
+    outline: none; /* Elimina el borde de enfoque en el estado de enfoque */
+}
+
+/* Ocultar el ícono de borrar en la mayoría de los navegadores */
+.input-search::-ms-clear {
+    display: none;
+}
+
+/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
+.input-search::-webkit-search-clear-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
+.input-search::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
+.input-search::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
+.input-search::-webkit-search-submit-button {
+    -webkit-appearance: none;
+    appearance: none;
 }
