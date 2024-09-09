@@ -1,15 +1,14 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: end;
-  align-content: center;
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 50px;
+  width: 60px;
   background-color: #2f3241;
   gap: 2rem;
+  border-right: 2px solid #f08080;
 }
 
 .icon-link {
@@ -18,6 +17,10 @@
   color: #f08080;
 
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#icon{
+  margin-top: 1.5rem;
 }
 
 
@@ -38,8 +41,24 @@
 }
 
 .log-out button {
-  background: none; 
   border: none;
   cursor: pointer;
-  color: #f08080;
 }
+
+
+.icon-link-logOut{
+  display: flex;
+  justify-content: center;
+  color: #f08080 ;
+  background-color: transparent;
+  position: absolute;
+  bottom: 2rem;
+
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.icon-link-logOut:hover {
+  color: #ff6767; 
+  transform: scale(1.3);
+
+} 

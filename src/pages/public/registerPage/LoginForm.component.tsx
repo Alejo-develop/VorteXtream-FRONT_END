@@ -71,7 +71,7 @@ const LoginComponent = () => {
         {/* botón de login */}
 
         <div className="boton-container">
-          <button type="submit">Login</button>
+          <button className="login-button" type="submit">Login</button>
         </div>
       </form>
     </div>

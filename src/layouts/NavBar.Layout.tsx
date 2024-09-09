@@ -13,7 +13,8 @@ export function NavBarLayout() {
   return (
     <div>
       <nav className="sidebar">
-        <a href="#home" className="icon-link">
+        <a href="#home" className="icon-link"
+        id="icon">
           <House size={28} />
         </a>
         <a href="#about" className="icon-link">
@@ -32,7 +33,7 @@ export function NavBarLayout() {
           <Video size={28} />
         </a>
         <div className="log-out">
-            <button type="submit"  className="icon-link"><LogOut/></button>
+            <button type="submit"  className="icon-link-logOut"><LogOut/></button>
         </div>
       </nav>
 
