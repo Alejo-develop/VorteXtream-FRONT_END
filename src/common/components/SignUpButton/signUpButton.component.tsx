@@ -9,7 +9,7 @@ const SignUpButtonComponent = () => {
     }
 
     return (
-        <button onClick={handleClick} className="signUp-button">Sign Up</button>
+        <button onClick={handleClick} className="signUp-button" >Sign Up</button>
     )
 }
 

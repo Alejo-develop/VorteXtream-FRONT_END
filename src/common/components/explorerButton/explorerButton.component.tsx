@@ -1,6 +1,8 @@
+import './style.css'
+
 const ExplorerButtonComponent = () => {
     return (
-        <button>Explorer</button>
+        <button className='explorer-buttton'>Explorer</button>
     )
 }
 

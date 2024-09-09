@@ -8,18 +8,23 @@ const HeaderComponent = () => {
   return (
     <header className="header">
       <div className="container-explorer">
-        <img src={Logo} alt="LogoImg" className="logo" />
-        <ExplorerButtonComponent /> 
+        <div className="container-logo">
+          <img src={Logo} alt="LogoImg" className="logo" />
+        </div>
+        <ExplorerButtonComponent />
       </div>
 
       <div className="container-search">
         <form>
-          <input type="search" />
+          <input
+            type="search"
+            className="input-search"
+            placeholder="What you want see today?"
+          />
         </form>
         <SignUpButtonComponent />
 
         <LoginButtonComponent />
-
       </div>
     </header>
   );
