@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/CardComponent.css';
-import ButtonWatch from './ButtonWatch.component';
+
 import StarRating from './StartRating.component';  // Importa el nuevo componente
+import WatchNowButtonComponent from '../../../../common/components/watchNowButton/watchNow.component';
 
 type CardProps = {
     id: number;
@@ -28,10 +29,10 @@ const CardComponent: React.FC<CardProps> = ({ backdrop_path, overview, title, vo
             {backdrop_path && <img src={imageUrl} alt={title} className="card-image" />}
             {hovered && (
                 <div className="card-details-panel">
-                    <h3>{title}</h3>
+                    <h3 className='title-movie'>{title}</h3>
                     <p>{truncateText(overview, 100)}</p>
                     <div className="rating-and-watch">
-                        <ButtonWatch />
+                        <WatchNowButtonComponent />
                         <StarRating rating={vote_average} /> {/* Usa el componente para mostrar estrellas */}
                     </div>
                     

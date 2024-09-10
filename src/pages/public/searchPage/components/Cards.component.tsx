@@ -67,7 +67,7 @@ const CardGenreComponent: React.FC = () => {
         <div className="card-genre-container">
             {genres.map((genre) => (
                 <div key={genre.id}>
-                    <h2>{genre.name}</h2>
+                    <h1 className='title'>{genre.name}</h1>
                     {moviesByGenre[genre.id] && moviesByGenre[genre.id].length > 0 && (
                         <Swiper
                           
