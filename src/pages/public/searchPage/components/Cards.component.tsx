@@ -12,6 +12,7 @@ type Movie = {
     backdrop_path: string | null;
     overview: string;
     title: string;
+    vote_average: number;  
 };
 
 type Genre = {
@@ -69,11 +70,11 @@ const CardGenreComponent: React.FC = () => {
                     <h2>{genre.name}</h2>
                     {moviesByGenre[genre.id] && moviesByGenre[genre.id].length > 0 && (
                         <Swiper
-                            pagination={{ clickable: true }}
+                          
                             navigation={true} // Activa la navegación con flechas
                             modules={[Pagination, Autoplay, Navigation]}
                             autoplay={{
-                                delay: 5000,
+                                delay: 10000,
                                 disableOnInteraction: false,
                             }}
                             slidesPerView={5} // Muestra 5 cartas por vista
@@ -87,6 +88,7 @@ const CardGenreComponent: React.FC = () => {
                                         backdrop_path={movie.backdrop_path}
                                         overview={movie.overview}
                                         title={movie.title}
+                                        vote_average={movie.vote_average}  // Añade la puntuación a cada carta
                                     />
                                 </SwiperSlide>
                             ))}
