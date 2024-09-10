@@ -33,3 +33,13 @@
   background-color: #bcece0;
   transition: transform 0.5s;
 }
+
+.container-circle.form-modal-translate{
+  transform: translateX(2.2vw);
+  transition: transform 0.5s;
+}
+
+.container-circle.form-modal{
+  transform: translateX(-2.3vw);
+  transition: transform 0.5s;
+}
