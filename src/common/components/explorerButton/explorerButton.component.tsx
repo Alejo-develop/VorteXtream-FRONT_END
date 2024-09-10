@@ -9,7 +9,7 @@ const ExplorerButtonComponent = () => {
     }
     
     return (
-        <button onClick={handleClick} className='explorer-buttton'>Explorer</button>
+        <button onClick={handleClick} className='explorer-buttton'>Explore</button>
     )
 }
 

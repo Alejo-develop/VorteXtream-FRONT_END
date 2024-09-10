@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import CardComponent from './CardComponent';
+import CardComponent from './CardComponent'; 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation'; // Importa el CSS para la navegación
-import '../styles/CardGenreComponent.css';
+import './style/CardGenreComponent.css'
 
 type Movie = {
     id: number;

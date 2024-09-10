@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../styles/CardComponent.css';
+import './style/CardComponent.css'
 
-import StarRating from './StartRating.component';  // Importa el nuevo componente
-import WatchNowButtonComponent from '../../../../common/components/watchNowButton/watchNow.component';
+import StarRating from '../../../pages/public/searchPage/components/StartRating.component'; // Importa el nuevo componente
+import WatchNowButtonComponent from '../watchNowButton/watchNow.component';
 
 type CardProps = {
     id: number;
