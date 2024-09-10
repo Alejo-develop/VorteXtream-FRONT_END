@@ -5,6 +5,7 @@ import "./styles/index.css";
 import RegisterComponent from "./registerForm.component"; 
 import { useAuth } from "../../../auth/auth.provider";
 import { Navigate } from "react-router-dom";
+import "./styles/style.circle.css"
 
 // interface RegisterPageProps{
 //   state: React.Dispatch<SetStateAction<boolean>>
@@ -41,6 +42,12 @@ export default function RegisterPage({ isRegister } : IRegisterProps) {
           }`}
         >
           <RenderForm onChange={setIsLogin}  /> {/*Render login for default*/}
+        </div>
+
+        <div className="container-circle">
+          <div className="circle">
+            <div className={`semicircle ${isLogin ? "modal-div" : "register-div"}`}></div>
+          </div>
         </div>
 
         <div className={`modal-div ${isLogin ? "modal-div" : "register-div"}`}> {/*if show login the username wil modal-div, if not, username wil register-div */}
