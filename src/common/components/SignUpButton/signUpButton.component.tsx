@@ -5,7 +5,7 @@ const SignUpButtonComponent = () => {
     const goTo = useNavigate()
 
     const handleClick = () => {
-        goTo('/register')
+        goTo('/singup')
     }
 
     return (

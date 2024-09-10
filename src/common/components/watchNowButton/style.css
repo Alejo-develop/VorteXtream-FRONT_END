@@ -3,10 +3,11 @@
     width: 6rem;
     border-radius: 0.9rem;
     font-size: medium;
-    color: #2F3241;
+    color: white;
     background-color: #F08080;
     border: 0;
-    font-weight: bold;
+    font-weight: bolder;
+    margin-left: 1.5rem;
 }
 
 .button-watch:hover{

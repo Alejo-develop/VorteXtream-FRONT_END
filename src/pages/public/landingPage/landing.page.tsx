@@ -5,14 +5,17 @@ import './styles/index.css'
 
 export default function LandingPage(){
     return (
-        <div>
+        <div className="container-landingPage">
             <HeaderComponent />
-
 
             <div className="mostWatched-media">
                 <MostWatchedMediaComponent />
 
                 <MostWatchedStreamComponent />
+            </div>
+
+            <div className="mostWatched-country">
+                <h1 className="mostWatched-country-title">Most Watched In ....</h1>
             </div>
         </div>
     )
