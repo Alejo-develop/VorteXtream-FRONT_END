@@ -22,7 +22,7 @@ export function NavBarLayout(props: NavbarProps) {
   return (
     <div className="container-nav">
       <nav className="sidebar">
-        <a href="#home" className="icon-link" id="icon">
+        <a href="/" className="icon-link" id="icon">
           <House size={28} />
         </a>
         <a href="#about" className="icon-link">

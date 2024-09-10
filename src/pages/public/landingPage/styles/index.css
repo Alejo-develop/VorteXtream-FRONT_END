@@ -12,6 +12,9 @@
 
 .mostWatched-country{
     margin-top: 5.5rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .mostWatched-country-title{
@@ -20,3 +23,19 @@
     text-shadow: 2px 2px 4px rgb(0, 0, 0);
 }
 
+.container-recently-adde{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    margin-bottom: 4rem;
+}
+
+.recently-added-title{
+    font-size: 3rem;
+    color: #F08080;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+    border-bottom: solid #F08080;
+    text-align: center;
+}
