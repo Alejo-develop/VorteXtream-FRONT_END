@@ -44,7 +44,7 @@ export default function RegisterPage({ isRegister } : IRegisterProps) {
           <RenderForm onChange={setIsLogin}  /> {/*Render login for default*/}
         </div>
 
-        <div className="container-circle">
+        <div className={`container-circle ${isLogin ? "form-modal" : "form-modal-translate"}`}>
           <div className="circle">
             <div className={`semicircle ${isLogin ? "modal-div" : "register-div"}`}></div>
           </div>
