@@ -2,7 +2,7 @@
 import { SetStateAction, useState } from "react";
 import LabelComponent from "./components/label.component";
 import "./styles/style.register.css"; // Import the CSS styles for the registration component.
-import { User, Lock, Mail } from "lucide-react"; // Import icons from the lucide-react 
+import { User, Lock, Mail, Earth } from "lucide-react"; // Import icons from the lucide-react 
 import { AuthResponseError } from "../../../common/interfaces/authResponse.interface";
 
 interface registerProps{
@@ -15,6 +15,7 @@ const RegisterComponent = (props: registerProps) => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState<string>('');
   const [ confirmPassword, setConfirmPassword ] = useState<string>('');
+  const [ country, setCountry ] = useState<string>('');
   const [ errorMessage, setErrorMessage ] = useState<string>(' ')
 
   const createUser = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,7 +27,7 @@ const RegisterComponent = (props: registerProps) => {
         throw new Error('The passwords must be same')
       }
 
-      const response = await fetch('http://www.rfwef.com', {
+      const response = await fetch('http://localhost:3000/vortextream/auth/register', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -34,7 +35,8 @@ const RegisterComponent = (props: registerProps) => {
         body: JSON.stringify({
           username,
           email,
-          password
+          password,
+          country
         })
       })
 
@@ -97,6 +99,14 @@ const RegisterComponent = (props: registerProps) => {
               />
             }
             placeholder="Confirm password"
+          />
+          <LabelComponent onChange={(e) => setCountry(e.target.value)} value={country} type="text"
+            icon={
+              <Earth 
+                style={{ position: "relative", left: "35px", top: "7px" }}
+              />
+            }
+            placeholder="You'r country "
           />
 
           <button type="submit">Submit</button>

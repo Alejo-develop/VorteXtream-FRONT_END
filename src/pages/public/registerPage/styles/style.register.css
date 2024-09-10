@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     width: 33rem;
-    height: 37rem;
+    height: 39rem;
     text-align: center;
     border-radius: 0rem 1rem 1rem 0px;
 }
@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 29rem;
 }
 
 /* registration form container*/
@@ -45,12 +46,12 @@
 /*style of submit button*/
 .register-form button{
     width: 9rem;
-    padding: 0.5rem;
     border-radius: 20px;
     color: #2F3241;
     font-size: large;
     font-family: 'Satoshi', sans-serif;
     background-color: #BCECE0;
+    height: 2.5rem;
 }
 
 /*style to organize the label with the icons in a coherent way */
@@ -63,5 +64,9 @@
     background-color: white;
     width: 13rem;
     border-radius: 25px;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
