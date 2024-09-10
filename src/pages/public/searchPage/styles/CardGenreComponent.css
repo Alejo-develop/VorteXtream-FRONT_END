@@ -1,6 +1,7 @@
 .card-genre-container {
     margin: 0 auto;
     max-width: 1300px;
+    padding: 10px;
 }
 
 .mySwiper {
@@ -8,10 +9,6 @@
     height: auto; /* Ajusta la altura automáticamente */
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
 
 .card {
     margin: 10px;
@@ -24,4 +21,42 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+.title{
+    font-size: 2rem;
+    color: white
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #fff; /* Color de las flechas por defecto */
+    width: 50px; /* Ancho de las flechas */
+    height: 50px; /* Alto de las flechas */
+    background: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+    border-radius: 50%; /* Flechas redondeadas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 1.5rem; /* Tamaño de las flechas */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.8); /* Fondo más oscuro al hacer hover */
+    color: #F08080; /* Color de las flechas al hacer hover */
+}
+
+.swiper-button-next {
+    right: 10px; /* Posición horizontal de la flecha siguiente */
+}
+
+.swiper-button-prev {
+    left: 10px; /* Posición horizontal de la flecha anterior */
 }
