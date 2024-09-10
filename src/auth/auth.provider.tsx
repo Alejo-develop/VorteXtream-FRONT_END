@@ -11,7 +11,6 @@ const AuthContext = createContext({
     signOut: () => {},
     saveSessionInfo: (user: UserPayload, token: string) => {},
     getToken: () => {}
-
 })
 
 export const AuthProvider = ({children}: AuthProviderProps ) => {

@@ -10,8 +10,12 @@ import { Navigate } from "react-router-dom";
 //   state: React.Dispatch<SetStateAction<boolean>>
 // }
 
-export default function RegisterPage() {
-  const [isLogin, setIsLogin] = useState(true); {/*State we will you use for know if to show Login or register, value default: login*/ }
+interface IRegisterProps {
+  isRegister?: boolean
+}
+
+export default function RegisterPage({ isRegister } : IRegisterProps) {
+  const [isLogin, setIsLogin] = useState(!isRegister); {/*State we will you use for know if to show Login or register, value default: login*/ }
 
   const auth = useAuth()
   

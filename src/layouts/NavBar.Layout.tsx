@@ -5,15 +5,20 @@ import {
   Heart,
   BotMessageSquare,
   Video,
-  LogOut,
 } from "lucide-react";
 import "./styles/navbarStyles.css";
+import LogOutComponentButton from "../common/components/logOutButton/logOutButton.component";
+import { useAuth } from "../auth/auth.provider";
 
 interface NavbarProps {
   children: React.ReactNode;
 }
 
 export function NavBarLayout(props: NavbarProps) {
+  const auth = useAuth()
+
+  const RenderForm = auth.isAuthenticated ? <LogOutComponentButton/> : null
+
   return (
     <div>
       <nav className="sidebar">
@@ -36,9 +41,7 @@ export function NavBarLayout(props: NavbarProps) {
           <Video size={28} />
         </a>
         <div className="log-out">
-          <button type="submit" className="icon-link-logOut">
-            <LogOut />
-          </button>
+          {RenderForm}
         </div>
       </nav>
 

@@ -14,8 +14,12 @@ export const appRouter = createBrowserRouter([
     ),
   },
   {
-    path: '/register',
-    element: <RegisterPage />
+    path: '/singup',
+    element: <RegisterPage isRegister />
+  },
+  {
+    path: '/login',
+    element: <RegisterPage  />
   },
   {
     path: '/searchpage',
