@@ -3,6 +3,7 @@ import LandingPage from './pages/public/landingPage/landing.page'
 import RegisterPage from './pages/public/registerPage/register.page'
 import { NavBarLayout } from './layouts/NavBar.Layout'
 import SearchPage from './pages/public/searchPage/search.Page'
+import FooterComponent from './common/components/footer/footer.component'
 
 export const appRouter = createBrowserRouter([
   {
@@ -10,6 +11,7 @@ export const appRouter = createBrowserRouter([
     element: (
       <NavBarLayout>
         <LandingPage />
+        <FooterComponent />
       </NavBarLayout>
     ),
   },

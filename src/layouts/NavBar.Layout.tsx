@@ -20,7 +20,7 @@ export function NavBarLayout(props: NavbarProps) {
   const RenderForm = auth.isAuthenticated ? <LogOutComponentButton/> : null
 
   return (
-    <div>
+    <div className="container-nav">
       <nav className="sidebar">
         <a href="#home" className="icon-link" id="icon">
           <House size={28} />
