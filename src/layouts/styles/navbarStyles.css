@@ -9,6 +9,7 @@
   background-color: #2f3241;
   gap: 2rem;
   border-right: 2px solid #f08080;
+  z-index: 2;
 }
 
 .icon-link {
