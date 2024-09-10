@@ -1,0 +1,22 @@
+.container-landingPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mostWatched-media{
+    display: flex;
+    gap: 5rem;
+    margin-left: 1rem;
+}
+
+.mostWatched-country{
+    margin-top: 5.5rem;
+}
+
+.mostWatched-country-title{
+    font-size: 3rem;
+    color: #F08080;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+}
+

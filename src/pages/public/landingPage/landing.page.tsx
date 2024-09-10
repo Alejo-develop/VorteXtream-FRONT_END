@@ -1,14 +1,21 @@
 import HeaderComponent from "../../../common/components/header/header.component";
-import { NavBarLayout } from "../../../layouts/NavBar.Layout";
+import MostWatchedMediaComponent from "./components/mostWatched.component";
+import MostWatchedStreamComponent from "./components/mostWatchedStream.component";
+import './styles/index.css'
 
 export default function LandingPage(){
     return (
-        <div>
+        <div className="container-landingPage">
             <HeaderComponent />
 
+            <div className="mostWatched-media">
+                <MostWatchedMediaComponent />
 
-            <div className="container-page">
-                <h2>Most watched in colombia</h2>
+                <MostWatchedStreamComponent />
+            </div>
+
+            <div className="mostWatched-country">
+                <h1 className="mostWatched-country-title">Most Watched In ....</h1>
             </div>
         </div>
     )

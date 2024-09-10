@@ -1,0 +1,11 @@
+.container{
+    margin-top: 3rem;
+    border: 1px solid black;
+    width: 36rem;
+    height: 25rem;
+    border-radius: 20px;
+    border: 2px solid black;
+    background-color: #2F3241;
+    overflow: hidden; /* Asegura que el contenido no sobresalga del contenedor */
+    position: relative; 
+}

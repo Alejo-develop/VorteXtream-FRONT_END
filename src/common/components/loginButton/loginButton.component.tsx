@@ -5,7 +5,7 @@ const LoginButtonComponent = () => {
     const goTo = useNavigate()
 
     const handleClick = () => {
-        goTo('/register')
+        goTo('/login')
     }
 
     return (

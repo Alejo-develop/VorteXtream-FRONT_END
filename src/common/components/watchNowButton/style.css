@@ -1,0 +1,15 @@
+.button-watch{
+    height: 2.5rem;
+    width: 6rem;
+    border-radius: 0.9rem;
+    font-size: medium;
+    color: white;
+    background-color: #F08080;
+    border: 0;
+    font-weight: bolder;
+    margin-left: 1.5rem;
+}
+
+.button-watch:hover{
+    background-color: #ce7272;
+}

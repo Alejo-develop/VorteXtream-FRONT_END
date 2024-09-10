@@ -1,17 +1,21 @@
 import smallLogo from "../../../assets/img/smallLogo.png"; {/* Logotipo of VorteXtream  */}
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import LoginComponent from "./LoginForm.component";
 import "./styles/index.css";
 import RegisterComponent from "./registerForm.component"; 
 import { useAuth } from "../../../auth/auth.provider";
 import { Navigate } from "react-router-dom";
 
-interface RegisterPageProps{
-  state: React.Dispatch<SetStateAction<boolean>>
+// interface RegisterPageProps{
+//   state: React.Dispatch<SetStateAction<boolean>>
+// }
+
+interface IRegisterProps {
+  isRegister?: boolean
 }
 
-export default function RegisterPage() {
-  const [isLogin, setIsLogin] = useState(true); {/*State we will you use for know if to show Login or register, value default: login*/ }
+export default function RegisterPage({ isRegister } : IRegisterProps) {
+  const [isLogin, setIsLogin] = useState(!isRegister); {/*State we will you use for know if to show Login or register, value default: login*/ }
 
   const auth = useAuth()
   
