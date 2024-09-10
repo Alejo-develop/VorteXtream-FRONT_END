@@ -1,0 +1,48 @@
+.container-card-large {
+    width: 75rem;
+    height: 20rem; /* Altura fija del contenedor */
+    display: grid;
+    grid-template-columns: 1.70fr 1fr;
+    margin-top: 4rem;
+}
+
+.banner-cardLarge-container, .info-media-container {
+    height: 74%; /* Asegurarse de que usen el 100% de la altura del contenedor padre */
+    width: 100%;
+}
+
+.banner-cardLarge-container {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.info-media-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.img-banner-cardLarge {
+    height: 100%;
+    width: 100%;
+    z-index: -5;
+}
+
+.media-title-cardLarge{
+    background-color: #2F3241;
+    border: solid 2px #BCECE0;
+    padding: 5px;
+    width: 24rem;
+    height: 2rem;
+    border-radius: 20px;
+    color: #BCECE0;;
+}
+
+.sinopsis-cardLarge{
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    color: white;
+    border-radius: 20px;
+    width: 24rem;
+    font-size: smaller;
+}
