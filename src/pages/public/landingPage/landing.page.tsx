@@ -3,17 +3,20 @@ import HeaderComponent from "../../../common/components/header/header.component"
 import MostWatchedMediaComponent from "./components/mostWatched.component";
 import MostWatchedStreamComponent from "./components/mostWatchedStream.component";
 import "./styles/index.css";
-import CardGenreComponent from "../searchPage/components/Cards.component";
+
 import { CardProps } from "../../../common/interfaces/media.interface";
 import CardLargeComponent from "../../../common/components/cardaLargeMedia/cardLarge.component";
-import image from '../../../assets/img/WhatsApp Image 2024-09-10 at 11.29.06 AM.jpeg'
-
+import image from "../../../assets/img/WhatsApp Image 2024-09-10 at 11.29.06 AM.jpeg";
+import MotionTransition from "../../../common/components/transition/transition.component";
+import { useAuth } from "../../../auth/auth.provider";
 
 export default function LandingPage() {
   const [data, setData] = useState<CardProps[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined
   );
+
+  const auth = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,9 +60,13 @@ export default function LandingPage() {
       <HeaderComponent />
 
       <div className="mostWatched-media">
-        <MostWatchedMediaComponent />
+        <MotionTransition position="left" className="transition-css">
+          <MostWatchedMediaComponent />
+        </MotionTransition>
 
-        <MostWatchedStreamComponent />
+        <MotionTransition position="right" className="">
+          <MostWatchedStreamComponent />
+        </MotionTransition>
       </div>
 
       <div className="mostWatched-country">
@@ -67,23 +74,57 @@ export default function LandingPage() {
         {/* <CardGenreComponent />  */}
       </div>
 
+      {!!auth.isAuthenticated && (
+        <div className="container-continueWatching">
+          <h1 className="recently-added-title">Continue Watching...</h1>
+        </div>
+      )}
+
       <div className="container-recently-adde">
-        <h1 className="recently-added-title">
-          Recently added
-        </h1>
-          <div>
-            <CardLargeComponent img={image} index={1} title="Shrek 2: Burro se come la leona" overview="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis veniam similique accusamus saepe itaque excepturi ad quisquam laborum exercitationem, aliquam, pariatur, tempore voluptatibus. Molestiae, quas autem labore saepe similique quaerat." />
-          </div>
-        
+        <h1 className="recently-added-title">Recently added</h1>
+        <div>
+          <CardLargeComponent
+            img={image}
+            index={1}
+            title="Shrek 2: Burro se come la leona"
+            overview="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis veniam similique accusamus saepe itaque excepturi ad quisquam laborum exercitationem, aliquam, pariatur, tempore voluptatibus. Molestiae, quas autem labore saepe similique quaerat."
+          />
+          <CardLargeComponent
+            img={image}
+            index={1}
+            title="Shrek 2: Burro se come la leona"
+            overview="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis veniam similique accusamus saepe itaque excepturi ad quisquam laborum exercitationem, aliquam, pariatur, tempore voluptatibus. Molestiae, quas autem labore saepe similique quaerat."
+          />
+          <CardLargeComponent
+            img={image}
+            index={1}
+            title="Shrek 2: Burro se come la leona"
+            overview="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis veniam similique accusamus saepe itaque excepturi ad quisquam laborum exercitationem, aliquam, pariatur, tempore voluptatibus. Molestiae, quas autem labore saepe similique quaerat."
+          />
+          <CardLargeComponent
+            img={image}
+            index={1}
+            title="Shrek 2: Burro se come la leona"
+            overview="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis veniam similique accusamus saepe itaque excepturi ad quisquam laborum exercitationem, aliquam, pariatur, tempore voluptatibus. Molestiae, quas autem labore saepe similique quaerat."
+          />
+          <CardLargeComponent
+            img={image}
+            index={1}
+            title="Shrek 2: Burro se come la leona"
+            overview="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis veniam similique accusamus saepe itaque excepturi ad quisquam laborum exercitationem, aliquam, pariatur, tempore voluptatibus. Molestiae, quas autem labore saepe similique quaerat."
+          />
+        </div>
       </div>
     </div>
   );
 }
 
-{/* <div className="recently add cards">
+{
+  /* <div className="recently add cards">
           {data.length > 0 &&(
             data.map((media, index) => (
 
             ))
           )}
-        </div> */}
+        </div> */
+}

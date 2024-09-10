@@ -43,7 +43,7 @@ const FooterComponent = () => {
       </section>
 
       <div className="copyright-container">
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="" className="img-footer" />
 
         <p className="copyright">
           &copy; 2024 VorteXtream. All rights reserved.

@@ -1,3 +1,5 @@
+import AddFavoritesButtonComponent from "../addFavoritesButton/addFavoritesButton.component";
+import WatchNowButtonComponent from "../watchNowButton/watchNow.component";
 import "./style.css";
 
 interface CardLargeProps{
@@ -18,6 +20,11 @@ const CardLargeComponent = ({ index, img, title, overview }: CardLargeProps) => 
         <h2 className="media-title-cardLarge">{title}</h2>
       
         <p className="sinopsis-cardLarge">{overview}</p>
+
+        <div>
+          <WatchNowButtonComponent />
+          <AddFavoritesButtonComponent />
+        </div>
       </div>
     </div>
   );
