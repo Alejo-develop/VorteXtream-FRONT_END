@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../../../../assets/img/Logo.png";
 import { InputSearch } from "../../../../common/components/searchComponent/search.component";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,6 +6,7 @@ import { Pagination, Autoplay } from "swiper/modules"; // Importar Pagination y 
 import "swiper/css";
 import "swiper/css/pagination";
 import '../styles/headerSearchPage.css';
+import ExplorerButtonComponent from "../../../../common/components/explorerButton/explorerButton.component";
 
 type Movie = {
     id: number;
@@ -39,13 +40,15 @@ export const HeaderSearchPage = () => {
     }, []);
 
     return (
-        <>
+        <div className="general">
             <nav>
                 <div className="img-vortex">
                     <img src={Logo} alt="Logoimg" className="logo" />
-                </div>
-                <div>
-                    <button>Explore</button>
+                    <div className="explore">
+                    <ExplorerButtonComponent />
+
+                    </div>
+                    
                 </div>
             </nav>
 
@@ -73,6 +76,6 @@ export const HeaderSearchPage = () => {
                     </Swiper>
                 )}
             </header>
-        </>
+        </div>
     );
 };

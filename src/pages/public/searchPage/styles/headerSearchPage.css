@@ -5,12 +5,13 @@
     height: 100vh; /* Ajustar el alto del contenedor del carrusel a 70vh */
     position: relative;
     margin-left: 61px;
-    overflow: hidden; /* Asegura que las imágenes no desborden el contenedor */
+    overflow-x: hidden; /* Asegura que las imágenes no desborden el contenedor */
 }
 
 .banner-container {
     position: relative;
     display: flex;
+    position: fixed;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -39,12 +40,20 @@
 .img-vortex {
     position: absolute;
     top: 20px;
-    left: 60px;
+    left: 80px;
     z-index: 3;
+    display: flex;
+    width: 20%;
+    justify-content: space-between;
 }
 
 .logo {
     width: 150px;
+}
+
+.explore{
+  
+    margin-top: 55px;
 }
 
 
@@ -62,7 +71,12 @@
     background-color: #fff;
 }
 
+
 .mySwiper {
     width: 100%;
     height: 100%;
+}
+
+.general{
+    overflow-x: hidden;
 }
