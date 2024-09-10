@@ -10,6 +10,7 @@
   gap: 2rem;
   border-right: 2px solid #f08080;
   z-index: 2;
+  padding-top: 2rem;
 }
 
 .icon-link,
@@ -64,7 +65,7 @@
   color: #f08080;
   background-color: transparent;
   position: absolute;
-  bottom: 2rem;
+  bottom: 3.5rem;
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 

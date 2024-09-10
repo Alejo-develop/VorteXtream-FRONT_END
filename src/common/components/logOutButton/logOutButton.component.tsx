@@ -1,11 +1,14 @@
 import { LogOut } from "lucide-react";
 import { useAuth } from "../../../auth/auth.provider";
+import { useNavigate } from "react-router-dom";
 
 const LogOutComponentButton = () => {
     const auth = useAuth()
+    const goTo = useNavigate()
 
     const handleClick = () => {
         auth.signOut()
+        goTo('/login')
     }
   
     return (

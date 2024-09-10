@@ -17,6 +17,7 @@ export default function LandingPage() {
   );
 
   const auth = useAuth();
+  const country = auth.getUser()?.country || 'tu putamadre'
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,7 +71,7 @@ export default function LandingPage() {
       </div>
 
       <div className="mostWatched-country">
-        <h1 className="mostWatched-country-title">Most Watched In ....</h1>
+        <h1 className="mostWatched-country-title">Most Watched in {country} </h1>
         {/* <CardGenreComponent />  */}
       </div>
 
