@@ -2,23 +2,22 @@
 .cards-container {
     display: flex;
     overflow-x: auto;
-    padding: 20px;
-    gap: 20px; /* Añadir espacio entre las cartas */
+    
 }
 
 .card {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 450px; /* Increased width */
+    height: 400px; /* Increased height */
     border-radius: 12px; /* Rounded corners for a softer look */
     background-color: #f5f5f5;
     flex-shrink: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transitions */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
 }
 
 .card:hover {
-    transform: scale(1.05); /* Slight scaling on hover */
+    transform: scale(1.1); /* Slight scaling on hover */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
     z-index: 10;
 }
@@ -81,6 +80,7 @@
 .title-movie {
     font-weight: bold;
     font-size: 1.6rem;
+    padding: 20px 0;
     color: #fff; 
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
     transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; /* Smooth transitions */
