@@ -1,6 +1,5 @@
 import React from 'react';
-
-import '../styles/selectStyle.css'
+import '../styles/selectStyle.css';
 
 interface GenreSelectProps {
     genres: { genreId: number; genreName: string }[];

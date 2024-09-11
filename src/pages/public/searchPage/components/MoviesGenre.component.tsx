@@ -29,7 +29,7 @@ export const MoviesByGenreComponent = ({ genres, moviesByGenre }: MoviesByGenreC
             <h1 className="mostWatched-genre-title">
               Most Watched {genre.genreName}
             </h1>
-            <SwiperComponent>
+            <SwiperComponent slidesPerView={5} spaceBetween={5}>
               {moviesByGenre[genre.genreId]?.map((movie) => (
                 <CardComponent
                   key={movie.id}
