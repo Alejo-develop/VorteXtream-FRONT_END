@@ -10,34 +10,34 @@ type Genre = {
     genreName: string;
 };
 
+const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
+const BASE_URL = "https://api.themoviedb.org/3";
+
+const fetchJson = async (url: string) => {
+    const res = await fetch(url);
+    if (!res.ok) {
+        throw new Error("Fetch error");
+    }
+    return res.json();
+};
+
 export default function SearchPage() {
     const [genres, setGenres] = useState<Genre[]>([]);
-    const [selectedGenre, setSelectedGenre] = useState<number>(0); // Default to show all genres
+    const [selectedGenre, setSelectedGenre] = useState<number>(0);
     const [moviesByGenre, setMoviesByGenre] = useState<{ [key: number]: CardProps[] }>({});
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const fetchGenres = async () => {
-            const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
-            const baseUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
-
             try {
-                const res = await fetch(baseUrl);
-
-                if (!res.ok) {
-                    setErrorMessage("An error occurred while fetching genres");
-                    throw new Error("Fetch error");
-                }
-
-                const resToJson = await res.json();
-                const genreList = resToJson.genres.map((genre: { id: number; name: string }) => ({
+                const genreData = await fetchJson(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+                const genreList = genreData.genres.map((genre: { id: number; name: string }) => ({
                     genreId: genre.id,
                     genreName: genre.name
                 }));
-
                 setGenres(genreList);
-            } catch (err: any) {
-                setErrorMessage(err.message || "An error occurred");
+            } catch (err) {
+                setErrorMessage("An error occurred while fetching genres");
                 console.error("Error fetching genres:", err);
             }
         };
@@ -47,48 +47,16 @@ export default function SearchPage() {
 
     useEffect(() => {
         const fetchMovies = async () => {
-            const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
-            const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
-            
             try {
                 const fetchedMovies: { [key: number]: CardProps[] } = {};
-                
-                if (selectedGenre === 0) {
-                    // Fetch movies for all genres
-                    for (const genre of genres) {
-                        const baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${genre.genreId}&page=1`;
-                        const res = await fetch(baseUrl);
+                const genreIds = selectedGenre === 0 ? genres.map(genre => genre.genreId) : [selectedGenre];
+                const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
-                        if (!res.ok) {
-                            setErrorMessage("An error occurred while fetching data");
-                            throw new Error("Fetch error");
-                        }
+                for (const genreId of genreIds) {
+                    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${genreId}&page=1`;
+                    const movieData = await fetchJson(url);
 
-                        const resToJson = await res.json();
-                        const data = resToJson.results
-                            .filter((media: CardProps) => media.backdrop_path && media.overview)
-                            .map((media: CardProps) => ({
-                                imageUrl: `${imageBaseUrl}${media.backdrop_path}`,
-                                overview: media.overview,
-                                title: media.title,
-                                vote_average: media.vote_average,
-                                id: media.id
-                            }));
-
-                        fetchedMovies[genre.genreId] = data;
-                    }
-                } else {
-                    // Fetch movies for selected genre
-                    const baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${selectedGenre}&page=1`;
-                    const res = await fetch(baseUrl);
-
-                    if (!res.ok) {
-                        setErrorMessage("An error occurred while fetching data");
-                        throw new Error("Fetch error");
-                    }
-
-                    const resToJson = await res.json();
-                    const data = resToJson.results
+                    const data = movieData.results
                         .filter((media: CardProps) => media.backdrop_path && media.overview)
                         .map((media: CardProps) => ({
                             imageUrl: `${imageBaseUrl}${media.backdrop_path}`,
@@ -98,19 +66,18 @@ export default function SearchPage() {
                             id: media.id
                         }));
 
-                    fetchedMovies[selectedGenre] = data;
+                    fetchedMovies[genreId] = data;
                 }
                 
                 setMoviesByGenre(fetchedMovies);
-                
-            } catch (err: any) {
-                setErrorMessage(err.message || "An error occurred");
+            } catch (err) {
+                setErrorMessage("An error occurred while fetching data");
                 console.error("Error fetching data:", err);
             }
         };
 
         fetchMovies();
-    }, [selectedGenre, genres]); // Add genres to the dependency array
+    }, [selectedGenre, genres]);
 
     return (
         <div>
