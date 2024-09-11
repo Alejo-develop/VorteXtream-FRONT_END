@@ -10,6 +10,11 @@ interface CardLargeProps{
 }
 
 const CardLargeComponent = ({ index, img, title, overview }: CardLargeProps) => {
+
+  const truncateText = (text: string, maxLength: number) => {
+      return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+  };
+
   return (
     <div key={index} className="container-card-large">
       <div className="banner-cardLarge-container">
@@ -19,10 +24,10 @@ const CardLargeComponent = ({ index, img, title, overview }: CardLargeProps) => 
       <div className="info-media-container">
         <h2 className="media-title-cardLarge">{title}</h2>
       
-        <p className="sinopsis-cardLarge">{overview}</p>
+        <p className="sinopsis-cardLarge">{truncateText(overview, 300)}</p>
 
         <div>
-          <WatchNowButtonComponent />
+          <WatchNowButtonComponent size="190" />
           <AddFavoritesButtonComponent />
         </div>
       </div>

@@ -4,4 +4,5 @@ export interface CardProps{
     overview: string;
     title: string;
     vote_average: number;
+    imageUrl: string
   };
