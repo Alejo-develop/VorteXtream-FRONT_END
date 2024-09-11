@@ -1,4 +1,3 @@
-import { jwtDecode } from "jwt-decode";
 import { User } from "lucide-react";
 import { Lock } from "lucide-react";
 import "./styles/loginstyles.css";

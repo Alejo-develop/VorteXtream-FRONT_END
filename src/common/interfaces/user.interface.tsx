@@ -3,4 +3,5 @@ export interface UserPayload {
     username: string;
     country: string;
     role: string;
+    urlprofile: string;
 }

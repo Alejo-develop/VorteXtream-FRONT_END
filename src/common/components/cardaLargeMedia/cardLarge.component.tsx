@@ -22,11 +22,11 @@ const CardLargeComponent = ({ index, img, title, overview }: CardLargeProps) => 
       </div>
 
       <div className="info-media-container">
-        <h2 className="media-title-cardLarge">{title}</h2>
+        <h1 className="media-title-cardLarge">{title}</h1>
       
-        <p className="sinopsis-cardLarge">{truncateText(overview, 300)}</p>
+        <p className="sinopsis-cardLarge">{truncateText(overview, 500)}</p>
 
-        <div>
+        <div className="container-buttons-addREcently">
           <WatchNowButtonComponent size="190" />
           <AddFavoritesButtonComponent />
         </div>

@@ -1,15 +1,31 @@
 import { useNavigate } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
 
-const ExplorerButtonComponent = () => {
+interface ButtonMenuLandingProps {
+  text: string;
+  path: string;
+}
+
+const ButtonUserMenuLandingComponent = ({
+  text,
+  path,
+}: ButtonMenuLandingProps) => {
+  const goTo = useNavigate();
+
+  const handleClick = () => {
+    goTo(`${path}`);
+  };
+
   return (
     <StyledWrapper>
-      <button className="button2">
-        Explore
+      <button className="button2" onClick={handleClick}>
+        {text}
       </button>
     </StyledWrapper>
   );
 };
+
 
 const StyledWrapper = styled.div`
   .button2 {
@@ -22,9 +38,9 @@ const StyledWrapper = styled.div`
     padding: 0.7em 1em;
     cursor: pointer;
     font-size: 15px;
-    background: #2f3241; /* Color de fondo en estado normal */
-    border: 1px solid #2f3241;
-    width: 8rem;
+    background: #2F3241; /* Color de fondo en estado normal */
+    border: 1px solid #2F3241;
+    width : 19.8rem;
     height: 3.7rem;
   }
 
@@ -56,7 +72,7 @@ const StyledWrapper = styled.div`
     top: 180%;
     width: 160%;
     height: 190%;
-    background-color: #f08080; /* Color de fondo del botón en estado hover */
+    background-color: #F08080; /* Color de fondo del botón en estado hover */
     border-radius: 50%;
     display: block;
     transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
@@ -64,21 +80,21 @@ const StyledWrapper = styled.div`
   }
 
   .button2:hover {
-    color: #2f3241; /* Color del texto en estado hover */
-    border: 1px solid #f08080; /* Color del borde en estado hover */
+    color: #2F3241; /* Color del texto en estado hover */
+    border: 1px solid #F08080; /* Color del borde en estado hover */
   }
 
   .button2:hover:before {
     top: -35%;
-    background-color: #f08080; /* Color de fondo en estado hover */
+    background-color: #F08080; /* Color de fondo en estado hover */
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
   }
 
   .button2:hover:after {
     top: -45%;
-    background-color: #f08080; /* Color de fondo en estado hover */
+    background-color: #F08080; /* Color de fondo en estado hover */
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
   }
 `;
 
-export default ExplorerButtonComponent;
+export default ButtonUserMenuLandingComponent;
