@@ -79,7 +79,7 @@ const MostWatchedStreamComponent = () => {
   
                     <div className="sinopsis-container">
                       <p className="movie-sinopsis">{truncateText(data.overview || "", 400)}</p>
-                      <WatchNowButtonComponent size="190"/>
+                      <WatchNowButtonComponent size="190" height="45" text="Watch Now" fontweight="1rem"/>
                     </div>
                   </div>
                 </SwiperSlide>

@@ -3,18 +3,18 @@ import HeaderComponent from "../../../common/components/header/header.component"
 import MostWatchedMediaComponent from "./components/mostWatched.component";
 import MostWatchedStreamComponent from "./components/mostWatchedStream.component";
 import "./styles/index.css";
-
 import { CardProps } from "../../../common/interfaces/media.interface";
 import CardLargeComponent from "../../../common/components/cardaLargeMedia/cardLarge.component";
-import image from "../../../assets/img/WhatsApp Image 2024-09-10 at 11.29.06 AM.jpeg";
 import MotionTransition from "../../../common/components/transition/transition.component";
 import { useAuth } from "../../../auth/auth.provider";
 import SwiperComponent from "../../../common/components/sliderCards.component/swiperComponent/swiperSlider.component";
 import CardComponent from "../../../common/components/sliderCards.component/sliderCard.component";
+import CardSmallComponent from "../../../common/components/smallCard/cardContinueWatching.component";
+import logo from "../../../assets/img/WhatsApp Image 2024-09-10 at 11.29.06 AM.jpeg";
 
 export default function LandingPage() {
   const [dataMediaCountry, setDataMediaCountry] = useState<CardProps[]>([]);
-  const [ mediaRecent, setMediaRecentlyAdd] = useState<CardProps[]>([])
+  const [mediaRecent, setMediaRecentlyAdd] = useState<CardProps[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined
   );
@@ -50,7 +50,6 @@ export default function LandingPage() {
           }));
 
         setDataMediaCountry(data);
-        
       } catch (err: any) {
         setErrorMessage(err.message || "An error occurred");
         console.error("Error fetching data:", err);
@@ -87,8 +86,7 @@ export default function LandingPage() {
             vote_average: media.vote_average,
           }));
 
-          setMediaRecentlyAdd(data);
-        
+        setMediaRecentlyAdd(data);
       } catch (err: any) {
         setErrorMessage(err.message || "An error occurred");
         console.error("Error fetching data:", err);
@@ -116,7 +114,7 @@ export default function LandingPage() {
         <h1 className="mostWatched-country-title">
           Most Watched in {country}{" "}
         </h1>
-        <SwiperComponent>
+        <SwiperComponent spaceBetween={5} slidesPerView={5}>
           {dataMediaCountry.map((movie) => (
             <CardComponent
               key={movie.id} // Asegúrate de agregar la propiedad `key` para evitar advertencias
@@ -132,7 +130,18 @@ export default function LandingPage() {
 
       {!!auth.isAuthenticated && (
         <div className="container-continueWatching">
-          <h1 className="recently-added-title">Continue Watching...</h1>
+          <h1 className="continue-watiching-title">Continue Watching...</h1>
+
+          <SwiperComponent spaceBetween={1} slidesPerView={3}>
+            {mediaRecent.map((movie) => (
+              <CardSmallComponent
+                id={movie.id}
+                imageUrl={movie.imageUrl}
+                title={movie.title}
+                vote_average={movie.vote_average}
+              />
+            ))}
+          </SwiperComponent>
         </div>
       )}
 

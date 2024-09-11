@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface WatchButtonProps {
-  size: string; // Cambia a 'size: number' si usas valores numéricos directamente
+  size: string;
+  height: string;
+  fontweight: string;
+  text: string
 }
 
 const StyledButton = styled.button<WatchButtonProps>`
-  font-size: 1rem;
+  font-size: ${props => props.fontweight}rem;
   padding: 10px;
   width: ${props => props.size}px; // Usa props.size para acceder al valor de size
   border: none;
@@ -20,8 +23,9 @@ const StyledButton = styled.button<WatchButtonProps>`
   margin-left: 10px;
   font-weight: 500;
   transition: 0.6s;
+  height: ${props => props.height}px;
   box-shadow: 0px 0px 60px #1f4c65;
-  -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 
   &:hover {
     background: linear-gradient(270deg, #F08080, #FFB6B6); /* Gradiente al pasar el cursor */
@@ -29,7 +33,7 @@ const StyledButton = styled.button<WatchButtonProps>`
   }
 `;
 
-const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({ size }) => {
+const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({ text, size, height, fontweight}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -37,8 +41,8 @@ const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({ size }) => {
   };
 
   return (
-    <StyledButton size={size} onClick={handleClick}>
-      Watch Now
+    <StyledButton text={text} size={size} height={height} fontweight={fontweight} onClick={handleClick}>
+      {text}
     </StyledButton>
   );
 };

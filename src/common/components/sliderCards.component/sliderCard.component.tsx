@@ -31,8 +31,8 @@ const CardComponent: React.FC<CardProps> = ({ backdrop_path, overview, title, vo
                     <h3 className='title-movie'>{title}</h3>
                     <p>{truncateText(overview, 100)}</p>
                     <div className="rating-and-watch">
-                        <WatchNowButtonComponent size='130' />
-                        <StarRating rating={vote_average} />
+                        <WatchNowButtonComponent size='130' height='38' fontweight='1' text='Watch Now' />
+                        <StarRating fontSize='16px' rating={vote_average} />
                     </div>
                 </div>
             )}

@@ -7,10 +7,12 @@ import "swiper/css/navigation"; // Importa los estilos para la navegación
 import './swiper.css' // Asegúrate de que este archivo exista y esté correctamente configurado
 
 interface SwiperComponentProps {
-  children: React.ReactNode; // Asegúrate de que los children sean válidos
+  children: React.ReactNode;
+  spaceBetween: number;
+  slidesPerView: number;
 }
 
-const SwiperComponent: React.FC<SwiperComponentProps> = ({ children }) => {
+const SwiperComponent: React.FC<SwiperComponentProps> = ({ children, spaceBetween, slidesPerView }) => {
   return (
     <Swiper
       navigation={true} // Activa la navegación con flechas
@@ -19,8 +21,8 @@ const SwiperComponent: React.FC<SwiperComponentProps> = ({ children }) => {
         delay: 10000,
         disableOnInteraction: false,
       }}
-      slidesPerView={5} // Muestra 5 cartas por vista
-      spaceBetween={5} // Espacio entre las cartas
+      slidesPerView={slidesPerView} // Muestra 5 cartas por vista
+      spaceBetween={spaceBetween} // Espacio entre las cartas
       className="mySwiper-most-watched"
     >
       {/* Asegúrate de que children sea un array de SwiperSlide */}

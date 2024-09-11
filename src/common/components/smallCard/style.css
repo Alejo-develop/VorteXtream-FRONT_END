@@ -1,0 +1,62 @@
+.container-small-card{
+    width: 24rem;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    max-height: 18rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.container-small-card:hover {
+    transform: scale(1.05); /* Escala el contenedor al 105% cuando se hace hover */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Añade una sombra suave al hacer hover */
+    border-radius: 0px 0px 20px 20px;
+}
+
+.img-small-card{
+    width: 100%;
+    height: 100%;
+}
+
+.container-img-card-small{
+    height: 10rem;
+}
+
+.info-container-samll-card{
+    border: solid 1px;
+    min-height: 7.4rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px 0px 20px 20px;
+    background-color: #2F3241;
+    overflow: hidden; 
+}
+
+.containetr-buttons-card-small{
+    display: flex;
+    justify-content: start;
+    gap: 30px;
+}
+
+.title-card-small{
+    text-align: start;
+    margin-left: 14px;
+    color: #F08080;
+    margin-top: 6px;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
+    white-space: nowrap; /* Evita el ajuste de línea */
+    overflow: hidden; /* Oculta el desbordamiento */
+    text-overflow: ellipsis; /
+}
+
+.title-card-small:hover {
+    transform: translateY(-5px); 
+    color: #F08080;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+
+}
+
