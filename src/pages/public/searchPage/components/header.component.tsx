@@ -65,7 +65,7 @@ export const HeaderSearchPage = () => {
                     >
                         {banners.map((bannerUrl, index) => (
                             <SwiperSlide key={index}>
-                                <div className="banner-container">
+                                <div className="banner-container-searchPage">
                                     <img src={bannerUrl} alt={`Movie Banner ${index + 1}`} className="banner-image" />
                                     <div className="overlay">
                                         <InputSearch />

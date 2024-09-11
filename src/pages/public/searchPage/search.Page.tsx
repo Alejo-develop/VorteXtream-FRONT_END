@@ -1,13 +1,9 @@
-
-import CardGenreComponent from "../../../common/components/cardComponent/Cards.component";
-
 import { HeaderSearchPage } from "./components/header.component";
 
-export default function SearchPage(filter: string | null) {
+export default function SearchPage() {
     return (
         <div>
             <HeaderSearchPage />
-            <CardGenreComponent />
         </div>
     );
 }
