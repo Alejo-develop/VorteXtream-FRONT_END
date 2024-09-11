@@ -27,8 +27,8 @@ const CardLargeComponent = ({ index, img, title, overview }: CardLargeProps) => 
         <p className="sinopsis-cardLarge">{truncateText(overview, 500)}</p>
 
         <div className="container-buttons-addREcently">
-          <WatchNowButtonComponent size="190" />
-          <AddFavoritesButtonComponent />
+          <WatchNowButtonComponent size="190" text="Watch Now" fontweight="1" height="45"/>
+          <AddFavoritesButtonComponent size="190" fontweight="1" height="45" />
         </div>
       </div>
     </div>

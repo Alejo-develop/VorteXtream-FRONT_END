@@ -2,20 +2,26 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const AddFavoritesButtonComponent: React.FC = () => {
+interface AddFavoritesButtonProps {
+  size: string;
+  height: string;
+  fontweight: string;
+}
+
+const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({ size, height, fontweight}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate("/");
   };
 
-  return <StyledButton onClick={handleClick}>Add Favorites</StyledButton>;
+  return <StyledButton size={size} height={height} fontweight={fontweight} onClick={handleClick}>Add Favorites</StyledButton>;
 };
 
-const StyledButton = styled.button`
-  font-size: 1rem;
+const StyledButton = styled.button<AddFavoritesButtonProps>`
+  font-size: ${props => props.fontweight}rem;
   padding: 10px;
-  width: 190px;
+  width: ${props => props.size}px;
   border: none;
   outline: none;
   border-radius: 0.4rem;
@@ -27,6 +33,7 @@ const StyledButton = styled.button`
   font-weight: 500;
   transition: 0.6s;
   box-shadow: 0px 0px 60px #1f4c65;
+  height: ${props => props.height}px;
   -webkit-box-reflect: below 10px
     linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
 

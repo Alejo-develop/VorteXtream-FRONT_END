@@ -2,43 +2,46 @@
     width: 75rem;
     height: 21rem; /* Altura fija del contenedor */
     display: grid;
-    grid-template-columns: 0.7fr 1.3fr;
+    grid-template-columns: 0.8fr 1.2fr;
     margin-top: 3rem;
     position: relative; /* Necesario para el pseudo-elemento ::before */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves para el escalado y sombra */
+    overflow: hidden; /* Asegura que el contenido no se desborde al escalar */
+}
+
+.container-card-large:hover {
+    transform: scale(1.05); /* Escala el contenedor al 105% cuando se hace hover */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Añade una sombra suave al hacer hover */
 }
 
 .banner-cardLarge-container {
-    position: relative; /* Necesario para posicionar el overlay correctamente */
+    position: relative; /* Necesario para el overlay */
     background-color: rgba(0, 0, 0, 0.7);
     overflow: hidden; /* Asegura que el overlay no se desborde del contenedor */
 }
 
 .banner-cardLarge-container::before {
     content: "";
-    font-weight: normal;
-    color: #F08080;
-    font-size: 1.5rem;
     position: absolute;
-    transform: translate(0%, 0%) scale(1); /* Ajusta la posición y escala del texto */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Overlay oscuro */
-    opacity: 0; /* Inicia como invisible */
-    transition: opacity 0.3s ease; /* Transición suave para la opacidad */
-    z-index: 1; /* Asegura que el overlay esté sobre la imagen */
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
 }
 
 .banner-cardLarge-container:hover::before {
-    opacity: 1; /* Hace visible el overlay al pasar el cursor */
+    opacity: 1;
 }
 
 .img-banner-cardLarge {
     height: 100%;
     width: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsión */
-    transition: opacity 0.3s ease; /* Suaviza la transición de opacidad si se utiliza */
+    object-fit: cover;
+    transition: opacity 0.3s ease;
 }
 
 .info-media-container {
@@ -51,16 +54,17 @@
 
 .media-title-cardLarge {
     background-color: #2F3241;
-    font-size: 3rem;
+    font-size: 2.6rem;
     padding: 5px;
-    width: 24rem;
-    height: 2rem;
+    width: 100%; /* Asegura que el contenedor se ajuste al ancho disponible */
+    white-space: nowrap; /* Evita el ajuste de línea */
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    overflow-y: hidden; /* Oculta el desplazamiento vertical si no es necesario */
     border-radius: 20px;
     color: #BCECE0;
     text-align: start;
     margin: 0;
     margin-bottom: 2rem;
-    width: 110%;
 }
 
 .sinopsis-cardLarge {
@@ -70,8 +74,8 @@
     width: 37rem;
     font-size: 1.1rem;
     min-height: 5.5rem;
-    text-align: start;
     max-height: 7.8rem;
+    overflow-y: auto; /* Permite el desplazamiento vertical si el contenido excede la altura máxima */
 }
 
 .container-buttons-addREcently {

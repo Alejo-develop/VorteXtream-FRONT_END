@@ -88,7 +88,7 @@ const MostWatchedMediaComponent = () => {
                     <p className="movie-sinopsis">
                       {truncateText(movie.overview || "", 400)}
                     </p>
-                    <WatchNowButtonComponent size="190" />
+                    <WatchNowButtonComponent size="190" height="45" text="Watch Now" fontweight="1rem"/>
                   </div>
                 </div>
               </div>

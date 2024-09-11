@@ -26,13 +26,14 @@
 }
 
 .container-continueWatching{
-    width: 100%;
+    width: 80rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: auto;
     margin-bottom: 4rem;
     text-align: center;
+    height: 28rem;
 }
 
 .container-recently-adde{
@@ -57,6 +58,17 @@
     transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
 }
 
+.continue-watiching-title{
+    font-size: 2.5rem;
+    color: #F08080;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+    border-bottom: solid #F08080;
+    align-self: flex-start;
+    margin-left: 2rem;
+    margin-bottom: 0;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
+}
+
 .transition-css{
     transition: transform 0.3s ease, color 0.s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
 
@@ -68,7 +80,14 @@
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
     letter-spacing: 1px; 
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
 
+.continue-watiching-title:hover{
+    transform: translateY(-5px); 
+    color: #F08080;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
 }
 
 .mostWatched-country-title:hover {

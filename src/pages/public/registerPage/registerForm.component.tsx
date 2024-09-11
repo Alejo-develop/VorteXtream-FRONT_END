@@ -42,7 +42,9 @@ const RegisterComponent = (props: registerProps) => {
 
       if(!response.ok){
         const errorToJson = await response.json() as AuthResponseError
-        setErrorMessage(errorToJson ? errorToJson.body.error : 'nada pa')
+        console.log(errorToJson);
+        
+        setErrorMessage(errorToJson ? errorToJson.error : 'nada pa')
         throw new Error('Something went wrong with the server')
       }
 
