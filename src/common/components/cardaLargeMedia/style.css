@@ -1,49 +1,79 @@
 .container-card-large {
     width: 75rem;
-    height: 20rem; /* Altura fija del contenedor */
+    height: 21rem; /* Altura fija del contenedor */
     display: grid;
-    grid-template-columns: 1.70fr 1fr;
+    grid-template-columns: 0.7fr 1.3fr;
     margin-top: 3rem;
-}
-
-.banner-cardLarge-container, .info-media-container {
-    height: 74%; /* Asegurarse de que usen el 100% de la altura del contenedor padre */
-    width: 100%;
+    position: relative; /* Necesario para el pseudo-elemento ::before */
 }
 
 .banner-cardLarge-container {
+    position: relative; /* Necesario para posicionar el overlay correctamente */
     background-color: rgba(0, 0, 0, 0.7);
+    overflow: hidden; /* Asegura que el overlay no se desborde del contenedor */
 }
 
-.info-media-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 1rem;
+.banner-cardLarge-container::before {
+    content: "";
+    font-weight: normal;
+    color: #F08080;
+    font-size: 1.5rem;
+    position: absolute;
+    transform: translate(0%, 0%) scale(1); /* Ajusta la posición y escala del texto */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Overlay oscuro */
+    opacity: 0; /* Inicia como invisible */
+    transition: opacity 0.3s ease; /* Transición suave para la opacidad */
+    z-index: 1; /* Asegura que el overlay esté sobre la imagen */
+}
+
+.banner-cardLarge-container:hover::before {
+    opacity: 1; /* Hace visible el overlay al pasar el cursor */
 }
 
 .img-banner-cardLarge {
     height: 100%;
     width: 100%;
-    z-index: -5;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsión */
+    transition: opacity 0.3s ease; /* Suaviza la transición de opacidad si se utiliza */
 }
 
-.media-title-cardLarge{
+.info-media-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    margin-left: 2rem;
+}
+
+.media-title-cardLarge {
     background-color: #2F3241;
-    border: solid 2px #BCECE0;
+    font-size: 3rem;
     padding: 5px;
     width: 24rem;
     height: 2rem;
     border-radius: 20px;
-    color: #BCECE0;;
+    color: #BCECE0;
+    text-align: start;
+    margin: 0;
+    margin-bottom: 2rem;
+    width: 110%;
 }
 
-.sinopsis-cardLarge{
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 2rem;
+.sinopsis-cardLarge {
+    margin-left: 8px;
     color: white;
     border-radius: 20px;
-    width: 24rem;
-    font-size: smaller;
+    width: 37rem;
+    font-size: 1.1rem;
     min-height: 5.5rem;
+    text-align: start;
+    max-height: 7.8rem;
+}
+
+.container-buttons-addREcently {
+    margin-top: 1.5rem;
 }

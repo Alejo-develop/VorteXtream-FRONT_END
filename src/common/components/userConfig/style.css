@@ -1,0 +1,15 @@
+.img-menu-profile{
+    width: 2.5rem;
+    border-radius: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.settings-porfile-button{
+    border-radius: 100%;
+    border: solid 3px black;
+}
+
+.img-menu-profile:hover {
+    transform: scale(1.1); /* Zoom in effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for a lifted effect */
+}
