@@ -1,0 +1,66 @@
+.card-anime {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra el contenido verticalmente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    padding: 0; /* Elimina el padding extra para un borde más limpio */
+    border-radius: 30px; /* Elimina el borde redondeado */
+    max-width: 320px;
+    height: 400px; /* Ajusta la altura para las tarjetas */
+    overflow: hidden; /* Para evitar el desbordamiento de contenido */
+    cursor: pointer; /* Cambia el cursor para indicar que la tarjeta es interactiva */
+    background: none; /* Elimina el fondo de la tarjeta */
+}
+
+.card-anime:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el cursor */
+}
+
+.img-anime {
+    width: 100%;
+    height: 100%; /* Asegura que la imagen cubra todo el espacio de la tarjeta */
+    object-fit: cover;
+    border-radius: 0; /* Elimina el borde redondeado */
+}
+
+.details-anime {
+    position: absolute;
+    bottom: 0; /* Coloca el texto en la parte inferior de la tarjeta */
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro con mayor opacidad para mejor legibilidad */
+    color: white;
+    padding: 15px; /* Ajusta el padding según sea necesario */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
+    text-align: center;
+}
+
+.details-anime h2, .details-anime h3, .synopsis-anime {
+    margin: 5px 0;
+    padding: 0; /* Elimina el padding extra */
+}
+
+.details-anime h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.details-anime h3 {
+    font-size: 1rem;
+}
+
+.synopsis-anime {
+    font-size: 0.9rem;
+    color: #ddd;
+    margin-top: 5px; /* Ajusta el margen superior */
+    height: auto; /* Permite que la sinopsis se expanda según el contenido */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita el número de líneas */
+    -webkit-box-orient: vertical;
+}

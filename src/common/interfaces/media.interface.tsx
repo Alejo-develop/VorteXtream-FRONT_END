@@ -6,3 +6,5 @@ export interface CardProps{
     vote_average: number;
     imageUrl: string
   };
+
+
