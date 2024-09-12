@@ -29,7 +29,6 @@ export function NavBarLayout(props: NavbarProps) {
         <ButtonNavBa path="/animes" icono={<Soup size={28} />} className="icon-link" />
         <ButtonNavBa path="/streams" icono={<TvMinimalPlay size={28} />} className="icon-link" />
         <ButtonNavBa path="#contact" icono={<Heart size={28} />} className="icon-link" />
-        <ButtonNavBa path="#messages" icono={<BotMessageSquare size={28} />} className="icon-link" />
         <ButtonNavBa path="#videos" icono={<Video size={28} />} className="icon-link" />
         <div className="log-out">
           {RenderForm}

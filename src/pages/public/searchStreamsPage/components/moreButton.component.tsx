@@ -1,29 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-interface SearchBarComponentProps {
-  onSearchChange: (query: string) => void;
-}
-
-const SearchBarComponent = ({ onSearchChange }: SearchBarComponentProps) => {
-  const [ query, setQuery ] = useState('')
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newQuery = e.target.value
-    setQuery(newQuery)
-    onSearchChange(newQuery)
+interface SearchMoreButtonComponentProps {
+    onClick: () => void;
   }
-  
-  return (
+
+const SearchMoreButtonComponent = ({ onClick }: SearchMoreButtonComponentProps) => {
+    return (
         <StyledWrapper>
           <div className="input-container">
-            <input
+            <button
               className="input"
-              value={query}
-              onChange={handleChange}
-              type="text"
-              placeholder="Search..."
-            />
+              name="text"
+              onClick={onClick}
+            > See More</button>
           </div>
         </StyledWrapper>
       );
@@ -70,8 +60,8 @@ const StyledWrapper = styled.div`
 }
 
 .input {
-  width: 40rem;
-  height: 45px;
+  width: 15rem;
+  height: 65px;
   padding: 12px;
   font-size: 18px;
   font-family: "Courier New", monospace;
@@ -81,6 +71,8 @@ const StyledWrapper = styled.div`
   border-radius: 0;
   outline: none;
   box-shadow: 8px 8px 0 #000;
+  margin-top: 3rem;
+  color: #ffff
 }
 
 .input::placeholder {
@@ -111,5 +103,5 @@ const StyledWrapper = styled.div`
 }
 
 `;
-export default SearchBarComponent
 
+export default SearchMoreButtonComponent
