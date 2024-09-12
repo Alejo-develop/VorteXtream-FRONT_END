@@ -1,5 +1,3 @@
-/* Estilos del HeaderAnime */
-
 .container-header-anime {
     max-width: 1550px;
     margin: 0 auto;
@@ -14,7 +12,7 @@
 .banner-header {
     width: 100%;
     height: 100vh;
-    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    object-fit: cover;
 }
 
 .overlay {
@@ -23,8 +21,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Color negro con 50% de opacidad */
-    z-index: 0; /* Asegura que esté detrás del título */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
 }
 
 .title-header {
@@ -34,46 +32,38 @@
     transform: translateY(-50%);
     color: white;
     font-size: 3rem;
-    z-index: 1; /* Asegura que el título esté sobre la superposición */
+    z-index: 1;
     text-align: right;
 }
 
-/* Estilos para la sección de tarjetas de anime */
-
 .anime-section {
-    margin-top: 70px; /* Ajusta el margen superior para separar el header de las tarjetas */
-    padding: 0 20px; /* Añade un poco de padding para evitar que las tarjetas lleguen hasta el borde */
+    margin-top: 70px;
+    padding: 0 20px;
 }
 
-
-
-/* Estilos para el botón de carga */
 .load-more-button {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
-    background-color: #007bff; /* Color de fondo azul */
-    color: white; /* Color del texto */
+    background-color: #007bff;
+    color: white;
     border: none;
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 16px; /* Tamaño de fuente */
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Transición para el color de fondo */
+    transition: background-color 0.3s ease;
 }
 
-/* Estilos para el botón al pasar el ratón por encima */
 .load-more-button:hover {
-    background-color: #0056b3; /* Color de fondo azul más oscuro */
+    background-color: #0056b3;
 }
 
-/* Estilos para el botón al estar deshabilitado */
 .load-more-button:disabled {
-    background-color: #c0c0c0; /* Color de fondo gris */
-    cursor: not-allowed; /* Cursor de no permitido */
+    background-color: #c0c0c0;
+    cursor: not-allowed;
 }
 
 .swiper-container {
-    max-width: 1200px; /* Ajusta el ancho máximo según sea necesario */
-   margin: auto;
-    
+    max-width: 1300px;
+    margin: auto;
 }

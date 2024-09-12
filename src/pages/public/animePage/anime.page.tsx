@@ -62,7 +62,7 @@ export function AnimePage() {
             <div className="anime-section">
                 {groupedAnimes(animes, 10).map((group, index) => (
                     <div className="swiper-container" key={index}>
-                        <SwiperComponent spaceBetween={10} slidesPerView={3}>
+                        <SwiperComponent spaceBetween={40} slidesPerView={4}>
                             {group.map(anime => (
                                 <CardAnime
                                     key={anime.id}
