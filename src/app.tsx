@@ -5,6 +5,7 @@ import { NavBarLayout } from './layouts/NavBar.Layout'
 import SearchPage from './pages/public/searchPage/search.Page'
 import FooterComponent from './common/components/footer/footer.component'
 import SearchStreamsPage from './pages/public/searchStreamsPage/SearchStreamsPage'
+import LayoutStreamers from './layouts/layoutStreamers/layoutStreamers'
 
 export const appRouter = createBrowserRouter([
   {
@@ -36,7 +37,9 @@ export const appRouter = createBrowserRouter([
     path: '/streams',
     element: (
       <NavBarLayout>
-        <SearchStreamsPage />
+        <LayoutStreamers>
+          <SearchStreamsPage />
+        </LayoutStreamers>
       </NavBarLayout>
     )
   }
