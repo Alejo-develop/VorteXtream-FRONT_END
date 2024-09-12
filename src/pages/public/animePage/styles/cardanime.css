@@ -3,45 +3,74 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Centra el contenido verticalmente */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    padding: 0; /* Elimina el padding extra para un borde más limpio */
-    border-radius: 30px; /* Elimina el borde redondeado */
+    justify-content: center;
+    box-shadow: 0 20px 30px rgba(206, 78, 78, 0.2);
+    padding: 0;
+    border-radius: 30px;
     max-width: 320px;
-    height: 400px; /* Ajusta la altura para las tarjetas */
-    overflow: hidden; /* Para evitar el desbordamiento de contenido */
-    cursor: pointer; /* Cambia el cursor para indicar que la tarjeta es interactiva */
-    background: none; /* Elimina el fondo de la tarjeta */
+    height: 420px;
+    overflow: hidden;
+    cursor: pointer;
+    background: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-anime:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el cursor */
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.3);
 }
 
 .img-anime {
     width: 100%;
-    height: 100%; /* Asegura que la imagen cubra todo el espacio de la tarjeta */
+    height: 100%;
     object-fit: cover;
-    border-radius: 0; /* Elimina el borde redondeado */
+    border-radius: 0;
+    transition: filter 0.3s ease;
+}
+
+.card-anime:hover .img-anime {
+    filter: blur(4px);
+}
+
+.card-anime::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.card-anime:hover::after {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .details-anime {
     position: absolute;
-    bottom: 0; /* Coloca el texto en la parte inferior de la tarjeta */
+    top: 0;
     left: 0;
-    height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro con mayor opacidad para mejor legibilidad */
     color: white;
-    padding: 15px; /* Ajusta el padding según sea necesario */
-    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
+    padding: 15px;
+    box-sizing: border-box;
     text-align: center;
+    z-index: 3;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.card-anime:hover .details-anime {
+    opacity: 1;
+    visibility: visible;
 }
 
 .details-anime h2, .details-anime h3, .synopsis-anime {
-    margin: 5px 0;
-    padding: 0; /* Elimina el padding extra */
+    margin: 3px 0;
+    padding: 0;
 }
 
 .details-anime h2 {
@@ -49,18 +78,37 @@
     font-weight: bold;
 }
 
-.details-anime h3 {
-    font-size: 1rem;
+.title-japonese {
+    font-size: 0.5rem;
 }
 
 .synopsis-anime {
     font-size: 0.9rem;
     color: #ddd;
-    margin-top: 5px; /* Ajusta el margen superior */
-    height: auto; /* Permite que la sinopsis se expanda según el contenido */
+    margin-top: 5px;
+    height: auto;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limita el número de líneas */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 15px;
+    padding: 0 15px;
+    z-index: 4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.card-anime:hover .buttons {
+    opacity: 1;
+    visibility: visible;
 }
