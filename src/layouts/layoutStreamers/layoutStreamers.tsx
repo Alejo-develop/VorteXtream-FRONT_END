@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react";
-import StreamMostViewComponent from "../../pages/public/searchStreamsPage/components/streamMosViewDiv.component";
+import StreamMostViewComponent from "./streamMosViewDiv.component";
 import "./style.css";
+import { Streamer } from "../../common/interfaces/streamer.interface";
 
 interface NavbarProps {
   children: React.ReactNode;
-}
-
-interface Streamer {
-  id: string;
-  game_name: string;
-  title: string;
-  type: string;
-  user_name: string;
-  viewer_count: number;
-  profile_image_url: string; // Cambiado a profile_image_url
 }
 
 const LayoutStreamers = ({ children }: NavbarProps) => {
