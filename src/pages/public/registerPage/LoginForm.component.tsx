@@ -4,57 +4,67 @@ import { Lock } from "lucide-react";
 import "./styles/loginstyles.css";
 import InputLogin from "./components/Input.component";
 import { useState } from "react";
-import { AuthResponse, AuthResponseError } from "../../../common/interfaces/authResponse.interface";
+import {
+  AuthResponse,
+  AuthResponseError,
+} from "../../../common/interfaces/authResponse.interface";
 import { useAuth } from "../../../auth/auth.provider";
 import { UserPayload } from "../../../common/interfaces/user.interface";
+import { handleGoogleLogin } from "../../../common/components/google/googleLogin";
+import google from "../../../assets/svg/google.svg";
 
 const LoginComponent = () => {
-  const [ username, setUsername ] = useState<string>(' ')
-  const [ password, setPassword ] = useState<string>(' ')
-  const [ errorResponse, setErrorResponse ] = useState(' ')
+  const [username, setUsername] = useState<string>(" ");
+  const [password, setPassword] = useState<string>(" ");
+  const [errorResponse, setErrorResponse] = useState(" ");
 
-  const auth = useAuth()
+  const auth = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     try {
-      const response = await fetch('http://miurl.com', {
-        method: 'POST',
+      const response = await fetch("http://miurl.com", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username,
-          password
-        })
-      })
+          password,
+        }),
+      });
 
-      if(!response.ok){
-        const errorToJson = await response.json() as AuthResponseError
-        setErrorResponse(errorToJson.body.error)
-        throw new Error (errorToJson.body.error)
+      if (!response.ok) {
+        const errorToJson = (await response.json()) as AuthResponseError;
+        setErrorResponse(errorToJson.body.error);
+        throw new Error(errorToJson.body.error);
       }
 
-      const resToJson = await response.json() as AuthResponse
-      const token = resToJson.body.token
-
+      const resToJson = (await response.json()) as AuthResponse;
+      const token = resToJson.body.token;
     } catch (err) {
       console.log(err);
     }
-  }
-
+  };
 
   return (
     <div className="login-container">
       <h1 className="title-login">Login</h1>
       <form className="login-form" onSubmit={handleSubmit}>
         {/* input de username */}
-
-        <InputLogin onChange={(e) => setUsername(e.target.value)} placeholder="Username" Icon={<User size={24} />} />
+        <InputLogin
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          Icon={<User size={24} />}
+        />
         {/* input de password */}
+        <InputLogin
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          Icon={<Lock size={24} />}
+        />
 
-        <InputLogin onChange={(e) => setPassword(e.target.value)} placeholder="Password" Icon={<Lock size={24} />} />
         {/* input de remember me y forgot password */}
 
         <div className="remember-forgot">
@@ -68,10 +78,25 @@ const LoginComponent = () => {
           </a>
         </div>
 
+        <button
+          className="googleLogin"
+          type="button"
+          onClick={handleGoogleLogin}
+        >
+          <img
+            src={google}
+            alt="Google"
+            className="google-icon"
+          />
+          Login with Google
+        </button>
+
         {/* botón de login */}
 
         <div className="boton-container">
-          <button className="login-button" type="submit">Login</button>
+          <button className="login-button" type="submit">
+            Login
+          </button>
         </div>
       </form>
     </div>
