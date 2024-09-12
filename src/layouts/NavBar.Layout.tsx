@@ -26,7 +26,7 @@ export function NavBarLayout(props: NavbarProps) {
       <nav className="sidebar">
         <ButtonNavBa path="/" icono={<House size={28} />} className="icon-link" />
         <ButtonNavBa path="/searchpage" icono={<Popcorn size={28} />} className="icon-link" />
-        <ButtonNavBa path="#messages" icono={<Soup size={28} />} className="icon-link" />
+        <ButtonNavBa path="/animes" icono={<Soup size={28} />} className="icon-link" />
         <ButtonNavBa path="/streams" icono={<TvMinimalPlay size={28} />} className="icon-link" />
         <ButtonNavBa path="#contact" icono={<Heart size={28} />} className="icon-link" />
         <ButtonNavBa path="#messages" icono={<BotMessageSquare size={28} />} className="icon-link" />
