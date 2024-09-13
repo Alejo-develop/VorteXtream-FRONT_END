@@ -1,51 +1,99 @@
-.container-header-anime {
-    max-width: 1550px;
-    margin: 0 auto;
-    overflow-x: hidden;
+.header-anime-container {
+    display: flex;
+    overflow: hidden;
+    max-width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 120px;
     position: relative;
+    justify-content: center;
 }
 
-.header-content {
+.anime-item {
     position: relative;
+    width: 800px;
+    height: 90vh;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.banner-header {
+.anime-item:hover {
+    transform: scale(1.1);
+}
+
+.header-anime-container .anime-item {
+    transition: transform 0.5s ease;
+}
+
+.header-anime-container .anime-item:hover ~ .anime-item {
+    transform: translateX(50px);
+}
+
+.anime-image {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     object-fit: cover;
+    border-radius: 0;
+    transition: filter 0.3s ease;
 }
 
-.overlay {
+.anime-item:hover .anime-image {
+    filter: blur(1px);
+}
+
+.anime-item::after {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: background 0.3s ease;
 }
 
-.title-header {
+.anime-item:hover::after {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.anime-title {
     position: absolute;
+    left: 50%;
     top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
+    padding: 15px;
     color: white;
-    font-size: 3rem;
-    z-index: 1;
-    text-align: right;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
 }
 
-.anime-section {
-    margin-top: 70px;
-    padding: 0 20px;
+.anime-item:hover .anime-title {
+    opacity: 1;
+}
+
+.anime-item:hover .buttons {
+    opacity: 1;
+    visibility: visible;
+}
+
+.swiper-container {
+    max-width: 1200px;
+    margin: auto;
 }
 
 .load-more-button {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #F08080;
     color: white;
     border: none;
     border-radius: 5px;
@@ -55,7 +103,7 @@
 }
 
 .load-more-button:hover {
-    background-color: #0056b3;
+    background-color: #dc7485;
 }
 
 .load-more-button:disabled {
@@ -63,7 +111,9 @@
     cursor: not-allowed;
 }
 
-.swiper-container {
-    max-width: 1300px;
-    margin: auto;
+.search-anime {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
 }
