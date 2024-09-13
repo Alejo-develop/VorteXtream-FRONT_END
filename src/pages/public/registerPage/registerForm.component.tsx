@@ -9,14 +9,33 @@ interface registerProps{
   onChange: React.Dispatch<SetStateAction<boolean>>
 }
 
+interface countryOptions {
+  label: string;
+  value: string;
+}
+
+const fetchCountries = async ( inputValue: string): Promise<countryOptions[]> => {
+  try {
+    const response = await fetch(`https://restcountries.eu/rest/v2/name/${inputValue}`)
+    if (!response.ok) {
+      throw new Error('Failed to fetch countries')
+    }
+    const countries = await response.json()
+    return countries.map((country: any) => ({ label: country.name, value: country.alpha3Code }))
+  }
+}
+
+const usaOption: countryOptions = { label: 'United States', value: 'USA'}
+
 // Define the RegisterComponent functional component.
 const RegisterComponent = (props: registerProps) => {
   const [ username, setUsername ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState<string>('');
   const [ confirmPassword, setConfirmPassword ] = useState<string>('');
-  const [ country, setCountry ] = useState<string>('');
-  const [ errorMessage, setErrorMessage ] = useState<string>(' ')
+  const [ country, setCountry ] = useState<countryOptions | null>(usaOption);
+  const [ errorMessage, setErrorMessage ] = useState<string>(' ');
+  const [ countryOptions, setCountryOptions ] = useState<countryOptions | null>(usaOption)
 
   const createUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()

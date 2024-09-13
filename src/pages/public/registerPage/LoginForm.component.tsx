@@ -3,55 +3,61 @@ import { Lock } from "lucide-react";
 import "./styles/loginstyles.css";
 import InputLogin from "./components/Input.component";
 import { useState } from "react";
-import { AuthResponse, AuthResponseError } from "../../../common/interfaces/authResponse.interface";
-import { useAuth } from "../../../auth/auth.provider";
+import {
+  AuthResponse,
+  AuthResponseError,
+} from "../../../common/interfaces/authResponse.interface";
 import { UserPayload } from "../../../common/interfaces/user.interface";
+import { useAuth } from "../../../auth/auth.provider";
 import { useNavigate } from "react-router-dom";
-import { handleGoogleLogin } from "../../../common/components/google/googleLogin";
-import google from '../../../assets/svg/google.svg'
+import { useGoogleLogin } from "../../../common/components/google/googleLogin";
+import google from "../../../assets/svg/google.svg";
 
 const LoginComponent = () => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [errorResponse, setErrorResponse] = useState<string>('');
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [errorResponse, setErrorResponse] = useState<string>("");
 
   const auth = useAuth();
-  const goTo = useNavigate();
+  const navigate = useNavigate();
+  const { handleGoogleLogin } = useGoogleLogin();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/vortextream/auth/login", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:3000/vortextream/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        }
+      );
 
-      if(!response.ok){
-        const errorToJson = await response.json() as AuthResponseError
-        const errorMessage = errorToJson?.error || 'An unexpected error occurred';
+      if (!response.ok) {
+        const errorToJson = (await response.json()) as AuthResponseError;
+        const errorMessage =
+          errorToJson?.error || "An unexpected error occurred";
         setErrorResponse(errorMessage);
-  
         throw new Error(errorMessage);
       }
 
-
-      const resToJson = await response.json() as AuthResponse
+      const resToJson = (await response.json()) as AuthResponse;
       console.log(resToJson);
-      const token = resToJson.token
-      const user = resToJson.user as UserPayload
+      const token = resToJson.token;
+      const user = resToJson.user as UserPayload;
 
       auth.saveSessionInfo(user, token);
-      goTo('/');
+      navigate("/");
     } catch (err) {
       console.log(err);
-      setErrorResponse('An error occurred. Please try again.');
+      setErrorResponse("An error occurred. Please try again.");
     }
   };
 
@@ -86,7 +92,11 @@ const LoginComponent = () => {
           </a>
         </div>
 
-        <button className="googleLogin" type="button" onClick={handleGoogleLogin}>
+        <button
+          className="googleLogin"
+          type="button"
+          onClick={handleGoogleLogin}
+        >
           <img src={google} alt="Google" className="google-icon" />
           Login with Google
         </button>
