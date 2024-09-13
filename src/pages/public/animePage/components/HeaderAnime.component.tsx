@@ -1,14 +1,33 @@
 import React from 'react';
-import logo from '../../../../assets/img/WhatsApp Image 2024-09-10 at 11.29.06 AM.jpeg';
 
-export const HeaderAnime = () => {
+// Definir la interfaz AnimeInfo
+export interface AnimeInfo {
+    id: number;
+    title_japonese: string;
+    title_english: string;
+    image_url: string;
+    synopsis: string;
+}
+
+interface HeaderAnimeProps {
+    animes: AnimeInfo[];
+}
+
+export const HeaderAnime: React.FC<HeaderAnimeProps> = ({ animes }) => {
     return (
-        <div className="container-header-anime">
-            <div className="header-content">
-                <img src={logo} alt="" className="banner-header" />
-                <div className="overlay"></div>
-                <h1 className="title-header">Discover the Anime World</h1>
-            </div>
+        <div className="header-anime-container">
+            {animes.map((anime) => (
+                <div key={anime.id} className="anime-item">
+                    <img 
+                        src={anime.image_url} 
+                        alt={anime.title_japonese} 
+                        className="anime-image" 
+                    />
+                    <div className="anime-title">
+                        {anime.title_english || anime.title_japonese}
+                    </div>
+                </div>
+            ))}
         </div>
     );
-}
+};
