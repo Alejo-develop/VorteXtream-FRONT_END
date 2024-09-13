@@ -3,56 +3,63 @@ import { Lock } from "lucide-react";
 import "./styles/loginstyles.css";
 import InputLogin from "./components/Input.component";
 import { useState } from "react";
-import { AuthResponse, AuthResponseError } from "../../../common/interfaces/authResponse.interface";
-import { useAuth } from "../../../auth/auth.provider";
+import {
+  AuthResponse,
+  AuthResponseError,
+} from "../../../common/interfaces/authResponse.interface";
 import { UserPayload } from "../../../common/interfaces/user.interface";
+import { useAuth } from "../../../auth/auth.provider";
 import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "../../../common/components/google/googleLogin";
+import google from "../../../assets/svg/google.svg";
 
 const LoginComponent = () => {
-  const [ username, setUsername ] = useState<string>('')
-  const [ password, setPassword ] = useState<string>('')
-  const [ errorResponse, setErrorResponse ] = useState('')
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [errorResponse, setErrorResponse] = useState<string>("");
 
-  const auth = useAuth()
-  const goTo = useNavigate()
-  
+  const auth = useAuth();
+  const navigate = useNavigate();
+  const { handleGoogleLogin } = useGoogleLogin();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    
-    try {
-      const response = await fetch('http://localhost:3000/vortextream/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username,
-          password
-        })
-      })    
+    e.preventDefault();
 
-      if(!response.ok){
-        const errorToJson = await response.json() as AuthResponseError
-        const errorMessage = errorToJson?.body?.error || 'An unexpected error occurred';
+    try {
+      const response = await fetch(
+        "http://localhost:3000/vortextream/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorToJson = (await response.json()) as AuthResponseError;
+        const errorMessage =
+          errorToJson?.error || "An unexpected error occurred";
         setErrorResponse(errorMessage);
-  
         throw new Error(errorMessage);
       }
 
-      const resToJson = await response.json() as AuthResponse
+      const resToJson = (await response.json()) as AuthResponse;
       console.log(resToJson);
-      const token = resToJson.token
-      const user = resToJson.user as UserPayload
+      const token = resToJson.token;
+      const user = resToJson.user as UserPayload;
 
-      
-      auth.saveSessionInfo(user, token)
-      goTo('/')
+      auth.saveSessionInfo(user, token);
+      navigate("/");
     } catch (err) {
       console.log(err);
-      setErrorResponse('An error occurred. Please try again.');
+      setErrorResponse("An error occurred. Please try again.");
     }
-  }
-
+  };
 
   return (
     <div className="login-container">
@@ -60,13 +67,19 @@ const LoginComponent = () => {
 
       {!!errorResponse && <div className="error-message">{errorResponse}</div>}
       <form className="login-form" onSubmit={handleSubmit}>
-        {/* input de username */}
+        <InputLogin
+          type="text"
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          Icon={<User size={24} />}
+        />
 
-        <InputLogin type="text" onChange={(e) => setUsername(e.target.value)} placeholder="Username" Icon={<User size={24} />} />
-        {/* input de password */}
-
-        <InputLogin type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" Icon={<Lock size={24} />} />
-        {/* input de remember me y forgot password */}
+        <InputLogin
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          Icon={<Lock size={24} />}
+        />
 
         <div className="remember-forgot">
           <div className="remember-me">
@@ -79,10 +92,19 @@ const LoginComponent = () => {
           </a>
         </div>
 
-        {/* botón de login */}
+        <button
+          className="googleLogin"
+          type="button"
+          onClick={handleGoogleLogin}
+        >
+          <img src={google} alt="Google" className="google-icon" />
+          Login with Google
+        </button>
 
         <div className="boton-container">
-          <button className="login-button" type="submit">Login</button>
+          <button className="login-button" type="submit">
+            Login
+          </button>
         </div>
       </form>
     </div>

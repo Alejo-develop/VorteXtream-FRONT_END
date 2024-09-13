@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 interface SearchAnimeProps {
@@ -7,24 +7,10 @@ interface SearchAnimeProps {
 
 const SearchAnime: React.FC<SearchAnimeProps> = ({ onSearch }) => {
   const [query, setQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState(query);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedQuery(query);
-    }, 300);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [query]);
-
-  useEffect(() => {
-    onSearch(debouncedQuery);
-  }, [debouncedQuery, onSearch]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
+    onSearch(event.target.value); // Llamar a la función de búsqueda al mismo tiempo
   };
 
   return (
@@ -37,7 +23,7 @@ const SearchAnime: React.FC<SearchAnimeProps> = ({ onSearch }) => {
             </g>
           </svg>
           <input 
-            placeholder="Search" 
+            placeholder="Search Your Favorite Anime" 
             type="search" 
             className="input" 
             value={query}
@@ -55,21 +41,23 @@ const StyledWrapper = styled.div`
     line-height: 28px;
     align-items: center;
     position: relative;
-    max-width: 190px;
+    width: 100%;
+   
   }
 
   .input {
-    width: 100%;
+    width: 130%;
     height: 40px;
     line-height: 28px;
-    padding: 0 1rem;
-    padding-left: 2.5rem;
+    padding: 1.5rem 10rem ; 
+    padding-left: 2.8rem;
     border: 2px solid transparent;
-    border-radius: 8px;
+    border-radius: 25px;
     outline: none;
-    background-color: #f3f3f4;
-    color: #0d0c22;
+    background-color: #000;
+    color: #ffff;
     transition: .3s ease;
+    font-size: 1.rem
   }
 
   .input::placeholder {
@@ -78,9 +66,6 @@ const StyledWrapper = styled.div`
 
   .input:focus, .input:hover {
     outline: none;
-    border-color: rgba(234,76,137,0.4);
-    background-color: #fff;
-    box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
   }
 
   .icon {

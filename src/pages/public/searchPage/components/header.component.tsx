@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
-import Logo from "../../../../assets/img/Logo.png";
 import { InputSearch } from "../../../../common/components/searchComponent/search.component";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules"; // Importar Pagination y Autoplay
 import "swiper/css";
 import "swiper/css/pagination";
 import '../styles/headerSearchPage.css';
-import ExplorerButtonComponent from "../../../../common/components/explorerButton/explorerButton.component";
-import UserConfigComponent from "../../../../common/components/userConfig/userConfig.component";
-import HeaderComponent from "../../../../common/components/header/header.component";
 
 type Movie = {
     id: number;
@@ -43,16 +39,16 @@ export const HeaderSearchPage = () => {
 
     return (
         <div className="general">
-             <HeaderComponent></HeaderComponent>
+         
 
             <header className="header-container">
                 {banners.length > 0 && (
                     <Swiper
                         pagination={{ clickable: true }}
-                        modules={[Pagination, Autoplay]} // Añadir Autoplay al array de módulos
+                        modules={[Pagination, Autoplay]} 
                         autoplay={{
                             delay: 5000, // Cambia la imagen cada 5 segundos
-                            disableOnInteraction: false, // No desactivar autoplay si el usuario interactúa
+                            disableOnInteraction: false, 
                         }}
                         className="mySwiper"
                     >
