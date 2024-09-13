@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import CardStreamerComponent from "../../../common/components/cardStreamer/cardStreamer.component";
 import SearchBarComponent from "./components/searchBar.component";
 import "./style.css";
@@ -5,9 +6,13 @@ import {
   clientId,
   accessToken,
 } from "../../../common/utils/constants/twitchConstants";
-import { useEffect, useState } from "react";
-import { Streamer } from "../../../common/interfaces/streamer.interface";
+import {
+  Streamer,
+  CategorysStreams,
+} from "../../../common/interfaces/streamer.interface";
 import SearchMoreButtonComponent from "./components/moreButton.component";
+import CardCategorysComponent from "./components/categorys.component";
+import SwiperComponent from "../../../common/components/sliderCards.component/swiperComponent/swiperSlider.component";
 
 interface StreamsResponse {
   data: Streamer[];
@@ -16,17 +21,19 @@ interface StreamsResponse {
   };
 }
 
+interface CategoriesResponse {
+  data: CategorysStreams[];
+}
+
 export default function SearchStreamsPage() {
   const [streamersData, setStreamersData] = useState<Streamer[]>([]);
   const [nextCursor, setNextCursor] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(""); // Estado para almacenar el texto de búsqueda
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryData, setCategoryData] = useState<CategorysStreams[]>([]);
 
   const fetchStreams = async (cursor?: string) => {
-    setIsLoading(true);
     try {
-      // Construir la URL de acuerdo al estado de búsqueda y paginación
       const url = cursor
         ? `https://api.twitch.tv/helix/streams?first=10&sort=viewer_count&after=${cursor}`
         : searchQuery
@@ -40,13 +47,14 @@ export default function SearchStreamsPage() {
         },
       });
 
-      if (!streamsResponse.ok) throw new Error("Something went wrong at the server");
+      if (!streamsResponse.ok)
+        throw new Error("Something went wrong at the server");
 
       const dataTojson: StreamsResponse = await streamsResponse.json();
-      // Actualizar los datos dependiendo del estado de búsqueda
-      setStreamersData(prevData => cursor ? [...prevData, ...dataTojson.data] : dataTojson.data);
+      setStreamersData((prevData) =>
+        cursor ? [...prevData, ...dataTojson.data] : dataTojson.data
+      );
 
-      // Manejar el cursor para la paginación
       if (dataTojson.pagination.cursor) {
         setNextCursor(dataTojson.pagination.cursor);
         setHasMore(true);
@@ -56,19 +64,43 @@ export default function SearchStreamsPage() {
       }
     } catch (error) {
       console.error("Error fetching streams:", error);
-    } finally {
-      setIsLoading(false);
+    }
+  };
+
+  const fetchCategorys = async () => {
+    const popularGames = ['Fortnite', 'League of Legends', 'Valorant', 'Minecraft', 'Apex Legends']; // Lista de juegos populares
+    const urlCategorys = `https://api.twitch.tv/helix/games?name=${popularGames.join('&name=')}`;
+
+    try {
+      const categorysResponse = await fetch(urlCategorys, {
+        headers: {
+          "Client-ID": clientId,
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      if (!categorysResponse.ok)
+        throw new Error("Something went wrong at the server");
+
+      const categoryToJson: CategoriesResponse = await categorysResponse.json();
+      console.log(categoryToJson);
+
+      setCategoryData(categoryToJson.data); // Asegúrate de actualizar el estado con el array de categorías
+    } catch (err) {
+      console.error("Error Fetching categories: ", err);
     }
   };
 
   useEffect(() => {
-    fetchStreams(); // Fetch initial data
-  }, [searchQuery]); // Refetch data when search query changes
+    fetchCategorys();
+  }, []);
+
+  useEffect(() => {
+    fetchStreams();
+  }, [searchQuery]);
 
   const handleLoadMore = () => {
-    if (hasMore && !isLoading) {
-      fetchStreams(nextCursor);
-    }
+    fetchStreams(nextCursor);
   };
 
   const handleSearchChange = (query: string) => {
@@ -89,7 +121,7 @@ export default function SearchStreamsPage() {
           {streamersData.map((streamer) => (
             <CardStreamerComponent
               key={streamer.id}
-              profile_image_url=""
+              profile_image_url={streamer.profile_image_url || ""} // Asegúrate de pasar todos los props requeridos
               id={streamer.id}
               game_name={streamer.game_name}
               title={streamer.title}
@@ -103,6 +135,18 @@ export default function SearchStreamsPage() {
       )}
 
       {hasMore && <SearchMoreButtonComponent onClick={handleLoadMore} />}
+
+      <div className="category-streams-container">
+        <h1 className="title-section-category">Game Categories</h1>
+
+        {!!categoryData.length && ( // Verifica que `categoryData` no esté vacío
+          <SwiperComponent spaceBetween={1} slidesPerView={3}>
+            {categoryData.map((category) => (
+              <CardCategorysComponent id={category.id} name={category.name} box_art_url={category.box_art_url}  />
+            ))}
+          </SwiperComponent>
+        )}
+      </div>
     </div>
   );
 }

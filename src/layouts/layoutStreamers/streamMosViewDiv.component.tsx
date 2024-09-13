@@ -42,7 +42,7 @@ const StyledWrapper = styled.div<StreamMostViewProps>`
     gap: 15px;
     border: 4px solid #f08080; /* Color del borde */
     max-width: 252px;
-    height: 3.3rem;
+    height: 2rem;
     transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
     transform-style: preserve-3d;
     transform: rotateX(10deg) rotateY(-10deg);

@@ -15,10 +15,10 @@ const UserMenuLandingComponent = () => {
             </div>
 
             <div className="options-userMenu-landing">
-                <ButtonUserMenuLandingComponent  text="Settings profile" path="/" />
-                <ButtonUserMenuLandingComponent  text="History/Favorites" path="/" />
-                <ButtonUserMenuLandingComponent  text="Privacy settings" path="/" />
-                <ButtonUserMenuLandingComponent  text="Log Out" path="/" />
+                <ButtonUserMenuLandingComponent width="19.8"  text="Settings profile" path="/" />
+                <ButtonUserMenuLandingComponent width="19.8" text="History/Favorites" path="/" />
+                <ButtonUserMenuLandingComponent width="19.8"  text="Privacy settings" path="/" />
+                <ButtonUserMenuLandingComponent width="19.8" text="Log Out" path="/" />
             </div>
         </div>
     )
