@@ -1,7 +1,7 @@
 .header-anime-container {
     display: flex;
     overflow: hidden;
-    max-width: 90%;
+    width:100%;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 120px;
@@ -116,4 +116,12 @@
     display: flex;
     justify-content: center;
     margin-bottom: 50px;
+}
+
+
+.cards-anime{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 40px;
+    margin-top: 20px;
 }

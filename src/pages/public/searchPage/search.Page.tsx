@@ -4,6 +4,7 @@ import { MoviesByGenreComponent } from "./components/MoviesGenre.component";
 import GenreSelect from "./components/GenreSelect";
 import { CardProps } from "../../../common/interfaces/media.interface";
 import FooterComponent from "../../../common/components/footer/footer.component";
+import HeaderComponent from "../../../common/components/header/header.component";
 
 type Genre = {
     genreId: number;
@@ -81,6 +82,7 @@ export default function SearchPage() {
 
     return (
         <div>
+            <HeaderComponent></HeaderComponent>
             <HeaderSearchPage />
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <GenreSelect
