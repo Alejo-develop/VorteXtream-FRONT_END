@@ -10,7 +10,6 @@ import { useAuth } from "../../../auth/auth.provider";
 import SwiperComponent from "../../../common/components/sliderCards.component/swiperComponent/swiperSlider.component";
 import CardComponent from "../../../common/components/sliderCards.component/sliderCard.component";
 import CardSmallComponent from "../../../common/components/smallCard/cardContinueWatching.component";
-import logo from "../../../assets/img/WhatsApp Image 2024-09-10 at 11.29.06 AM.jpeg";
 
 export default function LandingPage() {
   const [dataMediaCountry, setDataMediaCountry] = useState<CardProps[]>([]);

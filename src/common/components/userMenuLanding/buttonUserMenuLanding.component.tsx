@@ -4,12 +4,14 @@ import styled from "styled-components";
 
 interface ButtonMenuLandingProps {
   text: string;
-  path: string;
+  path?: string;
+  width: string;
 }
 
 const ButtonUserMenuLandingComponent = ({
   text,
   path,
+  width
 }: ButtonMenuLandingProps) => {
   const goTo = useNavigate();
 
@@ -18,7 +20,7 @@ const ButtonUserMenuLandingComponent = ({
   };
 
   return (
-    <StyledWrapper>
+    <StyledWrapper width={width} text={text}>
       <button className="button2" onClick={handleClick}>
         {text}
       </button>
@@ -27,7 +29,7 @@ const ButtonUserMenuLandingComponent = ({
 };
 
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.div<ButtonMenuLandingProps>`
   .button2 {
     display: inline-block;
     transition: all 0.2s ease-in;
@@ -40,7 +42,7 @@ const StyledWrapper = styled.div`
     font-size: 15px;
     background: #2F3241; /* Color de fondo en estado normal */
     border: 1px solid #2F3241;
-    width : 19.8rem;
+    width : ${props => props.width}rem; /*esto tenia 19.8rem*/
     height: 3.7rem;
   }
 

@@ -24,12 +24,12 @@ export function NavBarLayout(props: NavbarProps) {
   return (
     <div className="container-nav">
       <nav className="sidebar">
-        <ButtonNavBa path="/" icono={<House size={28} />} className="icon-link" />
-        <ButtonNavBa path="/searchpage" icono={<Popcorn size={28} />} className="icon-link" />
-        <ButtonNavBa path="/animes" icono={<Soup size={28} />} className="icon-link" />
-        <ButtonNavBa path="/streams" icono={<TvMinimalPlay size={28} />} className="icon-link" />
-        <ButtonNavBa path="#contact" icono={<Heart size={28} />} className="icon-link" />
-        <ButtonNavBa path="#videos" icono={<Video size={28} />} className="icon-link" />
+        <ButtonNavBa path="/" icono={<House size={28} />} text="Home" className="icon-link" />
+        <ButtonNavBa path="/searchpage" icono={<Popcorn size={28} />} text="Movies / Series" className="icon-link" />
+        <ButtonNavBa path="/animes" icono={<Soup size={28} />} text="Anime" className="icon-link" />
+        <ButtonNavBa path="/streams" icono={<TvMinimalPlay size={28} />} text="Streams" className="icon-link" />
+        <ButtonNavBa path="#favorites" icono={<Heart size={28} />} text="Favorites" className="icon-link" />
+        <ButtonNavBa path="#videos" icono={<Video size={28} />} text="Create you'r stream" className="icon-link" />
         <div className="log-out">
           {RenderForm}
         </div>
