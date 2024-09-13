@@ -37,7 +37,7 @@ const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({ text, size, heigh
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/');
+    navigate('/watch');
   };
 
   return (

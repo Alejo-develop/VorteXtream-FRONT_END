@@ -3,7 +3,11 @@ import { useAuth } from "../../../auth/auth.provider";
 import "./style.css";
 import UserMenuLandingComponent from "../userMenuLanding/userMenuLanding.component";
 
-const UserConfigComponent = () => {
+interface UserConfigProps{
+  className: string;
+}
+
+const UserConfigComponent = ({ className }: UserConfigProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const auth = useAuth();
@@ -22,7 +26,7 @@ const UserConfigComponent = () => {
         className="img-menu-profile"
       />
     </button>
-    {!!isOpen && <div><UserMenuLandingComponent /></div>}
+    {!!isOpen && <div><UserMenuLandingComponent className={className} /></div>}
 
     </div>
   );

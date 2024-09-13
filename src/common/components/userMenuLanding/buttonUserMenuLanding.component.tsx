@@ -1,26 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
+import { useAuth } from "../../../auth/auth.provider";
 
 interface ButtonMenuLandingProps {
   text: string;
-  path?: string;
+  path: string;
   width: string;
+  logOut?: boolean;
 }
 
 const ButtonUserMenuLandingComponent = ({
   text,
   path,
-  width
+  width,
+  logOut
 }: ButtonMenuLandingProps) => {
   const goTo = useNavigate();
+  const auth = useAuth()
+   
 
   const handleClick = () => {
+    if(logOut){
+      auth.signOut()
+      goTo('/login')
+    }
     goTo(`${path}`);
   };
 
   return (
-    <StyledWrapper width={width} text={text}>
+    <StyledWrapper width={width} text={text} path={path}>
       <button className="button2" onClick={handleClick}>
         {text}
       </button>

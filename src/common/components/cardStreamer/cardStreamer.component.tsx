@@ -25,7 +25,7 @@ const CardStreamerComponent = ({
   const goTo = useNavigate();
 
   const handleClick = () => {
-    goTo("/");
+    goTo("/watchstream");
   };
 
   return (

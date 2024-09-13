@@ -2,12 +2,16 @@ import { useAuth } from "../../../auth/auth.provider"
 import ButtonUserMenuLandingComponent from "./buttonUserMenuLanding.component"
 import './style.css'
 
-const UserMenuLandingComponent = () => {
+interface UserMenuLandingProps{
+    className: string;
+}
+
+const UserMenuLandingComponent = ({ className }: UserMenuLandingProps) => {
     const auth = useAuth()
     const user = auth.getUser()
     
     return( 
-        <div className="container-menuUser-landing">
+        <div className={className}>
             <div>
                 <img src={user.urlprofile} alt="imgUser-menuUser-landign" className="imgUser-menuUser-landign" />
                 
@@ -15,10 +19,11 @@ const UserMenuLandingComponent = () => {
             </div>
 
             <div className="options-userMenu-landing">
-                <ButtonUserMenuLandingComponent width="19.8"  text="Settings profile" path="/" />
-                <ButtonUserMenuLandingComponent width="19.8" text="History/Favorites" path="/" />
-                <ButtonUserMenuLandingComponent width="19.8"  text="Privacy settings" path="/" />
-                <ButtonUserMenuLandingComponent width="19.8" text="Log Out" path="/" />
+                <ButtonUserMenuLandingComponent width="19.8"  text="Settings profile" path="/usermenu" />
+                <ButtonUserMenuLandingComponent width="19.8" text="History/Favorites" path="/history&favorites" />
+                <div className="logOut-buttonCointainer-userMenu">
+                <ButtonUserMenuLandingComponent logOut={true} width="19.8" text="Log Out" path="/login" />
+                </div>
             </div>
         </div>
     )

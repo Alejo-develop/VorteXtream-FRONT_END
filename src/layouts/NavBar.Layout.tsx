@@ -28,8 +28,8 @@ export function NavBarLayout(props: NavbarProps) {
         <ButtonNavBa path="/searchpage" icono={<Popcorn size={28} />} text="Movies / Series" className="icon-link" />
         <ButtonNavBa path="/animes" icono={<Soup size={28} />} text="Anime" className="icon-link" />
         <ButtonNavBa path="/streams" icono={<TvMinimalPlay size={28} />} text="Streams" className="icon-link" />
-        <ButtonNavBa path="#favorites" icono={<Heart size={28} />} text="Favorites" className="icon-link" />
-        <ButtonNavBa path="#videos" icono={<Video size={28} />} text="Create you'r stream" className="icon-link" />
+        <ButtonNavBa path="/history&favorites" icono={<Heart size={28} />} text="Favorites" className="icon-link" />
+        <ButtonNavBa path="/mystream" icono={<Video size={28} />} text="Create you'r stream" className="icon-link" />
         <div className="log-out">
           {RenderForm}
         </div>

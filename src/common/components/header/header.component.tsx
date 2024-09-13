@@ -31,9 +31,9 @@ const HeaderComponent = () => {
             placeholder="What you want see today?"
           />
         </form>
-        <RenderForm1 />
+        <RenderForm1 className="message-box-container-landing" />
 
-        <RenderForm2 />
+        <RenderForm2 className="container-menuUser-landing"/>
       </div>
     </header>
   );

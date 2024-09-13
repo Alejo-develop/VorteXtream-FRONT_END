@@ -1,15 +1,58 @@
 .container-search-stream{
-    margin-left: 4.1rem;
-    max-width: 67.8rem;
+    margin-left: 3.8rem;
+    max-width: 71rem;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.title-buttons-headerSearchStreams-container{
+    display: flex;
+    gap: 5rem;
+    margin-left: 19rem;
+   
+}
+
+.container-menuUser-searchStream{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 28rem;
+    z-index: 2;
+    position: absolute;
+    top: 5rem;
+    right: 25.8rem;
+    margin-top: 0;
+    color: white;
+    background-color: #2F3241;
+    border-radius: 25px;
+    width: 20rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.2s ease-out forwards; 
+}
+
+.message-box-container-searchStreams{
+    position: absolute;
+    z-index: 2;
+    right: 32rem;
+    top: 4.8rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.2s ease-out forwards;     
+}
+
+.buttons-contianer-headerSearchStream{
+    display: flex;
+    align-items: center;
+    width: 14rem;
+    gap: 2rem;
+}
+
 .search-stream-title{
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     color: #F08080;
     text-shadow: 2px 2px 4px rgb(0, 0, 0);
     transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
@@ -41,7 +84,7 @@
 }
 
 .category-streams-container{
-    width: 101%;
+    width: 100%;
     height: 36rem ;
     background-color: #2F3241;
     margin-top: 3rem;
@@ -73,15 +116,15 @@
 }
 
 .button-categoryCard-stream::before {
-    content: ""; /* Necesario para crear el pseudo-elemento */
-    position: absolute; /* Posiciona el pseudo-elemento sobre la imagen */
+    content: ""; 
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
-    transition: opacity 0.3s ease; /* Transición suave para la opacidad */
-    z-index: 0; /* Asegura que el fondo esté debajo del título */
+    background: rgba(0, 0, 0, 0.5); 
+    transition: opacity 0.3s ease; 
+    z-index: 0; 
 }
 
 /* Estilo de la imagen con transición para el hover */
@@ -99,8 +142,8 @@
     text-align: center; /* Centra el texto horizontalmente */
     color: white; /* Cambia el color del texto según tus necesidades */
     font-size: 1.5rem; /* Ajusta el tamaño del texto según tus necesidades */
-    z-index: 1; /* Asegura que el título esté encima de la imagen y la superposición */
-    transition: transform 0.3s ease, color 0.3s ease; /* Transiciones para el título */
+    z-index: 1; 
+    transition: transform 0.3s ease, color 0.3s ease; 
 }
 
 .title-section-category{

@@ -7,6 +7,12 @@ import FooterComponent from './common/components/footer/footer.component'
 import SearchStreamsPage from './pages/public/searchStreamsPage/SearchStreamsPage'
 import LayoutStreamers from './layouts/layoutStreamers/layoutStreamers'
 import { AnimePage } from './pages/public/animePage/anime.page'
+import { ProtectedRoute } from './auth/portectedRoutes.auth'
+import UserMenuPage from './pages/private/userMenu/userMenu.page'
+import FavoritesHistoryPage from './pages/private/favoritesHistory/favoriteHistory.page'
+import MediaPlayerPage from './pages/private/mediaPlayer/mediaPlayer.page'
+import StreamPage from './pages/private/streamPlayer/streamPlayer.page'
+import StreamerUserPage from './pages/private/streamUserPlayer/streamerUser.page'
 
 
 export const appRouter = createBrowserRouter([
@@ -52,5 +58,31 @@ export const appRouter = createBrowserRouter([
         <AnimePage />
       </NavBarLayout>
     )
+  },
+  {
+    path: '/',
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: '/usermenu',
+        element: <UserMenuPage />
+      },
+      {
+        path: 'history&favorites',
+        element: <FavoritesHistoryPage />
+      },
+      {
+        path: 'watch',
+        element: <MediaPlayerPage />
+      },
+      {
+        path: 'watchstream',
+        element: <StreamPage />
+      },
+      {
+        path: 'mystream',
+        element: <StreamerUserPage />
+      }
+    ]
   }
 ])
