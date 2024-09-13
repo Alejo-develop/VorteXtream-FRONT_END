@@ -1,0 +1,44 @@
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.notification-landing-button{
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2F3241;
+    transition: background-color 0.3s ease;
+}
+
+.notification-landing-icon{
+    padding: 6px;
+    color: #F08080;
+    transition: color 0.3s ease; 
+}
+
+.message-box-container{
+    position: absolute;
+    z-index: 2;
+    right: 10.9rem;
+    top: 5.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.2s ease-out forwards;     
+}
+
+.notification-landing-button:hover{
+    background-color: #F08080;
+}
+
+.notification-landing-icon:hover{
+    color: #2F3241;
+}

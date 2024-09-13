@@ -7,6 +7,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import '../styles/headerSearchPage.css';
 import ExplorerButtonComponent from "../../../../common/components/explorerButton/explorerButton.component";
+import UserConfigComponent from "../../../../common/components/userConfig/userConfig.component";
+import HeaderComponent from "../../../../common/components/header/header.component";
 
 type Movie = {
     id: number;
@@ -41,16 +43,7 @@ export const HeaderSearchPage = () => {
 
     return (
         <div className="general">
-            <nav>
-                <div className="img-vortex">
-                    <img src={Logo} alt="Logoimg" className="logo" />
-                    <div className="explore">
-                    <ExplorerButtonComponent />
-
-                    </div>
-                    
-                </div>
-            </nav>
+             <HeaderComponent></HeaderComponent>
 
             <header className="header-container">
                 {banners.length > 0 && (
@@ -65,7 +58,7 @@ export const HeaderSearchPage = () => {
                     >
                         {banners.map((bannerUrl, index) => (
                             <SwiperSlide key={index}>
-                                <div className="banner-container">
+                                <div className="banner-container-searchPage">
                                     <img src={bannerUrl} alt={`Movie Banner ${index + 1}`} className="banner-image" />
                                     <div className="overlay">
                                         <InputSearch />
@@ -75,6 +68,7 @@ export const HeaderSearchPage = () => {
                         ))}
                     </Swiper>
                 )}
+               
             </header>
         </div>
     );

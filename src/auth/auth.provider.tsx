@@ -33,6 +33,8 @@ export const AuthProvider = ({children}: AuthProviderProps ) => {
         SetAccesToken(token)
         sessionStorage.setItem('session', token)
         setIsAuthenticated(true)
+        console.log(userInfo);
+        
         setUser(userInfo)
     }
 

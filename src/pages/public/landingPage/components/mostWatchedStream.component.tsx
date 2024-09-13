@@ -47,6 +47,11 @@ const MostWatchedStreamComponent = () => {
   
       fetchMovies();
     }, []);
+
+    const truncateText = (text: string, maxLength: number) => {
+      return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+  };
+  
   
     return (
       <div className="container">
@@ -73,8 +78,8 @@ const MostWatchedStreamComponent = () => {
                     <h2 className="movie-title">{data.title}</h2>
   
                     <div className="sinopsis-container">
-                      <p className="movie-sinopsis">{data.overview}</p>
-                      <WatchNowButtonComponent />
+                      <p className="movie-sinopsis">{truncateText(data.overview || "", 400)}</p>
+                      <WatchNowButtonComponent size="190" height="45" text="Watch Now" fontweight="1rem"/>
                     </div>
                   </div>
                 </SwiperSlide>

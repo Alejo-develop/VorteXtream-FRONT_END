@@ -14,6 +14,7 @@ type Movie = {
 };
 
 type MovieData = {
+  id: number; // Asegúrate de incluir `id` en MovieData para usarlo en `key`
   imageUrl: string;
   overview: string | null;
   title: string;
@@ -30,13 +31,14 @@ const MostWatchedMediaComponent = () => {
 
       try {
         const response = await fetch(
-          `${baseUrl}${API_KEY}&language=en-US&page=1`
+          `${baseUrl}${API_KEY}&language=en-US&page=5`
         );
         const data = await response.json();
 
         const movieData = data.results
           .filter((movie: Movie) => movie.backdrop_path && movie.overview)
           .map((movie: Movie) => ({
+            id: movie.id, // Incluye `id` en el objeto de datos
             imageUrl: `${imageBaseUrl}${movie.backdrop_path}`,
             overview: movie.overview,
             title: movie.title,
@@ -51,6 +53,12 @@ const MostWatchedMediaComponent = () => {
     fetchMovies();
   }, []);
 
+  const truncateText = (text: string, maxLength: number) => {
+    return text.length > maxLength
+      ? `${text.substring(0, maxLength)}...`
+      : text;
+  };
+
   return (
     <div className="container">
       {data.length > 0 && (
@@ -61,27 +69,30 @@ const MostWatchedMediaComponent = () => {
             delay: 5000, // Cambia la imagen cada 5 segundos
             disableOnInteraction: false, // No desactivar autoplay si el usuario interactúa
           }}
-          className="mySwiper"
+          className="mySwipe"
         >
-          {data.map((data, index) => (
-            <div className="mostPopular-container">
-              <SwiperSlide key={index}>
+          {data.map((movie) => (
+            <SwiperSlide key={movie.id}>
+              {" "}
+              {/* Usa el `id` como `key` */}
+              <div className="mostPopular-container">
                 <img
-                  src={data.imageUrl}
-                  alt={`Movie Banner ${index + 1}`}
+                  src={movie.imageUrl}
+                  alt={`Movie Banner ${movie.id}`} // Usa el `id` en el alt para la accesibilidad
                   className="banner-image"
                 />
                 <div className="container-info-movie">
                   <h2 className="mostWatched-title">Most watched...</h2>
-                  <h2 className="movie-title">{data.title}</h2>
-
+                  <h2 className="movie-title">{movie.title}</h2>
                   <div className="sinopsis-container">
-                    <p className="movie-sinopsis">{data.overview}</p>
-                    <WatchNowButtonComponent />
+                    <p className="movie-sinopsis">
+                      {truncateText(movie.overview || "", 400)}
+                    </p>
+                    <WatchNowButtonComponent size="190" height="45" text="Watch Now" fontweight="1rem"/>
                   </div>
                 </div>
-              </SwiperSlide>
-            </div>
+              </div>
+            </SwiperSlide>
           ))}
         </Swiper>
       )}

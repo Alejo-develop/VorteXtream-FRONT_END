@@ -1,11 +1,8 @@
 export interface AuthResponse {
-    body: {
-        token: string
-    }
+  token: string;
+  user: {};
 }
 
 export interface AuthResponseError {
-    body: {
-        error: string
-    }
+  error: string;
 }

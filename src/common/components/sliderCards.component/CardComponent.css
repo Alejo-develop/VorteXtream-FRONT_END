@@ -1,0 +1,93 @@
+/* Container that wraps the cards */
+.cards-container {
+    display: flex;
+    overflow-x: auto;
+    
+}
+
+.card {
+    position: relative;
+    width: 450px; /* Increased width */
+    height: 400px; /* Increased height */
+    border-radius: 12px; /* Rounded corners for a softer look */
+    background-color: #f5f5f5;
+    flex-shrink: 0;
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.card:hover {
+    transform: scale(1.1); /* Slight scaling on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+    z-index: 10;
+}
+
+/* Detail panel */
+.card-details-panel {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 235px;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker background for better contrast */
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card:hover .card-details-panel {
+    opacity: 5;
+    transform: translateX(-100%); /* Slide in from the right */
+    height: 22.5rem;
+}
+
+/* Adds slight blur to non-hovered cards */
+.cards-container .card:hover ~ .card {
+    transform: translateX(40px); /* Shift other cards */
+    margin-right: 20px;
+}
+
+/* Adds slight blur to non-hovered cards */
+.cards-container:hover .card {
+    filter: blur(3px); /* Blur effect for non-hovered cards */
+    transition: filter 0.3s ease;
+}
+
+/* Image inside the card */
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px; /* Matches the card's rounded corners */
+    transition: transform 0.3s ease; /* Smooth scaling */
+}
+
+.card:hover .card-image {
+    transform: scale(1); /* Zoom effect on hover */
+}
+
+.rating-and-watch {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.title-movie {
+    font-weight: bold;
+    font-size: 1.6rem;
+    padding: 20px 0;
+    color: #fff; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; /* Smooth transitions */
+    margin: 0;
+}
+
+.title-movie:hover {
+    transform: translateY(-5px); 
+    color: #F08080;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); }

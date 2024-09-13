@@ -9,6 +9,16 @@ h1, h2, h3, h4, h5 {
     font-family: 'Technor', sans-serif;
 }
 
-p, section, article, div, button, input{
+p, section, article, div, button, input, select{
     font-family: 'Satoshi', sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento */
+}
+
+select{
+    -webkit-appearance: none; /* Elimina el estilo predeterminado en Webkit (Chrome, Safari) */
+    -moz-appearance: none; /* Elimina el estilo predeterminado en Mozilla Firefox */
+    appearance: none;
 }
