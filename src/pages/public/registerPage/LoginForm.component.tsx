@@ -105,7 +105,7 @@ const LoginComponent = () => {
 =======
 
         <InputLogin type="text" onChange={(e) => setUsername(e.target.value)} placeholder="Username" Icon={<User size={24} />} />
->>>>>>> 89a563fdc38e630837aa696aacf5eb41dda4e3ed
+
         {/* input de password */}
         <InputLogin
           onChange={(e) => setPassword(e.target.value)}
@@ -113,10 +113,8 @@ const LoginComponent = () => {
           Icon={<Lock size={24} />}
         />
 
-<<<<<<< HEAD
-=======
+
         <InputLogin type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" Icon={<Lock size={24} />} />
->>>>>>> 89a563fdc38e630837aa696aacf5eb41dda4e3ed
         {/* input de remember me y forgot password */}
 
         <div className="remember-forgot">
