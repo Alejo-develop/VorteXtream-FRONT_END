@@ -22,6 +22,9 @@ const fetchCountries = async ( inputValue: string): Promise<countryOptions[]> =>
     }
     const countries = await response.json()
     return countries.map((country: any) => ({ label: country.name, value: country.alpha3Code }))
+  }catch (error){
+    console.log('efeg');
+    
   }
 }
 
