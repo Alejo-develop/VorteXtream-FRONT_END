@@ -31,12 +31,14 @@ export const AuthProvider = ({children}: AuthProviderProps ) => {
 
     function saveSessionInfo(userInfo: UserPayload, token: string){
         SetAccesToken(token)
-        sessionStorage.setItem('session', token)
+        localStorage.setItem('session', token)
         setIsAuthenticated(true)
         console.log(userInfo);
         
         setUser(userInfo)
     }
+
+    
 
     function getToken(){
         return accesToken

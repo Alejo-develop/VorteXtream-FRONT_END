@@ -13,7 +13,6 @@ import FavoritesHistoryPage from './pages/private/favoritesHistory/favoriteHisto
 import MediaPlayerPage from './pages/private/mediaPlayer/mediaPlayer.page'
 import StreamPage from './pages/private/streamPlayer/streamPlayer.page'
 import StreamerUserPage from './pages/private/streamUserPlayer/streamerUser.page'
-import BotpressChat from './common/components/botChat/Bot.component'
 
 
 export const appRouter = createBrowserRouter([
@@ -28,63 +27,76 @@ export const appRouter = createBrowserRouter([
     ),
   },
   {
-    path: '/singup',
-    element: <RegisterPage isRegister />
+    path: "/singup",
+    element: <RegisterPage isRegister />,
   },
   {
-    path: '/login',
-    element: <RegisterPage  />
+    path: "/login",
+    element: <RegisterPage />,
   },
   {
-    path: '/searchpage',
+    path: "/searchpage",
     element: (
       <NavBarLayout>
         <SearchPage />
       </NavBarLayout>
-    )
+    ),
   },
   {
-    path: '/streams',
+    path: "/streams",
     element: (
       <NavBarLayout>
         <LayoutStreamers>
           <SearchStreamsPage />
         </LayoutStreamers>
       </NavBarLayout>
-    )
+    ),
   },
   {
-    path: '/animes',
+    path: "/animes",
     element: (
       <NavBarLayout>
         <AnimePage />
       </NavBarLayout>
-    )
+    ),
   },
   {
-    path: '/',
+    path: "/",
     element: <ProtectedRoute />,
     children: [
       {
-        path: '/usermenu',
-        element: <UserMenuPage />
+        path: "/usermenu",
+
+        element: (
+          <NavBarLayout>
+            <UserMenuPage />
+          </NavBarLayout>
+        ),
       },
       {
-        path: 'history&favorites',
-        element: <FavoritesHistoryPage />
+        path: "history&favorites",
+        element: (
+          <NavBarLayout>
+            <FavoritesHistoryPage />
+          </NavBarLayout>
+        ),
       },
       {
-        path: 'watch',
-        element: <MediaPlayerPage />
+        path: "watch",
+        element: <MediaPlayerPage />,
       },
       {
-        path: 'watchstream',
-        element: <StreamPage />
+        path: "watchstream",
+        element: <StreamPage />,
       },
       {
-        path: 'mystream',
-        element: <StreamerUserPage />
-      }
-    ]
-  }
-])
+        path: "mystream",
+        element: (
+          <NavBarLayout>
+            <StreamerUserPage />
+          </NavBarLayout>
+        ),
+      },
+    ],
+  },
+]);
