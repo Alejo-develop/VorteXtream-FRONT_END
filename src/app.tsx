@@ -13,6 +13,7 @@ import FavoritesHistoryPage from './pages/private/favoritesHistory/favoriteHisto
 import MediaPlayerPage from './pages/private/mediaPlayer/mediaPlayer.page'
 import StreamPage from './pages/private/streamPlayer/streamPlayer.page'
 import StreamerUserPage from './pages/private/streamUserPlayer/streamerUser.page'
+import BotpressChat from './common/components/botChat/Bot.component'
 
 
 export const appRouter = createBrowserRouter([
@@ -21,6 +22,7 @@ export const appRouter = createBrowserRouter([
     element: (
       <NavBarLayout>
         <LandingPage />
+       
         <FooterComponent />
       </NavBarLayout>
     ),
