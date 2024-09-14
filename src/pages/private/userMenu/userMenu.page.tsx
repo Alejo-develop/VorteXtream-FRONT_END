@@ -4,8 +4,8 @@ import { useAuth } from '../../../auth/auth.provider'
 import ButtonUserMenuLandingComponent from '../../../common/components/userMenuLanding/buttonUserMenuLanding.component'
 import PorfileSettingsView from './components/porfileSettings.component'
 import SubcriptionView from './components/suscriptionView.component'
-import EmailView from './components/emailView.component'
-import PasswordView from './components/passwordView.component'
+import EmailView from './components/changeEmailView.component'
+import PasswordView from './components/changePasswordView.component'
 
 export default function UserMenuPage(){
     const [activeView, setActiveView] = useState('profile');

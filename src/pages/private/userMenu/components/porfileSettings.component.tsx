@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import LabelComponent from "../../../public/registerPage/components/label.component";
 import { useAuth } from "../../../../auth/auth.provider";
+import ButtonMenuUserComponent from "./buttonMenuUser.component";
 
 const PorfileSettingsView = () => {
   const auth = useAuth();
@@ -95,6 +96,8 @@ const PorfileSettingsView = () => {
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
+
+        <ButtonMenuUserComponent size="150" height="40" fontweight="1" text="Submit" type="submit" />
       </form>
     </div>
   );

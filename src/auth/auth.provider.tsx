@@ -7,6 +7,7 @@ interface AuthProviderProps {
 
 const AuthContext = createContext({
     isAuthenticated: false,
+    isPremiun: false,
     getUser: () => ({} as UserPayload || undefined),
     signOut: () => {},
     saveSessionInfo: (user: UserPayload, token: string) => {},
@@ -15,6 +16,7 @@ const AuthContext = createContext({
 
 export const AuthProvider = ({children}: AuthProviderProps ) => {
     const [ isAuthenticated, setIsAuthenticated ] = useState(false);
+    const [ isPremiun, setIsPremiun ] = useState(false)
     const [ accesToken, SetAccesToken ] = useState<string>(' ')
     const [ user, setUser ] = useState<UserPayload>()
 
@@ -45,7 +47,7 @@ export const AuthProvider = ({children}: AuthProviderProps ) => {
     }
 
     return(
-        <AuthContext.Provider value={{isAuthenticated, signOut, getUser, saveSessionInfo, getToken}}>
+        <AuthContext.Provider value={{ isPremiun ,isAuthenticated, signOut, getUser, saveSessionInfo, getToken}}>
             {children}
         </AuthContext.Provider>
     )

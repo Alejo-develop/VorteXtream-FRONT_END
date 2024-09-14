@@ -13,6 +13,7 @@ import FavoritesHistoryPage from './pages/private/favoritesHistory/favoriteHisto
 import MediaPlayerPage from './pages/private/mediaPlayer/mediaPlayer.page'
 import StreamPage from './pages/private/streamPlayer/streamPlayer.page'
 import StreamerUserPage from './pages/private/streamUserPlayer/streamerUser.page'
+import CheckoutPage from './pages/public/checkoutPage/chekout.page'
 
 
 export const appRouter = createBrowserRouter([
@@ -59,6 +60,14 @@ export const appRouter = createBrowserRouter([
         <AnimePage />
       </NavBarLayout>
     ),
+  },
+  {
+    path: '/checkout',
+    element: (
+      <NavBarLayout>
+        <CheckoutPage />
+      </NavBarLayout>
+    )
   },
   {
     path: "/",
