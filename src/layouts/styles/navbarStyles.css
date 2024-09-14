@@ -20,6 +20,10 @@
   width: 266px; 
 }
 
+.container-buttonsAuthenticate-navbar{
+  height: 20rem;
+}
+
 /* Contenedor para los iconos y el texto */
 .icon-container {
   display: flex;

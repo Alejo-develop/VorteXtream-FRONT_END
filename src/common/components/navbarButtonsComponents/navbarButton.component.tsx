@@ -21,7 +21,7 @@ export const ButtonNavBa = ({ path, icono, className, text }: ButtonProps) => {
         {icono}
       </button>
 
-      <ButtonUserMenuLandingComponent path={path}  text={text} width="12.5"/>
+      <ButtonUserMenuLandingComponent color="2F3241" path={path}  text={text} width="12.5"/>
     </div>
   );
 };

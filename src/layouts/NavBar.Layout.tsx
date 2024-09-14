@@ -5,7 +5,7 @@ import {
   Heart,
   BotMessageSquare,
   Video,
-  Soup 
+  Soup,
 } from "lucide-react";
 import "./styles/navbarStyles.css";
 import LogOutComponentButton from "../common/components/logOutButton/logOutButton.component";
@@ -24,15 +24,47 @@ export function NavBarLayout(props: NavbarProps) {
   return (
     <div className="container-nav">
       <nav className="sidebar">
-        <ButtonNavBa path="/" icono={<House size={28} />} text="Home" className="icon-link" />
-        <ButtonNavBa path="/searchpage" icono={<Popcorn size={28} />} text="Movies / Series" className="icon-link" />
-        <ButtonNavBa path="/animes" icono={<Soup size={28} />} text="Anime" className="icon-link" />
-        <ButtonNavBa path="/streams" icono={<TvMinimalPlay size={28} />} text="Streams" className="icon-link" />
-        <ButtonNavBa path="/history&favorites" icono={<Heart size={28} />} text="Favorites" className="icon-link" />
-        <ButtonNavBa path="/mystream" icono={<Video size={28} />} text="Create you'r stream" className="icon-link" />
-        <div className="log-out">
-          {RenderForm}
-        </div>
+        <ButtonNavBa
+          path="/"
+          icono={<House size={28} />}
+          text="Home"
+          className="icon-link"
+        />
+        <ButtonNavBa
+          path="/searchpage"
+          icono={<Popcorn size={28} />}
+          text="Movies / Series"
+          className="icon-link"
+        />
+        <ButtonNavBa
+          path="/animes"
+          icono={<Soup size={28} />}
+          text="Anime"
+          className="icon-link"
+        />
+        <ButtonNavBa
+          path="/streams"
+          icono={<TvMinimalPlay size={28} />}
+          text="Streams"
+          className="icon-link"
+        />
+        {!!auth.isAuthenticated && (
+         <>
+            <ButtonNavBa
+              path="/history&favorites"
+              icono={<Heart size={28} />}
+              text="Favorites"
+              className="icon-link"
+            />
+            <ButtonNavBa
+              path="/mystream"
+              icono={<Video size={28} />}
+              text="Create you'r stream"
+              className="icon-link"
+            />
+        </>
+        )}
+        <div className="log-out">{RenderForm}</div>
       </nav>
 
       {props.children}
