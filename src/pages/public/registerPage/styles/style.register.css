@@ -70,3 +70,12 @@
     align-items: center;
 }
 
+.register-form select{
+    width: 19rem;
+    height: 41px;
+    border-radius: 18px;
+    font-size: 1rem;
+    padding-left: 2.5rem;
+    padding-top: 1px;
+    margin-right: 20px;
+}
