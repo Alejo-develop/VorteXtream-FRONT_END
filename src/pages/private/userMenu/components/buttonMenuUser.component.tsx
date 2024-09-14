@@ -1,16 +1,16 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-interface WatchButtonProps {
+interface hButtonProps {
   size: string;
   height: string;
   fontweight: string;
   text: string;
   type?: string;
+  onClick?: () => void
 }
 
-const StyledButton = styled.button<WatchButtonProps>`
+const StyledButton = styled.button<hButtonProps>`
   font-size: ${props => props.fontweight}rem;
   padding: 10px;
   width: ${props => props.size}px; // Usa props.size para acceder al valor de size
@@ -34,18 +34,13 @@ const StyledButton = styled.button<WatchButtonProps>`
   }
 `;
 
-const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({ type, text, size, height, fontweight}) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/watch');
-  };
+const ButtonMenuUserComponent: React.FC<hButtonProps> = ({ onClick, type, text, size, height, fontweight}) => {
 
   return (
-    <StyledButton type={type} text={text} size={size} height={height} fontweight={fontweight} onClick={handleClick}>
+    <StyledButton type={type} text={text} size={size} height={height} fontweight={fontweight} onClick={onClick}>
       {text}
     </StyledButton>
   );
 };
 
-export default WatchNowButtonComponent;
+export default ButtonMenuUserComponent;

@@ -1,0 +1,62 @@
+.container-subcription-status{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 2px;
+    background-color: black;
+    width: 80%;
+    height: 15rem;
+    border-radius: 25px; 
+    margin-top: 1rem;
+}
+
+.container-duration-canelSubcription{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.title-duration-subcription{
+    color: white;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
+}
+
+.title-duration-subcription:hover{
+    transform: translateY(-5px);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);  
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
+
+.duration-subcription-info{
+    padding: 10px;
+    text-align: center;
+    width: 6rem;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
+}
+
+.duration-subcription-info:hover{
+    transform: translateY(-5px);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);  
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
+
+.sticker-info-premium{
+    margin-top: 1.5rem;
+    height: 5.8rem;
+}
+
+.cancel-subcription-container{
+    display: flex;
+    align-items: end;
+    margin-bottom: 1rem;
+}
+
+/*styles Is not premium*/
+.subcription-checkout-container{
+    margin-top: 3rem;
+}
