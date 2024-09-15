@@ -28,7 +28,7 @@ export const AuthProvider = ({children}: AuthProviderProps ) => {
         setIsAuthenticated(false)
         SetAccesToken(' ')
         setUser(undefined)
-        sessionStorage.removeItem('session')
+        localStorage.removeItem('session')
     }
 
     function saveSessionInfo(userInfo: UserPayload, token: string){

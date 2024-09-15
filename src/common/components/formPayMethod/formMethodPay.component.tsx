@@ -56,7 +56,7 @@ const FormMethodPay = () => {
                 />
               </div>
             </div>
-            <button className="purchase--btn">Checkout</button>
+            <button className="purchase--btn">Save</button>
           </div>
         </form>
       </div>
@@ -85,6 +85,7 @@ const StyledWrapper = styled.div`
   flex-direction: column;
   gap: 20px;
   padding: 20px;
+  
 }
 
 .payment--options {

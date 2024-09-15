@@ -35,7 +35,7 @@ const RegisterComponent = (props: registerProps) => {
           })).sort((a: Country, b: Country) => a.name.localeCompare(b.name));
           setCountries(countryList);
         } else {
-          setErrorMessage("No se pudo obtener la lista de países.");
+          setErrorMessage("Cannot get countrys.");
         }
       } catch (error) {
         setErrorMessage("Error al obtener la lista de países.");
@@ -49,12 +49,12 @@ const RegisterComponent = (props: registerProps) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setErrorMessage("Las contraseñas deben coincidir.");
+      setErrorMessage("The password must be the same.");
       return;
     }
 
     if (!country) {
-      setErrorMessage("Debes seleccionar un país.");
+      setErrorMessage("You must select your country.");
       return;
     }
 
@@ -79,7 +79,7 @@ const RegisterComponent = (props: registerProps) => {
       if (!response.ok) {
         const errorToJson = (await response.json()) as AuthResponseError;
         setErrorMessage(errorToJson ? errorToJson.error : "Error desconocido");
-        throw new Error("Algo salió mal con el servidor");
+        throw new Error("Something went wrogn with the server");
       }
 
       props.onChange(true);
@@ -105,28 +105,28 @@ const RegisterComponent = (props: registerProps) => {
             value={username}
             type="text"
             icon={<User style={{ position: "relative", left: "35px", top: "7px" }} />}
-            placeholder="Nombre de usuario"
+            placeholder="Username"
           />
           <LabelComponent
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             type="email"
             icon={<Mail style={{ position: "relative", left: "35px", top: "7px" }} />}
-            placeholder="Correo electrónico"
+            placeholder="Email"
           />
           <LabelComponent
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             type="password"
             icon={<Lock style={{ position: "relative", left: "35px", top: "7px" }} />}
-            placeholder="Contraseña"
+            placeholder="Password"
           />
           <LabelComponent
             onChange={(e) => setConfirmPassword(e.target.value)}
             value={confirmPassword}
             type="password"
             icon={<Lock style={{ position: "relative", left: "35px", top: "7px" }} />}
-            placeholder="Confirmar contraseña"
+            placeholder="confirm Password"
           />
           
           <div className="country-select">
@@ -139,7 +139,7 @@ const RegisterComponent = (props: registerProps) => {
               }}
             >
               <option value="" disabled>
-                Selecciona tu país
+                Select your country
               </option>
               {countries.map((c) => (
                 <option key={c.code} value={c.code}>
@@ -149,7 +149,7 @@ const RegisterComponent = (props: registerProps) => {
             </select>
           </div>
 
-          <button type="submit">Enviar</button>
+          <button type="submit">Submit</button>
         </form>
         <h3>O</h3>
         <div className="google-container">

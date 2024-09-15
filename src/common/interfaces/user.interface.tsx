@@ -1,6 +1,7 @@
 export interface UserPayload {
-    id: number;
+    id: string;
     username: string;
+    email: string;
     country: string;
     role: string;
     urlprofile: string;

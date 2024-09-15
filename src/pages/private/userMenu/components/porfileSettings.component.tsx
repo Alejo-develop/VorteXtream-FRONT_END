@@ -6,7 +6,9 @@ import ButtonMenuUserComponent from "./buttonMenuUser.component";
 const PorfileSettingsView = () => {
   const auth = useAuth();
   const user = auth.getUser();
+  const token = auth.getToken()
 
+  const[ username, setUsername ] = useState('')
   const [name, setName] = useState("");
   const [secondName, setSecondName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -26,6 +28,39 @@ const PorfileSettingsView = () => {
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    try {
+      const res = await fetch(`http://localhost:3000/vortextream/auth/${user.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          username,
+          name,
+          secondName,
+          lastName,
+          bornDate: bornDate ? bornDate : undefined,
+          country,
+          phoneNumber: phoneNumber ? parseInt(phoneNumber, 10) : undefined
+        })
+      })
+      
+      const resToJson = await res.json()
+      console.log(resToJson);
+      if(!res.ok){
+        throw new Error('Cannot posible updated user')
+      }
+
+      alert('Usuario actualizado con exito')
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   useEffect(() => {
     if (user.urlprofile) {
       setProfileImage(user.urlprofile);
@@ -34,7 +69,7 @@ const PorfileSettingsView = () => {
 
   return (
     <div className="containerViews">
-      <form className="container-form-settingsProfileView">
+      <form onSubmit={handleSubmit} className="container-form-settingsProfileView">
         <div className="image-upload-container">
           <img
             id="preview"
@@ -52,7 +87,13 @@ const PorfileSettingsView = () => {
             <span className="file-upload-text">Selecciona una imagen</span>
           </div>
         </div>
-
+         <LabelComponent
+          className="input-menuUser-profileView"
+          type="text"
+          value={username}
+          placeholder={user.username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
         <LabelComponent
           className="input-menuUser-profileView"
           type="text"
@@ -84,14 +125,13 @@ const PorfileSettingsView = () => {
         <LabelComponent
           className="input-menuUser-profileView"
           type="text"
-          placeholder="Country"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
-          valueDefault={user.country}
+          placeholder={user.country}
         />
         <LabelComponent
           className="input-menuUser-profileView"
-          type="text"
+          type="number"
           placeholder="Phone number"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
