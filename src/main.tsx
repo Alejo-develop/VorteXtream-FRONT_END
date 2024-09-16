@@ -1,16 +1,14 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { RouterProvider } from "react-router-dom";
-import { appRouter } from "./app";
-import "./global.css";
-import { AuthProvider } from "./auth/auth.provider";
-import BotpressChat from "./common/components/botChat/Bot.component";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import { appRouter } from './app';
+import './global.css';
+import { AuthProvider } from './auth/auth.provider';
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={appRouter} />
-      <BotpressChat />
+        <RouterProvider router={appRouter} />
     </AuthProvider>
-  </StrictMode>
+  </React.StrictMode>
 );
