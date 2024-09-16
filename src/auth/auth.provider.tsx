@@ -7,16 +7,17 @@ interface AuthProviderProps {
 
 interface AuthContextProps {
   isAuthenticated: boolean;
-  isPremiun: boolean;
+  isPremium: boolean;
   getUser: () => UserPayload;
   signOut: () => void;
-  saveSessionInfo: (user: UserPayload, token: string) => void;
+  saveSessionInfo: (user: UserPayload, token: string, isPremium: boolean) => void;
   getToken: () => string;
+
 }
 
 const AuthContext = createContext<AuthContextProps>({
   isAuthenticated: false,
-  isPremiun: false,
+  isPremium: false,
   getUser: () => ({} as UserPayload),
   signOut: () => {},
   saveSessionInfo: () => {},
@@ -25,7 +26,7 @@ const AuthContext = createContext<AuthContextProps>({
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isPremiun, setIsPremiun] = useState(false);
+  const [isPremium, setIsPremium] = useState(false);
   const [accesToken, setAccesToken] = useState<string>('');
   const [user, setUser] = useState<UserPayload | undefined>(undefined);
 
@@ -54,8 +55,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.clear();
   }
 
-  function saveSessionInfo(userInfo: UserPayload, token: string) {
+  function saveSessionInfo(userInfo: UserPayload, token: string, isPremium: boolean) {
     setAccesToken(token);
+    setIsPremium(isPremium)
     sessionStorage.setItem('session', token);
     localStorage.setItem('session', token);
     sessionStorage.setItem('user', JSON.stringify(userInfo));
@@ -69,7 +71,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }
 
   return (
-    <AuthContext.Provider value={{ isPremiun, isAuthenticated, signOut, getUser, saveSessionInfo, getToken }}>
+    <AuthContext.Provider value={{ isPremium, isAuthenticated, signOut, getUser, saveSessionInfo, getToken }}>
       {children}
     </AuthContext.Provider>
   );

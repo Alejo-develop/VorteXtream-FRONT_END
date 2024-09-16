@@ -2,18 +2,33 @@ import { useEffect, useState } from "react";
 import LabelComponent from "../../../public/registerPage/components/label.component";
 import { useAuth } from "../../../../auth/auth.provider";
 import ButtonMenuUserComponent from "./buttonMenuUser.component";
+import { UserResponse } from "../../../../common/interfaces/user.interface";
 
 const PorfileSettingsView = () => {
   const auth = useAuth();
   const user = auth.getUser();
   const token = auth.getToken()
 
+  const [ userInfo, setUserInfo ] = useState<UserResponse>({
+    bornDate: null,
+    country: null,
+    email:null,
+    id: null,
+    lastName: null,
+    name: null,
+    phoneNumber: null,
+    role: null,
+    secondName: null,
+    urlProfile:null,
+    username: null
+  })
+
   const[ username, setUsername ] = useState('')
   const [name, setName] = useState("");
   const [secondName, setSecondName] = useState("");
   const [lastName, setLastName] = useState("");
   const [bornDate, setBornDate] = useState("");
-  const [country, setCountry] = useState(user.country);
+  const [country, setCountry] = useState('');
   const [phoneNumber, setPhoneNumber] = useState("");
   const [profileImage, setProfileImage] = useState(user.urlprofile);
 
@@ -28,8 +43,34 @@ const PorfileSettingsView = () => {
     }
   };
 
+  const fetchInfoUser = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/vortextream/auth/findoneuser/${user.id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+      })
+
+      const resToJson = await res.json() as UserResponse
+      console.log(resToJson);
+
+      setUserInfo(resToJson)
+      
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if(!name && !username && !bornDate && !lastName  && !secondName && !country && !phoneNumber){
+      alert('not changes detected')
+
+      return
+    }
 
     try {
       const res = await fetch(`http://localhost:3000/vortextream/auth/${user.id}`, {
@@ -39,13 +80,13 @@ const PorfileSettingsView = () => {
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          username,
-          name,
-          secondName,
-          lastName,
-          bornDate: bornDate ? bornDate : undefined,
-          country,
-          phoneNumber: phoneNumber ? parseInt(phoneNumber, 10) : undefined
+          username: username ? username : user.username,
+          name: name ? name : userInfo.name,
+          secondName: secondName ? secondName : userInfo.secondName,
+          lastName: lastName ? lastName : userInfo.lastName,
+          bornDate: bornDate ? bornDate : userInfo.bornDate,
+          country: country ? country : user.country,
+          phoneNumber: phoneNumber ? phoneNumber : userInfo.phoneNumber
         })
       })
       
@@ -60,6 +101,10 @@ const PorfileSettingsView = () => {
       console.error(err)
     }
   }
+
+  useEffect(() => {
+    fetchInfoUser()
+  }, [])
 
   useEffect(() => {
     if (user.urlprofile) {
@@ -97,28 +142,28 @@ const PorfileSettingsView = () => {
         <LabelComponent
           className="input-menuUser-profileView"
           type="text"
-          placeholder="Name"
+          placeholder={userInfo.name || 'Username'}
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <LabelComponent
           className="input-menuUser-profileView"
           type="text"
-          placeholder="Second Name"
+          placeholder={userInfo.secondName || 'Second Name'}
           value={secondName}
           onChange={(e) => setSecondName(e.target.value)}
         />
         <LabelComponent
           className="input-menuUser-profileView"
           type="text"
-          placeholder="Last Name"
+          placeholder={userInfo.lastName || 'Last Name'}
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
         <LabelComponent
           className="input-menuUser-profileView"
           type="date"
-          placeholder="bornDate"
+          placeholder={'Birth Date'}
           value={bornDate}
           onChange={(e) => setBornDate(e.target.value)}
         />
@@ -127,12 +172,12 @@ const PorfileSettingsView = () => {
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
-          placeholder={user.country}
+          placeholder={user.country || 'Country'}
         />
         <LabelComponent
           className="input-menuUser-profileView"
-          type="number"
-          placeholder="Phone number"
+          type="text"
+          placeholder={userInfo.phoneNumber || 'Phone Number'}
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
