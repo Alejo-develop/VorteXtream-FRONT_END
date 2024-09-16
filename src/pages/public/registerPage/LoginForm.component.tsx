@@ -53,7 +53,7 @@ const LoginComponent = () => {
       const token = resToJson.token;
       const user = resToJson.user as UserPayload;
 
-      auth.saveSessionInfo(user, token);
+      auth.saveSessionInfo(user, token, resToJson.isPremium);
       navigate("/");
     } catch (err) {
       console.log(err);
