@@ -1,0 +1,70 @@
+
+.container-admin {
+    height: 100vh;
+    width: 100%;
+    padding: 20px;
+    overflow-y: hidden; /* Asegura que haya espacio suficiente para el navbar */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(30, 1fr); /* Ajustado a 20 columnas */
+    grid-template-rows: repeat(20, 1fr);
+    gap: 30px;
+    height: 100vh;
+    width: 100%;
+}
+
+.most-popular-genre {
+    grid-column: 1 / 14; /* Ajustado para que ocupe 6 columnas */
+    grid-row: 10 / 19;
+}
+
+.most-popular-streamer {
+    grid-column: 14 / 30; /* Ajustado para que ocupe 7 columnas */
+    grid-row: 10 / 19;
+    overflow: hidden;
+}
+
+.subscriptions {
+    grid-column: 22 / 30; /* Ajustado para ocupar las 6 columnas restantes */
+    grid-row: 1 / 10;
+}
+
+.followers {
+    grid-column: 14 / 22; /* Ajustado para ocupar las 6 columnas restantes */
+    grid-row: 1 / 10;
+}
+
+.users-monthly {
+    grid-column: 1/14; /* Spans across two columns */
+    grid-row: 1 / 10;
+}
+
+.most-popular-genre,  .subscriptions, .users-monthly, .followers {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 93vh;
+    color: #fff; /* Texto blanco para contraste */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    text-align: center;
+}
+
+.count-follewers {
+    font-size: 4rem;
+    
+}
+
+.most-popular-streamer {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 80vh;
+    color: #fff; /* Texto blanco para contraste */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    text-align: center;
+}
