@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../../../auth/auth.provider";
 import LabelComponent from "../../../public/registerPage/components/label.component";
 import ButtonMenuUserComponent from "./buttonMenuUser.component";
+import useAlert from "./alert.component";
 
 const EmailView = () => {
   const [newEmail, setNewEmail] = useState("");
@@ -10,11 +11,13 @@ const EmailView = () => {
   const user = auth.getUser();
   const token = auth.getToken();
 
+  const { showAlert } = useAlert();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!newEmail) {
-      alert("Email is requerid");
+      showAlert("error", "Email is required", "Please enter a valid email");
 
       return;
     }
@@ -38,7 +41,7 @@ const EmailView = () => {
 
       if (!res.ok) throw new Error("Cannot posible changed email");
 
-      alert("Email changed successfully");
+      showAlert("success", "Success email sent", "the email has been successfully"); 
     } catch (err) {
       console.error(err);
     }
