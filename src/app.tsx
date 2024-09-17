@@ -81,7 +81,7 @@ export const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "history&favorites",
+        path: "/history&favorites",
         element: (
           <NavBarLayout>
             <FavoritesHistoryPage />
@@ -108,7 +108,7 @@ export const appRouter = createBrowserRouter([
         path: "/viewer",
         element: (
           <NavBarLayout>
-            <ViewerPage />
+            <FavoritesHistoryPage />
           </NavBarLayout>
         ),
       },

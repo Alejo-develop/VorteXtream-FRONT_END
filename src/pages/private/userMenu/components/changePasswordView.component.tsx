@@ -2,6 +2,7 @@ import { useState } from "react";
 import LabelComponent from "../../../public/registerPage/components/label.component";
 import ButtonMenuUserComponent from "./buttonMenuUser.component";
 import { useAuth } from "../../../../auth/auth.provider";
+import useAlert from "./alert.component";
 
 const PasswordView = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -12,17 +13,19 @@ const PasswordView = () => {
   const user = auth.getUser();
   const token = auth.getToken();
 
+  const {showAlert} = useAlert();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!currentPassword && !newPassword && !newConfirmPassword) {
-      alert("All inputs is requerid");
+      showAlert("error", "All required", "Please enter all required information")
 
       return;
     }
 
     if(newPassword !== newConfirmPassword){
-        alert('New password and confirm password must be the same')
+        showAlert("success", "password already", "the password and confirm password save successfully")
 
         return
     }

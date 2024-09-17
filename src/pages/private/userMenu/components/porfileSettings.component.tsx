@@ -3,6 +3,7 @@ import LabelComponent from "../../../public/registerPage/components/label.compon
 import { useAuth } from "../../../../auth/auth.provider";
 import ButtonMenuUserComponent from "./buttonMenuUser.component";
 import { UserResponse } from "../../../../common/interfaces/user.interface";
+import useAlert from "./alert.component";
 
 const PorfileSettingsView = () => {
   const auth = useAuth();
@@ -31,6 +32,8 @@ const PorfileSettingsView = () => {
   const [country, setCountry] = useState('');
   const [phoneNumber, setPhoneNumber] = useState("");
   const [profileImage, setProfileImage] = useState(user.urlprofile);
+
+  const { showAlert } = useAlert();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -64,9 +67,9 @@ const PorfileSettingsView = () => {
     e.preventDefault()
 
     if(!name && !username && !bornDate && !lastName  && !secondName && !country && !phoneNumber){
-      alert('not changes detected')
+      showAlert("error", "No change", "You haven't made any changes")
 
-      return
+      return;
     }
 
     try {
@@ -90,8 +93,11 @@ const PorfileSettingsView = () => {
       const resToJson = await res.json()
       console.log(resToJson);
       if(!res.ok){
+        showAlert("error", "Cannot posible updated user", "Error updating")
         throw new Error('Cannot posible updated user')
       }
+
+    
       fetchInfoUser()
       alert('Updated user successfully')
     } catch (err) {
