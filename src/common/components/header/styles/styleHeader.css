@@ -1,32 +1,39 @@
-.header{
+
+.header {
     display: flex;
     width: 100%;
     height: 7rem;
     justify-content: space-between;
+    position: absolute; /* Asegura que el header se posicione sobre el contenido del banner */
+    top: 0;
+    left: 0;
+    padding: 0 1rem; /* Ajusta el padding según sea necesario */
+    box-sizing: border-box;
+    z-index:7; /* Asegura que el header esté encima de otros elementos */
 }
 
-.container-search{
+.container-search {
     display: flex;
     margin-right: 5rem;
     gap: 2rem;
     align-items: center;
 }
 
-.container-explorer{
+.container-explorer {
     display: flex;
     margin-left: 6.5rem;
     gap: 2rem;
     align-items: center;
 }
 
-.logo{
-    min-width: 10rem
+.logo {
+    min-width: 10rem;
 }
 
-.input-search{
+.input-search {
     width: 23rem;
     height: 2.8rem;
-    background-color:#2F3241;
+    background-color: #2F3241;
     border: 2px solid;
     border-color: #BCECE0;
     border-radius: 30px;
@@ -46,24 +53,9 @@
 }
 
 /* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
-.input-search::-webkit-search-clear-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
-.input-search::-webkit-search-decoration {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
-.input-search::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
+.input-search::-webkit-search-clear-button,
+.input-search::-webkit-search-decoration,
+.input-search::-webkit-search-cancel-button,
 .input-search::-webkit-search-submit-button {
     -webkit-appearance: none;
     appearance: none;

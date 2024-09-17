@@ -10,7 +10,7 @@
   background-color: #2f3241;
   gap: 2rem;
   border-right: 2px solid #f08080;
-  z-index: 2;
+  z-index: 12;
   padding-top: 2rem;
   transition: width 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
