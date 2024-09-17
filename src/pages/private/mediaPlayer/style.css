@@ -1,0 +1,30 @@
+.container-watchMovie-anime{
+    display: flex;
+    flex-direction: column;
+}
+
+.info-movieAnime-container{
+    height: 50rem;
+    background-color: #2F3241;
+    border-top: solid 4px #F08080;
+}
+
+.container-infoDataMovie-sinopsis{
+    display: grid;
+    grid-template-columns: 1.2fr 1.8fr;
+    width: 100%;
+    min-height: 34rem;
+}
+
+.dataMovie-or-anime{
+    border: solid 1px black;
+}
+
+.sinopsis-movie-or-anime{
+    border: solid 1px black;
+}
+
+.container-matchContent{
+    border: solid 1px black;
+    min-height: 16rem;
+}
