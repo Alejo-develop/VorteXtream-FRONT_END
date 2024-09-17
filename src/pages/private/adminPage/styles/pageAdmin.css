@@ -1,0 +1,18 @@
+/* Estilos para el contenedor principal de la página administrativa */
+.admin-page-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Asegura que ocupe toda la altura de la ventana */
+}
+
+/* Estilos para el contenedor del Navbar */
+.navbar-container {
+    width: 200px; /* Mismo ancho que el navbar */
+}
+
+/* Estilos para el contenedor del Grid */
+.grid-container-wrapper {
+    flex: 1; /* Ocupa todo el espacio disponible */
+    padding: 20px;
+    overflow: hidden; /* Agrega desplazamiento vertical si es necesario */
+}

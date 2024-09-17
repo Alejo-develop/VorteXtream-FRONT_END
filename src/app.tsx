@@ -15,6 +15,7 @@ import StreamPage from './pages/private/streamPlayer/streamPlayer.page';
 import CheckoutPage from './pages/public/checkoutPage/chekout.page';
 import  StreamerUserPage  from './pages/private/streamUserPlayer/streamerUser.page';
 import ViewerPage from './pages/private/viewer/viewer.page';
+import { AdminPage } from './pages/private/adminPage/Admin.page';
 
 export const appRouter = createBrowserRouter([
   {
@@ -40,6 +41,12 @@ export const appRouter = createBrowserRouter([
       <NavBarLayout>
         <SearchPage />
       </NavBarLayout>
+    ),
+  },
+  {
+    path: "/adminpage",
+    element: (
+     <AdminPage />
     ),
   },
   {
@@ -112,6 +119,7 @@ export const appRouter = createBrowserRouter([
           </NavBarLayout>
         ),
       },
+      
     ],
   },
 ]);
