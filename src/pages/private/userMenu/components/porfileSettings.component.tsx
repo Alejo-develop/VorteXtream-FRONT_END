@@ -54,10 +54,7 @@ const PorfileSettingsView = () => {
       })
 
       const resToJson = await res.json() as UserResponse
-      console.log(resToJson);
-
       setUserInfo(resToJson)
-      
     } catch (err) {
       console.error(err)
     }
@@ -95,8 +92,8 @@ const PorfileSettingsView = () => {
       if(!res.ok){
         throw new Error('Cannot posible updated user')
       }
-
-      alert('Usuario actualizado con exito')
+      fetchInfoUser()
+      alert('Updated user successfully')
     } catch (err) {
       console.error(err)
     }
