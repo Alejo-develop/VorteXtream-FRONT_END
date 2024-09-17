@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import LoginButtonComponent from "../loginButton/loginButton.component";
 import SignUpButtonComponent from "../SignUpButton/signUpButton.component";
 import Logo from "../../../assets/img/Logo.png";
@@ -8,11 +9,20 @@ import NotificationConfigComponent from "../notificationButton/notificationButto
 import UserConfigComponent from "../userConfig/userConfig.component";
 
 const HeaderComponent = () => {
-  const auth = useAuth()
+  const auth = useAuth();
+  const [showSearchInput, setShowSearchInput] = useState(true);
 
-    const RenderForm1 = auth.isAuthenticated ? NotificationConfigComponent: SignUpButtonComponent
-    const RenderForm2 = auth.isAuthenticated ? UserConfigComponent: LoginButtonComponent
+  useEffect(() => {
+    const currentUrl = window.location.pathname;
+    if (currentUrl === "/searchpage" || currentUrl === "/animes") {
+      setShowSearchInput(false);
+    } else {
+      setShowSearchInput(true);
+    }
+  }, []);
 
+  const RenderForm1 = auth.isAuthenticated ? NotificationConfigComponent : SignUpButtonComponent;
+  const RenderForm2 = auth.isAuthenticated ? UserConfigComponent : LoginButtonComponent;
 
   return (
     <header className="header">
@@ -24,16 +34,17 @@ const HeaderComponent = () => {
       </div>
 
       <div className="container-search">
-        <form>
-          <input
-            type="search"
-            className="input-search"
-            placeholder="What you want see today?"
-          />
-        </form>
+        {showSearchInput && (
+          <form>
+            <input
+              type="search"
+              className="input-search"
+              placeholder="What you want see today?"
+            />
+          </form>
+        )}
         <RenderForm1 className="message-box-container-landing" />
-
-        <RenderForm2 className="container-menuUser-landing"/>
+        <RenderForm2 className="container-menuUser-landing" />
       </div>
     </header>
   );

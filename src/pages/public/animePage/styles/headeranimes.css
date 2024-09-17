@@ -3,7 +3,6 @@
     overflow: hidden;
     width:100%;
     margin: auto;
-    margin-top: 20px;
     margin-bottom: 120px;
     position: relative;
     justify-content: center;
@@ -12,7 +11,7 @@
 .anime-item {
     position: relative;
     width: 800px;
-    height: 90vh;
+    height: 100vh;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.5s ease, box-shadow 0.3s ease;
