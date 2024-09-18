@@ -1,5 +1,5 @@
 export interface CardProps{
-    id: number;
+    id: string;
     backdrop_path: string | null;
     overview: string;
     title: string;

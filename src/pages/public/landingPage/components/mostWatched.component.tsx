@@ -7,17 +7,19 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 type Movie = {
-  id: number;
+  id: string;
   backdrop_path: string | null;
   overview: string | null;
   title: string;
+  vote_average: number
 };
 
 type MovieData = {
-  id: number; // Asegúrate de incluir `id` en MovieData para usarlo en `key`
+  id: string; // Asegúrate de incluir `id` en MovieData para usarlo en `key`
   imageUrl: string;
-  overview: string | null;
+  overview: string ;
   title: string;
+  vote_average: number
 };
 
 const MostWatchedMediaComponent = () => {
@@ -42,6 +44,7 @@ const MostWatchedMediaComponent = () => {
             imageUrl: `${imageBaseUrl}${movie.backdrop_path}`,
             overview: movie.overview,
             title: movie.title,
+            vote_average: movie.vote_average
           }));
 
         setData(movieData);
@@ -88,7 +91,7 @@ const MostWatchedMediaComponent = () => {
                     <p className="movie-sinopsis">
                       {truncateText(movie.overview || "", 400)}
                     </p>
-                    <WatchNowButtonComponent size="190" height="45" text="Watch Now" fontweight="1rem"/>
+                    <WatchNowButtonComponent id={movie.id} imgMedia={movie.imageUrl} synopsis={movie.overview} mediaTitle={movie.title} rating={movie.vote_average} size="190" height="45" text="Watch Now" fontweight="1rem"/>
                   </div>
                 </div>
               </div>

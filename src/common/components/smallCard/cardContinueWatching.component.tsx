@@ -3,10 +3,11 @@ import WatchNowButtonComponent from "../watchNowButton/watchNow.component";
 import "./style.css";
 
 interface SmallCardProps {
-  id: number;
+  id: string;
   imageUrl: string;
   title: string;
   vote_average: number;
+  overview: string;
 }
 
 const CardSmallComponent = ({
@@ -14,6 +15,7 @@ const CardSmallComponent = ({
   imageUrl,
   title,
   vote_average,
+  overview
 }: SmallCardProps) => {
   return (
     <div key={id} className="container-small-card">
@@ -24,11 +26,17 @@ const CardSmallComponent = ({
         <h2 className="title-card-small">{title}</h2>
         <div className="containetr-buttons-card-small">
           <WatchNowButtonComponent
-            text="Continue Watching"
-            size="170"
-            height="45"
-            fontweight="0.8"
-          />{" "}
+           id={id}
+           imgMedia={imageUrl}
+           mediaTitle={title}
+           rating={vote_average}
+           synopsis={overview}
+           text="Continue Watching"
+           size="170"
+           height="45"
+           fontweight="0.8"
+           type="button"
+          />
           <StarRating rating={vote_average} fontSize="1.6rem"/>
         </div>
       </div>
