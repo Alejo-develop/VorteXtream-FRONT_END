@@ -24,7 +24,8 @@ export const HeaderAnime: React.FC<HeaderAnimeProps> = ({ animes }) => {
                         className="anime-image" 
                     />
                     <div className="anime-title">
-                        {anime.title_english || anime.title_japonese}
+                        {anime.title_japonese}
+                        {anime.title_english}
                     </div>
                 </div>
             ))}

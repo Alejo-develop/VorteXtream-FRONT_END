@@ -4,6 +4,7 @@ import './styles/headeranimes.css';
 import HeaderComponent from "../../../common/components/header/header.component";
 import { HeaderAnime } from "./components/HeaderAnime.component";
 import SearchAnime from "./components/SearchAnime";
+// import CategoriesAnime from "./components/CategoriesAnime";
 
 interface AnimeInfo extends CardAnimeProps {}
 
@@ -15,13 +16,21 @@ export function AnimePage() {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [query, setQuery] = useState<string>("");
+    const [selectedCategory, setSelectedCategory] = useState<number | null>(null); // Añadimos el estado de la categoría seleccionada
 
-    // Fetch top animes for default display (initial fetch)
+    // Fetch top animes or filter by category
     useEffect(() => {
         const fetchAnimes = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`https://api.jikan.moe/v4/top/anime?page=${page}&limit=25`);
+                let url = `https://api.jikan.moe/v4/top/anime?page=${page}&limit=25`;
+
+                // Si hay una categoría seleccionada, ajustamos la URL
+                if (selectedCategory) {
+                    url = `https://api.jikan.moe/v4/anime?genres=${selectedCategory}&page=${page}&limit=25`;
+                }
+
+                const response = await fetch(url);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const { data, pagination } = await response.json();
 
@@ -51,7 +60,7 @@ export function AnimePage() {
         };
 
         fetchAnimes();
-    }, [page]);
+    }, [page, selectedCategory]); 
 
     // Debounce search query and fetch search results
     useEffect(() => {
@@ -111,6 +120,8 @@ export function AnimePage() {
             <HeaderComponent />
             <HeaderAnime animes={animes.slice(4,9)} /> 
             <div className="anime-section">
+                {/* Categorías de anime */}
+                {/* <CategoriesAnime onCategorySelect={setSelectedCategory} /> */}
                 <div className="search-anime">
                     <SearchAnime onSearch={setQuery} />
                 </div>

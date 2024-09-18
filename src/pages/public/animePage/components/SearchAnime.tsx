@@ -42,30 +42,31 @@ const StyledWrapper = styled.div`
     align-items: center;
     position: relative;
     width: 100%;
-   
   }
 
   .input {
     width: 130%;
     height: 40px;
     line-height: 28px;
-    padding: 1.5rem 10rem ; 
+    padding: 1.5rem 10rem;
     padding-left: 2.8rem;
     border: 2px solid transparent;
     border-radius: 25px;
     outline: none;
     background-color: #000;
     color: #ffff;
-    transition: .3s ease;
-    font-size: 1.rem
+    transition: 0.3s ease;
+    font-size: 1rem;
   }
 
   .input::placeholder {
     color: #9e9ea7;
   }
 
-  .input:focus, .input:hover {
+  .input:focus,
+  .input:hover {
     outline: none;
+    border-color: #f08080; /* Cambiar el color del borde al hacer clic o hover */
   }
 
   .icon {
