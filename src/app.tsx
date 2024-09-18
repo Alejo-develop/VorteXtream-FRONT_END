@@ -1,21 +1,23 @@
-import { createBrowserRouter } from 'react-router-dom';
-import LandingPage from './pages/public/landingPage/landing.page';
-import RegisterPage from './pages/public/registerPage/register.page';
-import { NavBarLayout } from './layouts/NavBar.Layout';
-import SearchPage from './pages/public/searchPage/search.Page';
-import FooterComponent from './common/components/footer/footer.component';
-import SearchStreamsPage from './pages/public/searchStreamsPage/SearchStreamsPage';
-import LayoutStreamers from './layouts/layoutStreamers/layoutStreamers';
-import { AnimePage } from './pages/public/animePage/anime.page';
-import { ProtectedRoute } from './auth/portectedRoutes.auth';
-import UserMenuPage from './pages/private/userMenu/userMenu.page';
-import FavoritesHistoryPage from './pages/private/favoritesHistory/favoriteHistory.page';
-import MediaPlayerPage from './pages/private/mediaPlayer/mediaPlayer.page';
-import StreamPage from './pages/private/streamPlayer/streamPlayer.page';
-import CheckoutPage from './pages/public/checkoutPage/chekout.page';
-import  StreamerUserPage  from './pages/private/streamUserPlayer/streamerUser.page';
-import ViewerPage from './pages/private/viewer/viewer.page';
-import { AdminPage } from './pages/private/adminPage/Admin.page';
+import { createBrowserRouter } from "react-router-dom";
+import LandingPage from "./pages/public/landingPage/landing.page";
+import RegisterPage from "./pages/public/registerPage/register.page";
+import { NavBarLayout } from "./layouts/NavBar.Layout";
+import SearchPage from "./pages/public/searchPage/search.Page";
+import FooterComponent from "./common/components/footer/footer.component";
+import SearchStreamsPage from "./pages/public/searchStreamsPage/SearchStreamsPage";
+import LayoutStreamers from "./layouts/layoutStreamers/layoutStreamers";
+import { AnimePage } from "./pages/public/animePage/anime.page";
+import { ProtectedRoute } from "./auth/portectedRoutes.auth";
+import UserMenuPage from "./pages/private/userMenu/userMenu.page";
+import FavoritesHistoryPage from "./pages/private/favoritesHistory/favoriteHistory.page";
+import MediaPlayerPage from "./pages/private/mediaPlayer/mediaPlayer.page";
+import StreamPage from "./pages/private/streamPlayer/streamPlayer.page";
+import CheckoutPage from "./pages/public/checkoutPage/chekout.page";
+import StreamerUserPage from "./pages/private/streamUserPlayer/streamerUser.page";
+import ViewerPage from "./pages/private/viewer/viewer.page";
+import { AdminPage } from "./pages/private/adminPage/Admin.page";
+import TransitionPage from "./common/utils/transitionPage";
+import React from "react";
 
 export const appRouter = createBrowserRouter([
   {
@@ -38,42 +40,49 @@ export const appRouter = createBrowserRouter([
   {
     path: "/searchpage",
     element: (
-      <NavBarLayout>
-        <SearchPage />
-      </NavBarLayout>
+      <React.StrictMode>
+        <NavBarLayout>
+          <TransitionPage />
+          <SearchPage />
+        </NavBarLayout>
+      </React.StrictMode>
     ),
   },
   {
     path: "/adminpage",
-    element: (
-     <AdminPage />
-    ),
+    element: <AdminPage />,
   },
   {
     path: "/streams",
     element: (
-      <NavBarLayout>
-        <LayoutStreamers>
-          <SearchStreamsPage />
-        </LayoutStreamers>
-      </NavBarLayout>
+      <React.StrictMode>
+        <NavBarLayout>
+          <TransitionPage />
+          <LayoutStreamers>
+            <SearchStreamsPage />
+          </LayoutStreamers>
+        </NavBarLayout>
+      </React.StrictMode>
     ),
   },
   {
     path: "/animes",
     element: (
-      <NavBarLayout>
-        <AnimePage />
-      </NavBarLayout>
+      <React.StrictMode>
+        <NavBarLayout>
+          <TransitionPage />
+          <AnimePage />
+        </NavBarLayout>
+      </React.StrictMode>
     ),
   },
   {
-    path: '/checkout',
+    path: "/checkout",
     element: (
       <NavBarLayout>
         <CheckoutPage />
       </NavBarLayout>
-    )
+    ),
   },
   {
     path: "/",
@@ -90,9 +99,12 @@ export const appRouter = createBrowserRouter([
       {
         path: "/history&favorites",
         element: (
-          <NavBarLayout>
-            <FavoritesHistoryPage />
-          </NavBarLayout>
+          <React.StrictMode>
+            <NavBarLayout>
+              <TransitionPage />
+              <FavoritesHistoryPage />
+            </NavBarLayout>
+          </React.StrictMode>
         ),
       },
       {
@@ -119,7 +131,6 @@ export const appRouter = createBrowserRouter([
           </NavBarLayout>
         ),
       },
-      
     ],
   },
 ]);

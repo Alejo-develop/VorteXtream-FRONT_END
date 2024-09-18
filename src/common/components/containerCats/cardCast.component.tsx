@@ -1,11 +1,13 @@
-import logo from '../../../assets/img/smallLogo.png'
+interface cardCastProps{
+    name: string;
+    img: string
+}
 
-
-const CardCastComponent = () => {
+const CardCastComponent = ({ name, img }: cardCastProps) => {
     return(
         <div className='card-casts-porfile'>
-            <img src={logo} alt="imgProfile-casts" className='imgPorfile-casts'/>
-            <h4>brad pitt</h4>
+            <img src={img} alt="imgProfile-casts" className='imgPorfile-casts'/>
+            <h4>{name}</h4>
         </div>
     )
 }

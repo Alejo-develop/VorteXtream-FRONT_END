@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 interface CardProps{
-    text: string
+    text: string,
 }
 
 const CardDirectorStudioComponent = ({ text }: CardProps) => {
