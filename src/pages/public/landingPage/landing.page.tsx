@@ -138,6 +138,7 @@ export default function LandingPage() {
                 imageUrl={movie.imageUrl}
                 title={movie.title}
                 vote_average={movie.vote_average}
+                overview={movie.overview}
               />
             ))}
           </SwiperComponent>
@@ -153,6 +154,7 @@ export default function LandingPage() {
               index={movie.id}
               title={movie.title}
               overview={movie.overview}
+              rating={movie.vote_average}
             />
           ))}
         </div>

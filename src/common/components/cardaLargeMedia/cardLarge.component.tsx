@@ -3,13 +3,14 @@ import WatchNowButtonComponent from "../watchNowButton/watchNow.component";
 import "./style.css";
 
 interface CardLargeProps{
-    index: number;
+    index: string;
     img: string;
     title: string;
     overview : string;
+    rating: number
 }
 
-const CardLargeComponent = ({ index, img, title, overview }: CardLargeProps) => {
+const CardLargeComponent = ({ index, img, title, overview, rating }: CardLargeProps) => {
 
   const truncateText = (text: string, maxLength: number) => {
       return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
@@ -27,7 +28,7 @@ const CardLargeComponent = ({ index, img, title, overview }: CardLargeProps) => 
         <p className="sinopsis-cardLarge">{truncateText(overview, 500)}</p>
 
         <div className="container-buttons-addREcently">
-          <WatchNowButtonComponent size="190" text="Watch Now" fontweight="1" height="45"/>
+          <WatchNowButtonComponent id={index} imgMedia={img} mediaTitle={title} synopsis={overview} rating={rating} size="190" text="Watch Now" fontweight="1" height="45"/>
           <AddFavoritesButtonComponent size="190" fontweight="1" height="45" />
         </div>
       </div>
