@@ -51,7 +51,7 @@ export function NavBarLayout(props: NavbarProps) {
         {!!auth.isAuthenticated && (
          <>
             <ButtonNavBa
-              path="/viewer"
+              path="/history&favorites"
               icono={<Heart size={28} />}
               text="Favorites"
               className="icon-link"

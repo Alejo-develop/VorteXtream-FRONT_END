@@ -42,6 +42,7 @@ export function AnimePage() {
                     title_english: anime.title_english || "No English title available",
                     image_url: anime.images.jpg.large_image_url,
                     synopsis: anime.synopsis || "No synopsis available",
+                    score: anime.score
                 }));
 
                 // Concatenate new animes with existing ones
@@ -91,6 +92,7 @@ export function AnimePage() {
                 title_english: anime.title_english || "No English title available",
                 image_url: anime.images.jpg.large_image_url,
                 synopsis: anime.synopsis || "No synopsis available",
+                score: anime.score
             }));
 
             setSearchResults(animeList);
@@ -137,6 +139,7 @@ export function AnimePage() {
                                     title_english={anime.title_english}
                                     image_url={anime.image_url}
                                     synopsis={anime.synopsis}
+                                    score={anime.score}
                                 />
                             ))}
                         </div>

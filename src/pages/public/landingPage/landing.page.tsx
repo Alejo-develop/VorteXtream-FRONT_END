@@ -113,7 +113,7 @@ export default function LandingPage() {
         <h1 className="mostWatched-country-title">
           Most Watched in {country}{" "}
         </h1>
-        <SwiperComponent spaceBetween={5} slidesPerView={5}>
+        <SwiperComponent className="mySwiper-most-watched" spaceBetween={5} slidesPerView={5}>
           {dataMediaCountry.map((movie) => (
             <CardComponent
               key={movie.id} // Asegúrate de agregar la propiedad `key` para evitar advertencias
@@ -131,7 +131,7 @@ export default function LandingPage() {
         <div className="container-continueWatching">
           <h1 className="continue-watiching-title">Continue Watching...</h1>
 
-          <SwiperComponent spaceBetween={1} slidesPerView={3}>
+          <SwiperComponent className="mySwiper-most-watched" spaceBetween={1} slidesPerView={3}>
             {mediaRecent.map((movie) => (
               <CardSmallComponent
                 id={movie.id}

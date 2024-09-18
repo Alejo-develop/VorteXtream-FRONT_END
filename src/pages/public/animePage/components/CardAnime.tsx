@@ -9,9 +9,10 @@ export interface CardAnimeProps {
     title_english: string;
     image_url: string;
     synopsis: string;
+    score: number;
 }
 
-export const CardAnime: React.FC<CardAnimeProps> = ({ id, title_japonese, title_english, image_url, synopsis }) => {
+export const CardAnime: React.FC<CardAnimeProps> = ({ score, id, title_japonese, title_english, image_url, synopsis }) => {
     return (
         <div className="card-anime">
             <img src={image_url} alt={title_japonese} className="img-anime" />
@@ -21,7 +22,7 @@ export const CardAnime: React.FC<CardAnimeProps> = ({ id, title_japonese, title_
                 <p className="synopsis-anime">{synopsis}</p>
             </div>
             <div className="buttons">
-                <WatchNowButtonComponent size={'0.5rem'} height={'2px'} fontweight={'0.8'} text={'Watch Now'} />
+                <WatchNowButtonComponent id={id} mediaTitle={title_japonese} imgMedia={image_url} rating={score} synopsis={synopsis} size={'0.5rem'} height={'2px'} fontweight={'0.8'} text={'Watch Now'} />
                 <AddFavoritesButtonComponent size={'0.5rem'} height={'2px'} fontweight={'0.8'} />
             </div>
            

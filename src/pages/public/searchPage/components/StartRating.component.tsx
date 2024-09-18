@@ -15,9 +15,9 @@ const StarRating: React.FC<StarRatingProps> = ({ rating,  fontSize }) => {
 
     return (
         <div style={{marginTop:'6px', fontSize}}>
-            {Array(fullStars).fill(<FontAwesomeIcon icon={faStar} style={{ color: 'F08080'}} />)}
+            {Array(fullStars).fill(<FontAwesomeIcon icon={faStar} style={{ color: 'F08080' }} />)}
             {halfStar && <FontAwesomeIcon icon={faStarHalfAlt} style={{ color: 'F08080' }} />}
-            {Array(emptyStars).fill(<FontAwesomeIcon icon={faStar} style={{ color: 'F08080' }} />)}
+            {Array(emptyStars).fill(<FontAwesomeIcon icon={faStar} style={{ color: 'gray' }} />)}
         </div>
     );
 };

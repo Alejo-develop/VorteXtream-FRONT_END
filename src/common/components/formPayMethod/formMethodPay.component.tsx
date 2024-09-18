@@ -4,17 +4,18 @@ import { PayMethodResponse } from "../../interfaces/paymethod.interface";
 import { useAuth } from "../../../auth/auth.provider";
 import { BankResponse } from "../../interfaces/bank.interface";
 
+interface PayMethodDto {
+  userId: string;
+  nameCardHolder: string;
+  bankId: string;
+  cardNumber: string;
+  cvv: string;
+  expirationDate: string;
+}
+
 const FormMethodPay = () => {
   const [bankInfo, setBankInfo] = useState<BankResponse[]>([]);
-  const [payMethodInfo, setPayMethodInfo] = useState<PayMethodResponse>({
-    id: null,
-    userId: null,
-    bankId: null,
-    cardNumber: null,
-    cvv: null,
-    expirationDate: null,
-    nameCardHolder: null,
-  }); // Cambiado a `null` por defecto
+  const [payMethodInfo, setPayMethodInfo] = useState<PayMethodResponse | null>(null);
 
   const [nameCard, setNameCard] = useState<string>("");
   const [cardNumber, setCardNumber] = useState("");
@@ -29,16 +30,13 @@ const FormMethodPay = () => {
   // Fetch Banks Data
   const fetchBanks = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/vortextream/bank`, {
-        method: "GET",
-      });
-
+      const res = await fetch(`http://localhost:3000/vortextream/bank`);
       if (!res.ok) throw new Error("Banks not found");
 
       const resToJson = (await res.json()) as BankResponse[];
       setBankInfo(resToJson);
     } catch (err) {
-      console.error('Error fetching banks:', err);
+      console.error("Error fetching banks:", err);
     }
   };
 
@@ -63,21 +61,20 @@ const FormMethodPay = () => {
       );
 
       if (!res.ok) {
-        console.log('Failed to fetch pay method');
         throw new Error("Paymethod not found");
       }
 
       const resToJson = (await res.json()) as PayMethodResponse;
       setPayMethodInfo(resToJson);
-      console.log('Fetched pay method:', resToJson); // Debugging
+      console.log("Fetched pay method:", resToJson);
     } catch (err) {
-      console.error('Error fetching pay method:', err);
+      console.error("Error fetching pay method:", err);
     }
   };
 
   useEffect(() => {
     fetchPayMethod();
-  }, [user?.id, token]); // Añadidas dependencias para el useEffect
+  }, [user?.id, token]);
 
   // Handle Form Submit
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -88,7 +85,8 @@ const FormMethodPay = () => {
       return;
     }
 
-    const payload = {
+    const payload: PayMethodDto = {
+      userId: user.id,
       nameCardHolder: nameCard,
       bankId: bank,
       cardNumber,
@@ -96,10 +94,12 @@ const FormMethodPay = () => {
       expirationDate,
     };
 
+    console.log("Payload to be sent:", payload);
+
     try {
-      const url = payMethodInfo ? 
-        `http://localhost:3000/vortextream/paymethod/${user.id}` : 
-        `http://localhost:3000/vortextream/paymethod`;
+      const url = payMethodInfo
+        ? `http://localhost:3000/vortextream/paymethod/${user.id}`
+        : `http://localhost:3000/vortextream/paymethod`;
 
       const method = payMethodInfo ? "PATCH" : "POST";
 
@@ -113,17 +113,18 @@ const FormMethodPay = () => {
       });
 
       if (!res.ok) {
-        throw new Error(payMethodInfo ? "Cannot update payment" : "Cannot create payment");
+        const errorText = await res.text(); 
+        throw new Error(errorText || (payMethodInfo ? "Cannot update payment" : "Cannot create payment"));
       }
 
       const resToJson = await res.json();
-      console.log(resToJson);
+      console.log("Response from server:", resToJson);
 
       alert(payMethodInfo ? "Payment updated successfully" : "Payment created successfully");
-
       fetchPayMethod();
     } catch (err) {
-      console.error('Error handling form submit:', err);
+      console.error("Error handling form submit:", err);
+      alert("An error occurred: " + err); 
     }
   };
 
@@ -134,7 +135,7 @@ const FormMethodPay = () => {
           <div className="credit-card-info--form">
             <div className="input_container">
               <select
-                className="input_label"
+                className="input_field"
                 value={bank}
                 onChange={(e) => setBank(e.target.value)}
               >
@@ -155,8 +156,7 @@ const FormMethodPay = () => {
                 Card holder full name
               </label>
               <input
-                placeholder={payMethodInfo.nameCardHolder || "Enter your full name"}
-                title="Input title"
+                placeholder={payMethodInfo?.nameCardHolder || "Enter your full name"}
                 name="input-name"
                 type="text"
                 className="input_field"
@@ -170,8 +170,7 @@ const FormMethodPay = () => {
                 Card Number
               </label>
               <input
-                placeholder={payMethodInfo.cardNumber ||"0000 0000 0000 0000"}
-                title="Input title"
+                placeholder={payMethodInfo?.cardNumber || "0000 0000 0000 0000"}
                 name="input-card-number"
                 type="text"
                 className="input_field"
@@ -186,8 +185,7 @@ const FormMethodPay = () => {
               </label>
               <div className="split">
                 <input
-                  placeholder={ payMethodInfo.expirationDate ||"01/23"}
-                  title="Expiry Date"
+                  placeholder={payMethodInfo?.expirationDate || "01/23"}
                   name="input-expiration-date"
                   type="text"
                   className="input_field"
@@ -196,8 +194,7 @@ const FormMethodPay = () => {
                   onChange={(e) => setExpirationDate(e.target.value)}
                 />
                 <input
-                  placeholder={payMethodInfo.cvv || 'CVV'}
-                  title="CVV"
+                  placeholder={payMethodInfo?.cvv || "CVV"}
                   name="input-cvv"
                   type="text"
                   className="input_field"
@@ -207,14 +204,15 @@ const FormMethodPay = () => {
                 />
               </div>
             </div>
-            <button className="purchase--btn" type="submit">Save</button>
+            <button className="purchase--btn" type="submit">
+              Save
+            </button>
           </div>
         </form>
       </div>
     </StyledWrapper>
   );
 };
-
 
 const StyledWrapper = styled.div`
   .modal {
@@ -236,70 +234,6 @@ const StyledWrapper = styled.div`
     padding: 20px;
   }
 
-  .payment--options {
-    width: calc(100% - 40px);
-    display: grid;
-    grid-template-columns: 33% 34% 33%;
-    gap: 20px;
-    padding: 10px;
-  }
-
-  .payment--options button {
-    height: 55px;
-    background: #f2f2f2;
-    border-radius: 11px;
-    padding: 0;
-    border: 0;
-    outline: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .payment--options button svg {
-    height: 18px;
-  }
-
-  .payment--options button:last-child svg {
-    height: 22px;
-  }
-
-  .input_container select {
-    height: 3rem;
-    border-radius: 10px;
-    border: white;
-    padding-left: 0.9rem;
-    font-size: 0.8rem;
-  }
-
-  .separator {
-    width: calc(100% - 20px);
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 10px;
-    color: #8b8e98;
-    margin: 0 10px;
-  }
-
-  .separator > p {
-    word-break: keep-all;
-    display: block;
-    padding-top: 10px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 11px;
-    margin: auto;
-  }
-
-  .separator .line {
-    display: inline-block;
-    width: 100%;
-    height: 1px;
-    border: 0;
-    background-color: #e8e8e8;
-    margin: auto;
-  }
-
   .credit-card-info--form {
     display: flex;
     flex-direction: column;
@@ -308,20 +242,9 @@ const StyledWrapper = styled.div`
 
   .input_container {
     width: 100%;
-    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 5px;
-  }
-
-  .split {
-    display: grid;
-    grid-template-columns: 4fr 2fr;
-    gap: 15px;
-  }
-
-  .split input {
-    width: 100%;
   }
 
   .input_label {
@@ -331,7 +254,6 @@ const StyledWrapper = styled.div`
   }
 
   .input_field {
-    width: auto;
     height: 40px;
     padding: 0 0 0 16px;
     border-radius: 9px;
@@ -347,22 +269,43 @@ const StyledWrapper = styled.div`
     background-color: transparent;
   }
 
+  /* Estilos específicos para el select */
+  select.input_field {
+    appearance: none; /* Eliminar el estilo predeterminado */
+    background-color: #f2f2f2;
+    border: 1px solid #e5e5e500;
+    border-radius: 9px;
+    padding: 0 0 0 16px;
+    height: 40px;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+
+  select.input_field:focus {
+    border: 1px solid transparent;
+    box-shadow: 0px 0px 0px 2px #242424;
+    background-color: transparent;
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    gap: 15px;
+  }
+
   .purchase--btn {
     height: 55px;
-    background: #f2f2f2;
-    border-radius: 11px;
-    border: 0;
-    outline: none;
+    background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
     color: #ffffff;
     font-size: 15px;
     font-weight: 700;
-    background: linear-gradient(180deg, #363636 0%, #1b1b1b 50%, #000000 100%);
-    box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #000000;
+    border-radius: 11px;
+    border: 0;
+    outline: none;
     transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
   }
 
   .purchase--btn:hover {
-    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
+    box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px rgba(0, 0, 0, 0.3);
   }
 
   /* Reset input number styles */

@@ -11,7 +11,7 @@ interface CardLargeProps{
 }
 
 const CardLargeComponent = ({ index, img, title, overview, rating }: CardLargeProps) => {
-
+  
   const truncateText = (text: string, maxLength: number) => {
       return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   };

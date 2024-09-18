@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 interface WatchButtonProps {
-  id: string;
+  id: string | number;
   imgMedia: string;
   mediaTitle: string;
   rating: number;
@@ -70,13 +70,6 @@ const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({
       },
     });
   };
-
-
-  console.log(id,
-    imgMedia,
-    mediaTitle,
-    synopsis,
-    rating,);
   
   return (
     <StyledButton
