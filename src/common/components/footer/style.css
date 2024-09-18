@@ -1,80 +1,65 @@
 .footer{
-    background-color: #2F3241;
+    background-color: #2f32419c;
     margin-left: 3.8rem;
-    border-right: solid #F08080;
-    border-top: solid #F08080;
+    border-right: 1px solid #F08080;
+    border-top: 1px solid #F08080;
     height: 30rem;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 2fr 2fr 2fr;
 }
 
-.copyright-container{
+
+.container-image-sub {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
-    margin-right: 2.5rem;
-    height: 30rem;
 }
-
-.container-section-footer{
+.services-footer{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    gap: 90px;
 }
 
-.section-footer{
-    background-color: #bcece04b;
-    width: 18rem;
-    height: 25rem;
-    margin-top: 1.8rem;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr ;
-    justify-content: center;
-}
-.img-footer{
-    height: 27rem;
+.image-footer{
+    width: 250px;
 }
 
-.social-media{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    height: 100%;
-    min-width: 18rem;
-    transition: background-color 0.5s ease; 
-    text-decoration: none;
-    background-color: #bcece04b;
-    border: 0;
-}
-
-.social-media:hover{
-   background-color: #bcece067;
-}
-
-.social-media-name{
-    font-size: 1.3rem;
-    align-self: center;
-    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out
-}
-
-.social-media-name:hover{
-    transform: scale(1.05);
-}
-
-.select-lenguaje{
-    width: 12rem;
-    height: 3rem;
-    font-size: 1rem;
-    padding-left: 10px;
+.contact-title{
+    font-size: 1.6rem;
     font-weight: bold;
-    background-color: #bcece01a;
-    border: 0.5px solid;
-    text-decoration: none;
-    transition: background-color 0.5s ease; 
+    text-align: center;
+    color: #F08080;
 }
 
-.select-lenguaje:hover{
-    background-color: #bcece049;
+.phone, .email {
+    display: flex;
+    align-items: center; /* Centra verticalmente el ícono y el texto */
+    gap: 10px;
+    justify-content: center;
+    color: #fff;
+}
+
+.phone {
+    margin-right: 35px;
+}
+
+.social-networks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sevices-select{
+    margin-top: 85px;
+}
+
+.copy-right {
+    font-size: 1.5rem;
+    color: #F08080;
+    font-style: italic;
+    font-weight: 100;
 }

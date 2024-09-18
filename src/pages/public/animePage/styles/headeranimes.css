@@ -3,9 +3,10 @@
     overflow: hidden;
     width:100%;
     margin: auto;
-    margin-bottom: 120px;
+    margin-bottom: 100px;
     position: relative;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.705);
 }
 
 .anime-item {
@@ -72,6 +73,8 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 3;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .anime-item:hover .anime-title {

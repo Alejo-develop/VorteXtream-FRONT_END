@@ -38,15 +38,15 @@ export const MylivestreamUi = () => {
         <div style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',      // Center horizontally
-            justifyContent: 'center',  // Center vertically
-            height: '100vh',           // Full viewport height
-            gap: '20px',               // Larger gap for spacing
-            backgroundColor: '#f0f4f8' // Light background color
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh',
+            gap: '10px',  // Aumenté el espacio entre los elementos
         }}>
             <div style={{
                 color: 'white',
-                backgroundColor: 'cyan',
+                backgroundColor: 'salmon',
+                marginTop: '10px',
                 padding: '10px 20px',
                 borderRadius: '8px',
                 fontSize: '18px'
@@ -60,14 +60,20 @@ export const MylivestreamUi = () => {
                 )}
             </div>
 
-            <div style={{ marginTop: '20px' }}>
+            <div style={{
+                marginTop: isCallLive ? '40px' : '10px', // Ajuste del margen superior
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '20px',  // Espacio entre los botones
+            }}>
                 {isCallLive ? (
                     <button
                         onClick={handleStopLive}
                         style={{
                             padding: '10px 20px',
-                            backgroundColor: '#ff4c4c',
-                            color: 'white',
+                            backgroundColor: '#ffcccc', // Color más suave
+                            color: '#333', // Texto más oscuro
                             border: 'none',
                             borderRadius: '5px',
                             cursor: 'pointer',
@@ -81,8 +87,8 @@ export const MylivestreamUi = () => {
                         onClick={handleGoLive}
                         style={{
                             padding: '10px 20px',
-                            backgroundColor: '#4caf50',
-                            color: 'white',
+                            backgroundColor: '#ccffcc', // Color verde más suave
+                            color: '#333', // Texto más oscuro
                             border: 'none',
                             borderRadius: '5px',
                             cursor: 'pointer',
