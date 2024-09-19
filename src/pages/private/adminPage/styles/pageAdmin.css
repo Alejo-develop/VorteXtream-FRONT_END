@@ -2,17 +2,24 @@
 .admin-page-container {
     display: flex;
     height: 100vh;
-    overflow: hidden; /* Asegura que ocupe toda la altura de la ventana */
+    overflow: hidden;
+    /* Asegura que ocupe toda la altura de la ventana */
+    background: rgb(47,50,65);
+    background: linear-gradient(161deg, rgba(47,50,65,1) 0%, rgba(240,128,128,0.3657795882024685) 59%, rgba(47,50,65,1) 100%); 
+
 }
 
 /* Estilos para el contenedor del Navbar */
 .navbar-container {
-    width: 200px; /* Mismo ancho que el navbar */
+    width: 200px;
+    /* Mismo ancho que el navbar */
 }
 
 /* Estilos para el contenedor del Grid */
 .grid-container-wrapper {
-    flex: 1; /* Ocupa todo el espacio disponible */
+    flex: 1;
+    /* Ocupa todo el espacio disponible */
     padding: 20px;
-    overflow: hidden; /* Agrega desplazamiento vertical si es necesario */
+    overflow: hidden;
+    /* Agrega desplazamiento vertical si es necesario */
 }
