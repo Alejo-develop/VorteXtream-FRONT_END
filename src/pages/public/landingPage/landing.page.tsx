@@ -28,7 +28,7 @@ export default function LandingPage() {
       const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
       try {
-        const res = await fetch(`${baseUrl}${API_KEY}&language=en-US&page=3`);
+        const res = await fetch(`${baseUrl}${API_KEY}&language=en-US&page=2`);
 
         if (!res.ok) {
           const resErrorMessage = res.json();
@@ -65,7 +65,7 @@ export default function LandingPage() {
       const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
       try {
-        const res = await fetch(`${baseUrl}${API_KEY}&language=en-US&page=1`);
+        const res = await fetch(`${baseUrl}${API_KEY}&language=en-US&page=4`);
 
         if (!res.ok) {
           const resErrorMessage = res.json();
@@ -116,12 +116,12 @@ export default function LandingPage() {
         <SwiperComponent className="mySwiper-most-watched" spaceBetween={5} slidesPerView={5}>
           {dataMediaCountry.map((movie) => (
             <CardComponent
-              key={movie.id} // Asegúrate de agregar la propiedad `key` para evitar advertencias
+              key={movie.id} 
               id={movie.id}
-              backdrop_path={movie.imageUrl} // Usa `imageUrl` en lugar de `backdrop_path`
+              backdrop_path={movie.imageUrl} 
               overview={movie.overview}
               title={movie.title}
-              vote_average={movie.vote_average} // Añade la puntuación a cada carta
+              vote_average={movie.vote_average}
             />
           ))}
         </SwiperComponent>

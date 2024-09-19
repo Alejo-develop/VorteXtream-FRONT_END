@@ -1,31 +1,28 @@
+import ButtonHeaderComponent from "./buttonHeaderWatchNow.component";
+import smallLogo from '../../../../assets/img/smallLogo.png'
+
 const HeaderWatchMediaComponent = () => {
-    return(
-        <header className="headerWatchMedia">
-             <button className="trigger">Pasa el mouse aquí</button>
-            
-           <div className="container-options-headerWatchMedia">
-           <button>
-              Back  
-            </button>
+  return (
+    <header className="headerWatchMedia">
+      <div className="trigger">
+        <div className="container-options-headerWatchMedia">
+          <ButtonHeaderComponent text='Back' path='back'/>
 
-            <button>
-              Home  
-            </button>
+          <ButtonHeaderComponent text='Home' path='/'/>
 
-            <button>
-              Movies / Series  
-            </button>
+          <ButtonHeaderComponent text='Movies / Series' path='/searchpage'/>
 
-            <button>
-              Anime  
-            </button>
+          <ButtonHeaderComponent text='Anime' path='/animes'/>
 
-            <button>
-              Streams   
-            </button>
-           </div>
-        </header>
-    )
-}
+          <ButtonHeaderComponent text='Streams' path='/streams'/>
 
-export default HeaderWatchMediaComponent
+        </div>
+        <div>
+        <img src={smallLogo} alt="smallLogo" className="smallLogo-watchMedia" />
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default HeaderWatchMediaComponent;

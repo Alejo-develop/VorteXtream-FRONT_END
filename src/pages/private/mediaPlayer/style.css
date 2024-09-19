@@ -124,21 +124,75 @@
 
 .headerWatchMedia{
     position: absolute;
-    top: 2rem;
+    top: 0em;
     z-index: 2;
     background-color: transparent;
 }
-
-.container-options-headerWatchMedia{
-    display: none;
+.container-options-headerWatchMedia {
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.3s ease, visibility 0.3s ease; 
+    position: absolute; 
+    top: 2rem;
+    left: 0; 
+    display: flex;
+    gap: 1rem;
+    padding-left: 2rem;
 }
 
-.container-options-headerWatchMedia:hover{
+.headerWatchMedia:hover .container-options-headerWatchMedia {
     opacity: 1;
-    visibility: visible; 
-    animation: slideDown 0.3s forwards;
+    visibility: visible;
+    animation: slideDown 0.5s forwards; 
 }
 
+.trigger {
+    width: 100vw;
+    height: 8rem;
+    border: 0;
+    color: transparent;
+    background-color: rgba(0, 0, 0, 0); /* Fondo inicial transparente */
+    display: flex;
+    justify-content: end;
+    transition: background-color 0.3s ease, opacity 0.3s ease; /* Transición suave */
+    opacity: 0.8; /* Opacidad inicial (ajusta según sea necesario) */
+}
+
+.trigger:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Negro con opacidad */
+    opacity: 1; /* Opacidad máxima al hacer hover */
+}
+
+.smallLogo-watchMedia{
+ width: 6rem;
+ margin-top: 1rem;
+ margin-right: 3rem;
+ opacity: 0.4;   
+}
+
+.div-not-found{
+    width: 100%;
+    border: 1px solid;
+    height: 24rem;
+    margin-right: 2.5rem;
+    background-color: #161618;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-not-foundTitleMedia{
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
+    color: #F08080;
+}
+
+.title-not-foundTitleMedia:hover{
+    transform: translateY(-5px);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);  
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
 
 @keyframes slideDown {
     from {
