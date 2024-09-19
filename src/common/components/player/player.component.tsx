@@ -4,7 +4,7 @@ import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 
 interface VideoPlayerProps {
-  src: string;
+  src: string | null;
   type: string;
 }
 
@@ -39,14 +39,32 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ src, type }) => {
     };
   }, [src, type]);
 
+  if (!src) {
+    return (
+      <div data-vjs-player className="video-container">
+        <video ref={videoRef} className="video-js" width={'1540'} height="775" />
+        {hasError && (
+          <div className="video-error-overlay">
+            <p>No se pudo cargar el video. Por favor, intente más tarde.</p>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Modificar la URL para incluir autoplay
+  const autoplaySrc = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+
   return (
-    <div data-vjs-player className="video-container">
-      <video ref={videoRef} className="video-js" width={'1540'} height="775" />
-      {hasError && (
-        <div className="video-error-overlay">
-          <p>No se pudo cargar el video. Por favor, intente más tarde.</p>
-        </div>
-      )}
+    <div className="video-container">
+      <iframe
+        width="1540"
+        height="775"
+        src={autoplaySrc}
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+        title="Video Player"
+      />
     </div>
   );
 };

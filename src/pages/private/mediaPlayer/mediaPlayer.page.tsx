@@ -35,14 +35,26 @@ export default function StreamPage() {
     const [data, setData] = useState<MovieCredits | null>(null);
     const [studio, setStudio] = useState<string | undefined>("");
     const [recomendedData, setRecomendedData] = useState<CardProps[]>([])
+    const [media, setMedia] = useState<any[]>([]);
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+
         const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
         const baseUrl = "https://api.themoviedb.org/3/movie";
         const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
         const fetchData = async () => {
             try {
+                const getMedia = await fetch(`${baseUrl}/${id}/videos?api_key=${API_KEY}`)
+
+                const mediaToJson = await getMedia.json();
+                if (Array.isArray(mediaToJson.results) && mediaToJson.results.length > 0) {
+                    setMedia(mediaToJson.results);
+                } else {
+                    setMedia([]); 
+                }
+
                 const creditsRes = await fetch(
                     `${baseUrl}/${id}/credits?api_key=${API_KEY}`
                 );
@@ -60,7 +72,6 @@ export default function StreamPage() {
                 setStudio(studioName);
 
                 const firstGenreId = detailsData.genres?.[0].id;
-                console.log(firstGenreId);
                  
                 const fetchRecomendedData = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${firstGenreId}`)
                 const dataRecomendedToJson = await fetchRecomendedData.json()
@@ -85,13 +96,17 @@ export default function StreamPage() {
 
     const director = data?.crew?.find((member) => member.job === "Director");
     const actors = data?.cast;
+
+    const trailerKey = media.length > 0 ? media[0].key : null; 
+    const youtubeSrc = trailerKey ? `https://www.youtube.com/embed/${trailerKey}` : null;
+    
     return (
         <div className="container-watchMovie-anime">
             <HeaderWatchMediaComponent />
 
             <div className="container-movie">
                 <VideoPlayer
-                    src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
+                    src={youtubeSrc}
                     type="video/mp4"
                 />
             </div>
@@ -133,17 +148,25 @@ export default function StreamPage() {
                         Recomended...
                     </h2>
                     <div className="container-continue-watiching-watchMedia">
-                        <SwiperComponent className="swiperWatch-media" spaceBetween={1} slidesPerView={3}>
-                            {recomendedData.map((data) => (
-                                <CardSmallComponent
-                                    id={data.id}
-                                    imageUrl={data.imageUrl}
-                                    title={data.title}
-                                    vote_average={data.vote_average}
-                                    overview={data.overview}
-                                />
-                            ))}
-                        </SwiperComponent>
+                       {recomendedData && recomendedData.length > 0 ? (
+                         <SwiperComponent className="swiperWatch-media" spaceBetween={1} slidesPerView={3}>
+                         {recomendedData.map((data) => (
+                             <CardSmallComponent
+                                 id={data.id}
+                                 imageUrl={data.imageUrl}
+                                 title={data.title}
+                                 vote_average={data.vote_average}
+                                 overview={data.overview}
+                             />
+                         ))}
+                     </SwiperComponent>
+                       ): (
+                        <div className="div-not-found">
+                            <h1 className="title-not-foundTitleMedia">
+                            We have not updated this content yet
+                            </h1>
+                        </div>
+                       )}
                     </div>
                 </div>
             </div>
