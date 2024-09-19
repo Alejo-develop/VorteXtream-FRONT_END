@@ -13,6 +13,7 @@ interface WatchButtonProps {
   height: string;
   fontweight: string;
   type?: string;
+  typeMedia?: string;
 }
 
 const StyledButton = styled.button<WatchButtonProps>`
@@ -56,6 +57,7 @@ const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({
   size,
   height,
   fontweight,
+  typeMedia
 }) => {
   const navigate = useNavigate();
 
@@ -67,6 +69,7 @@ const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({
         mediaTitle,
         synopsis,
         rating,
+        typeMedia
       },
     });
   };

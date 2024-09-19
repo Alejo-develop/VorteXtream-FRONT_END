@@ -22,7 +22,7 @@ export const CardAnime: React.FC<CardAnimeProps> = ({ score, id, title_japonese,
                 <p className="synopsis-anime">{synopsis}</p>
             </div>
             <div className="buttons">
-                <WatchNowButtonComponent id={id} mediaTitle={title_japonese} imgMedia={image_url} rating={score} synopsis={synopsis} size={'0.5rem'} height={'2px'} fontweight={'0.8'} text={'Watch Now'} />
+                <WatchNowButtonComponent id={id} mediaTitle={title_japonese} imgMedia={image_url} rating={score} synopsis={synopsis} size={'0.5rem'} height={'2px'} fontweight={'0.8'} text={'Watch Now'} typeMedia='anime' />
                 <AddFavoritesButtonComponent size={'0.5rem'} height={'2px'} fontweight={'0.8'} />
             </div>
            

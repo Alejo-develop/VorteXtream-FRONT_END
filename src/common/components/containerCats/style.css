@@ -14,8 +14,7 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px; 
     margin-bottom: 2rem;
     flex-wrap: wrap;
@@ -73,4 +72,26 @@
 .type-card-director-or-studio{
     color: #F08080;
     text-align: center;
+}
+
+.anime-info-container-WatchMedia{
+    display: flex;
+    gap: 4rem;
+    height: 6.6rem;
+}
+
+.anime-info-container-WatchMedia p{
+    color: white;
+}
+
+.title-info-anime{
+    color: #F08080;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.title-info-anime:hover{
+    transform: translateY(-5px);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);  
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
 }

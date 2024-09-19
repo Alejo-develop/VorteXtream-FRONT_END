@@ -10,16 +10,6 @@ import UserConfigComponent from "../userConfig/userConfig.component";
 
 const HeaderComponent = () => {
   const auth = useAuth();
-  const [showSearchInput, setShowSearchInput] = useState(true);
-
-  useEffect(() => {
-    const currentUrl = window.location.pathname;
-    if (currentUrl === "/searchpage" || currentUrl === "/animes") {
-      setShowSearchInput(false);
-    } else {
-      setShowSearchInput(true);
-    }
-  }, []);
 
   const RenderForm1 = auth.isAuthenticated ? NotificationConfigComponent : SignUpButtonComponent;
   const RenderForm2 = auth.isAuthenticated ? UserConfigComponent : LoginButtonComponent;
@@ -34,15 +24,6 @@ const HeaderComponent = () => {
       </div>
 
       <div className="container-search">
-        {showSearchInput && (
-          <form>
-            <input
-              type="search"
-              className="input-search"
-              placeholder="What you want see today?"
-            />
-          </form>
-        )}
         <RenderForm1 className="message-box-container-landing" />
         <RenderForm2 className="container-menuUser-landing" />
       </div>
