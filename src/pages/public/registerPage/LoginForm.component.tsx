@@ -12,6 +12,7 @@ import { useAuth } from "../../../auth/auth.provider";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "../../../common/components/google/googleLogin";
 import google from "../../../assets/svg/google.svg";
+import useAlert from "../../private/userMenu/components/alert.component";
 
 const LoginComponent = () => {
   const [username, setUsername] = useState<string>("");
@@ -21,6 +22,7 @@ const LoginComponent = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const { handleGoogleLogin } = useGoogleLogin();
+  const { showAlert } = useAlert();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,6 +56,7 @@ const LoginComponent = () => {
       const user = resToJson.user as UserPayload;
 
       auth.saveSessionInfo(user, token, resToJson.isPremium);
+      showAlert('success', 'Login Success', 'Login completed successfully')
       navigate("/");
     } catch (err) {
       console.log(err);

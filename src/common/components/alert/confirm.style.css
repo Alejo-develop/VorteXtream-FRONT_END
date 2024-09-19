@@ -1,0 +1,29 @@
+.popupAlert{
+    box-shadow: 5px 10px 10px rgba(240, 128, 128, 0.4);
+    border-radius: 10% 0 10% 0;
+  }
+  
+  .titleAlert{
+    color: #2F3241;
+  }
+  
+  
+  .confirmAlert{
+    background-color: #F08080;
+    color: #4C5270;
+  }
+  
+  .cancelAlert{
+    background-color: #BCECE0;
+    color: #4C5270;
+  }
+  
+  .confirmAlert:hover{
+    text-decoration: underline;
+    border-radius: 25%;
+  }
+  
+  .cancelAlert:hover{
+    text-decoration: underline;
+    border-radius: 25%;
+  }
