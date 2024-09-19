@@ -3,6 +3,7 @@ import LabelComponent from "./components/label.component";
 import "./styles/style.register.css";
 import { User, Lock, Mail, Earth } from "lucide-react"; 
 import { AuthResponseError } from "../../../common/interfaces/authResponse.interface";
+import useAlert from "../../private/userMenu/components/alert.component";
 
 interface registerProps {
   onChange: React.Dispatch<SetStateAction<boolean>>;
@@ -21,6 +22,7 @@ const RegisterComponent = (props: registerProps) => {
   const [country, setCountry] = useState<Country | null>({ name: "United States", code: "US" });
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [countries, setCountries] = useState<Country[]>([]);
+  const { showAlert } = useAlert();
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -75,6 +77,7 @@ const RegisterComponent = (props: registerProps) => {
         }
       );
       console.log(response)
+      showAlert('success', 'Success register', 'Has registration successfully')
 
       if (!response.ok) {
         const errorToJson = (await response.json()) as AuthResponseError;

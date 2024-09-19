@@ -147,7 +147,7 @@ export default function SearchStreamsPage() {
         <h1 className="title-section-category">Top Games & Categorys</h1>
 
         {!!categoryData.length && (
-          <SwiperComponent spaceBetween={1} slidesPerView={3}>
+          <SwiperComponent className="mySwiper-most-watched" spaceBetween={1} slidesPerView={3}>
             {categoryData.map((category) => (
               <CardCategorysComponent
               onClick={handleCategoryClick}
