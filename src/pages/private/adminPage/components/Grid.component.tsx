@@ -1,12 +1,12 @@
 import '../styles/gridAdmin.css'
-import DoughnutChartSuscriptions from './Follow.component';
-import GenreChart from './MostPopularGenre';
-import StreamChart from './Stream.Component';
-import MonthlyUsersChart from './UsersMonthly';
+import DoughnutChartSuscriptions from './home/Follow.component';
+import GenreChart from './home/MostPopularGenre';
+import StreamChart from './home/Stream.Component';
+import MonthlyUsersChart from './home/UsersMonthly';
 
 
 interface GridPros {
-    followers: string
+    followers?: string
 }
 
 const GridComponent = ({followers}: GridPros) => {

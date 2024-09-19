@@ -33,7 +33,10 @@ const config = {
     ]
   },
   options: {
-    animation: false, // Configura la animación como false para desactivarla
+    animation: {
+      duration: 2000, // Duración de 2 segundos para la animación
+      easing: 'easeOutQuart', // Tipo de animación más suave
+    },
     interaction: {
       intersect: false
     },

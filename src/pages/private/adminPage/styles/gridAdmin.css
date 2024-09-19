@@ -49,7 +49,7 @@
     overflow-y: auto;
     max-height: 93vh;
     color: #fff; /* Texto blanco para contraste */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
     text-align: center;
 }
 

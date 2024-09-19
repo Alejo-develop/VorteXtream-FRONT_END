@@ -6,42 +6,38 @@ import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 // Registra los componentes de Chart.js
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
-// Define los datos para la gráfica
+// Datos ficticios de suscripciones
 const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  labels: ['Active Subscriptions', 'Inactive Subscriptions'],
   datasets: [{
-    label: 'My First Dataset',
-    data: [12, 19, 3, 5, 2, 3],
+    label: 'Subscriptions',
+    data: [65, 35], // Datos provisionales de suscripciones
     backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(255, 159, 64, 0.2)'
+      'rgba(255, 99, 132, 0.6)', // Rosado para suscripciones activas
+      'rgba(0, 0, 0, 0.2)'      // Negro claro para inactivas
     ],
     borderColor: [
-      'rgba(255, 99, 132, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)'
+      
+    
     ],
     borderWidth: 1
   }]
 };
 
-// Define las opciones para la gráfica
+// Opciones de la gráfica
 const options = {
   responsive: true,
   plugins: {
     legend: {
       position: 'top' as const,
+      labels: {
+        color: 'white', // Color blanco para el texto de la leyenda
+      },
     },
     title: {
       display: true,
-      text: 'Chart.js Doughnut Chart'
+      text: 'Suscriptions Status',
+      color: 'white', // Título en blanco
     }
   }
 };

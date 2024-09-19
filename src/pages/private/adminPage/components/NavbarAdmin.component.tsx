@@ -8,7 +8,7 @@ const NavBarAdmin = () => {
         
             <nav className="sidebar-admin">
                 <ButtonAdmin
-                    path="/homeadmin"
+                    path="/adminpage"
                     icono={<House size={28} />}
                     text="Home" // Agrega el texto que quieres mostrar
                     className="icon-link-admin"
@@ -32,13 +32,13 @@ const NavBarAdmin = () => {
                     className="icon-link-admin"
                 />
                 <ButtonAdmin
-                    path="/crudcategory"
+                    path="/crudcategories"
                     icono={<Layers3 size={28} />}
                     text="Category" // Agrega el texto que quieres mostrar
                     className="icon-link-admin"
                 />
                 <ButtonAdmin
-                    path="/crudsubcategory"
+                    path="/crudsubcategories"
                     icono={<Layers2 size={28} />}
                     text="Sub category" // Agrega el texto que quieres mostrar
                     className="icon-link-admin"

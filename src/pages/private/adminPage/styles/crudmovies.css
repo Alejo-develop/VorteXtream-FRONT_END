@@ -1,0 +1,24 @@
+.cards-crud-movie {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos hacia la izquierda si quieres que ocupen más espacio */
+    max-width: 1000px;
+    padding: 20px;
+    gap: 20px;
+    height: 100vh; /* Ajusta la altura al 100% del viewport */
+    margin-left: 0; /* Cambia esto para centrar o ajustar el margen */
+}
+
+.admin-crud-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    gap: 1rem; /* Espacio entre las columnas */
+    padding: 1rem; /* Espacio interno opcional */
+    width: 100%; /* Asegurarse de que ocupe todo el ancho disponible */
+}
+
+
+.admin-crud-container{
+    display: flex;
+    justify-content: space-between;
+}

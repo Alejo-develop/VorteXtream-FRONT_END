@@ -9,7 +9,7 @@ export function AdminPage() {
                 <NavBarAdmin />
             </div>
             <div className="grid-container-wrapper">
-                <GridComponent />
+                <GridComponent  />
             </div>
         </div>
     );
