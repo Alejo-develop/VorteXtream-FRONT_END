@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonEditAdmin from "./EditButtonAdmin";
 import ButtonDeleteComponent from "./ButtonDeleteAdmin";
+import '../styles/ContentDeleteAndEdit.css'; // Importar el archivo de estilos
 
 interface ContentDeleteAndEditProps {
   name: string;
@@ -11,10 +12,12 @@ interface ContentDeleteAndEditProps {
 
 const ContentDeleteAndEdit: React.FC<ContentDeleteAndEditProps> = ({ name, onClickDelete, onClickEdit }) => {
   return (
-    <div>
-      <h3>{name}</h3>
-      <ButtonEditAdmin onClickEdit={onClickEdit} /> {/* Cambié 'onClick' a 'onClickEdit' */}
-      <ButtonDeleteComponent onClickDelete={onClickDelete} /> {/* Cambié 'onClick' a 'onClickDelete' */}
+    <div className="content-delete-edit-container">
+      <h3 className="content-title">{name}</h3>
+      <div className="button-container">
+        <ButtonEditAdmin onClickEdit={onClickEdit} />
+        <ButtonDeleteComponent onClickDelete={onClickDelete} />
+      </div>
     </div>
   );
 };

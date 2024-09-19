@@ -6,7 +6,7 @@ interface inputAdminProps {
   type?: string;
   placeholder: string;
   label: string;
-  value?: string; // Valor actual del input (opcional)
+  value?: string | number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // Función de cambio (opcional)
 }
 
