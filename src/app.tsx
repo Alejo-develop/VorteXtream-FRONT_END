@@ -1,30 +1,28 @@
-
-import { createBrowserRouter } from 'react-router-dom';
-import LandingPage from './pages/public/landingPage/landing.page';
-import RegisterPage from './pages/public/registerPage/register.page';
-import { NavBarLayout } from './layouts/NavBar.Layout';
-import SearchPage from './pages/public/searchPage/search.Page';
-import FooterComponent from './common/components/footer/footer.component';
-import SearchStreamsPage from './pages/public/searchStreamsPage/SearchStreamsPage';
-import LayoutStreamers from './layouts/layoutStreamers/layoutStreamers';
-import { AnimePage } from './pages/public/animePage/anime.page';
-import { ProtectedRoute } from './auth/portectedRoutes.auth';
-import UserMenuPage from './pages/private/userMenu/userMenu.page';
-import FavoritesHistoryPage from './pages/private/favoritesHistory/favoriteHistory.page';
-import MediaPlayerPage from './pages/private/mediaPlayer/mediaPlayer.page';
-import StreamPage from './pages/private/streamPlayer/streamPlayer.page';
-import CheckoutPage from './pages/public/checkoutPage/chekout.page';
-import  StreamerUserPage  from './pages/private/streamUserPlayer/streamerUser.page';
-import ViewerPage from './pages/private/viewer/viewer.page';
-import { AdminPage } from './pages/private/adminPage/Admin.page';
-import { AdminCrudMovie } from './pages/private/adminPage/AdminCRUDMovie.page';
-import { AdminCrudCastPage } from './pages/private/adminPage/AdminCRUDCast';
-import { AdminCrudCategoriesPage } from './pages/private/adminPage/AdminCRUDCategories';
-import { AdminCrudSubcategoriesPage } from './pages/private/adminPage/AdminCRUDSubcategories';
-import { AdminCrudDirectorsPage } from './pages/private/adminPage/AdminCRUDirectors';
-import TransitionPage from './common/utils/transitionPage';
-import React from 'react';
-
+import { createBrowserRouter } from "react-router-dom";
+import LandingPage from "./pages/public/landingPage/landing.page";
+import RegisterPage from "./pages/public/registerPage/register.page";
+import { NavBarLayout } from "./layouts/NavBar.Layout";
+import SearchPage from "./pages/public/searchPage/search.Page";
+import FooterComponent from "./common/components/footer/footer.component";
+import SearchStreamsPage from "./pages/public/searchStreamsPage/SearchStreamsPage";
+import LayoutStreamers from "./layouts/layoutStreamers/layoutStreamers";
+import { AnimePage } from "./pages/public/animePage/anime.page";
+import { ProtectedRoute } from "./auth/portectedRoutes.auth";
+import UserMenuPage from "./pages/private/userMenu/userMenu.page";
+import FavoritesHistoryPage from "./pages/private/favoritesHistory/favoriteHistory.page";
+import MediaPlayerPage from "./pages/private/mediaPlayer/mediaPlayer.page";
+import StreamPage from "./pages/private/streamPlayer/streamPlayer.page";
+import CheckoutPage from "./pages/public/checkoutPage/chekout.page";
+import StreamerUserPage from "./pages/private/streamUserPlayer/streamerUser.page";
+import ViewerPage from "./pages/private/viewer/viewer.page";
+import { AdminPage } from "./pages/private/adminPage/Admin.page";
+import { AdminCrudMovie } from "./pages/private/adminPage/AdminCRUDMovie.page";
+import { AdminCrudCastPage } from "./pages/private/adminPage/AdminCRUDCast";
+import { AdminCrudCategoriesPage } from "./pages/private/adminPage/AdminCRUDCategories";
+import { AdminCrudSubcategoriesPage } from "./pages/private/adminPage/AdminCRUDSubcategories";
+import { AdminCrudDirectorsPage } from "./pages/private/adminPage/AdminCRUDirectors";
+import TransitionPage from "./common/utils/transitionPage";
+import React from "react";
 
 export const appRouter = createBrowserRouter([
   {
@@ -61,33 +59,23 @@ export const appRouter = createBrowserRouter([
   },
   {
     path: "/crudmovie",
-    element: (
-     <AdminCrudMovie />
-    ),
+    element: <AdminCrudMovie />,
   },
   {
     path: "/crudcast",
-    element: (
-     <AdminCrudCastPage />
-    ),
+    element: <AdminCrudCastPage />,
   },
   {
     path: "/crudcategories",
-    element: (
-     <AdminCrudCategoriesPage />
-    ),
+    element: <AdminCrudCategoriesPage />,
   },
   {
     path: "/crudsubcategories",
-    element: (
-     <AdminCrudSubcategoriesPage />
-    ),
+    element: <AdminCrudSubcategoriesPage />,
   },
   {
     path: "/crudirectors",
-    element: (
-     <AdminCrudDirectorsPage />
-    ),
+    element: <AdminCrudDirectorsPage />,
   },
   {
     path: "/streams",
@@ -150,7 +138,11 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: "watchstream",
-        element: <StreamPage />,
+        element: (
+          <NavBarLayout>
+            <StreamPage />
+          </NavBarLayout>
+        ),
       },
       {
         path: "mystream",

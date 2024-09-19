@@ -5,6 +5,11 @@
     overflow: hidden;
 }
 
+.info-anime-container{
+    height: 42rem;
+    background-color: #2F3241;
+    border-top: solid 4px #F08080;}
+
 .info-movieAnime-container{
     height: 71rem;
     background-color: #2F3241;
@@ -107,7 +112,7 @@
     font-size: 1.1rem;
     background-color: #161618;
     padding: 2rem;
-    min-height: 21rem;
+    min-height: 21.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.8);
 }

@@ -1,25 +1,28 @@
-import { transitionVariantPage } from "../utils/motion.transition"
-import { AnimatePresence, motion } from "framer-motion"
-import './styleTransition.css'
-const TransitionPage = () => {
-    return (
-        <AnimatePresence mode="wait">
-            <div>
-                <motion.div
-                    className="transitionPage-style"
-                    variants={transitionVariantPage}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    transition={{ delay: 0.2, duration: 1.5, ease: "easeInOut" }}
-                ></motion.div>
-            </div>
+import { useState } from "react";
+import { transitionVariantPage } from "../utils/motion.transition";
+import { AnimatePresence, motion } from "framer-motion";
+import './styleTransition.css';
 
-            <div>
-         
-            </div>
+const TransitionPage = () => {
+    const [isVisible, setIsVisible] = useState(true);
+
+    const handleExitComplete = () => {
+        setIsVisible(false); // Oculta el título al finalizar la animación
+    };
+
+    return (
+        <AnimatePresence mode="wait" onExitComplete={handleExitComplete}>
+            <motion.div
+                className="transitionPage-style"
+                variants={transitionVariantPage}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+            >
+            </motion.div>
         </AnimatePresence>
     );
 }
 
-export default TransitionPage
+export default TransitionPage;
