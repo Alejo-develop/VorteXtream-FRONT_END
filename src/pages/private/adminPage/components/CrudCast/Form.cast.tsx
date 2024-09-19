@@ -32,7 +32,7 @@ const FormCrudCastComponent: React.FC<FormCrudCastComponentProps> = ({ selectedI
   return (
     <div>
       <h2 style={{ fontSize: "1.7rem", textAlign: "start" }}>
-        {selectedItem ? "Edit Director" : "Create New Director"}
+        {selectedItem ? "Edit Cast" : "Create New Cast"}
       </h2>
       <form className="form-create" onSubmit={handleSubmit}>
         <Input

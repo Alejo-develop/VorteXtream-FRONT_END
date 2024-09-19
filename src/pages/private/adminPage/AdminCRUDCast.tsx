@@ -3,6 +3,7 @@ import ContentDeleteAndEdit from "./components/ContentDeleteAndEdit";
 import FormCrudCastComponent from "./components/CrudCast/Form.cast";
 import GridCrudComponent from "./components/GridCrud.component";
 import NavBarAdmin from "./components/NavbarAdmin.component";
+import useAlert from "../../private/userMenu/components/alert.component"; // Importar useAlert
 
 // Definir la interfaz para los ítems
 interface Item {
@@ -13,6 +14,9 @@ interface Item {
 export function AdminCrudCastPage() {
   const [items, setItems] = useState<Item[]>([]);
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
+
+  // Usar el hook para mostrar alertas
+  const { showAlert } = useAlert();
 
   // Realizar el fetch de los datos de la API
   useEffect(() => {
@@ -37,6 +41,7 @@ export function AdminCrudCastPage() {
   const handleDelete = (id: string) => {
     const filteredItems = items.filter((item) => item.id !== id);
     setItems(filteredItems);
+    showAlert("success", "Deleted", "Item deleted successfully.");
   };
 
   // Función para manejar la edición de un ítem
@@ -53,12 +58,14 @@ export function AdminCrudCastPage() {
         item.id === selectedItem.id ? { ...item, name } : item
       );
       setItems(updatedItems);
+      showAlert("success", "Updated", "Item updated successfully.");
     } else {
       // Crear nuevo ítem
       const newItem: Item = { id: (items.length + 1).toString(), name };
       setItems([...items, newItem]);
+      showAlert("success", "Created", "Item created successfully.");
     }
-    setSelectedItem(null)
+    setSelectedItem(null);
   };
 
   return (
