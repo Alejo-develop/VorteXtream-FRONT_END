@@ -1,14 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ParticipantView, useCall, useCallStateHooks } from "@stream-io/video-react-sdk";
+import HeaderComponent from '../../../common/components/header/header.component';
+import './stream.css';
+import DescriptionStreamerComponent from './DescriptionStreamer';
 
 export const MylivestreamUi = () => {
     const call = useCall();
     const { useIsCallLive, useLocalParticipant, useParticipantCount, useCallEgress } = useCallStateHooks();
 
-    const totalParticipants = useParticipantCount();
+    const [streamTime, setStreamTime] = useState(0);
     const isCallLive = useIsCallLive();
     const localParticipant = useLocalParticipant();
+    const participantCount = useParticipantCount(); // Contador de participantes
     const egress = useCallEgress();
+
+    useEffect(() => {
+        let timer: NodeJS.Timeout | undefined;
+        if (isCallLive) {
+            timer = setInterval(() => {
+                setStreamTime(prevTime => prevTime + 1);
+            }, 1000);
+        } else {
+            setStreamTime(0);
+        }
+
+        // Limpia el intervalo cuando se detiene el livestream
+        return () => {
+            if (timer) clearInterval(timer);
+        };
+    }, [isCallLive]);
 
     useEffect(() => {
         if (egress?.hls?.playlist_url) {
@@ -34,70 +54,54 @@ export const MylivestreamUi = () => {
         }
     };
 
+    // Formateo del tiempo para mostrar horas, minutos y segundos
+    const formatTime = (seconds: number) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    };
+
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100vh',
-            gap: '10px',  // Aumenté el espacio entre los elementos
-        }}>
-            <div style={{
-                color: 'white',
-                backgroundColor: 'salmon',
-                marginTop: '10px',
-                padding: '10px 20px',
-                borderRadius: '8px',
-                fontSize: '18px'
-            }}>
-                {isCallLive ? `Live: ${totalParticipants}` : 'Call is not live'}
-            </div>
+        <div className='header-stream'>
+             {/* <HeaderComponent /> */}
+            <div className="container-stream">
+                <div className='container-camera'>
+                    <div className="participant-view">
+                        {localParticipant && (
+                            <ParticipantView participant={localParticipant} />
+                        )}
+                    </div>
 
-            <div style={{ flex: 1, width: '100%', maxWidth: '600px' }}>
-                {localParticipant && (
-                    <ParticipantView participant={localParticipant} />
-                )}
-            </div>
+                    <div className={`button-group ${isCallLive ? 'live' : ''}`}>
+                        {isCallLive ? (
+                            <button className="stop-button" onClick={handleStopLive}>
+                                Stop Livestream
+                            </button>
+                        ) : (
+                            <button className="start-button" onClick={handleGoLive}>
+                                Start Livestream
+                            </button>
+                        )}
+                         <div className='container-controls'>
+                        <div className="status-bar">
+                            {isCallLive 
+                                ? `Live: ${formatTime(streamTime)}`
+                                : 'Call is not live'}
+                        </div>
 
-            <div style={{
-                marginTop: isCallLive ? '40px' : '10px', // Ajuste del margen superior
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '20px',  // Espacio entre los botones
-            }}>
-                {isCallLive ? (
-                    <button
-                        onClick={handleStopLive}
-                        style={{
-                            padding: '10px 20px',
-                            backgroundColor: '#ffcccc', // Color más suave
-                            color: '#333', // Texto más oscuro
-                            border: 'none',
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            fontSize: '16px'
-                        }}
-                    >
-                        Stop Livestream
-                    </button>
-                ) : (
-                    <button
-                        onClick={handleGoLive}
-                        style={{
-                            padding: '10px 20px',
-                            backgroundColor: '#ccffcc', // Color verde más suave
-                            color: '#333', // Texto más oscuro
-                            border: 'none',
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            fontSize: '16px'
-                        }}
-                    >
-                        Start Livestream
-                    </button>
-                )}
+                        <div className="viewers-count">
+                            {`Viewers: ${participantCount}`} {/* Mostrando el número total de participantes */}
+                        </div>
+                    </div>
+                </div>
+                    </div>
+
+                   
+
+                <div className='container-description'>
+                    <DescriptionStreamerComponent />
+                </div>
             </div>
         </div>
     );

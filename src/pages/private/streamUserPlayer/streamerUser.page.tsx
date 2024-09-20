@@ -14,7 +14,7 @@ const callId = "4UQsholJCIMK";
 
 const user: User = {
   id: userId,
-  name: 'Joji'
+  name: 'Streamer'
 };
 
 // Crear el cliente con el token de autenticación
