@@ -93,3 +93,11 @@
     color: #F08080;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
 }
+
+.buttons-card-search-page {
+    display: flex;
+}
+
+.starts-content {
+    margin-left: 15px;
+}
