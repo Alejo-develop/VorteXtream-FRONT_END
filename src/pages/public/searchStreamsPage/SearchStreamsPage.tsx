@@ -33,8 +33,6 @@ export default function SearchStreamsPage() {
   const [categoryData, setCategoryData] = useState<CategorysStreams[]>([]);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>([]);
   
-  const popularGames = ['Fortnite', 'League of Legends', 'Valorant', 'Apex Legends', 'Elden Ring', 'GTA V', 'Fall Guys']; 
-
   const fetchStreams = async (cursor?: string) => {
     try {
       const url = cursor
@@ -57,6 +55,9 @@ export default function SearchStreamsPage() {
       setStreamersData((prevData) =>
         cursor ? [...prevData, ...dataTojson.data] : dataTojson.data
       );
+
+      console.log(streamersData);
+      
 
       if (dataTojson.pagination.cursor) {
         setNextCursor(dataTojson.pagination.cursor);
@@ -85,7 +86,6 @@ export default function SearchStreamsPage() {
         throw new Error("Something went wrong at the server");
 
       const categoryToJson: CategoriesResponse = await categorysResponse.json();
-      console.log(categoryToJson);
 
       setCategoryData(categoryToJson.data);
       setSelectedCategoryIds(categoryToJson.data.map(category => category.id)); // Set selected categories IDs

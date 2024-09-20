@@ -139,7 +139,9 @@ export const appRouter = createBrowserRouter([
         path: "watchstream",
         element: (
           <NavBarLayout>
-            <StreamPage />
+            <LayoutStreamers>
+              <StreamPage />
+            </LayoutStreamers>
           </NavBarLayout>
         ),
       },
