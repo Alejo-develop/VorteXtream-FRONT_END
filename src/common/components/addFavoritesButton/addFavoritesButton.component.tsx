@@ -1,18 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 interface AddFavoritesButtonProps {
   size: string;
   height: string;
   fontweight: string;
+  addFavorites: () => void;
 }
 
-const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({ size, height, fontweight}) => {
-  const navigate = useNavigate();
-
+const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({ size, height, fontweight, addFavorites}) => {
   const handleClick = () => {
-    navigate("/");
+    addFavorites();
   };
 
   return <StyledButton size={size} height={height} fontweight={fontweight} onClick={handleClick}>Add Favorites</StyledButton>;
