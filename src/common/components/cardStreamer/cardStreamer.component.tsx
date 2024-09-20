@@ -11,6 +11,7 @@ const CardStreamerComponent = ({
   user_name,
   viewer_count,
   thumbnail_url,
+  profile_image_url
 }: Streamer) => {
   const imageWidth = 334; // Ancho deseado en píxeles
   const imageHeight = 169; // Altura deseada en píxeles
@@ -25,12 +26,13 @@ const CardStreamerComponent = ({
   const goTo = useNavigate();
 
   const handleClick = () => {
-    goTo("/watchstream", {
+    goTo(`/watchstream/${user_name}`, {
       state: {
         user_name,
         game_name,
         title,
         viewer_count,
+        profile_image_url
       },
     });
   };

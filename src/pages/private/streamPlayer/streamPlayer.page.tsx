@@ -4,19 +4,20 @@ import "./style.css";
 import { useEffect, useState } from "react";
 import { Streamer } from "../../../common/interfaces/streamer.interface";
 import CardStreamersLiveComponent from "./components/cardStreamerlive.component";
+import CardStreamerComponent from "../../../common/components/cardStreamer/cardStreamer.component";
 
 export default function StreamPage() {
   const location = useLocation();
-  const { user_name, game_name, title, viewer_count } = location.state || {};
-  console.log("username", user_name);
-
+  const { user_name, game_name, title, viewer_count, profile_image_url } = location.state || {};
+  
   const [streamerData, setStreamerData] = useState<Streamer[]>([]);
-  const [imgPorfileStreamer, setImgPorfileStreamer] = useState<string>();
-
+  const [imgProfileStreamer, setImgProfileStreamer] = useState<string | undefined>(profile_image_url);
+  
   const clientId = "okkzkyh8ogfm1kt5aukaaxow9owi2w";
   const accessToken = "cwo0te7eacxhmu608bi92yzz73lt6r";
 
   useEffect(() => {
+    // Desplazar hacia arriba al cargar nuevos datos
     window.scrollTo(0, 0);
 
     const fetchDataStreamer = async () => {
@@ -33,18 +34,54 @@ export default function StreamPage() {
 
         if (!streamsResponse.ok) throw new Error(streamsResponse.statusText);
 
-        const resToJson = (await streamsResponse.json())
+        const resToJson = await streamsResponse.json();
         const userData = resToJson.data[0];
-        setImgPorfileStreamer(userData.profile_image_url);
-        console.log(resToJson);
-        console.log("Profile Image URL:", resToJson.profile_image_url);
+        setImgProfileStreamer(userData.profile_image_url); // Actualiza la imagen de perfil aquí
+
+        const gamesResponse = await fetch(
+          `https://api.twitch.tv/helix/games?name=${game_name}`,
+          {
+            headers: {
+              "Client-ID": clientId,
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (!gamesResponse.ok) throw new Error(gamesResponse.statusText);
+
+        const gamesResponseToJson = await gamesResponse.json();
+        const gameId = gamesResponseToJson.data[0]?.id;
+
+        const matchContentData = await fetch(
+          `https://api.twitch.tv/helix/streams?game_id=${gameId}&first=5`,
+          {
+            headers: {
+              "Client-ID": clientId,
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (!matchContentData.ok) throw new Error(matchContentData.statusText);
+
+        const matchContentDataToJson = await matchContentData.json();
+
+        if (matchContentDataToJson.data) {
+          const filteredStreamers = matchContentDataToJson.data.filter(
+            (streamer: any) => streamer.user_name !== user_name
+          );
+          setStreamerData(filteredStreamers);
+        } else {
+          throw new Error(matchContentData.statusText);
+        }
       } catch (err) {
         console.log(err);
       }
     };
 
     fetchDataStreamer();
-  }, []);
+  }, [user_name]); // Asegúrate de que el efecto se ejecute cuando user_name cambie
 
   return (
     <div className="container-streamerViewer-page">
@@ -59,14 +96,33 @@ export default function StreamPage() {
         </div>
         <div className="contianer-info-streamer-live">
           <div className="container-card-streamer">
-            <CardStreamersLiveComponent user_name={user_name} title={title} game_name={game_name} viewer_count={viewer_count} profile_image_url={imgPorfileStreamer || 'Not update yet'} />
+            <CardStreamersLiveComponent
+              user_name={user_name}
+              title={title}
+              game_name={game_name}
+              viewer_count={viewer_count}
+              profile_image_url={imgProfileStreamer || "Not updated yet"}
+            />
           </div>
-          <div className="match-content-WatchStream"></div>
+          <h2 className="similar-content-title">Similar Content</h2>
+          <div className="match-content-WatchStream">
+            {streamerData.map((streamer) => (
+              <CardStreamerComponent
+                key={streamer.id} // Añade una key única
+                thumbnail_url={streamer.thumbnail_url}
+                title={streamer.title}
+                game_name={streamer.game_name}
+                viewer_count={streamer.viewer_count}
+                id={streamer.id}
+                user_name={streamer.user_name}
+                profile_image_url={streamer.profile_image_url}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
 
 //user_name={user_name} title={title} game_name={game_name} viewer_count={viewer_count}

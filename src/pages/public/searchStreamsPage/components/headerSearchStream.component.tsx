@@ -1,6 +1,6 @@
 import { useAuth } from "../../../../auth/auth.provider";
 import LoginButtonComponent from "../../../../common/components/loginButton/loginButton.component";
-import NotificationConfigComponent from "../../../../common/components/notificationButton/notificationButton.component";
+
 import SignUpButtonComponent from "../../../../common/components/SignUpButton/signUpButton.component";
 import UserConfigComponent from "../../../../common/components/userConfig/userConfig.component";
 import SearchBarComponent from "./searchBar.component";
@@ -14,8 +14,7 @@ const HeaderSearchStreamComponent = ({
 }: HeaderSearchStreamsProps) => {
   const auth = useAuth();
 
-  const RenderForm1 = auth.isAuthenticated ? NotificationConfigComponent: SignUpButtonComponent
-    const RenderForm2 = auth.isAuthenticated ? UserConfigComponent: LoginButtonComponent
+  const RenderForm2 = auth.isAuthenticated ? UserConfigComponent: LoginButtonComponent
 
   return (
     <div className="header-container-searchPage">
@@ -23,7 +22,9 @@ const HeaderSearchStreamComponent = ({
         <h1 className="search-stream-title">WHAT YOU WANT TO SEE TODAY?</h1>
 
         <div className="buttons-contianer-headerSearchStream">
-        <RenderForm1 className="message-box-container-searchStreams" />
+        {auth.isAuthenticated === false &&( 
+          <SignUpButtonComponent  />
+        )}
         <RenderForm2 className="container-menuUser-searchStream"/>
         </div>
       </div>

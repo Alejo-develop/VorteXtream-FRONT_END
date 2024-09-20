@@ -136,7 +136,7 @@ export const appRouter = createBrowserRouter([
         element: <MediaPlayerPage />,
       },
       {
-        path: "watchstream",
+        path: "/watchstream/:user_name",
         element: (
           <NavBarLayout>
             <LayoutStreamers>
