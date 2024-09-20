@@ -4,12 +4,25 @@
     width: 100%;
     height: 7rem;
     justify-content: space-between;
-    position: absolute; /* Asegura que el header se posicione sobre el contenido del banner */
+    position: absolute; 
     top: 0;
     left: 0;
-    padding: 0 1rem; /* Ajusta el padding según sea necesario */
+    padding: 0 1rem; 
     box-sizing: border-box;
-    z-index:7; /* Asegura que el header esté encima de otros elementos */
+    z-index:7;
+}
+
+.header-watch-stream{
+    display: flex;
+    width: 78rem;
+    height: 7rem;
+    justify-content: space-between;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    padding: 0 1rem; 
+    box-sizing: border-box;
+    z-index:7;
 }
 
 .container-search {
