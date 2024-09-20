@@ -14,7 +14,6 @@ import MediaPlayerPage from "./pages/private/mediaPlayer/mediaPlayer.page";
 import StreamPage from "./pages/private/streamPlayer/streamPlayer.page";
 import CheckoutPage from "./pages/public/checkoutPage/chekout.page";
 import StreamerUserPage from "./pages/private/streamUserPlayer/streamerUser.page";
-import ViewerPage from "./pages/private/viewer/viewer.page";
 import { AdminPage } from "./pages/private/adminPage/Admin.page";
 import { AdminCrudMovie } from "./pages/private/adminPage/AdminCRUDMovie.page";
 import { AdminCrudCastPage } from "./pages/private/adminPage/AdminCRUDCast";
