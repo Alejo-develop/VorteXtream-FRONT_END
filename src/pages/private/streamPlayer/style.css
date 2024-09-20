@@ -42,10 +42,30 @@
     align-items: center;
     margin-right: 20rem;
     margin-bottom: 0.4rem;
+    margin-top: 2rem;
 }
 
 .match-content-WatchStream{
+    width: 55rem;
+    min-height: 40rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 7rem;
+    overflow-y: auto;
+    margin-left: 8rem;
+    padding-top: 2rem;
+}
 
+.similar-content-title{
+    text-align: center;
+    font-size: 3rem;
+    width: 55rem;
+    margin-left: 8rem;
+    margin-top: 2rem;
+    color: #f08080;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0);
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease;
 }
 
 .img-streamer-porfile{
@@ -71,7 +91,7 @@
     transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease;
 }
 
-.gameName-stream:hover{
+.gameName-stream:hover, .similar-content-title:hover {
     transform: translateY(-5px); 
     color: #F08080;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 

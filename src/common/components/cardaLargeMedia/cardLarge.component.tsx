@@ -16,6 +16,8 @@ const CardLargeComponent = ({ index, img, title, overview, rating }: CardLargePr
       return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   };
 
+  console.log(index);
+  
   return (
     <div key={index} className="container-card-large">
       <div className="banner-cardLarge-container">
@@ -29,7 +31,7 @@ const CardLargeComponent = ({ index, img, title, overview, rating }: CardLargePr
 
         <div className="container-buttons-addREcently">
           <WatchNowButtonComponent id={index} imgMedia={img} mediaTitle={title} synopsis={overview} rating={rating} size="190" text="Watch Now" fontweight="1" height="45"/>
-          <AddFavoritesButtonComponent size="190" fontweight="1" height="45" />
+          <AddFavoritesButtonComponent mediaId={index} mediaTitle={title} imgMedia={img} synopsis={overview} raiting={rating} size="190" fontweight="1" height="45" />
         </div>
       </div>
     </div>

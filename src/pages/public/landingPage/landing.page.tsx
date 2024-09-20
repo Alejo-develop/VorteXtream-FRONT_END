@@ -83,6 +83,7 @@ export default function LandingPage() {
             overview: media.overview,
             title: media.title,
             vote_average: media.vote_average,
+            id: media.id
           }));
 
         setMediaRecentlyAdd(data);
