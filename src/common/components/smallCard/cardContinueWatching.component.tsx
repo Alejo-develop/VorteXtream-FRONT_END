@@ -37,7 +37,7 @@ const CardSmallComponent = ({
            fontweight="0.8"
            type="button"
           />
-          <StarRating rating={vote_average} fontSize="1.6rem"/>
+          <StarRating rating={vote_average} fontSize="1.4rem"/>
         </div>
       </div>
     </div>

@@ -6,20 +6,25 @@ interface ButtonAdminProps {
     text?: string;
     path: string;
     className: string;
+    onClick?: () => void; 
 }
 
-const ButtonAdmin = ({ icono, text, path, className }: ButtonAdminProps) => {
+const ButtonAdmin = ({ icono, text, path, className, onClick }: ButtonAdminProps) => {
     const goTo = useNavigate();
 
     const handleClick = () => {
-        goTo(`${path}`);
+        if (onClick) {
+            onClick(); 
+        } else {
+            goTo(`${path}`);
+        }
     };
 
     return (
         <div>
             <button onClick={handleClick} className={className}>
                 {icono}
-                {text}
+                {text && <span>{text}</span>}
             </button>
         </div>
     );
