@@ -55,9 +55,19 @@ const LoginComponent = () => {
       const token = resToJson.token;
       const user = resToJson.user as UserPayload;
 
+      // Guardar información de sesión
       auth.saveSessionInfo(user, token, resToJson.isPremium);
-      showAlert('success', 'Login Success', 'Login completed successfully')
-      navigate("/");
+
+      // Mostrar alerta de éxito
+      showAlert('success', 'Login Success', 'Login completed successfully');
+
+      // Redirigir basado en el rol del usuario
+      if (user.role === 'admin') {
+        navigate("/adminpage"); // Redirigir a la página de administrador
+      } else {
+        navigate("/usermenu"); // Redirigir a la página de usuario
+      }
+
     } catch (err) {
       console.log(err);
       setErrorResponse("An error occurred. Please try again.");
