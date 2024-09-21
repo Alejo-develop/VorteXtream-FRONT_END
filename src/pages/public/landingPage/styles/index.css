@@ -100,4 +100,79 @@
 
 }
 
+@media screen and (max-width:915px) {
+    .header{
+        width: 100%;
+    }
+
+    .container-explorer{
+        width: 100%;
+    }
+
+    .container-logo{
+        width: 100%;
+    }
+
+    .button2{
+        width: 50px;
+    }
+
+    .logo{
+        size: 100px;
+    }
+
+    .container-landingPage{
+        width: 100%;
+    }
+
+    .continue-watiching-title{
+        margin-left: 150px;
+    }
+
+    .mostWatched-media{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .container-info-movie{
+        width: 100%;
+    }
+
+    .container{
+        width: 80%;
+        margin-left: 33px;
+    }
+
+    .sinopsis-container{
+        width: 100%;
+    }
+
+    .mostWatched-country{
+        width: 100%;
+    }
+
+    .swiper-button-next{
+        margin-left: 30px;
+    }
+
+    .container-recently-adde{
+        width: 100%;
+    }
+
+    .container-card-large{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer{
+        width: 100%;
+    }
+
+    .image-footer{
+        size: 50px;
+    }
+}
+
 

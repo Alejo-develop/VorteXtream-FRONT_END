@@ -79,6 +79,12 @@ const StyledWrapper = styled.div`
     background-color: #f08080; /* Color de fondo en estado hover */
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
   }
+
+  @media screen and (max-width:915px){
+    .button2{
+      display:none;
+    }
+  }
 `;
 
 export default ExplorerButtonComponent;
