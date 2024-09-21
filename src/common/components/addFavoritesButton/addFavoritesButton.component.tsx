@@ -1,35 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import { useAuth } from "../../../auth/auth.provider";
+import useAlert from "../alert/alert.component";
 
 interface AddFavoritesButtonProps {
   size: string;
   height: string;
   fontweight: string;
   mediaId: string;
-  imgMedia: string;
-  mediaTitle: string;
-  synopsis: string;
-  raiting: number;
+  backdrop_path: string;
+  title: string;
+  overview: string;
+  vote_average: number;
 }
 
 interface FavoritesResponseInterface {
   id: string;
   userId: string;
   mediaId: string;
-  imgMedia: string;
-  mediaTitle: string;
-  synopsis: string;
-  rating: number;
+  backdrop_path: string;
+  title: string;
+  overview: string;
+  vote_average: number;
 }
 
 interface FavoriteDto {
   userId: string;
   mediaId: string;
-  imgMedia: string;
-  mediaTitle: string;
-  synopsis: string;
-  raiting: number;
+  backdrop_path: string;
+  title: string;
+  overview: string;
+  vote_average: number;
 }
 
 const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
@@ -37,14 +38,15 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
   height,
   fontweight,
   mediaId,
-  mediaTitle,
-  raiting,
-  synopsis,
-  imgMedia,
+  title,
+  vote_average,
+  overview,
+  backdrop_path,
 }) => {
   const auth = useAuth();
   const token = auth.getToken();
   const user = auth.getUser();
+  const { showAlert } = useAlert();
 
   const handleClick = async () => {
     try {
@@ -63,10 +65,10 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
         const favoriteDto: FavoriteDto = {
           userId: user.id,
           mediaId: mediaId.toString(),
-          imgMedia,
-          mediaTitle,
-          synopsis,
-          raiting,
+          backdrop_path,
+          title,
+          overview,
+          vote_average,
         };
 
         try {
@@ -86,11 +88,11 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
           
           if (!createFavorite.ok) throw new Error(createFavorite.statusText);
 
-          alert("Add favorite!");
+          showAlert("success", "added favorite", "this title has been successfully added to favorites")
         } catch (err) {
           console.error(err);
         }
-      } else {
+      } else if (getFavorites.ok){
         const favoriteToJson =
           (await getFavorites.json()) as FavoritesResponseInterface;
 
@@ -108,7 +110,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
 
           if (!removeFavorite.ok) throw new Error(removeFavorite.statusText);
 
-          alert('delete successfully')
+          showAlert("success", "Remove successfully", "the title of the favorites has been successfully removed")
           console.log(removeFavorite.json());
         } catch (err) {
           console.error(err);
@@ -116,16 +118,17 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
       }
     } catch (err) {
       console.error(err);
+      showAlert("error", "Error adding favorite", "Error adding to favorites")
     }
   };
 
   return (
     <StyledButton
-      imgMedia={imgMedia}
+      backdrop_path={backdrop_path}
       mediaId={mediaId}
-      mediaTitle={mediaTitle}
-      synopsis={synopsis}
-      raiting={raiting}
+      title={title}
+      overview={overview}
+      vote_average={vote_average}
       size={size}
       height={height}
       fontweight={fontweight}
