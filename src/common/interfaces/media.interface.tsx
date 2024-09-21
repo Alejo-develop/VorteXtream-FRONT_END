@@ -1,4 +1,5 @@
 export interface CardProps{
+    jikanImageUrl: string;
     id: string;
     backdrop_path: string;
     overview: string;
