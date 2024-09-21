@@ -1,4 +1,4 @@
-# VorteXtream
+# **VorteXtream**
 ## Why? / ¿Por qué?
 ### Why?
 VorteXtream was born from the need to simplify access to multimedia content, which is currently scattered across multiple platforms. Users face a fragmented landscape where, in order to watch a movie, series, or anime, they must subscribe to different services or visit several websites. VorteXtream aims to solve this problem by offering a unique and centralized solution, eliminating the need to search across different sites or pay for multiple subscriptions. Additionally, the platform’s creators recognize the growing popularity of live streaming and consider it essential to integrate this feature, giving users the ability not only to consume content but also to interact with live streams and create their own.
@@ -24,3 +24,45 @@ Este enfoque de entretenimiento unificado responde a la creciente demanda de los
 The chosen theme for **VorteXtream** revolves around the centralization of multimedia entertainment. Its main focus is to offer an all-in-one solution for accessing movies, series, anime, and live streaming, all on a single platform. Additionally, it aims to integrate interactive features, such as allowing users to create their own live streams and connect with their audience. The platform is characterized by its simplicity, convenience, and personalization, enabling users to enjoy their favorite content without having to switch between different services.
 
 This unified entertainment approach responds to the growing demand from users for more efficient and centralized platforms, where access to different types of content is smooth and available from one place.
+## **Vortextream Team**
+### **Java**
+#### *Names*
+* Jerónimo Cruz Arango
+* Nicolas Aguirre Florez
+#### *Githubs*
+* [Jerónimo Cruz Arango (Jerocruz76)](https://github.com/Jerocruz76)
+* [Nicolas Aguirre Florez (Njco1)](https://github.com/Njco1)
+#### *LinkedIns*
+* [Jerónimo Cruz Arango](https://www.linkedin.com/in/jeronimo-cruz-arango-6bbba0216?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+* [Nicolas Aguirre Florez](https://www.linkedin.com/in/nicolas-aguirre-20846821b/)
+#### *Emails*
+* Jerónimo Cruz Arango (jerocruz76@gmail.com)
+* Nicolas Aguirre Florez (Nicolasaf17@gmail.com)
+### **NestJs**
+#### *Names*
+* Damian Alejandro García Agudelo
+* Alejandro Vergara Zapata
+* Julian Andres Villacis Rodriguez
+#### *Githubs*
+* [Damian Alejandro García Agudelo(agogo345)](https://github.com/agogo345)
+* [Alejandro Vergara Zapata(Alejo-develop)](https://github.com/Alejo-develop)
+* [Julian Andres Villacis Rodriguez(JulianVR09)](https://github.com/JulianVR09)
+#### *LinkedIns*
+* [Damian Alejandro García Agudelo]()
+* [Alejandro Vergara Zapata](https://www.linkedin.com/in/alejandro-vergara-zapata-267238213/)
+* [Julian Andres Villacis Rodriguez](https://www.linkedin.com/in/julian-andres-villacís-rodríguez-14b1752b7/)
+#### *Emails*
+* Damian Alejandro García Agudelo
+* Alejandro Vergara Zapata
+* Julian Andres Villacis Rodriguez(julianvillacis.02@gmail.com)
+## URL Documetations
+### Swagger:
+* [**VorteXtream API NestJs**](https://vortexstream-backend-nestjs-production.up.railway.app/api-docs#/default)
+* [**VorteXtream API Java**](https://vortextreambackendspringboot.onrender.com)
+# Models-Project design
+## UX diagram
+* [**VorteXtream UX**](https://excalidraw.com/#room=0a7bdf8be073d5fa5f9d,By3w40n3_qE1zM9bEgjmXg)
+## UI diagram
+* [**VorteXtream UI**](https://www.figma.com/design/e9NPXRNetLxpFFVkSECJdn/VorteXtream?node-id=0-1&node-type=canvas&t=pW27RilzQlVEio3s-0)
+## Link to project management dashboard
+* [**VorteXtream Jira**](https://alejo-develop.atlassian.net/jira/software/projects/VOR/boards/3/timeline)
