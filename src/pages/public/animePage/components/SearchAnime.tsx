@@ -76,6 +76,13 @@ const StyledWrapper = styled.div`
     width: 1rem;
     height: 1rem;
   }
+
+  @media (max-width: 430px) {
+    .input {
+        margin-left: 54px;
+        margin-right: -50px
+        line-height: 15px;
+    }
 `;
 
 export default SearchAnime;
