@@ -14,7 +14,7 @@ import CardSmallComponent from "../../../common/components/smallCard/cardContinu
 export default function LandingPage() {
   const [dataMediaCountry, setDataMediaCountry] = useState<CardProps[]>([]);
   const [mediaRecent, setMediaRecentlyAdd] = useState<CardProps[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+  const [errorMessage, setErrorMessage] = useState<string | undefined | any>(
     undefined
   );
 
@@ -31,10 +31,10 @@ export default function LandingPage() {
         const res = await fetch(`${baseUrl}${API_KEY}&language=en-US&page=2`);
 
         if (!res.ok) {
-          const resErrorMessage = res.json();
-          setErrorMessage("An error occurred");
+          const resErrorMessage = res.json()
+          setErrorMessage(resErrorMessage);
 
-          throw new Error("An error occurred");
+          throw new Error(errorMessage)
         }
 
         const resToJson = await res.json();
@@ -51,7 +51,6 @@ export default function LandingPage() {
 
         setDataMediaCountry(data);
       } catch (err: any) {
-        setErrorMessage(err.message || "An error occurred");
         console.error("Error fetching data:", err);
       }
     };
@@ -70,9 +69,9 @@ export default function LandingPage() {
 
         if (!res.ok) {
           const resErrorMessage = res.json();
-          setErrorMessage("An error occurred");
+          setErrorMessage(resErrorMessage);
 
-          throw new Error("An error occurred");
+          throw new Error(errorMessage);
         }
 
         const resToJson = await res.json();
@@ -89,7 +88,6 @@ export default function LandingPage() {
 
         setMediaRecentlyAdd(data);
       } catch (err: any) {
-        setErrorMessage(err.message || "An error occurred");
         console.error("Error fetching data:", err);
       }
     };
@@ -136,6 +134,7 @@ export default function LandingPage() {
           <SwiperComponent className="mySwiper-most-watched" spaceBetween={1} slidesPerView={3}>
             {mediaRecent.map((movie) => (
               <CardSmallComponent
+              key={movie.id}
                 id={movie.id}
                 imageUrl={movie.imageUrl}
                 title={movie.title}

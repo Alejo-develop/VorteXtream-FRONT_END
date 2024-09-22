@@ -3,7 +3,7 @@ import '../styles/cardanime.css'; // Asegúrate de que el archivo de estilos est
 import WatchNowButtonComponent from '../../../../common/components/watchNowButton/watchNow.component';
 import AddFavoritesButtonComponent from '../../../../common/components/addFavoritesButton/addFavoritesButton.component';
 
-export interface CardAnimeProps {
+export interface CardAnimeProps{
     id: string;
     title_japonese: string;
     title_english: string;

@@ -5,5 +5,9 @@ export interface AuthResponse {
 }
 
 export interface AuthResponseError {
-  error: string;
+  message: string;
+}
+
+export interface AuthResponseErrorSeveral {
+  response: {};
 }

@@ -1,7 +1,7 @@
 import { SetStateAction, useState, useEffect } from "react";
 import LabelComponent from "./components/label.component";
 import "./styles/style.register.css";
-import { User, Lock, Mail, Earth } from "lucide-react"; 
+import { User, Lock, Mail, Earth } from "lucide-react";
 import { AuthResponseError } from "../../../common/interfaces/authResponse.interface";
 import useAlert from "../../private/userMenu/components/alert.component";
 
@@ -19,7 +19,10 @@ const RegisterComponent = (props: registerProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [country, setCountry] = useState<Country | null>({ name: "United States", code: "US" });
+  const [country, setCountry] = useState<Country | null>({
+    name: "United States",
+    code: "US",
+  });
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [countries, setCountries] = useState<Country[]>([]);
   const { showAlert } = useAlert();
@@ -28,13 +31,15 @@ const RegisterComponent = (props: registerProps) => {
     const fetchCountries = async () => {
       try {
         const response = await fetch("https://restcountries.com/v3.1/all");
-        console.log(response)
+
         if (response.ok) {
           const data = await response.json();
-          const countryList = data.map((country: any) => ({
-            name: country.name.common,
-            code: country.cca2,
-          })).sort((a: Country, b: Country) => a.name.localeCompare(b.name));
+          const countryList = data
+            .map((country: any) => ({
+              name: country.name.common,
+              code: country.cca2,
+            }))
+            .sort((a: Country, b: Country) => a.name.localeCompare(b.name));
           setCountries(countryList);
         } else {
           setErrorMessage("Cannot get countrys.");
@@ -72,34 +77,32 @@ const RegisterComponent = (props: registerProps) => {
             username,
             email,
             password,
-            country: country.code
+            country: country.code,
           }),
         }
       );
-      console.log(response)
-      showAlert('success', 'Success register', 'Has registration successfully')
 
       if (!response.ok) {
         const errorToJson = (await response.json()) as AuthResponseError;
-        setErrorMessage(errorToJson ? errorToJson.error : "Error desconocido");
-        throw new Error("Something went wrogn with the server");
+
+        setErrorMessage(
+          errorToJson ? errorToJson.message : "Error desconocido"
+        );
+        throw new Error(errorMessage);
       }
+      showAlert("success", "Success register", "Has registration successfully");
 
       props.onChange(true);
     } catch (err) {
-      if (err instanceof Error) {
-        setErrorMessage(err.message);
-      } else {
-        setErrorMessage("Ocurrió un error inesperado.");
-      }
+      console.error(errorMessage);
     }
   };
 
   return (
     <div className="register">
-      <h1>Crear cuenta</h1>
+      <h1>Sign Up</h1>
 
-      {!!errorMessage && <div className="error-message">{errorMessage}</div>}
+      {!!errorMessage && <p className="error-message">{errorMessage}</p>}
 
       <div className="container-form">
         <form className="register-form" onSubmit={createUser}>
@@ -107,37 +110,55 @@ const RegisterComponent = (props: registerProps) => {
             onChange={(e) => setUsername(e.target.value)}
             value={username}
             type="text"
-            icon={<User style={{ position: "relative", left: "35px", top: "7px" }} />}
+            icon={
+              <User
+                style={{ position: "relative", left: "35px", top: "7px" }}
+              />
+            }
             placeholder="Username"
           />
           <LabelComponent
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             type="email"
-            icon={<Mail style={{ position: "relative", left: "35px", top: "7px" }} />}
+            icon={
+              <Mail
+                style={{ position: "relative", left: "35px", top: "7px" }}
+              />
+            }
             placeholder="Email"
           />
           <LabelComponent
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             type="password"
-            icon={<Lock style={{ position: "relative", left: "35px", top: "7px" }} />}
+            icon={
+              <Lock
+                style={{ position: "relative", left: "35px", top: "7px" }}
+              />
+            }
             placeholder="Password"
           />
           <LabelComponent
             onChange={(e) => setConfirmPassword(e.target.value)}
             value={confirmPassword}
             type="password"
-            icon={<Lock style={{ position: "relative", left: "35px", top: "7px" }} />}
+            icon={
+              <Lock
+                style={{ position: "relative", left: "35px", top: "7px" }}
+              />
+            }
             placeholder="confirm Password"
           />
-          
+
           <div className="country-select">
             <Earth style={{ position: "relative", left: "35px", top: "7px" }} />
             <select
               value={country ? country.code : ""}
               onChange={(e) => {
-                const selectedCountry = countries.find(c => c.code === e.target.value);
+                const selectedCountry = countries.find(
+                  (c) => c.code === e.target.value
+                );
                 setCountry(selectedCountry || null);
               }}
             >
@@ -154,10 +175,6 @@ const RegisterComponent = (props: registerProps) => {
 
           <button type="submit">Submit</button>
         </form>
-        <h3>O</h3>
-        <div className="google-container">
-          <h5>Certificación con Google</h5>
-        </div>
       </div>
     </div>
   );

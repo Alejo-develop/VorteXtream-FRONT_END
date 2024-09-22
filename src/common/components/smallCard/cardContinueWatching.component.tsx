@@ -8,17 +8,20 @@ interface SmallCardProps {
   title: string;
   vote_average: number;
   overview: string;
+  key: string,
 }
 
 const CardSmallComponent = ({
+  key,
   id,
   imageUrl,
   title,
   vote_average,
   overview
 }: SmallCardProps) => {
+  
   return (
-    <div key={id} className="container-small-card">
+    <div key={key} className="container-small-card">
       <div className="container-img-card-small">
         <img src={imageUrl} alt="smallCard-img" className="img-small-card" />
       </div>

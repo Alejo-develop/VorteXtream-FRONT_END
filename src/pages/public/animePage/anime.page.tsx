@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CardAnime, { CardAnimeProps } from "./components/CardAnime";
 import './styles/headeranimes.css';
 import HeaderComponent from "../../../common/components/header/header.component";
@@ -12,11 +12,10 @@ export function AnimePage() {
     const [animes, setAnimes] = useState<AnimeInfo[]>([]);
     const [searchResults, setSearchResults] = useState<AnimeInfo[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<string | null | any>(null);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [query, setQuery] = useState<string>("");
-    const [selectedCategory, setSelectedCategory] = useState<number | null>(null); // Añadimos el estado de la categoría seleccionada
 
     // Fetch top animes or filter by category
     useEffect(() => {
@@ -25,19 +24,17 @@ export function AnimePage() {
             try {
                 let url = `https://api.jikan.moe/v4/top/anime?page=${page}&limit=25`;
 
-                // Si hay una categoría seleccionada, ajustamos la URL
-                if (selectedCategory) {
-                    url = `https://api.jikan.moe/v4/anime?genres=${selectedCategory}&page=${page}&limit=25`;
-                }
-
                 const response = await fetch(url);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const { data, pagination } = await response.json();
 
-                if (!data) throw new Error('Invalid data structure');
+                if (!data) {
+                    setError(data)
+                    throw new Error(error)
+                }
 
                 const animeList: AnimeInfo[] = data.map((anime: any) => ({
-                    id: anime.mal_id,
+                    id: anime.mal_id.toString(),
                     title_japonese: anime.title_japanese || "No Japanese title available",
                     title_english: anime.title_english || "No English title available",
                     image_url: anime.images.jpg.large_image_url,
@@ -54,14 +51,14 @@ export function AnimePage() {
                 });
                 setTotalPages(pagination.last_visible_page);
             } catch (error) {
-                // setError(error.message);
+               console.error(error)
             } finally {
                 setLoading(false);
             }
         };
 
         fetchAnimes();
-    }, [page, selectedCategory]); 
+    }, [page]); 
 
     // Debounce search query and fetch search results
     useEffect(() => {
@@ -87,7 +84,7 @@ export function AnimePage() {
             if (!data) throw new Error('Invalid data structure');
 
             const animeList: AnimeInfo[] = data.map((anime: any) => ({
-                id: anime.mal_id,
+                id: anime.mal_id.toString(),
                 title_japonese: anime.title_japanese || "No Japanese title available",
                 title_english: anime.title_english || "No English title available",
                 image_url: anime.images.jpg.large_image_url,
@@ -117,46 +114,43 @@ export function AnimePage() {
             array.slice(i * groupSize, i * groupSize + groupSize)
         );
 
-    return (
-        <div>
-            <HeaderComponent />
-            <HeaderAnime animes={animes.slice(4,9)} /> 
-            <div className="anime-section">
-                {/* Categorías de anime */}
-                {/* <CategoriesAnime onCategorySelect={setSelectedCategory} /> */}
-                <div className="search-anime">
-                    <SearchAnime onSearch={setQuery} />
-                </div>
-                {/* Display anime results in grouped format */}
-                {groupedAnimes(displayedAnimes, 8).map((group, index) => (
-                    <div className="swiper-container" key={index}>
-                        <div className="cards-anime">
-                            {group.map(anime => (
-                                <CardAnime
-                                    key={anime.id}
-                                    id={anime.id}
-                                    title_japonese={anime.title_japonese}
-                                    title_english={anime.title_english}
-                                    image_url={anime.image_url}
-                                    synopsis={anime.synopsis}
-                                    score={anime.score}
-                                />
-                            ))}
-                        </div>
+        return (
+            <div>
+                <HeaderComponent />
+                <HeaderAnime animes={animes.slice(4, 9)} />
+                <div className="anime-section">
+                    <div className="search-anime">
+                        <SearchAnime onSearch={setQuery} />
                     </div>
-                ))}
-
-                {/* Load More Button */}
-                {!query && (
-                    <button 
-                        className="load-more-button"
-                        onClick={loadMoreAnimes}
-                        disabled={loading || page >= totalPages}
-                    >
-                        {loading ? 'Loading more...' : 'Load More'}
-                    </button>
-                )}
+        
+                    {groupedAnimes(displayedAnimes, 8).map((group, index) => (
+                        <div className="swiper-container" key={index}>
+                            <div className="cards-anime">
+                                {group.map(anime => (
+                                    <CardAnime
+                                        key={anime.id.toString()}
+                                        id={anime.id.toString()}
+                                        title_japonese={anime.title_japonese}
+                                        title_english={anime.title_english}
+                                        image_url={anime.image_url}
+                                        synopsis={anime.synopsis}
+                                        score={anime.score}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+        
+                    {!query && (
+                        <button 
+                            className="load-more-button"
+                            onClick={loadMoreAnimes}
+                            disabled={loading || page >= totalPages}
+                        >
+                            {loading ? 'Loading more...' : 'Load More'}
+                        </button>
+                    )}
+                </div>
             </div>
-        </div>
-    );
+        );
 }
