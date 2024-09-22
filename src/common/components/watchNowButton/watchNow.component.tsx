@@ -44,6 +44,10 @@ const StyledButton = styled.button<WatchButtonProps>`
     ); /* Gradiente al pasar el cursor */
     color: black; /* Mantiene el texto oscuro en hover */
   }
+
+  @media screen and (width <= 412px){
+    margin-left:0;
+  }
 `;
 
 const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({

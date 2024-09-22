@@ -9,3 +9,12 @@
     overflow: hidden; /* Asegura que el contenido no sobresalga del contenedor */
     position: relative; 
 }
+
+@media screen and (max-width: 412px) {
+    .container {
+        width: 100%; /* Ajustar al 100% del ancho */
+        height: auto; /* Permitir que la altura sea automática */
+        margin-top: 1.5rem; /* Reducir margen superior */
+        padding: 1rem; /* Añadir padding para mejorar el espaciado */
+    }
+}
