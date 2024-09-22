@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react';
 import { ParticipantView, useCall, useCallStateHooks } from "@stream-io/video-react-sdk";
-import HeaderComponent from '../../../common/components/header/header.component';
 import './stream.css';
 import DescriptionStreamerComponent from './DescriptionStreamer';
+import Swal, { SweetAlertIcon } from "sweetalert2";
+import HeaderComponent from '../../../common/components/header/header.component';
 
 export const MylivestreamUi = () => {
     const call = useCall();
     const { useIsCallLive, useLocalParticipant, useParticipantCount, useCallEgress } = useCallStateHooks();
 
     const [streamTime, setStreamTime] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [streamTitle, setStreamTitle] = useState('');
+    const [streamTheme, setStreamTheme] = useState('');
+    
     const isCallLive = useIsCallLive();
     const localParticipant = useLocalParticipant();
-    const participantCount = useParticipantCount(); // Contador de participantes
+    const participantCount = useParticipantCount();
     const egress = useCallEgress();
 
     useEffect(() => {
@@ -24,7 +29,6 @@ export const MylivestreamUi = () => {
             setStreamTime(0);
         }
 
-        // Limpia el intervalo cuando se detiene el livestream
         return () => {
             if (timer) clearInterval(timer);
         };
@@ -40,21 +44,34 @@ export const MylivestreamUi = () => {
         try {
             await call?.goLive({ start_hls: true });
             console.log("Livestream started with HLS");
+            setIsModalOpen(false); // Cierra el modal al iniciar el stream
         } catch (error) {
             console.error("Error starting livestream:", error);
         }
     };
 
     const handleStopLive = async () => {
-        try {
-            await call?.stopLive();
-            console.log("Livestream stopped");
-        } catch (error) {
-            console.error("Error stopping livestream:", error);
+        const result = await Swal.fire({
+            icon: 'warning',
+            title: 'Are you sure?',
+            text: "Do you want to stop the livestream?",
+            showCancelButton: true,
+            confirmButtonText: 'Yes, stop it!',
+            cancelButtonText: 'No, keep it going'
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await call?.stopLive();
+                console.log("Livestream stopped");
+                Swal.fire('Stopped!', 'Your livestream has been stopped.', 'success');
+            } catch (error) {
+                console.error("Error stopping livestream:", error);
+                Swal.fire('Error!', 'Something went wrong.', 'error');
+            }
         }
     };
 
-    // Formateo del tiempo para mostrar horas, minutos y segundos
     const formatTime = (seconds: number) => {
         const hours = Math.floor(seconds / 3600);
         const minutes = Math.floor((seconds % 3600) / 60);
@@ -62,9 +79,25 @@ export const MylivestreamUi = () => {
         return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
     };
 
+    const openModal = () => {
+        setIsModalOpen(true); // Abre el modal
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false); // Cierra el modal
+    };
+
+    const handleStartStream = () => {
+        if (streamTitle && streamTheme) {
+            handleGoLive(); // Solo empieza el stream si hay título y temática
+        } else {
+            alert("Por favor completa el título y la temática del stream");
+        }
+    };
+
     return (
         <div className='header-stream'>
-             {/* <HeaderComponent /> */}
+            <HeaderComponent />
             <div className="container-stream">
                 <div className='container-camera'>
                     <div className="participant-view">
@@ -79,30 +112,70 @@ export const MylivestreamUi = () => {
                                 Stop Livestream
                             </button>
                         ) : (
-                            <button className="start-button" onClick={handleGoLive}>
+                            <button className="start-button" onClick={openModal}>
                                 Start Livestream
                             </button>
                         )}
-                         <div className='container-controls'>
-                        <div className="status-bar">
-                            {isCallLive 
-                                ? `Live: ${formatTime(streamTime)}`
-                                : 'Call is not live'}
-                        </div>
+                        <div className='container-controls'>
+                            <div className="status-bar">
+                                {isCallLive
+                                    ? `Live: ${formatTime(streamTime)}`
+                                    : 'Call is not live'}
+                            </div>
 
-                        <div className="viewers-count">
-                            {`Viewers: ${participantCount}`} {/* Mostrando el número total de participantes */}
+                            <div className="viewers-count">
+                                {`Viewers: ${participantCount}`}
+                            </div>
                         </div>
                     </div>
+
+                    {/* Mostrar título y temática si el livestream está en vivo */}
+                    {isCallLive && (
+                        <div className="stream-info">
+                            <p className='stream-title'> {streamTitle}</p>
+                            <p className='stream-theme'>{streamTheme}</p>
+                        </div>
+                    )}
                 </div>
-                    </div>
-
-                   
 
                 <div className='container-description'>
                     <DescriptionStreamerComponent />
                 </div>
             </div>
+
+            {/* Modal */}
+            {isModalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>Start Livestream</h2>
+                        <label>
+                            Stream Title:
+                            <input
+                                type="text"
+                                value={streamTitle}
+                                onChange={(e) => setStreamTitle(e.target.value)}
+                                placeholder="Enter the stream title"
+                            />
+                        </label>
+                        <label>
+                            Stream Theme:
+                            <select value={streamTheme} onChange={(e) => setStreamTheme(e.target.value)}>
+                                <option value="">Select a theme</option>
+                                <option value="Just Chatting">Just Chatting</option>
+                                <option value="Gaming">Gaming</option>
+                                <option value="Music">Music</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Talk Shows">Talk Shows</option>
+                                <option value="Art">Art</option>
+                            </select>
+                        </label>
+                        <div className="modal-actions">
+                            <button onClick={handleStartStream}>Go Live</button>
+                            <button onClick={closeModal}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

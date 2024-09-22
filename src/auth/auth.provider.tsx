@@ -12,7 +12,6 @@ interface AuthContextProps {
   signOut: () => void;
   saveSessionInfo: (user: UserPayload, token: string, isPremium: boolean) => void;
   getToken: () => string;
-
 }
 
 const AuthContext = createContext<AuthContextProps>({
@@ -30,7 +29,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [accesToken, setAccesToken] = useState<string>('');
   const [user, setUser] = useState<UserPayload | undefined>(undefined);
 
-  // Recuperar la información de la sesión cuando el componente se monta
   useEffect(() => {
     const sessionToken = sessionStorage.getItem('session') || localStorage.getItem('session');
     const userInfo = sessionStorage.getItem('user') || localStorage.getItem('user');
@@ -50,14 +48,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setIsAuthenticated(false);
     setAccesToken('');
     setUser(undefined);
-
     sessionStorage.clear();
     localStorage.clear();
   }
 
   function saveSessionInfo(userInfo: UserPayload, token: string, isPremium: boolean) {
     setAccesToken(token);
-    setIsPremium(isPremium)
+    setIsPremium(isPremium);
     sessionStorage.setItem('session', token);
     localStorage.setItem('session', token);
     sessionStorage.setItem('user', JSON.stringify(userInfo));
