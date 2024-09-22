@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Streamer } from "../../../common/interfaces/streamer.interface";
 import CardStreamersLiveComponent from "./components/cardStreamerlive.component";
 import CardStreamerComponent from "../../../common/components/cardStreamer/cardStreamer.component";
+import { useAuth } from "../../../auth/auth.provider";
 
 export default function StreamPage() {
   const location = useLocation();
@@ -15,11 +16,12 @@ export default function StreamPage() {
   
   const clientId = "okkzkyh8ogfm1kt5aukaaxow9owi2w";
   const accessToken = "cwo0te7eacxhmu608bi92yzz73lt6r";
+  const auth = useAuth()
 
   useEffect(() => {
     // Desplazar hacia arriba al cargar nuevos datos
     window.scrollTo(0, 0);
-
+ 
     const fetchDataStreamer = async () => {
       try {
         const streamsResponse = await fetch(
@@ -81,7 +83,7 @@ export default function StreamPage() {
     };
 
     fetchDataStreamer();
-  }, [user_name]); // Asegúrate de que el efecto se ejecute cuando user_name cambie
+  }, [user_name]);
 
   return (
     <div className="container-streamerViewer-page">
@@ -124,5 +126,3 @@ export default function StreamPage() {
     </div>
   );
 }
-
-//user_name={user_name} title={title} game_name={game_name} viewer_count={viewer_count}
