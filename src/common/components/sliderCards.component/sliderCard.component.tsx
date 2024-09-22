@@ -40,7 +40,7 @@ const CardComponent: React.FC<CardProps> = ({ id, backdrop_path, overview, title
                         <div className='buttons-card-search-page'>
                             <WatchNowButtonComponent id={id} imgMedia={backdrop_path} synopsis={overview} mediaTitle={title}
                                 rating={vote_average} size='140' height='38' fontweight='0.8' text='Watch Now' />
-                            <AddFavoritesButtonComponent size={'15px'} height={'6px'} fontweight={'0.7'} />
+                            <AddFavoritesButtonComponent mediaId={id} title={title} backdrop_path={backdrop_path} overview={overview} vote_average={vote_average} size="120" fontweight="0.8" height="38" />
                         </div>
                     </div>
                 </div>

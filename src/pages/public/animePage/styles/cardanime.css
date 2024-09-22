@@ -112,3 +112,29 @@
     opacity: 1;
     visibility: visible;
 }
+
+@media (max-width: 430px) {
+    .card-anime {
+        max-width: 280px;
+        margin-left: 100px;
+        
+    }
+
+
+    .details-anime h2 {
+        font-size: 1.1rem; 
+    }
+
+    .synopsis-anime {
+        font-size: 0.8rem;  
+    }
+    
+    .title-japonese {
+        font-size: 0.4rem;  
+    }
+
+    .buttons {
+        gap: 10px;         
+    }
+}
+

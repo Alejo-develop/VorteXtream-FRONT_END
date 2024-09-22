@@ -10,11 +10,9 @@ const GridCrudComponent = ({ formContent, contentDeleteAndEdit  }: FormContentPr
     return (
         <div className="container-grid-crud">
             <div className="container-create">
-                {/* Aquí se renderiza el contenido del formulario pasado por props */}
                 {formContent}
             </div>
             <div className="container-edit-delete">
-                {/* Aquí se renderiza el contenido para editar y eliminar */}
                 {contentDeleteAndEdit}
             </div>
         </div>

@@ -7,7 +7,7 @@ import FooterComponent from "./common/components/footer/footer.component";
 import SearchStreamsPage from "./pages/public/searchStreamsPage/SearchStreamsPage";
 import LayoutStreamers from "./layouts/layoutStreamers/layoutStreamers";
 import { AnimePage } from "./pages/public/animePage/anime.page";
-import { ProtectedRoute } from "./auth/portectedRoutes.auth";
+import { ProtectedRoute } from "./auth/portectedRoutes.auth"; // Correct the path if needed
 import UserMenuPage from "./pages/private/userMenu/userMenu.page";
 import FavoritesHistoryPage from "./pages/private/favoritesHistory/favoriteHistory.page";
 import MediaPlayerPage from "./pages/private/mediaPlayer/mediaPlayer.page";
@@ -15,6 +15,7 @@ import StreamPage from "./pages/private/streamPlayer/streamPlayer.page";
 import CheckoutPage from "./pages/public/checkoutPage/chekout.page";
 import StreamerUserPage from "./pages/private/streamUserPlayer/streamerUser.page";
 import { AdminPage } from "./pages/private/adminPage/Admin.page";
+import { AdminProtectedRoute } from "./auth/protectAdmin.auth"; // Add this line
 import { AdminCrudMovie } from "./pages/private/adminPage/AdminCRUDMovie.page";
 import { AdminCrudCastPage } from "./pages/private/adminPage/AdminCRUDCast";
 import { AdminCrudCategoriesPage } from "./pages/private/adminPage/AdminCRUDCategories";
@@ -53,30 +54,6 @@ export const appRouter = createBrowserRouter([
     ),
   },
   {
-    path: "/adminpage",
-    element: <AdminPage />,
-  },
-  {
-    path: "/crudmovie",
-    element: <AdminCrudMovie />,
-  },
-  {
-    path: "/crudcast",
-    element: <AdminCrudCastPage />,
-  },
-  {
-    path: "/crudcategories",
-    element: <AdminCrudCategoriesPage />,
-  },
-  {
-    path: "/crudsubcategories",
-    element: <AdminCrudSubcategoriesPage />,
-  },
-  {
-    path: "/crudirectors",
-    element: <AdminCrudDirectorsPage />,
-  },
-  {
     path: "/streams",
     element: (
       <React.StrictMode>
@@ -109,6 +86,36 @@ export const appRouter = createBrowserRouter([
     ),
   },
   {
+    path: "/adminpage",
+    element: <AdminProtectedRoute />,
+    children: [
+      {
+        path: "",
+        element: <AdminPage />,
+      },
+      {
+        path: "crudmovie",
+        element: <AdminCrudMovie />,
+      },
+      {
+        path: "crudcast",
+        element: <AdminCrudCastPage />,
+      },
+      {
+        path: "crudcategories",
+        element: <AdminCrudCategoriesPage />,
+      },
+      {
+        path: "crudsubcategories",
+        element: <AdminCrudSubcategoriesPage />,
+      },
+      {
+        path: "crudirectors",
+        element: <AdminCrudDirectorsPage />,
+      },
+    ],
+  },
+  {
     path: "/",
     element: <ProtectedRoute />,
     children: [
@@ -132,7 +139,7 @@ export const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "watch",
+        path: "/watch/:id",
         element: <MediaPlayerPage />,
       },
       {

@@ -17,15 +17,20 @@ import useAlert from "../../private/userMenu/components/alert.component";
 const LoginComponent = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [errorResponse, setErrorResponse] = useState<string>("");
+  const [errorResponse, setErrorResponse] = useState<string | any>("");
 
   const auth = useAuth();
-  const navigate = useNavigate();
+  const goTo = useNavigate();
   const { handleGoogleLogin } = useGoogleLogin();
   const { showAlert } = useAlert();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!username || !password) {
+      showAlert('error', 'Input Error', 'Please fill in both fields.');
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -45,22 +50,33 @@ const LoginComponent = () => {
       if (!response.ok) {
         const errorToJson = (await response.json()) as AuthResponseError;
         const errorMessage =
-          errorToJson?.error || "An unexpected error occurred";
+          errorToJson?.message || "An unexpected error occurred";
         setErrorResponse(errorMessage);
+        showAlert('error', 'Login Failed', errorMessage);
         throw new Error(errorMessage);
       }
 
       const resToJson = (await response.json()) as AuthResponse;
-      console.log(resToJson);
+
       const token = resToJson.token;
       const user = resToJson.user as UserPayload;
 
+      // Guardar información de sesión
       auth.saveSessionInfo(user, token, resToJson.isPremium);
-      showAlert('success', 'Login Success', 'Login completed successfully')
-      navigate("/");
+
+      // Mostrar alerta de éxito
+      showAlert('success', 'Login Success', 'Login completed successfully');
+
+      if (user.role === 'admin') {
+        goTo("/adminpage");
+      } else {
+        goTo("/"); 
+      }
+
     } catch (err) {
-      console.log(err);
-      setErrorResponse("An error occurred. Please try again.");
+      console.error(err);
+      // Muestra la alerta aquí si hay un error en la conexión o en el proceso
+      showAlert('error', 'Login Failed', errorResponse);
     }
   };
 
@@ -68,7 +84,7 @@ const LoginComponent = () => {
     <div className="login-container">
       <h1 className="title-login">Login</h1>
 
-      {!!errorResponse && <div className="error-message">{errorResponse}</div>}
+      {!!errorResponse && <p className="error-message">{errorResponse}</p>}
       <form className="login-form" onSubmit={handleSubmit}>
         <InputLogin
           type="text"

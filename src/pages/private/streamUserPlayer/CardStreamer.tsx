@@ -29,7 +29,7 @@ const StyledWrapper = styled.div`
     width: 350px;
     height: auto;
     padding: 20px;
-    background: #fff;
+    background: #2e4053 ;
     border: 6px solid #000;
     box-shadow: 4px 4px 0 #F08080; /* Cambiado a #F08080 */
     transition: transform 0.3s, box-shadow 0.3s;
@@ -43,7 +43,7 @@ const StyledWrapper = styled.div`
 
   .card__title {
     font-weight: 900;
-    color: #000;
+    color: #fff;
     text-transform: uppercase;
     margin-bottom: 15px;
     display: block;
@@ -69,7 +69,7 @@ const StyledWrapper = styled.div`
 
   .card__content {
     line-height: 1.4;
-    color: #000;
+    color: #fff;
     margin-bottom: 20px;
   }
 

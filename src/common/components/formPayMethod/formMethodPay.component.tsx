@@ -225,6 +225,9 @@ const StyledWrapper = styled.div`
       0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
     border-radius: 26px;
     max-width: 450px;
+    position: absolute;
+    left: 20.5rem;
+    top: 16rem
   }
 
   .form {

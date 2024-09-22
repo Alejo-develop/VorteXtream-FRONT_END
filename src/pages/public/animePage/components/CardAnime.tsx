@@ -3,8 +3,8 @@ import '../styles/cardanime.css'; // Asegúrate de que el archivo de estilos est
 import WatchNowButtonComponent from '../../../../common/components/watchNowButton/watchNow.component';
 import AddFavoritesButtonComponent from '../../../../common/components/addFavoritesButton/addFavoritesButton.component';
 
-export interface CardAnimeProps {
-    id: number;
+export interface CardAnimeProps{
+    id: string;
     title_japonese: string;
     title_english: string;
     image_url: string;
@@ -23,7 +23,7 @@ export const CardAnime: React.FC<CardAnimeProps> = ({ score, id, title_japonese,
             </div>
             <div className="buttons">
                 <WatchNowButtonComponent id={id} mediaTitle={title_japonese} imgMedia={image_url} rating={score} synopsis={synopsis} size={'0.5rem'} height={'2px'} fontweight={'0.8'} text={'Watch Now'} typeMedia='anime' />
-                <AddFavoritesButtonComponent size={'0.5rem'} height={'2px'} fontweight={'0.8'} />
+                <AddFavoritesButtonComponent size={'0.5rem'} height={'2px'} fontweight={'0.8'} mediaId={id} backdrop_path={image_url} title={title_japonese} overview={synopsis} vote_average={score} />
             </div>
            
         </div>

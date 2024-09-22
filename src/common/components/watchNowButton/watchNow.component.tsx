@@ -63,10 +63,10 @@ const WatchNowButtonComponent: React.FC<WatchButtonProps> = ({
   fontweight,
   typeMedia
 }) => {
-  const navigate = useNavigate();
+  const goTo = useNavigate();
 
   const handleClick = () => {
-    navigate("/watch", {
+    goTo(`/watch/${id}`, {
       state: {
         id,
         imgMedia,

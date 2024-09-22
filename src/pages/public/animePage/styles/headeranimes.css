@@ -127,3 +127,25 @@
     gap: 40px;
     margin-top: 20px;
 }
+
+@media (max-width: 430px) {
+    .anime-item {
+        width: 100%; 
+        height: 60vh; 
+    }
+
+    .anime-title {
+        font-size: 0.9rem; 
+        padding: 8px; 
+    }
+
+
+    .load-more-button {
+        font-size: 12px; 
+        padding: 8px 15px; 
+    }
+
+    .cards-anime {
+        gap: 15px; 
+    }
+}
