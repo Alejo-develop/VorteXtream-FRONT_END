@@ -124,6 +124,12 @@ const StyledWrapper = styled.div`
   }
 }
 
+@media screen and (width:915px){
+  .card{
+    padding:25px 0;
+  }
+}
+
 `;
 
 export default SocialNetworkComponent;

@@ -63,3 +63,23 @@
     font-style: italic;
     font-weight: 100;
 }
+
+@media (width <= 412px) {
+    .footer {
+        margin-left: 0; /* Eliminar margen en pantallas pequeñas */
+        height: auto; /* Permitir que la altura sea automática */
+        grid-template-columns: 1fr; /* Cambiar a una columna */
+    }
+
+    .phone {
+        margin-right: 0; /* Eliminar margen derecho en móviles */
+    }
+
+    .services-footer {
+        gap: 20px; /* Reducir espacio entre secciones */
+    }
+
+    .copy-right {
+        font-size: 1.2rem; /* Ajustar tamaño de fuente para móviles */
+    }
+}
