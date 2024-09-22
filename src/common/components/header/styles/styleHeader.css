@@ -73,3 +73,34 @@
     -webkit-appearance: none;
     appearance: none;
 }
+
+@media screen and (max-width:915px) {
+    .header{
+        flex-direction: column;
+    }
+
+    .container-search{
+        margin-right: 0;
+        justify-content: center;
+    }
+
+    .logo{
+        min-width: 4%;
+        width: 20px;
+        height: 100%;
+    }
+
+    .container-explorer{
+        width: 100%;
+        margin-left: 0;
+        gap: 0.5rem;
+        height: 6rem;
+    }
+
+    .container-logo{
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -11,3 +11,11 @@
 .button-login:hover{
     background-color: #ce7272;
 }
+
+@media screen and (max-width:915px) {
+    .button-login{
+        height: 2rem;
+        width: 5rem;
+        font-size: small;
+    }
+}
