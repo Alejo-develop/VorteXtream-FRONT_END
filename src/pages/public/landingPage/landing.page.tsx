@@ -42,6 +42,7 @@ export default function LandingPage() {
         const data = resToJson.results
           .filter((media: CardProps) => media.backdrop_path && media.overview)
           .map((media: CardProps) => ({
+            id: media.id,
             imageUrl: `${imageBaseUrl}${media.backdrop_path}`,
             overview: media.overview,
             title: media.title,

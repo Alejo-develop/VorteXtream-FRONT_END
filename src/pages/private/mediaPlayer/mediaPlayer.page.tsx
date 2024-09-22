@@ -11,6 +11,7 @@ import CardSmallComponent from "../../../common/components/smallCard/cardContinu
 import { CardProps } from "../../../common/interfaces/media.interface";
 import HeaderWatchMediaComponent from "./components/headerWatchMedia.component";
 import { AnimeApiResponse } from "../../../common/interfaces/animesApi.interface";
+import { useAuth } from "../../../auth/auth.provider";
 
 interface Actor {
   id: number;
@@ -33,20 +34,49 @@ export default function StreamPage() {
   const location = useLocation();
   const { id, imgMedia, mediaTitle, synopsis, rating, typeMedia } =
     location.state || {};
+  const mediaId = id.toString();
 
   const [data, setData] = useState<MovieCredits | null>(null);
   const [studio, setStudio] = useState<string | undefined>("");
   const [recomendedData, setRecomendedData] = useState<CardProps[]>([]);
   const [media, setMedia] = useState<any[]>([]);
-
   const [dataAnime, setDataAnime] = useState<AnimeApiResponse | null>(null);
+  const [historyLogged, setHistoryLogged] = useState(false);
+
+  const auth = useAuth();
+  const user = auth.getUser();
+  const token = auth.getToken();
+  const userId = user.id;
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
+    const putInHistory = async () => {
+      if (historyLogged) return; // Evitar duplicados
+      setHistoryLogged(true);
+      console.log("putInHistory llamado");
+      const res = await fetch(`http://localhost:3000/vortextream/history-user`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          userId: userId,
+          mediaId: mediaId,
+          imgMedia: imgMedia,
+          mediaTitle: mediaTitle,
+          synopsis: synopsis,
+          rating: rating
+        })
+      });
+
+      const resToJson = await res.json();
+      console.log(resToJson); 
+    };
+
     const fetchData = async () => {
       if (typeMedia === "anime") {
-        // if the media is anime, start fetch anime info by id
         try {
           const res = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
 
@@ -60,7 +90,6 @@ export default function StreamPage() {
           console.error(err);
         }
       } else {
-        // starting fetch data movies
         const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
         const baseUrl = "https://api.themoviedb.org/3/movie";
         const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
@@ -120,10 +149,12 @@ export default function StreamPage() {
       }
     };
 
+    if (!historyLogged) {
+      putInHistory();
+      setHistoryLogged(true);
+  }
     fetchData();
   }, [id]);
-
-  console.log(dataAnime?.broadcast, dataAnime?.licensors, dataAnime?.trailer);
 
   const director = data?.crew?.find((member) => member.job === "Director");
   const actors = data?.cast;
@@ -135,17 +166,15 @@ export default function StreamPage() {
     ? `https://www.youtube.com/embed/${dataAnime?.trailer.youtube_id}`
     : null;
 
-    const licensorName = dataAnime?.licensors?.[0]?.name || 'No licensor available'
+  const licensorName = dataAnime?.licensors?.[0]?.name || 'No licensor available';
 
   return (
     <div className="container-watchMovie-anime">
       <HeaderWatchMediaComponent />
-
       <div className="container-movie">
         <VideoPlayer src={youtubeSrc} type="video/mp4" />
       </div>
-
-      <div className={typeMedia !== 'anime'? "info-movieAnime-container": 'info-anime-container'}>
+      <div className={typeMedia !== 'anime' ? "info-movieAnime-container" : 'info-anime-container'}>
         <div className="container-infoDataMovie-sinopsis">
           <div className="dataMovie-or-anime">
             <div className="banner-img-watchMedia">
@@ -159,29 +188,20 @@ export default function StreamPage() {
               <div className="container-director-studio-cards">
                 <div>
                   <CardDirectorStudioComponent
-                    text={
-                      studio
-                        ? studio
-                        : licensorName || "Not update yet"
-                    }
+                    text={studio ? studio : licensorName || "Not update yet"}
                   />
                   <p className="type-card-director-or-studio">Studio</p>
                 </div>
-
                 <div>
                   <CardDirectorStudioComponent
-                    text={
-                      director
-                        ? director?.name
-                        : dataAnime?.broadcast.timezone || "Not updated yet"
-                    }
+                    text={director ? director?.name : dataAnime?.broadcast.timezone || "Not updated yet"}
                   />
                   <p className="type-card-director-or-studio">
                     {director ? "Director" : "Country"}
                   </p>
                 </div>
               </div>
-              <ContainerCastsOrInfoAnimeComponent broadcast={dataAnime?.broadcast} type={typeMedia === 'anime'? 'Info': 'Casts'} actors={actors} />
+              <ContainerCastsOrInfoAnimeComponent broadcast={dataAnime?.broadcast} type={typeMedia === 'anime' ? 'Info' : 'Casts'} actors={actors} />
             </div>
           </div>
           <div className="sinopsis-movie-or-anime">
@@ -190,9 +210,8 @@ export default function StreamPage() {
             <StarRating rating={rating} fontSize="4.2rem" />
           </div>
         </div>
-
         {typeMedia !== 'anime' && (
-            <div className="container-matchContent">
+          <div className="container-matchContent">
             <h2 className="titleContieWatching-watchMedia">Recomended...</h2>
             <div className="container-continue-watiching-watchMedia">
               {recomendedData && recomendedData.length > 0 ? (
