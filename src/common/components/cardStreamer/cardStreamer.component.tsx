@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Streamer } from "../../interfaces/streamer.interface";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +6,6 @@ const CardStreamerComponent = ({
   id,
   game_name,
   title,
-  type,
   user_name,
   viewer_count,
   thumbnail_url,
@@ -56,7 +54,7 @@ const CardStreamerComponent = ({
           <div className="card_back" />
         </div>
         <div className="data">
-          <div className="img">imagen</div>
+          <div className="img"><img style={{width: '100%', height: '2.5rem'}} src={profile_image_url} alt="streamerPorfileUser" /></div>
           <div className="text">
             <div className="text_m">{title}</div>
             <div className="text_s">{game_name}</div>

@@ -139,7 +139,7 @@ export const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "watch",
+        path: "/watch/:id",
         element: <MediaPlayerPage />,
       },
       {

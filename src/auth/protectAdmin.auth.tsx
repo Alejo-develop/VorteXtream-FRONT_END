@@ -1,11 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "./auth.provider";
 
 export const AdminProtectedRoute = () => {
-    const userString = localStorage.getItem('user'); 
-    const user = userString ? JSON.parse(userString) : null;
-
-    console.log(user); 
-
+    const auth = useAuth()
+    const user = auth.getUser()
     
-    return user && user.role === 'admin' ? <Outlet /> : <Navigate to="/" />;
+    return user.role === 'admin' ? <Outlet /> : <Navigate to="/" />;
 };

@@ -34,14 +34,13 @@ export default function StreamPage() {
   const location = useLocation();
   const { id, imgMedia, mediaTitle, synopsis, rating, typeMedia } =
     location.state || {};
-  const mediaId = id.toString();
+  const mediaId: number = id.toString();
 
   const [data, setData] = useState<MovieCredits | null>(null);
   const [studio, setStudio] = useState<string | undefined>("");
   const [recomendedData, setRecomendedData] = useState<CardProps[]>([]);
   const [media, setMedia] = useState<any[]>([]);
   const [dataAnime, setDataAnime] = useState<AnimeApiResponse | null>(null);
-  const [historyLogged, setHistoryLogged] = useState(false);
 
   const auth = useAuth();
   const user = auth.getUser();
@@ -52,27 +51,28 @@ export default function StreamPage() {
     window.scrollTo(0, 0);
 
     const putInHistory = async () => {
-      if (historyLogged) return; // Evitar duplicados
-      setHistoryLogged(true);
-      console.log("putInHistory llamado");
-      const res = await fetch(`http://localhost:3000/vortextream/history-user`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          userId: userId,
-          mediaId: mediaId,
-          imgMedia: imgMedia,
-          mediaTitle: mediaTitle,
-          synopsis: synopsis,
-          rating: rating
-        })
-      });
 
-      const resToJson = await res.json();
-      console.log(resToJson); 
+      try {
+        const res = await fetch(`http://localhost:3000/vortextream/history-user`, {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            userId: userId,
+            mediaId: mediaId,
+            imgMedia: imgMedia,
+            mediaTitle: mediaTitle,
+            synopsis: synopsis,
+            rating: rating
+          })
+        });
+        
+        if(!res.ok) throw new Error(res.statusText)
+      } catch (err) {
+        console.error(err)
+      }
     };
 
     const fetchData = async () => {
@@ -83,8 +83,6 @@ export default function StreamPage() {
           if (!res.ok) throw new Error(res.statusText);
 
           const resToJson = await res.json();
-          console.log(resToJson);
-
           setDataAnime(resToJson.data);
         } catch (err) {
           console.error(err);
@@ -136,12 +134,14 @@ export default function StreamPage() {
           const dataRecomended = dataRecomendedToJson.results
             .filter((media: CardProps) => media.backdrop_path && media.overview)
             .map((media: CardProps) => ({
+              id: media.id,
               imageUrl: `${imageBaseUrl}${media.backdrop_path}`,
               overview: media.overview,
               title: media.title,
               vote_average: media.vote_average,
             }));
-
+            console.log(dataRecomended);
+            
           setRecomendedData(dataRecomended);
         } catch (err) {
           console.log(err);
@@ -149,12 +149,9 @@ export default function StreamPage() {
       }
     };
 
-    if (!historyLogged) {
-      putInHistory();
-      setHistoryLogged(true);
-  }
+    putInHistory()
     fetchData();
-  }, [id]);
+  }, [location, id]);
 
   const director = data?.crew?.find((member) => member.job === "Director");
   const actors = data?.cast;
@@ -169,7 +166,7 @@ export default function StreamPage() {
   const licensorName = dataAnime?.licensors?.[0]?.name || 'No licensor available';
 
   return (
-    <div className="container-watchMovie-anime">
+    <div  key={location.key} className="container-watchMovie-anime">
       <HeaderWatchMediaComponent />
       <div className="container-movie">
         <VideoPlayer src={youtubeSrc} type="video/mp4" />
@@ -222,6 +219,7 @@ export default function StreamPage() {
                 >
                   {recomendedData.map((data) => (
                     <CardSmallComponent
+                      key={data.id}
                       id={data.id}
                       imageUrl={data.imageUrl}
                       title={data.title}

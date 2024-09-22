@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+  import { useEffect, useState } from "react";
 import StreamMostViewComponent from "./streamMosViewDiv.component";
 import "./style.css";
 import { Streamer } from "../../common/interfaces/streamer.interface";
@@ -52,7 +52,6 @@ const LayoutStreamers = ({ children }: NavbarProps) => {
         ...streamer,
         profile_image_url: profiles[streamer.user_id] || '',
       })));
-      console.log(streamsData, usersData);
     };
 
     fetchStreamersData();
@@ -65,11 +64,11 @@ const LayoutStreamers = ({ children }: NavbarProps) => {
           <div>
             {streamersData.map((streamer) => (
               <StreamMostViewComponent
-                thumbnail_url={streamer.profile_image_url} // Usar profile_image_url en lugar de thumbnail_url
+                thumbnail_url={streamer.profile_image_url || ''} // Usar profile_image_url en lugar de thumbnail_url
                 id={streamer.id}
-                user_name={streamer.user_name}
+                user_name={streamer.user_name || ''}
                 viewer_count={streamer.viewer_count}
-                type={streamer.type}
+                type={streamer.type || ''}
                 game_name={streamer.game_name}
               />
             ))}

@@ -7,6 +7,7 @@ export interface Streamer {
   viewer_count: number;
   profile_image_url?: string;
   thumbnail_url: string;
+  user_id: string
 }
 
 export interface CategorysStreams {
