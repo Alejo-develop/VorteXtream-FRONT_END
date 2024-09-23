@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Swal, { SweetAlertIcon } from "sweetalert2";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import GridCrudComponent from "./components/GridCrud.component";
 import NavBarAdmin from "./components/NavbarAdmin.component";
 import FormCrudDirectors from "./components/CrudDirectors/FormDirectors";

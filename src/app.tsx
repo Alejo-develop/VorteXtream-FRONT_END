@@ -19,7 +19,6 @@ import { AdminProtectedRoute } from "./auth/protectAdmin.auth"; // Add this line
 import { AdminCrudMovie } from "./pages/private/adminPage/AdminCRUDMovie.page";
 import { AdminCrudCastPage } from "./pages/private/adminPage/AdminCRUDCast";
 import { AdminCrudCategoriesPage } from "./pages/private/adminPage/AdminCRUDCategories";
-import { AdminCrudSubcategoriesPage } from "./pages/private/adminPage/AdminCRUDSubcategories";
 import { AdminCrudDirectorsPage } from "./pages/private/adminPage/AdminCRUDirectors";
 import TransitionPage from "./common/utils/transitionPage";
 import React from "react";
@@ -99,10 +98,6 @@ export const appRouter = createBrowserRouter([
       {
         path: "crudcategories",
         element: <AdminCrudCategoriesPage />,
-      },
-      {
-        path: "crudsubcategories",
-        element: <AdminCrudSubcategoriesPage />,
       },
       {
         path: "crudirectors",

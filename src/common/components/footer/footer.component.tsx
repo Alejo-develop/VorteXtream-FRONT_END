@@ -1,7 +1,6 @@
 
 import Logo from "../../../assets/img/Logo.png";
 import "./style.css";
-import ButttonFooterComponent from "../socialMediaButton/socialMediaButton.component";
 import SubscribeComponent from "./Suscribe.component";
 import { Phone, Mail } from "lucide-react";
 import SocialNetworkComponent from "../socialMediaButton/socialMediaButton.component";

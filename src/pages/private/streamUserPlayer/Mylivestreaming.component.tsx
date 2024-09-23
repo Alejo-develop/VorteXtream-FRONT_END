@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ParticipantView, useCall, useCallStateHooks } from "@stream-io/video-react-sdk";
 import './stream.css';
 import DescriptionStreamerComponent from './DescriptionStreamer';
-import Swal, { SweetAlertIcon } from "sweetalert2";
+import Swal from "sweetalert2";
 import HeaderComponent from '../../../common/components/header/header.component';
 
 export const MylivestreamUi = () => {

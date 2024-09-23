@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CardStreamerComponent from "../../../common/components/cardStreamer/cardStreamer.component";
 import "./style.css";
 import { clientId, accessToken } from "../../../common/utils/constants/twitchConstants";

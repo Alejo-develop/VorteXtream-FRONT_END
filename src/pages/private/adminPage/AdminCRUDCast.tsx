@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ContentDeleteAndEdit from "./components/ContentDeleteAndEdit";
 import FormCrudCastComponent from "./components/CrudCast/Form.cast";
 import GridCrudComponent from "./components/GridCrud.component";
@@ -51,7 +51,7 @@ export function AdminCrudCastPage() {
   };
 
   // Función para manejar el guardado de un ítem
-  const handleSave = (name: string, image: File | null) => {
+  const handleSave = (name: string) => {
     if (selectedItem) {
       // Editar ítem existente
       const updatedItems = items.map((item) =>
