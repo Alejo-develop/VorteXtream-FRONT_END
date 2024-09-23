@@ -10,7 +10,7 @@ export interface UserPayload {
 }
 
 export interface UserResponse{
-    bornDate: Date | null ;
+    bornDate: string | null ;
     country: string | null;
     prefixCountry: string | null;
     email: string | null;
@@ -18,8 +18,7 @@ export interface UserResponse{
     lastName: string | null;
     name: string | null;
     phoneNumber: string | null;
-    role: string | null;
     secondName: string | null;
-    urlProfile: string | null;
+    urlprofile: string | null;
     username:string | null;
 }

@@ -6,7 +6,7 @@ import { UserResponse } from "../../../../common/interfaces/user.interface";
 import useAlert from "./alert.component";
 import { Country } from "../../../public/registerPage/registerForm.component";
 
-const PorfileSettingsView = () => {
+const ProfileSettingsView = () => {
   const auth = useAuth();
   const user = auth.getUser();
   const token = auth.getToken();
@@ -20,9 +20,8 @@ const PorfileSettingsView = () => {
     lastName: null,
     name: null,
     phoneNumber: null,
-    role: null,
     secondName: null,
-    urlProfile: null,
+    urlprofile: null,
     username: null,
   });
 
@@ -31,22 +30,26 @@ const PorfileSettingsView = () => {
   const [secondName, setSecondName] = useState("");
   const [lastName, setLastName] = useState("");
   const [bornDate, setBornDate] = useState("");
-  const [country, setCountry] = useState<Country | null>();
+  const [country, setCountry] = useState<Country | null>(null);
   const [countries, setCountries] = useState<Country[]>([]);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [profileImage, setProfileImage] = useState(user.urlprofile);
+  const [profileImage, setProfileImage] = useState(user.urlprofile || "");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const { showAlert } = useAlert();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      setSelectedImage(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfileImage(reader.result as string);
       };
       reader.readAsDataURL(file);
+    } else {
+      setSelectedImage(null);
     }
   };
 
@@ -65,6 +68,7 @@ const PorfileSettingsView = () => {
 
       const resToJson = (await res.json()) as UserResponse;
       setUserInfo(resToJson);
+      return resToJson; // Retorna la información del usuario
     } catch (err) {
       console.error(err);
     }
@@ -73,56 +77,48 @@ const PorfileSettingsView = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (
-      !name &&
-      !username &&
-      !bornDate &&
-      !lastName &&
-      !secondName &&
-      !country &&
-      !phoneNumber
-    ) {
-      showAlert("error", "No change", "You haven't made any changes");
-
+    if (!selectedImage && !user.urlprofile) {
+      showAlert("error", "No image uploaded", "Please upload an image or provide a URL.");
       return;
     }
 
+    const formData = new FormData();
+
+    if (selectedImage) {
+      formData.append("profileimage", selectedImage);
+    }
+
+    formData.append("username", username || user.username || '');
+    formData.append("name", name || userInfo.name || '');
+    formData.append("secondName", secondName || userInfo.secondName || '');
+    formData.append("lastName", lastName || userInfo.lastName || '');
+    formData.append("bornDate", bornDate || userInfo.bornDate || '');
+    formData.append("country", country ? country.name : user.country || '');
+    formData.append("prefixCountry", country ? country.code : userInfo.prefixCountry || '');
+    formData.append("phoneNumber", phoneNumber || userInfo.phoneNumber || '');
+
     try {
       const res = await fetch(
-        `http://localhost:3000/vortextream/auth/${user.id}`,
+        `http://localhost:3000/vortextream/auth/changeuserinfo/${user.id}`,
         {
           method: "PATCH",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            username: username ? username : user.username,
-            name: name ? name : userInfo.name,
-            secondName: secondName ? secondName : userInfo.secondName,
-            lastName: lastName ? lastName : userInfo.lastName,
-            bornDate: bornDate ? bornDate : userInfo.bornDate,
-            country: country ? country.name : user.country,
-            prefixCountry: country ? country.code : userInfo.prefixCountry,
-            phoneNumber: phoneNumber ? phoneNumber : userInfo.phoneNumber,
-          }),
+          body: formData,
         }
       );
-    
+
       if (!res.ok) {
         const errorToJson = await res.json();
         console.log(errorToJson);
-        
-        setErrorMessage(errorToJson);
-
-        showAlert("error", `${errorMessage}`, "Error updating");
-        throw new Error("Cannot posible updated user");
+        showAlert("error", "Error updating", errorToJson.message || "Error updating");
+        throw new Error("Cannot update user");
       }
-
-      fetchInfoUser();
-      showAlert("success", "Updated succesfully", "Updated your info!");
+      showAlert("success", "Updated successfully", "Updated your info!");
     } catch (err) {
-      console.error(err);
+      console.error("Error:", err);
+      showAlert("error", "Unexpected error", "An unexpected error occurred.");
     }
   };
 
@@ -181,7 +177,7 @@ const PorfileSettingsView = () => {
               onChange={handleImageChange}
               className="input-file-userSettings"
             />
-            <span className="file-upload-text">Selecciona una imagen</span>
+            <span className="file-upload-text">Select an image</span>
           </div>
         </div>
         <LabelComponent
@@ -260,4 +256,4 @@ const PorfileSettingsView = () => {
   );
 };
 
-export default PorfileSettingsView;
+export default ProfileSettingsView;
