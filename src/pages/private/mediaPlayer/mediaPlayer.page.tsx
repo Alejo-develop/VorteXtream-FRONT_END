@@ -89,7 +89,7 @@ export default function StreamPage() {
           console.error(err);
         }
       } else {
-        const API_KEY = import.meta.env.VITE_TMBD_API_KEY;
+        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const baseUrl = "https://api.themoviedb.org/3/movie";
         const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
