@@ -5,6 +5,8 @@ import FormCheckout from "./components/checkout.component";
 import { useAuth } from "../../../auth/auth.provider";
 import { useEffect, useState } from "react";
 import { PayMethodResponse } from "../../../common/interfaces/paymethod.interface";
+import useAlert from "../../private/userMenu/components/alert.component";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutPage() {
   const [payMethodInfo, setPayMethodInfo] = useState<PayMethodResponse | null>(null);
@@ -24,6 +26,8 @@ export default function CheckoutPage() {
   const auth = useAuth()
   const user = auth.getUser()
   const token = auth.getToken()
+  const {showAlert} = useAlert()
+  const goTo = useNavigate()
 
   useEffect(() => {
     const fetchPayMethod = async () => {
@@ -42,11 +46,12 @@ export default function CheckoutPage() {
         );
   
         if (!res.ok) {
+          showAlert('error', 'You must first have a payment method before you can become a premium member', 'error')
+          goTo('/usermenu')
           throw new Error("Paymethod not found");
         }
   
         const resToJson = (await res.json()) as PayMethodResponse;
-        console.log(resToJson);
         
         setPayMethodInfo(resToJson);
       } catch (err) {
