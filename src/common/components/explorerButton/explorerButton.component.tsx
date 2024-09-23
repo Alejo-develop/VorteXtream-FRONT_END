@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ExplorerButtonComponent = () => {
@@ -78,6 +77,12 @@ const StyledWrapper = styled.div`
     top: -45%;
     background-color: #f08080; /* Color de fondo en estado hover */
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+  }
+
+  @media screen and (max-width:915px){
+    .button2{
+      display:none;
+    }
   }
 `;
 

@@ -1,8 +1,9 @@
 /* Estilos para GenreSelect */
 .select-container{
     display: flex;
-    justify-content: center;
+    justify-content: end;
     margin: 1rem 0; /* Ajusta según el espaciado que desees */
+    margin-right: 75px;
 }
 
 .genre-select {

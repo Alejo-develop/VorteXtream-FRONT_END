@@ -1,0 +1,47 @@
+/* Estilo para el contenedor principal */
+.content-delete-edit-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffb2b250;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo para el título */
+  .content-title {
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 500;
+  }
+  
+  /* Contenedor para los botones */
+  .button-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Opcional: estilo adicional para los botones */
+  button {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Botón de editar */
+ 
+  
+  /* Botón de eliminar */
+  button.delete-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  button.delete-btn:hover {
+    background-color: #e53935;
+  }
+  

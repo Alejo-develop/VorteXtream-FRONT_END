@@ -1,80 +1,37 @@
-import {
-  Facebook,
-  InstagramIcon,
-  Linkedin,
-  Twitter,
-  Settings,
-  Lock,
-  Book,
-  Languages 
-} from "lucide-react";
+
 import Logo from "../../../assets/img/Logo.png";
 import "./style.css";
-import ButttonFooterComponent from "../socialMediaButton/socialMediaButton.component";
+import SubscribeComponent from "./Suscribe.component";
+import { Phone, Mail } from "lucide-react";
+import SocialNetworkComponent from "../socialMediaButton/socialMediaButton.component";
+import OurServicesComponent from "./OurServices";
 
 const FooterComponent = () => {
   return (
     <footer className="footer">
-      <section className="container-section-footer">
-        <article className="section-footer">
-          <ButttonFooterComponent
-            name="@VortexTream"
-            className="social-media"
-            icon={
-              <InstagramIcon size={"2.6rem"} className="icon-social-media" />
-            }
-          />
-          <ButttonFooterComponent
-            name="@VortexTream"
-            className="social-media"
-            icon={<Twitter size={"2.6rem"} className="icon-social-media" />}
-          />
-          <ButttonFooterComponent
-            name="@VortexTream"
-            className="social-media"
-            icon={<Facebook size={"2.6rem"} className="icon-social-media" />}
-          />
-          <ButttonFooterComponent
-            name="@VortexTream"
-            className="social-media"
-            icon={<Linkedin size={"2.6rem"} className="icon-social-media" />}
-          />
-        </article>
+      <section className="container-image-sub">
+        <img src={Logo} alt="VorteXtream logo" className="image-footer" />
+        <SubscribeComponent />
       </section>
+      <section className="services-footer">
+        <div className="sevices-select">
 
-      <div className="copyright-container">
-        <img src={Logo} alt="" className="img-footer" />
-
-        <p className="copyright">
-          &copy; 2024 VorteXtream. All rights reserved.
-        </p>
-      </div>
-
-      <section className="container-section-footer">
-        <article className="section-footer">
-          <ButttonFooterComponent
-            name="Account settings"
-            className="social-media"
-            icon={<Settings size={"2.5rem"} className="icon-social-media" />}
-          />
-          <ButttonFooterComponent
-            name="Privacy settings"
-            className="social-media"
-            icon={<Lock size={"2.5rem"} className="icon-social-media" />}
-          />
-          <ButttonFooterComponent
-            name="Politics and privacy"
-            className="social-media"
-            icon={<Book size={"2.5rem"} className="icon-social-media" />}
-          />
-          <form className="social-media">
-            <Languages size={"2.5rem"} />
-            <select className="select-lenguaje">
-              <option value="Engish">Engish</option>
-              <option value="Spanish">Spanish</option>
-            </select>
-          </form>
-        </article>
+          <OurServicesComponent />
+        </div>
+        
+        <p className="copy-right">&copy; <span id="year"></span> Vortex. All rights reserved.</p> 
+      </section>
+      <section className="social-networks">
+        <h2 className="contact-title">Contact with Us</h2>
+        <div className="phone">
+          <Phone />
+          <p>+1 123 456 7890</p>
+        </div>
+        <div className="email">
+          <Mail />
+          <p>info@vortextream.com</p>
+        </div>
+        <SocialNetworkComponent />
       </section>
     </footer>
   );

@@ -1,0 +1,38 @@
+.categories-container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;}
+
+.categories-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+}
+
+.category-item {
+    cursor: pointer;
+    text-align: center;
+    width: 120px;
+}
+
+.category-image {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.category-item span {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.categories{
+    display: flex;
+    justify-content: center;
+}

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface StreamMostViewProps {
@@ -6,26 +5,44 @@ interface StreamMostViewProps {
   game_name: string;
   type: string;
   user_name: string;
-  viewer_count: number
+  viewer_count: number;
   thumbnail_url: string;
 }
 
-const StreamMostViewComponent = ({ thumbnail_url, id, game_name, type, user_name, viewer_count }: StreamMostViewProps) => {
-    
-    return (
-    <StyledWrapper thumbnail_url={thumbnail_url} id={id} type={type} user_name={user_name} viewer_count={viewer_count} game_name={game_name} >
+const StreamMostViewComponent = ({
+  thumbnail_url,
+  id,
+  game_name,
+  type,
+  user_name,
+  viewer_count,
+}: StreamMostViewProps) => {
+  return (
+    <StyledWrapper
+      thumbnail_url={thumbnail_url}
+      id={id}
+      type={type}
+      user_name={user_name}
+      viewer_count={viewer_count}
+      game_name={game_name}
+    >
       <div className="input__container">
         <div className="shadow__input" />
-        <button style={{width: '4.5rem', padding: '0'}} className="input__button__shadow">
-
-            <img style={{width: '100%', height: '2.5rem'}} src={thumbnail_url} alt="streamer-img" />
-        
+        <button
+          style={{ width: "4.5rem", padding: "0" }}
+          className="input__button__shadow"
+        >
+          <img
+            style={{ width: "100%", height: "2.5rem" }}
+            src={thumbnail_url}
+            alt="streamer-img"
+          />
         </button>
-        
+
         <button name="username" className="input__search">
           {game_name}
-        </button> 
-      <h5 style={{color: 'white'}}>Viwers: {viewer_count}</h5>
+        </button>
+        <h5 style={{ color: "white" }}>Viwers: {viewer_count}</h5>
       </div>
     </StyledWrapper>
   );
@@ -49,7 +66,7 @@ const StyledWrapper = styled.div<StreamMostViewProps>`
     perspective: 1000px;
     box-shadow: 10px 10px 0 #f08080; /* Color de la sombra */
     margin-left: 1rem;
-    margin-bottom: 3rem
+    margin-bottom: 3rem;
   }
 
   .input__container:hover {
@@ -132,7 +149,7 @@ const StyledWrapper = styled.div<StreamMostViewProps>`
   }
 
   .input__container::before {
-    content: "${props => props.user_name}";;
+    content: "${(props) => props.user_name}";
     position: absolute;
     top: -15px;
     left: 20px;

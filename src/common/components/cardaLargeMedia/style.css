@@ -70,7 +70,7 @@
 .sinopsis-cardLarge {
     margin-left: 8px;
     color: white;
-    border-radius: 20px;
+    text-align: start;
     width: 37rem;
     font-size: 1.1rem;
     min-height: 5.5rem;
@@ -80,4 +80,49 @@
 
 .container-buttons-addREcently {
     margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 412px) {
+    .container-card-large {
+        width: 25rem; /* Ajustar al 90% del ancho */
+        height: auto; /* Permitir que la altura sea automática */
+        grid-template-columns: 1fr; /* Cambiar a una columna */
+        margin-top: 1rem;
+        margin-left: 0; /* Eliminar margen izquierdo */
+    }
+
+    .info-media-container {
+        margin-left: 0;
+        width: 100%; /* Reducir margen izquierdo */
+    }
+
+    .media-title-cardLarge {
+        font-size: 1.8rem; /* Reducir el tamaño de fuente */
+        margin-bottom: 1rem; /* Reducir margen inferior */
+    }
+
+    .sinopsis-cardLarge {
+        width: auto; /* Ajustar al ancho disponible */
+        font-size: 1rem; /* Reducir el tamaño de fuente */
+        min-height: auto; /* Permitir altura automática */
+        max-height: none; /* Quitar límite de altura */
+    }
+
+    .container-buttons-addREcently {
+        display: flex;
+        height: 10rem;
+        flex-direction: column;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        justify-content: space-around;
+    }
+}
+
+/* Responsivo para pantallas medianas (hasta 915px) */
+@media screen and (max-width: 915px) {
+    .container-card-large {
+        margin-left: 1rem; /* Reducir margen en pantallas medianas */
+        width: 95%; /* Ajustar al 95% del ancho */
+        height: auto; /* Permitir que la altura sea automática */
+    }
 }

@@ -3,16 +3,16 @@
     overflow: hidden;
     width:100%;
     margin: auto;
-    margin-top: 20px;
-    margin-bottom: 120px;
+    margin-bottom: 100px;
     position: relative;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.705);
 }
 
 .anime-item {
     position: relative;
     width: 800px;
-    height: 90vh;
+    height: 100vh;
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.5s ease, box-shadow 0.3s ease;
@@ -73,6 +73,8 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 3;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .anime-item:hover .anime-title {
@@ -124,4 +126,26 @@
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 40px;
     margin-top: 20px;
+}
+
+@media (max-width: 430px) {
+    .anime-item {
+        width: 100%; 
+        height: 60vh; 
+    }
+
+    .anime-title {
+        font-size: 0.9rem; 
+        padding: 8px; 
+    }
+
+
+    .load-more-button {
+        font-size: 12px; 
+        padding: 8px 15px; 
+    }
+
+    .cards-anime {
+        gap: 15px; 
+    }
 }

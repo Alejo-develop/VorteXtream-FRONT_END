@@ -1,32 +1,52 @@
-.header{
+
+.header {
     display: flex;
     width: 100%;
     height: 7rem;
     justify-content: space-between;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    padding: 0 1rem; 
+    box-sizing: border-box;
+    z-index:7;
 }
 
-.container-search{
+.header-watch-stream{
+    display: flex;
+    width: 78rem;
+    height: 7rem;
+    justify-content: space-between;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    padding: 0 1rem; 
+    box-sizing: border-box;
+    z-index:7;
+}
+
+.container-search {
     display: flex;
     margin-right: 5rem;
     gap: 2rem;
     align-items: center;
 }
 
-.container-explorer{
+.container-explorer {
     display: flex;
     margin-left: 6.5rem;
     gap: 2rem;
     align-items: center;
 }
 
-.logo{
-    min-width: 10rem
+.logo {
+    min-width: 10rem;
 }
 
-.input-search{
+.input-search {
     width: 23rem;
     height: 2.8rem;
-    background-color:#2F3241;
+    background-color: #2F3241;
     border: 2px solid;
     border-color: #BCECE0;
     border-radius: 30px;
@@ -46,25 +66,101 @@
 }
 
 /* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
-.input-search::-webkit-search-clear-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
-.input-search::-webkit-search-decoration {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
-.input-search::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/* Ocultar el ícono de borrar en WebKit (Chrome, Safari) */
+.input-search::-webkit-search-clear-button,
+.input-search::-webkit-search-decoration,
+.input-search::-webkit-search-cancel-button,
 .input-search::-webkit-search-submit-button {
     -webkit-appearance: none;
     appearance: none;
+}
+
+@media screen and (max-width: 1280px) {
+    .header {
+        height: 6rem;
+    }
+
+    .container-search {
+        margin-right: 2rem;
+        gap: 1.5rem;
+    }
+
+    .container-explorer {
+        margin-left: 3rem;
+    }
+
+    .logo {
+        min-width: 8rem;
+    }
+
+    .input-search {
+        width: 20rem;
+        height: 2.5rem;
+    }
+}
+
+/* Pantallas pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto; /* Ajusta la altura para acomodar el contenido */
+        padding: 0.5rem;
+    }
+
+    .container-search {
+        margin-right: 0;
+        gap: 1rem;
+    }
+
+    .container-explorer {
+        margin-left: 0;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .logo {
+        min-width: 6rem;
+    }
+
+    .input-search {
+        width: 18rem;
+        height: 2.3rem;
+    }
+}
+
+/* Pantallas muy pequeñas (hasta 412px) */
+@media screen and (max-width: 412px) {
+    .header {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .container-search {
+        margin-right: 0;
+        justify-content: center;
+    }
+
+    .logo {
+        min-width: 4%;
+        width: 20px;
+        height: 100%;
+    }
+
+    .container-explorer {
+        width: 100%;
+        margin-left: 0;
+        gap: 0.5rem;
+        height: 6rem;
+    }
+
+    .container-logo {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .input-search {
+        width: 100%;
+        height: 2rem;
+    }
 }

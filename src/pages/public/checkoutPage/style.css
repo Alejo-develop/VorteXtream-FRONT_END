@@ -1,0 +1,45 @@
+.container-chekOut-page{
+    margin: 0;
+    width: 95.4%;
+    margin-left: 4.6rem;
+    height: 99.9vh;
+    max-height: 100vh;
+    display: grid;
+    grid-template-columns: 3fr 1fr ;
+}
+
+.plans-suscriptions{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.type-plans-container{
+    display: flex;
+    gap: 5rem;
+}
+
+.container-checkoutFinally{
+    height: 100%;
+}
+
+.title-upergrade-premium{
+    font-size: 2.7rem;
+    color: #F08080;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.title-upergrade-premium:hover{
+    transform: translateY(-5px);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);  
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+}
+
+.container-checkoutFinally{
+    background-color: #151515;
+    height: 100%;
+    border-left: #F08080 2px solid;
+}

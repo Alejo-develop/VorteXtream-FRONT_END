@@ -1,0 +1,14 @@
+.transitionPage-style{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    width: 100vw;
+    height: 100vw;
+    z-index: 999;
+    background-color: #2F3241;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    border-right: solid 2px #F08080 ;
+}

@@ -2,7 +2,7 @@ import React from 'react';
 
 // Definir la interfaz AnimeInfo
 export interface AnimeInfo {
-    id: number;
+    id: string;
     title_japonese: string;
     title_english: string;
     image_url: string;
@@ -24,7 +24,8 @@ export const HeaderAnime: React.FC<HeaderAnimeProps> = ({ animes }) => {
                         className="anime-image" 
                     />
                     <div className="anime-title">
-                        {anime.title_english || anime.title_japonese}
+                        {anime.title_japonese}
+                        {anime.title_english}
                     </div>
                 </div>
             ))}
