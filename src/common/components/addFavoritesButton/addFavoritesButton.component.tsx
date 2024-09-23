@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useAuth } from "../../../auth/auth.provider";
-import useAlert from "../alert/alert.component";
+import useAlert from "../../../pages/private/userMenu/components/alert.component";
 
 interface AddFavoritesButtonProps {
   size: string;

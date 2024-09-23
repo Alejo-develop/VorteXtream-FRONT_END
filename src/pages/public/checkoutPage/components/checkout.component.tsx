@@ -19,7 +19,7 @@ const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
   const { showAlert } = useAlert();
   
   const [totalPrice, setTotalPrice] = useState(7.99);
-  const [duration, setDuration] = useState("");
+  const [duration, setDuration] = useState("1 Month");
 
   const handleDurationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedDuration = event.target.value;

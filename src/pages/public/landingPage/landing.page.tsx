@@ -38,7 +38,7 @@ export default function LandingPage() {
 
       try {
         const res = await fetch(
-          `${baseUrl}${API_KEY}&language=es-ES&region=${prefixCountry}&sort_by=popularity.desc`
+          `${baseUrl}${API_KEY}&language=us-ES&region=${prefixCountry}&sort_by=popularity.desc&page=6`
         );
 
         if (!res.ok) {
@@ -97,7 +97,7 @@ export default function LandingPage() {
       const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
       try {
-        const res = await fetch(`${baseUrl}${API_KEY}&language=en-US&page=4`);
+        const res = await fetch(`${baseUrl}${API_KEY}&language=en-US&page=1`);
 
         if (!res.ok) {
           const resErrorMessage = res.json();
