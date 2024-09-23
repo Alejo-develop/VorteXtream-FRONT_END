@@ -9,7 +9,7 @@ interface registerProps {
   onChange: React.Dispatch<SetStateAction<boolean>>;
 }
 
-interface Country {
+export interface Country {
   name: string;
   code: string;
 }
@@ -78,7 +78,7 @@ const RegisterComponent = (props: registerProps) => {
             email,
             password,
             country: country.name,
-            prefixCountry: country.code
+            prefixCountry: country.code,
           }),
         }
       );
@@ -86,9 +86,7 @@ const RegisterComponent = (props: registerProps) => {
       if (!response.ok) {
         const errorToJson = (await response.json()) as AuthResponseError;
 
-        setErrorMessage(
-          errorToJson ? errorToJson.message : "Unknow error"
-        );
+        setErrorMessage(errorToJson ? errorToJson.message : "Unknow error");
         throw new Error(errorMessage);
       }
       showAlert("success", "Success register", "Has registration successfully");
@@ -157,7 +155,9 @@ const RegisterComponent = (props: registerProps) => {
             <select
               value={country ? country.code : ""}
               onChange={(e) => {
-                const selectedCountry = countries.find((c) => c.code === e.target.value);
+                const selectedCountry = countries.find(
+                  (c) => c.code === e.target.value
+                );
                 setCountry(selectedCountry || null);
               }}
             >

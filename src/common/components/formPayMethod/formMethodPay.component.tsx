@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { PayMethodResponse } from "../../interfaces/paymethod.interface";
 import { useAuth } from "../../../auth/auth.provider";
 import { BankResponse } from "../../interfaces/bank.interface";
+import useAlert from "../alert/alert.component";
 
 interface PayMethodDto {
   userId: string;
@@ -26,6 +27,7 @@ const FormMethodPay = () => {
   const auth = useAuth();
   const user = auth.getUser();
   const token = auth.getToken();
+  const { showAlert } = useAlert();
 
   // Fetch Banks Data
   const fetchBanks = async () => {
@@ -66,7 +68,6 @@ const FormMethodPay = () => {
 
       const resToJson = (await res.json()) as PayMethodResponse;
       setPayMethodInfo(resToJson);
-      console.log("Fetched pay method:", resToJson);
     } catch (err) {
       console.error("Error fetching pay method:", err);
     }
@@ -114,14 +115,13 @@ const FormMethodPay = () => {
 
       if (!res.ok) {
         const errorText = await res.text(); 
+        showAlert("error", "Error connect with the server", "Error with server");
         throw new Error(errorText || (payMethodInfo ? "Cannot update payment" : "Cannot create payment"));
       }
 
-      const resToJson = await res.json();
-      console.log("Response from server:", resToJson);
-
-      alert(payMethodInfo ? "Payment updated successfully" : "Payment created successfully");
+      alert();
       fetchPayMethod();
+      showAlert("success", payMethodInfo ? "Payment updated successfully" : "Payment created successfully", "Sucessfully");
     } catch (err) {
       console.error("Error handling form submit:", err);
       alert("An error occurred: " + err); 

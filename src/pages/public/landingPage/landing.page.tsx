@@ -32,7 +32,7 @@ export default function LandingPage() {
   useEffect(() => {
     const fetchData = async () => {
       const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
-      const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key=";  //https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=es-ES&region=${countryCode}
+      const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key="; 
 
       const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
