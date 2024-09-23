@@ -36,9 +36,6 @@ const EmailView = () => {
         }
       );
 
-      const resToJson = await res.json();
-      console.log(resToJson);
-
       if (!res.ok) throw new Error("Cannot posible changed email");
 
       showAlert("success", "Success email sent", "the email has been successfully"); 

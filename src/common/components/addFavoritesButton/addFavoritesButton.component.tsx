@@ -83,9 +83,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
               body: JSON.stringify(favoriteDto),
             }
           );
-          const createFavoriteToJson = await createFavorite.json()
-          console.log('res', createFavoriteToJson);
-          
+
           if (!createFavorite.ok) throw new Error(createFavorite.statusText);
 
           showAlert("success", "added favorite", "this title has been successfully added to favorites")
@@ -111,7 +109,6 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
           if (!removeFavorite.ok) throw new Error(removeFavorite.statusText);
 
           showAlert("success", "Remove successfully", "the title of the favorites has been successfully removed")
-          console.log(removeFavorite.json());
         } catch (err) {
           console.error(err);
         }

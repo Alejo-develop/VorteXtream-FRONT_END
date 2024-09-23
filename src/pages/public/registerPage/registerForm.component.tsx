@@ -42,10 +42,10 @@ const RegisterComponent = (props: registerProps) => {
             .sort((a: Country, b: Country) => a.name.localeCompare(b.name));
           setCountries(countryList);
         } else {
-          setErrorMessage("Cannot get countrys.");
+          setErrorMessage("Cannot get countries.");
         }
       } catch (error) {
-        setErrorMessage("Error al obtener la lista de países.");
+        setErrorMessage("Cannot get countries.");
       }
     };
 
@@ -77,7 +77,8 @@ const RegisterComponent = (props: registerProps) => {
             username,
             email,
             password,
-            country: country.code,
+            country: country.name,
+            prefixCountry: country.code
           }),
         }
       );
@@ -86,7 +87,7 @@ const RegisterComponent = (props: registerProps) => {
         const errorToJson = (await response.json()) as AuthResponseError;
 
         setErrorMessage(
-          errorToJson ? errorToJson.message : "Error desconocido"
+          errorToJson ? errorToJson.message : "Unknow error"
         );
         throw new Error(errorMessage);
       }
@@ -156,9 +157,7 @@ const RegisterComponent = (props: registerProps) => {
             <select
               value={country ? country.code : ""}
               onChange={(e) => {
-                const selectedCountry = countries.find(
-                  (c) => c.code === e.target.value
-                );
+                const selectedCountry = countries.find((c) => c.code === e.target.value);
                 setCountry(selectedCountry || null);
               }}
             >

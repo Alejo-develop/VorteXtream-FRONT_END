@@ -53,7 +53,7 @@ export default function StreamPage() {
     const putInHistory = async () => {
 
       try {
-        const res = await fetch(`http://localhost:3000/vortextream/history-user`, {
+        const res = await fetch(`http://localhost:3000/vortextream/historyuser`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +65,8 @@ export default function StreamPage() {
             imgMedia: imgMedia,
             mediaTitle: mediaTitle,
             synopsis: synopsis,
-            rating: rating
+            rating: rating,
+            typeMedia: typeMedia ? typeMedia : null 
           })
         });
         
@@ -225,6 +226,7 @@ export default function StreamPage() {
                       title={data.title}
                       vote_average={data.vote_average}
                       overview={data.overview}
+                      typeMedia={null}
                     />
                   ))}
                 </SwiperComponent>

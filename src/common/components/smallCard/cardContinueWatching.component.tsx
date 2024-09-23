@@ -8,7 +8,8 @@ interface SmallCardProps {
   title: string;
   vote_average: number;
   overview: string;
-  key: string,
+  key: string;
+  typeMedia: string | null
 }
 
 const CardSmallComponent = ({
@@ -17,7 +18,8 @@ const CardSmallComponent = ({
   imageUrl,
   title,
   vote_average,
-  overview
+  overview,
+  typeMedia
 }: SmallCardProps) => {
   
   return (
@@ -39,6 +41,7 @@ const CardSmallComponent = ({
            height="45"
            fontweight="0.8"
            type="button"
+           typeMedia={typeMedia}
           />
           <StarRating rating={vote_average} fontSize="1.4rem"/>
         </div>

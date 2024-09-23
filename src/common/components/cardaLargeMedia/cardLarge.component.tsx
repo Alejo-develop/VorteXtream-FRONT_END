@@ -23,8 +23,6 @@ const CardLargeComponent = ({
       : text;
   };
 
-  console.log(index);
-
   return (
     <div key={index} className="container-card-large">
       <div className="banner-cardLarge-container">
