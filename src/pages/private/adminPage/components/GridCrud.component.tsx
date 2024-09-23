@@ -6,7 +6,7 @@ interface FormContentProps {
     contentDeleteAndEdit: JSX.Element | JSX.Element[];
 }
 
-const ridCrudComponent = ({ formContent, contentDeleteAndEdit  }: FormContentProps) => {
+const GridCrudComponent = ({ formContent, contentDeleteAndEdit  }: FormContentProps) => {
     return (
         <div className="container-grid-crud">
             <div className="container-create">
