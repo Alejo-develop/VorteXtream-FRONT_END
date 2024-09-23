@@ -64,7 +64,24 @@
     font-weight: 100;
 }
 
-@media (width <= 412px) {
+@media screen and (max-width: 768px) {
+    .footer {
+        margin-left: 1rem; /* Reducir margen en pantallas medianas */
+        height: auto; /* Ajustar altura automáticamente */
+        grid-template-columns: 1fr 1fr; /* Cambiar a dos columnas */
+    }
+
+    .services-footer {
+        gap: 50px; /* Reducir espacio entre secciones */
+    }
+
+    .image-footer {
+        width: 200px; /* Reducir tamaño de imagen */
+    }
+}
+
+/* Responsivo para pantallas muy pequeñas (hasta 412px) */
+@media screen and (max-width: 412px) {
     .footer {
         margin-left: 0; /* Eliminar margen en pantallas pequeñas */
         height: auto; /* Permitir que la altura sea automática */
@@ -81,5 +98,9 @@
 
     .copy-right {
         font-size: 1.2rem; /* Ajustar tamaño de fuente para móviles */
+    }
+
+    .image-footer {
+        width: 150px; /* Ajustar tamaño de imagen para móviles */
     }
 }
