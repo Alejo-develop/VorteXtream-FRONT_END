@@ -1,4 +1,4 @@
-export const clientId = "okkzkyh8ogfm1kt5aukaaxow9owi2w";
-export const accessToken = "cwo0te7eacxhmu608bi92yzz73lt6r";
-export const streamsUrl = "https://api.twitch.tv/helix/streams?first=5&sort=viewer_count"; {/*Stream mas vistos en vivo, solo primeros 5*/}
-export const usersUrl = "https://api.twitch.tv/helix/users";
+export const clientId = import.meta.env.VITE_TWITCH_CLIENT_ID;
+export const accessToken = import.meta.env.VITE_TWITCH_ACCESS_TOKEN;
+export const streamsUrl = import.meta.env.VITE_TWITCH_STREAMS_URL;{/*Stream mas vistos en vivo, solo primeros 5*/}
+export const usersUrl = import.meta.env.VITE_TWITCH_USERS_URL

@@ -31,7 +31,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
+      const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
       const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key="; 
 
       const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
@@ -63,7 +63,7 @@ export default function LandingPage() {
         setDataMediaCountry(data);
 
         const fetchHistory = await fetch(
-          "http://localhost:3000/vortextream/historyuser",
+          `${import.meta.env.VITE_BACKEND_URL}/historyuser`,
           {
             method: "GET",
             headers: {
@@ -92,7 +92,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     const fetchDataAddRecently = async () => {
-      const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
+      const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
       const baseUrl = "https://api.themoviedb.org/3/movie/now_playing?api_key=";  
       const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 

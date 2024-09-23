@@ -13,8 +13,8 @@ export default function StreamPage() {
   const [streamerData, setStreamerData] = useState<Streamer[]>([]);
   const [imgProfileStreamer, setImgProfileStreamer] = useState<string | undefined>(profile_image_url);
   
-  const clientId = "okkzkyh8ogfm1kt5aukaaxow9owi2w";
-  const accessToken = "cwo0te7eacxhmu608bi92yzz73lt6r";
+  const clientId = import.meta.env.VITE_TWITCH_CLIENT_ID
+  const accessToken = import.meta.env.VITE_TWITCH_ACCESS_TOKEN;
 
   const usersUrl = "https://api.twitch.tv/helix/users";
 

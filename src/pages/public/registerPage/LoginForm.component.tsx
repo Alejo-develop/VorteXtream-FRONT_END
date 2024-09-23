@@ -34,7 +34,7 @@ const LoginComponent = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/vortextream/auth/login",
+        `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
         {
           method: "POST",
           headers: {

@@ -32,7 +32,7 @@ const FormMethodPay = () => {
   // Fetch Banks Data
   const fetchBanks = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/vortextream/bank`);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/bank`);
       if (!res.ok) throw new Error("Banks not found");
 
       const resToJson = (await res.json()) as BankResponse[];
@@ -52,7 +52,7 @@ const FormMethodPay = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/vortextream/paymethod/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/paymethod/${user.id}`,
         {
           method: "GET",
           headers: {
@@ -97,8 +97,8 @@ const FormMethodPay = () => {
 
     try {
       const url = payMethodInfo
-        ? `http://localhost:3000/vortextream/paymethod/${user.id}`
-        : `http://localhost:3000/vortextream/paymethod`;
+        ? `${import.meta.env.VITE_BACKEND_URL}/paymethod/${user.id}`
+        : `${import.meta.env.VITE_BACKEND_URL}/paymethod`;
 
       const method = payMethodInfo ? "PATCH" : "POST";
 

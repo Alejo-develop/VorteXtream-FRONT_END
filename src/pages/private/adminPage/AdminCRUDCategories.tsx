@@ -14,7 +14,8 @@ type CategoryData = {
 };
 
 // API para obtener categorías desde TMDb
-const API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=a3c97fc58c271f7b5b5cc1c31b8ef888&language=en-US`;
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
 
 export function AdminCrudCategoriesPage() {
     const [categories, setCategories] = useState<CategoryData[]>([]);

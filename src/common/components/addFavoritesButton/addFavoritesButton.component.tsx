@@ -51,7 +51,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
   const handleClick = async () => {
     try {
       const getFavorites = await fetch(
-        `http://localhost:3000/vortextream/favorite/${mediaId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/favorite/${mediaId}`,
         {
           method: "GET",
           headers: {
@@ -73,7 +73,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
 
         try {
           const createFavorite = await fetch(
-            `http://localhost:3000/vortextream/favorite`,
+            `${import.meta.env.VITE_BACKEND_URL}/favorite`,
             {
               method: "POST",
               headers: {
@@ -96,7 +96,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
 
         try {
           const removeFavorite = await fetch(
-            `http://localhost:3000/vortextream/favorite/${favoriteToJson.id}`,
+            `${import.meta.env.VITE_BACKEND_URL}/favorite/${favoriteToJson.id}`,
             {
               method: "DELETE",
               headers: {

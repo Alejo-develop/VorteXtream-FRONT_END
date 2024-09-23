@@ -1,9 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const ExplorerButtonComponent = () => {
+  const goTo = useNavigate()
+  
+  const handleClick = () => {
+    goTo('/searchpage')
+  }
+
+
   return (
     <StyledWrapper>
-      <button className="button2">
+      <button className="button2" onClick={handleClick}>
         Explore
       </button>
     </StyledWrapper>

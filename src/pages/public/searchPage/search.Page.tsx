@@ -12,7 +12,7 @@ type Genre = {
     genreName: string;
 };
 
-const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const fetchJson = async (url: string) => {

@@ -19,7 +19,7 @@ const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
   const { showAlert } = useAlert();
   
   const [totalPrice, setTotalPrice] = useState(7.99);
-  const [duration, setDuration] = useState("1 Month");
+  const [duration, setDuration] = useState("");
 
   const handleDurationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedDuration = event.target.value;
@@ -47,7 +47,7 @@ const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
     event.preventDefault();
     
     try {
-      const changeSubscription = await fetch(`http://localhost:3000/vortextream/subcriptions/${user.id}`, {
+      const changeSubscription = await fetch(`${import.meta.env.VITE_BACKEND_URL}/subcriptions/${user.id}`, {
         method: 'PATCH',
         headers:{
           'Content-Type': 'application/json',
@@ -61,6 +61,9 @@ const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
       })
 
       if(!changeSubscription.ok){
+        const errrrrr = await changeSubscription.json()
+        console.log(errrrrr);
+        
         showAlert('error', 'Subcription cannot be pay', 'error')
         throw new Error('Cannot')
       }

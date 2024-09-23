@@ -15,7 +15,7 @@ const PremiumContainerComponent = () => {
   useEffect(() => {
     const fetchSubscription = async () => {
       try {
-        const subscription = await fetch(`http://localhost:3000/vortextream/subcriptions/${user.id}`, {
+        const subscription = await fetch(`${import.meta.env.VITE_BACKEND_URL}/subcriptions/${user.id}`, {
           method: 'GET',
           headers: {
             "Content-Type": "application/json",

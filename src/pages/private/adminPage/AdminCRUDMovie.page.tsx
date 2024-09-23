@@ -8,7 +8,7 @@ import ContentDeleteAndEdit from "./components/ContentDeleteAndEdit";
 import useAlert from "../../private/userMenu/components/alert.component"; // Importa el hook useAlert
 
 // API Key de TMDb
-const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 
 // Definir la interfaz para las propiedades de la película
