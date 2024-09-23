@@ -101,3 +101,22 @@
 .starts-content {
     margin-left: 15px;
 }
+
+@media screen and (max-width: 412px) {
+    .cards-container {
+        gap: 0.5rem; /* Reducir espacio entre tarjetas */
+    }
+
+    .card {
+        width: 100%; /* Ajustar al 100% del ancho */
+        height: auto; /* Permitir que la altura sea automática */
+    }
+
+    .card-details-panel {
+        width: 100%; /* Ajustar el ancho del panel de detalles */
+    }
+
+    .title-movie {
+        font-size: 1.4rem; /* Ajustar tamaño de fuente */
+    }
+}

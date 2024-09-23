@@ -82,8 +82,43 @@
     margin-top: 1.5rem;
 }
 
-@media screen and (max-width:915px) {
+@media screen and (max-width: 412px) {
+    .container-card-large {
+        width: 100%; /* Ajustar al 100% del ancho */
+        height: auto; /* Permitir que la altura sea automática */
+        grid-template-columns: 1fr; /* Cambiar a una columna */
+        margin-top: 1rem; /* Reducir el margen superior */
+    }
+
+    .info-media-container {
+        margin-left: 0;
+        width: 100%; /* Reducir margen izquierdo */
+    }
+
+    .media-title-cardLarge {
+        font-size: 1.8rem; /* Reducir el tamaño de fuente */
+        margin-bottom: 1rem; /* Reducir margen inferior */
+    }
+
+    .sinopsis-cardLarge {
+        width: auto; /* Ajustar al ancho disponible */
+        font-size: 1rem; /* Reducir el tamaño de fuente */
+        min-height: auto; /* Permitir altura automática */
+        max-height: none; /* Quitar límite de altura */
+    }
+
+    .container-buttons-addREcently{
+        display: flex;
+        margin-top: 0;
+        margin-bottom: 5rem;
+        justify-content: center;
+    }
+}
+
+@media screen and (width: 915px) {
     .container-card-large{
-        flex-direction: column;
+        margin-left: 3rem;
+        width: 90%;
+        height: 23rem;
     }
 }

@@ -74,7 +74,7 @@
     appearance: none;
 }
 
-@media screen and (max-width:915px) {
+@media screen and (max-width:412px) {
     .header{
         flex-direction: column;
     }
