@@ -13,7 +13,7 @@ interface WatchButtonProps {
   height: string;
   fontweight: string;
   type?: string;
-  typeMedia?: string;
+  typeMedia?: string | null;
 }
 
 const StyledButton = styled.button<WatchButtonProps>`

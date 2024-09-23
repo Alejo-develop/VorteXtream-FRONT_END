@@ -60,6 +60,8 @@ const LoginComponent = () => {
 
       const token = resToJson.token;
       const user = resToJson.user as UserPayload;
+      console.log(user);
+      
 
       // Guardar información de sesión
       auth.saveSessionInfo(user, token, resToJson.isPremium);
