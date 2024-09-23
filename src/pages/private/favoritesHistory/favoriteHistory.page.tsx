@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CardProps, HistoryResponse } from "../../../common/interfaces/media.interface";
 import "./styles/styles.css";
 import CardComponent from "../../../common/components/sliderCards.component/sliderCard.component";
-import FooterComponent from "../../../common/components/footer/footer.component";
 import { useAuth } from "../../../auth/auth.provider";
 import CardSmallComponent from "../../../common/components/smallCard/cardContinueWatching.component";
 

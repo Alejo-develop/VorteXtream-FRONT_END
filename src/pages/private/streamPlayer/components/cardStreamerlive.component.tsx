@@ -1,5 +1,4 @@
-import { Eye  } from "lucide-react";
-import React from "react";
+import { Eye } from "lucide-react";
 import styled from "styled-components";
 
 interface CardStreamersLiveComponentProps {
@@ -25,7 +24,7 @@ const CardStreamersLiveComponent = (props: CardStreamersLiveComponentProps) => {
           <div className="container-title-and-viewers">
             <h1 className="card-title">{props.user_name}</h1>
             <div className="container-viewers-watchStream">
-              <Eye  style={{ color: "#2F3241" }} />
+              <Eye style={{ color: "#2F3241" }} />
               {props.viewer_count}
             </div>
           </div>
@@ -63,7 +62,7 @@ const StyledWrapper = styled.div`
       inset rgba(0, 0, 0, 0.19) 0px 10px 20px,
       inset rgba(0, 0, 0, 0.23) 0px 6px 6px;
     border: 5px solid #f08080;
-     transform: translateY(-6px);
+    transform: translateY(-6px);
   }
 
   .card-title {
@@ -72,16 +71,17 @@ const StyledWrapper = styled.div`
     color: #f08080;
     cursor: default;
     text-shadow: 2px 2px 4px rgb(0, 0, 0);
-    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease,
+      letter-spacing 0.3s ease;
   }
 
-  .card-title:hover{
-  transform: translateY(-5px); 
-    color: #F08080;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
-    letter-spacing: 1px; 
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
-    }
+  .card-title:hover {
+    transform: translateY(-5px);
+    color: #f08080;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
 
   .card-des {
     margin: 0;

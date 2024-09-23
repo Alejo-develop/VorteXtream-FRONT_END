@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import SwiperComponent from "../../../../common/components/sliderCards.component/swiperComponent/swiperSlider.component";
 import CardComponent from "../../../../common/components/sliderCards.component/sliderCard.component";
 import { CardProps } from "../../../../common/interfaces/media.interface";
 
-import '../styles/moviesGenre.css'
+import "../styles/moviesGenre.css";
 
 interface MovieData {
   genreId: number;
@@ -15,12 +14,12 @@ interface MoviesByGenreComponentProps {
   moviesByGenre: { [key: number]: CardProps[] };
 }
 
-export const MoviesByGenreComponent = ({ genres, moviesByGenre }: MoviesByGenreComponentProps) => {
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
-
+export const MoviesByGenreComponent = ({
+  genres,
+  moviesByGenre,
+}: MoviesByGenreComponentProps) => {
   return (
     <div className="container-moviesByGenre">
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
       {genres.length === 0 ? (
         <p className="no-movies-message">No movies available</p>
       ) : (
@@ -29,7 +28,11 @@ export const MoviesByGenreComponent = ({ genres, moviesByGenre }: MoviesByGenreC
             <h1 className="mostWatched-genre-title">
               Most Watched {genre.genreName}
             </h1>
-            <SwiperComponent className="mySwiper-most-watched" slidesPerView={5} spaceBetween={5}>
+            <SwiperComponent
+              className="mySwiper-most-watched"
+              slidesPerView={5}
+              spaceBetween={5}
+            >
               {moviesByGenre[genre.genreId]?.map((movie) => (
                 <CardComponent
                   key={movie.id}

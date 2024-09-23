@@ -111,9 +111,9 @@ const ProfileSettingsView = () => {
 
       if (!res.ok) {
         const errorToJson = await res.json();
-        console.log(errorToJson);
+        setErrorMessage(errorToJson)
         showAlert("error", "Error updating", errorToJson.message || "Error updating");
-        throw new Error("Cannot update user");
+        throw new Error(errorMessage);
       }
       showAlert("success", "Updated successfully", "Updated your info!");
     } catch (err) {
