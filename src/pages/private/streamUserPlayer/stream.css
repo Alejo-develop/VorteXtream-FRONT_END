@@ -1,0 +1,184 @@
+/* Aseguramos que el contenedor principal esté bien alineado con el header */
+.container-stream {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto;
+    height: 120vh;
+    width: 100%;
+    gap: 10px;
+    margin-top: 90px; /* Reducimos el margen superior */
+    align-items: start; /* Alineamos los elementos de la cámara y la descripción al inicio */
+}
+
+/* Ajustamos el tamaño y posición de la cámara */
+.container-camera {
+    border-radius: 10px;
+    max-width: 850px;
+    max-height: 300px;
+    margin-left: 90px;
+    margin-top: 20px;
+    color: #ce889c;
+    font-size: x-large;
+}
+
+/* Barra de estado del livestream */
+.status-bar {
+    margin-top: 10px; /* Espaciado adicional para el texto del estado */
+    font-size: 16px;
+    color: #fff;
+}
+
+/* Contador de espectadores */
+.viewers-count {
+    margin-top: 10px; /* Espaciado adicional para el contador */
+    font-size: 18px;
+    color: #ffffff;
+    text-align: start;
+}
+
+/* Contenedor de descripción */
+.container-description {
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+    width: 100%;
+    height: 100%; /* Aseguramos que ocupe la misma altura que el contenedor de la cámara */
+}
+
+/* Botones para iniciar y detener el livestream */
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+}
+
+.start-button, .stop-button {
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Mejorar la transición */
+}
+
+.start-button {
+    background-color: #F08080; /* Color verde */
+    color: white;
+}
+
+.start-button:hover {
+    background-color: #ed9292;
+    transform: scale(1.1) 
+}
+
+.stop-button {
+    background-color: #F08080; /* Color rojo */
+    color: white;
+}
+
+.stop-button:hover {
+    background-color: #ed9292;
+    transform: scale(1.1) 
+}
+
+.container-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-stream {
+    overflow: hidden;
+}
+
+/* Estilos para la vista del participante */
+.participant-view {
+    width: 100%; /* Ajusta el ancho */
+    height: 90%; /* Ajusta la altura */
+    border: 2px solid #ce889c; /* Borde azul */
+    border-radius: 10px; /* Esquinas redondeadas */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    overflow: hidden; /* Asegúrate de que el contenido no se desborde */
+}
+
+/* Efecto de animación para el participante */
+
+
+
+.participant-view h2, .participant-view p { /* Estilo de texto dentro de participant-view */
+    color: #fff; /* Color del texto */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); /* Sombra de texto para destacar */
+}
+
+/* Estilos para el modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+ }
+
+ .stream-info {
+    margin-top: 20px;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.stream-title{
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 27px;
+}
+
+.stream-theme{
+    font-size: 15px;
+}
+
+

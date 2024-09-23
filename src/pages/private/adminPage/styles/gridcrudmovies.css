@@ -1,0 +1,45 @@
+.container-grid-crud {
+    display: grid;
+    grid-template-rows: repeat(12, 1fr); /* Dos filas con igual tamaño */
+    grid-template-columns:repeat(17, 1fr); 
+    gap: 80px; /* Espacio entre las filas */
+    max-width: 1100px; /* Asegúrate de que ocupe todo el ancho disponible */
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 20px;
+
+}
+
+.container-edit-delete, .container-create {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 93vh;
+    color: #fff; /* Texto blanco para contraste */
+    box-shadow: 5px 10px 12px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+    text-align: center;
+}
+
+.container-create {
+    grid-column: 1/10;
+    grid-row: 1/11;
+}
+
+.container-edit-delete {
+    grid-column: 10/-1;
+    grid-row: 1/11;
+    margin-right: 10px;
+}
+
+/* this is the style of the form */
+
+.form-create {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+  max-width: 800px;
+}

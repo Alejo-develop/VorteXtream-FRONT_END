@@ -19,10 +19,10 @@ const UserMenuLandingComponent = ({ className }: UserMenuLandingProps) => {
             </div>
 
             <div className="options-userMenu-landing">
-                <ButtonUserMenuLandingComponent width="19.8"  text="Settings profile" path="/usermenu" />
-                <ButtonUserMenuLandingComponent width="19.8" text="History/Favorites" path="/history&favorites" />
+                <ButtonUserMenuLandingComponent color="2F3241" width="19.8"  text="Settings profile" path="/usermenu" />
+                <ButtonUserMenuLandingComponent color="2F3241" width="19.8" text="History/Favorites" path="/history&favorites" />
                 <div className="logOut-buttonCointainer-userMenu">
-                <ButtonUserMenuLandingComponent logOut={true} width="19.8" text="Log Out" path="/login" />
+                <ButtonUserMenuLandingComponent color="2F3241" logOut={true} width="19.8" text="Log Out" path="/login" />
                 </div>
             </div>
         </div>

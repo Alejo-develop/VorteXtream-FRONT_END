@@ -10,9 +10,10 @@ interface SwiperComponentProps {
   children: React.ReactNode;
   spaceBetween: number;
   slidesPerView: number;
+  className: string
 }
 
-const SwiperComponent: React.FC<SwiperComponentProps> = ({ children, spaceBetween, slidesPerView }) => {
+const SwiperComponent: React.FC<SwiperComponentProps> = ({className, children, spaceBetween, slidesPerView }) => {
   return (
     <Swiper
       navigation={true} // Activa la navegación con flechas
@@ -23,7 +24,7 @@ const SwiperComponent: React.FC<SwiperComponentProps> = ({ children, spaceBetwee
       }}
       slidesPerView={slidesPerView} // Muestra 5 cartas por vista
       spaceBetween={spaceBetween} // Espacio entre las cartas
-      className="mySwiper-most-watched"
+      className={className}
     >
       {/* Asegúrate de que children sea un array de SwiperSlide */}
       {React.Children.map(children, (child, index) => (

@@ -1,0 +1,12 @@
+/* custom-styles.css */
+
+/* Sobrescribir el color de fondo del contenedor del botón flotante */
+#botpress-webchat .bpFabContainer {
+    background-color: #FF5733 !important; /* Cambia el color de fondo a #FF5733 */
+  }
+  
+  /* Sobrescribir el color del ícono dentro del botón flotante */
+  #botpress-webchat .bpFabIcon {
+    color: #FFFFFF !important; /* Cambia el color del ícono a blanco */
+  }
+  

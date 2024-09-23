@@ -1,11 +1,9 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../auth/auth.provider";
 
 export const useGoogleLogin = () => {
   const navigate = useNavigate();
-  const authProvider = useAuth();
 
   const handleGoogleLogin = async (): Promise<void> => {
     const provider = new GoogleAuthProvider();
@@ -13,8 +11,6 @@ export const useGoogleLogin = () => {
     try {
       const credentials = await signInWithPopup(auth, provider);
       const googleToken = await credentials.user.getIdToken();
-      const googleUserName = await credentials.user.displayName;
-      const googleEmail = await credentials.user.email;
 
       console.log("Token de usuario de Google:", googleToken);
 

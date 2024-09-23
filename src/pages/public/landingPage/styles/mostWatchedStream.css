@@ -9,3 +9,30 @@
     overflow: hidden; /* Asegura que el contenido no sobresalga del contenedor */
     position: relative; 
 }
+
+@media screen and (max-width: 1280px) {
+    .container {
+        width: 80%; /* Ajusta el ancho al 80% de la pantalla */
+        height: auto; /* Ajusta la altura automáticamente */
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 15px;
+    }
+}
+
+/* Ajustes para pantallas medianas (tablets y dispositivos intermedios) */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%; /* Ajusta el ancho al 90% de la pantalla */
+        height: auto; /* Ajusta la altura según el contenido */
+    }
+}
+
+/* Ajustes para pantallas pequeñas (móviles) */
+@media screen and (max-width: 412px) {
+    .container {
+        width: 100%; /* Ancho completo en pantallas muy pequeñas */
+        height: auto;
+        padding: 1rem; /* Agrega un pequeño padding para mejorar la visualización */
+    }
+}

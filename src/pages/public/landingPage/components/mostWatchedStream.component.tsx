@@ -4,16 +4,19 @@ import { SwiperSlide, Swiper} from "swiper/react";
 import { useEffect, useState } from "react";
 
 type Movie = {
-    id: number;
-    backdrop_path: string | null;
-    overview: string | null;
+    id: string;
+    backdrop_path: string;
+    overview: string ;
     title: string;
+    vote_average: number
   };
   
   type MovieData = {
+    id: string;
     imageUrl: string;
-    overview: string | null;
+    overview: string ;
     title: string;
+    vote_average: number
   };
 
 const MostWatchedStreamComponent = () => {
@@ -34,9 +37,11 @@ const MostWatchedStreamComponent = () => {
           const movieData = data.results
             .filter((movie: Movie) => movie.backdrop_path && movie.overview)
             .map((movie: Movie) => ({
+              id: movie.id,
               imageUrl: `${imageBaseUrl}${movie.backdrop_path}`,
               overview: movie.overview,
               title: movie.title,
+              vote_average: movie.vote_average
             }));
   
           setData(movieData);
@@ -79,7 +84,7 @@ const MostWatchedStreamComponent = () => {
   
                     <div className="sinopsis-container">
                       <p className="movie-sinopsis">{truncateText(data.overview || "", 400)}</p>
-                      <WatchNowButtonComponent size="190" height="45" text="Watch Now" fontweight="1rem"/>
+                      <WatchNowButtonComponent id={data.id} imgMedia={data.imageUrl} synopsis={data.overview} rating={data.vote_average} mediaTitle={data.title} size="190" height="45" text="Watch Now" fontweight="1rem"/>
                     </div>
                   </div>
                 </SwiperSlide>

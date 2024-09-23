@@ -11,3 +11,12 @@
 .signUp-button:hover{
     background-color: #94cabd;
 }
+
+@media screen and (max-width: 915px) {
+    .signUp-button{
+        height: 2rem;
+        width: 5rem;
+        font-size: small;
+    }
+    
+}

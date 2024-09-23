@@ -4,18 +4,20 @@ import Logo from "../../../assets/img/Logo.png";
 import "./styles/styleHeader.css";
 import ExplorerButtonComponent from "../explorerButton/explorerButton.component";
 import { useAuth } from "../../../auth/auth.provider";
-import NotificationConfigComponent from "../notificationButton/notificationButton.component";
 import UserConfigComponent from "../userConfig/userConfig.component";
+import { useLocation } from "react-router-dom";
 
 const HeaderComponent = () => {
-  const auth = useAuth()
-
-    const RenderForm1 = auth.isAuthenticated ? NotificationConfigComponent: SignUpButtonComponent
-    const RenderForm2 = auth.isAuthenticated ? UserConfigComponent: LoginButtonComponent
-
+  const auth = useAuth();
+  const location = useLocation();
+  const pathname = location.pathname
+  const isWatchStream = location.pathname.startsWith("/watchstream")
+  console.log(pathname);
+  
+  const RenderForm2 = auth.isAuthenticated ? UserConfigComponent : LoginButtonComponent;
 
   return (
-    <header className="header">
+    <header className={isWatchStream ? "header-watch-stream" : 'header'}>
       <div className="container-explorer">
         <div className="container-logo">
           <img src={Logo} alt="LogoImg" className="logo" />
@@ -24,16 +26,10 @@ const HeaderComponent = () => {
       </div>
 
       <div className="container-search">
-        <form>
-          <input
-            type="search"
-            className="input-search"
-            placeholder="What you want see today?"
-          />
-        </form>
-        <RenderForm1 className="message-box-container-landing" />
-
-        <RenderForm2 className="container-menuUser-landing"/>
+        {auth.isAuthenticated === false &&( 
+          <SignUpButtonComponent  />
+        )}
+        <RenderForm2 className="container-menuUser-landing" />
       </div>
     </header>
   );

@@ -3,7 +3,10 @@ import HeaderComponent from "../../../common/components/header/header.component"
 import MostWatchedMediaComponent from "./components/mostWatched.component";
 import MostWatchedStreamComponent from "./components/mostWatchedStream.component";
 import "./styles/index.css";
-import { CardProps } from "../../../common/interfaces/media.interface";
+import {
+  CardProps,
+  HistoryResponse,
+} from "../../../common/interfaces/media.interface";
 import CardLargeComponent from "../../../common/components/cardaLargeMedia/cardLarge.component";
 import MotionTransition from "../../../common/components/transition/transition.component";
 import { useAuth } from "../../../auth/auth.provider";
@@ -14,27 +17,35 @@ import CardSmallComponent from "../../../common/components/smallCard/cardContinu
 export default function LandingPage() {
   const [dataMediaCountry, setDataMediaCountry] = useState<CardProps[]>([]);
   const [mediaRecent, setMediaRecentlyAdd] = useState<CardProps[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | undefined>(
+  const [historyUser, setHistoryUser] = useState<HistoryResponse[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | undefined | any>(
     undefined
   );
 
   const auth = useAuth();
+  const token = auth.getToken();
+  const user = auth.getUser();
+  const prefixCountry = user?.prefixCountry || "CO";
+
   const country = auth.getUser()?.country || "United States";
 
   useEffect(() => {
     const fetchData = async () => {
       const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
-      const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key=";
+      const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key="; 
+
       const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
       try {
-        const res = await fetch(`${baseUrl}${API_KEY}&language=en-US&page=3`);
+        const res = await fetch(
+          `${baseUrl}${API_KEY}&language=us-ES&region=${prefixCountry}&sort_by=popularity.desc&page=6`
+        );
 
         if (!res.ok) {
           const resErrorMessage = res.json();
-          setErrorMessage("An error occurred");
+          setErrorMessage(resErrorMessage);
 
-          throw new Error("An error occurred");
+          throw new Error(errorMessage);
         }
 
         const resToJson = await res.json();
@@ -42,6 +53,7 @@ export default function LandingPage() {
         const data = resToJson.results
           .filter((media: CardProps) => media.backdrop_path && media.overview)
           .map((media: CardProps) => ({
+            id: media.id,
             imageUrl: `${imageBaseUrl}${media.backdrop_path}`,
             overview: media.overview,
             title: media.title,
@@ -49,19 +61,39 @@ export default function LandingPage() {
           }));
 
         setDataMediaCountry(data);
+
+        const fetchHistory = await fetch(
+          "http://localhost:3000/vortextream/historyuser",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!fetchHistory.ok) {
+          const errorMessage = await fetchHistory.json();
+          setErrorMessage(errorMessage);
+          throw new Error(errorMessage);
+        }
+
+        const historyToJson = await fetchHistory.json();
+
+        setHistoryUser(historyToJson);
       } catch (err: any) {
-        setErrorMessage(err.message || "An error occurred");
         console.error("Error fetching data:", err);
       }
     };
 
     fetchData();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const fetchDataAddRecently = async () => {
       const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
-      const baseUrl = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
+      const baseUrl = "https://api.themoviedb.org/3/movie/now_playing?api_key=";  
       const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
       try {
@@ -69,9 +101,9 @@ export default function LandingPage() {
 
         if (!res.ok) {
           const resErrorMessage = res.json();
-          setErrorMessage("An error occurred");
+          setErrorMessage(resErrorMessage);
 
-          throw new Error("An error occurred");
+          throw new Error(errorMessage);
         }
 
         const resToJson = await res.json();
@@ -83,11 +115,11 @@ export default function LandingPage() {
             overview: media.overview,
             title: media.title,
             vote_average: media.vote_average,
+            id: media.id,
           }));
 
         setMediaRecentlyAdd(data);
       } catch (err: any) {
-        setErrorMessage(err.message || "An error occurred");
         console.error("Error fetching data:", err);
       }
     };
@@ -104,7 +136,7 @@ export default function LandingPage() {
           <MostWatchedMediaComponent />
         </MotionTransition>
 
-        <MotionTransition position="right" className="">
+        <MotionTransition position="right" className="trasition-css">
           <MostWatchedStreamComponent />
         </MotionTransition>
       </div>
@@ -113,31 +145,42 @@ export default function LandingPage() {
         <h1 className="mostWatched-country-title">
           Most Watched in {country}{" "}
         </h1>
-        <SwiperComponent spaceBetween={5} slidesPerView={5}>
+        <SwiperComponent
+          className="mySwiper-most-watched"
+          spaceBetween={5}
+          slidesPerView={5}
+        >
           {dataMediaCountry.map((movie) => (
             <CardComponent
-              key={movie.id} // Asegúrate de agregar la propiedad `key` para evitar advertencias
+              key={movie.id}
               id={movie.id}
-              backdrop_path={movie.imageUrl} // Usa `imageUrl` en lugar de `backdrop_path`
+              backdrop_path={movie.imageUrl}
               overview={movie.overview}
               title={movie.title}
-              vote_average={movie.vote_average} // Añade la puntuación a cada carta
+              vote_average={movie.vote_average}
             />
           ))}
         </SwiperComponent>
       </div>
 
-      {!!auth.isAuthenticated && (
+      {!!auth.isAuthenticated && historyUser.length > 0 &&(
         <div className="container-continueWatching">
           <h1 className="continue-watiching-title">Continue Watching...</h1>
 
-          <SwiperComponent spaceBetween={1} slidesPerView={3}>
-            {mediaRecent.map((movie) => (
+          <SwiperComponent
+            className="mySwiper-most-watched"
+            spaceBetween={1}
+            slidesPerView={3}
+          >
+            {historyUser.map((movie) => (
               <CardSmallComponent
-                id={movie.id}
-                imageUrl={movie.imageUrl}
-                title={movie.title}
-                vote_average={movie.vote_average}
+                key={movie.mediaId}
+                id={movie.mediaId}
+                imageUrl={movie.imgMedia}
+                title={movie.mediaTitle}
+                vote_average={movie.rating}
+                overview={movie.synopsis}
+                typeMedia={movie.typeMedia || ""}
               />
             ))}
           </SwiperComponent>
@@ -153,6 +196,7 @@ export default function LandingPage() {
               index={movie.id}
               title={movie.title}
               overview={movie.overview}
+              rating={movie.vote_average}
             />
           ))}
         </div>

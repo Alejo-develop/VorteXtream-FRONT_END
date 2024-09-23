@@ -62,3 +62,62 @@
     margin-left: 1.5rem;
 }
 
+@media screen and (max-width: 1280px) {
+    .container {
+        width: 80%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 15px;
+    }
+
+    .banner-image {
+        border-radius: 15px;
+    }
+
+    .container-info-movie {
+        height: auto;
+        padding: 1rem;
+    }
+
+    .movie-title {
+        margin-left: 10px;
+    }
+
+    .movie-sinopsis {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+    }
+
+    .sinopsis-container {
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .banner-image {
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .container {
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .container-info-movie{
+        width: 90%;
+    }
+
+    .mostWatched-title{
+        width: 90%;
+    }
+}
