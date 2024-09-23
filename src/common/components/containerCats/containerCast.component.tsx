@@ -22,8 +22,6 @@ const ContainerCastsOrInfoAnimeComponent = ({
   type,
   broadcast,
 }: ContainerCastsComponentProps) => {
-  console.log(actors, broadcast);
-
   return (
     <div className="container-cast-scroll">
       <h2 className="title-casts">{type} </h2>

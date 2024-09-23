@@ -9,3 +9,14 @@ export interface CardProps{
   };
 
 
+export interface HistoryResponse{
+  id: string;
+  userId: string;
+  mediaId: string;
+  imgMedia: string;
+  mediaTitle: string;
+  synopsis: string; 
+  rating: number;
+  typeMedia?: string | null;
+}
+
