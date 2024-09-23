@@ -37,7 +37,7 @@ export default function StreamPage() {
 
         const resToJson = await streamsResponse.json();
         const userData = resToJson.data[0];
-        setImgProfileStreamer(userData.profile_image_url); // Actualiza la imagen de perfil aquí
+        setImgProfileStreamer(userData.profile_image_url); 
 
         const gamesResponse = await fetch(
           `https://api.twitch.tv/helix/games?name=${game_name}`,

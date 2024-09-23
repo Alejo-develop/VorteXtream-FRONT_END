@@ -23,6 +23,8 @@ import { AdminCrudSubcategoriesPage } from "./pages/private/adminPage/AdminCRUDS
 import { AdminCrudDirectorsPage } from "./pages/private/adminPage/AdminCRUDirectors";
 import TransitionPage from "./common/utils/transitionPage";
 import React from "react";
+import { PremiumProtectedRoute } from "./auth/protectedRoutesPremium.auth";
+import { IsNotPremiumProtectedRoute } from "./auth/isNotPremium.auth";
 
 export const appRouter = createBrowserRouter([
   {
@@ -132,16 +134,14 @@ export const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: "/watch/:id",
-        element: <MediaPlayerPage />,
-      },
-      {
-        path: "/checkout",
-        element: (
-          <NavBarLayout>
-            <CheckoutPage />
-          </NavBarLayout>
-        ),
+        path: "/watch",
+        element: <PremiumProtectedRoute />,
+        children: [
+          {
+            path: ":id",
+            element: <MediaPlayerPage />,
+          },
+        ],
       },
       {
         path: "/watchstream/:user_name",
@@ -163,4 +163,18 @@ export const appRouter = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/',
+    element: <IsNotPremiumProtectedRoute />,
+    children: [
+      {
+        path: "/checkout",
+        element: (
+          <NavBarLayout>
+            <CheckoutPage />
+          </NavBarLayout>
+        ),
+      },
+    ]
+  }
 ]);

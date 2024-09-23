@@ -1,21 +1,31 @@
 import styled from "styled-components";
 import { PayMethodResponse } from "../../../../common/interfaces/paymethod.interface";
 import { useState } from "react";
+import useAlert from "../../../private/userMenu/components/alert.component";
+import { useAuth } from "../../../../auth/auth.provider";
+import { useNavigate } from "react-router-dom";
 
 interface FormCheckoutProps {
   payMethod: PayMethodResponse | null;
 }
 
 const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
+  const auth = useAuth()
+  const user = auth.getUser()
+  const token = auth.getToken()
+  const goTo = useNavigate()
+
   const { nameCardHolder, cardNumber } = payMethod || {};
+  const { showAlert } = useAlert();
   
-  const [totalPrice, setTotalPrice] = useState(7.99); // Precio inicial para 1 mes
+  const [totalPrice, setTotalPrice] = useState(7.99);
+  const [duration, setDuration] = useState("1 Month");
 
   const handleDurationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const duration = event.target.value;
+    const selectedDuration = event.target.value;
     let price = 0;
 
-    switch (duration) {
+    switch (selectedDuration) {
       case "1 Month":
         price = 7.99;
         break;
@@ -29,12 +39,43 @@ const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
         price = 7.99; 
     }
 
+    setDuration(selectedDuration);
     setTotalPrice(price);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    
+    try {
+      const changeSubscription = await fetch(`http://localhost:3000/vortextream/subcriptions/${user.id}`, {
+        method: 'PATCH',
+        headers:{
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          status: true,
+          payMethodId: payMethod?.id,
+          duration: duration
+        })
+      })
+
+      if(!changeSubscription.ok){
+        showAlert('error', 'Subcription cannot be pay', 'error')
+        throw new Error('Cannot')
+      }
+
+      showAlert('success', 'Subscription purchased', 'Succesfully')
+      auth.saveSessionInfo(user, token, true)
+      goTo('/')
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <StyledWrapper>
-      <form action="" className="form">
+      <form action="" className="form" onSubmit={handleSubmit}>
         <p className="title-checkout-box">
           Checkout<span>VorteXtream</span>
         </p>
@@ -57,7 +98,7 @@ const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
           <h2 className="totalamount">USD {totalPrice.toFixed(2)}</h2>
         </div>
         
-        <button className="oauthButton">
+        <button className="oauthButton" type="submit">
           Checkout!
           <svg
             className="icon"

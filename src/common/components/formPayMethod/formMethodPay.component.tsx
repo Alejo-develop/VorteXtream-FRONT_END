@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PayMethodResponse } from "../../interfaces/paymethod.interface";
 import { useAuth } from "../../../auth/auth.provider";
 import { BankResponse } from "../../interfaces/bank.interface";
-import useAlert from "../alert/alert.component";
+import useAlert from "../../../pages/private/userMenu/components/alert.component";
 
 interface PayMethodDto {
   userId: string;
@@ -82,7 +82,7 @@ const FormMethodPay = () => {
     e.preventDefault();
 
     if (!nameCard || !cardNumber || !cvv || !expirationDate || !bank) {
-      alert("All inputs are required");
+      showAlert( "error", "All inputs are required", '') ;
       return;
     }
 
@@ -94,8 +94,6 @@ const FormMethodPay = () => {
       cvv,
       expirationDate,
     };
-
-    console.log("Payload to be sent:", payload);
 
     try {
       const url = payMethodInfo
@@ -119,12 +117,10 @@ const FormMethodPay = () => {
         throw new Error(errorText || (payMethodInfo ? "Cannot update payment" : "Cannot create payment"));
       }
 
-      alert();
       fetchPayMethod();
       showAlert("success", payMethodInfo ? "Payment updated successfully" : "Payment created successfully", "Sucessfully");
     } catch (err) {
       console.error("Error handling form submit:", err);
-      alert("An error occurred: " + err); 
     }
   };
 

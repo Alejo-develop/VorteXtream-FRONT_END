@@ -50,6 +50,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setUser(undefined);
     sessionStorage.clear();
     localStorage.clear();
+    setIsPremium(false)
   } 
 
   function saveSessionInfo(userInfo: UserPayload, token: string, isPremium: boolean) {

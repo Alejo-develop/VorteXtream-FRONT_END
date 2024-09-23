@@ -67,7 +67,7 @@ const LoginComponent = () => {
       auth.saveSessionInfo(user, token, resToJson.isPremium);
 
       // Mostrar alerta de éxito
-      showAlert('success', 'Login Success', 'Login completed successfully');
+      showAlert('success', 'Login Success', `Welcome ${username} :)`);
 
       if (user.role === 'admin') {
         goTo("/adminpage");

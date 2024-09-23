@@ -141,7 +141,6 @@ export default function StreamPage() {
               title: media.title,
               vote_average: media.vote_average,
             }));
-            console.log(dataRecomended);
             
           setRecomendedData(dataRecomended);
         } catch (err) {
