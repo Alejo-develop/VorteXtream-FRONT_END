@@ -53,7 +53,7 @@ export default function StreamPage() {
     const putInHistory = async () => {
 
       try {
-        const res = await fetch(`http://localhost:3000/vortextream/historyuser`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/historyuser`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export default function StreamPage() {
           console.error(err);
         }
       } else {
-        const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
+        const API_KEY = import.meta.env.VITE_TMBD_API_KEY;
         const baseUrl = "https://api.themoviedb.org/3/movie";
         const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 

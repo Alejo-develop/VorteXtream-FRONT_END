@@ -8,7 +8,8 @@ import useAlert from "../../private/userMenu/components/alert.component"; // Imp
 import { DirectorData } from "./components/CrudDirectors/FormDirectors"; // Importa la interfaz
 
 // Aquí puedes definir el endpoint si está disponible, si no puedes manejar datos locales
-const API_URL = `https://api.themoviedb.org/3/person/popular?api_key=a3c97fc58c271f7b5b5cc1c31b8ef888&language=en-US&page=1`;
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const API_URL = `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en-US&page=1`;
 
 export function AdminCrudDirectorsPage() {
     const [directors, setDirectors] = useState<DirectorData[]>([]);

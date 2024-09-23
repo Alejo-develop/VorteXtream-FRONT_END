@@ -39,7 +39,7 @@ export default function FavoritesHistoryPage() {
 
       try {
         // Obtener favoritos
-        const favoritesUrl = `http://localhost:3000/vortextream/favorite`;
+        const favoritesUrl = `${import.meta.env.VITE_BACKEND_URL}/favorite`;
         const favoritesData = await fetchJsonWithAuth(favoritesUrl, token);
 
         const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
@@ -56,7 +56,7 @@ export default function FavoritesHistoryPage() {
         setFavorites(formattedFavorites);
 
         const fetchHistory = await fetch(
-          "http://localhost:3000/vortextream/historyuser",
+          `${import.meta.env.VITE_BACKEND_URL}/historyuser`,
           {
             method: "GET",
             headers: {

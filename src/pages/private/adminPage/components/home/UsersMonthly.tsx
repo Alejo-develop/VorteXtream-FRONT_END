@@ -1,7 +1,17 @@
 // MonthlyUsersChart.tsx
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale } from 'chart.js';
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  ChartOptions,
+  AnimationOptions
+} from 'chart.js';
 
 // Registra los componentes de Chart.js necesarios
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale);
@@ -17,14 +27,14 @@ const config = {
   data: {
     datasets: [
       {
-        label: 'Dataset 1', // Etiqueta para la primera línea
+        label: 'Dataset 1',
         borderColor: 'rgba(255, 99, 132, 1)',
         borderWidth: 1,
         radius: 0,
         data: data1.map((value, index) => ({ x: labels[index], y: value }))
       },
       {
-        label: 'Dataset 2', // Etiqueta para la segunda línea
+        label: 'Dataset 2',
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 1,
         radius: 0,
@@ -36,7 +46,7 @@ const config = {
     animation: {
       duration: 2000, // Duración de 2 segundos para la animación
       easing: 'easeOutQuart', // Tipo de animación más suave
-    },
+    } as unknown as AnimationOptions<'line'>,
     interaction: {
       intersect: false
     },
@@ -69,7 +79,7 @@ const config = {
         }
       }
     }
-  }
+  } as ChartOptions<'line'>
 };
 
 // Componente de la gráfica

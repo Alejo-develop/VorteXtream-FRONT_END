@@ -32,7 +32,7 @@ const PasswordView = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/vortextream/auth/changepassword/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/changepassword/${user.id}`,
         {
           method: "PATCH",
           headers: {

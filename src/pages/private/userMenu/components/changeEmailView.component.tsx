@@ -23,7 +23,7 @@ const EmailView = () => {
     }
     try {
       const res = await fetch(
-        `http://localhost:3000/vortextream/auth/changeemail/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/changeemail/${user.id}`,
         {
           method: "PATCH",
           headers: {

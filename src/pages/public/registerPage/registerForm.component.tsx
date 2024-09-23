@@ -67,7 +67,7 @@ const RegisterComponent = (props: registerProps) => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/vortextream/auth/register",
+        `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
         {
           method: "POST",
           headers: {

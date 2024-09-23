@@ -35,7 +35,7 @@ export default function CheckoutPage() {
   
       try {
         const res = await fetch(
-          `http://localhost:3000/vortextream/paymethod/${user.id}`,
+          `${import.meta.env.VITE_BACKEND_URL}/paymethod/${user.id}`,
           {
             method: "GET",
             headers: {

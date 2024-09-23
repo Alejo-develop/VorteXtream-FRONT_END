@@ -56,7 +56,7 @@ const ProfileSettingsView = () => {
   const fetchInfoUser = async () => {
     try {
       const res = await fetch(
-        `http://localhost:3000/vortextream/auth/findoneuser/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/findoneuser/${user.id}`,
         {
           method: "GET",
           headers: {
@@ -99,7 +99,7 @@ const ProfileSettingsView = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/vortextream/auth/changeuserinfo/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/changeuserinfo/${user.id}`,
         {
           method: "PATCH",
           headers: {
