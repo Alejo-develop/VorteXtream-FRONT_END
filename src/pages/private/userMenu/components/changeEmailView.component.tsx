@@ -36,7 +36,10 @@ const EmailView = () => {
         }
       );
 
-      if (!res.ok) throw new Error("Cannot posible changed email");
+      if (!res.ok) {
+        showAlert("error", "Cannot change email", "Email not changed");
+        throw new Error("Cannot posible changed email")
+      };
 
       showAlert("success", "Success email sent", "the email has been successfully"); 
     } catch (err) {

@@ -12,6 +12,7 @@ export interface UserPayload {
 export interface UserResponse{
     bornDate: Date | null ;
     country: string | null;
+    prefixCountry: string | null;
     email: string | null;
     id: string | null;
     lastName: string | null;

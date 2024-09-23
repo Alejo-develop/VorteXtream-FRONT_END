@@ -3,7 +3,6 @@ import {
   House,
   TvMinimalPlay,
   Heart,
-  BotMessageSquare,
   Video,
   Soup,
 } from "lucide-react";

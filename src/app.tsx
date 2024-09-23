@@ -77,14 +77,7 @@ export const appRouter = createBrowserRouter([
       </React.StrictMode>
     ),
   },
-  {
-    path: "/checkout",
-    element: (
-      <NavBarLayout>
-        <CheckoutPage />
-      </NavBarLayout>
-    ),
-  },
+
   {
     path: "/adminpage",
     element: <AdminProtectedRoute />,
@@ -143,6 +136,14 @@ export const appRouter = createBrowserRouter([
         element: <MediaPlayerPage />,
       },
       {
+        path: "/checkout",
+        element: (
+          <NavBarLayout>
+            <CheckoutPage />
+          </NavBarLayout>
+        ),
+      },
+      {
         path: "/watchstream/:user_name",
         element: (
           <NavBarLayout>
@@ -157,14 +158,6 @@ export const appRouter = createBrowserRouter([
         element: (
           <NavBarLayout>
             <StreamerUserPage />
-          </NavBarLayout>
-        ),
-      },
-      {
-        path: "/viewer",
-        element: (
-          <NavBarLayout>
-            <FavoritesHistoryPage />
           </NavBarLayout>
         ),
       },
