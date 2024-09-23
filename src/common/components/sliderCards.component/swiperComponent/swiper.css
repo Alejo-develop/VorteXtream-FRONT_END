@@ -49,44 +49,56 @@
     color: #F08080; 
 }
 
-@media screen and (max-width: 412px) {
+@media screen and (max-width: 1280px) {
     .mySwiper-most-watched {
-        height: 25rem; /* Ajustar altura para pantallas pequeñas */
-        margin-left: 0; /* Eliminar margen en pantallas pequeñas */
+        height: 27rem;
+        margin-left: 1rem;
     }
 
     .swiper-button-next,
     .swiper-button-prev {
-        width: 30px; /* Reducir tamaño de botones */
-        height: 30px; 
-        top: 50%; 
-        transform: translateY(-50%); /* Centrar verticalmente */
+        width: 34px;
+        height: 34px;
     }
 
-    /* Ajustar tamaño de iconos */
     .swiper-button-next::after,
     .swiper-button-prev::after {
-        font-size: 1rem; /* Reducir tamaño del icono */
+        font-size: 1.1rem;
     }
 }
 
-@media screen and (width: 915px) {
+@media screen and (max-width: 768px) {
     .mySwiper-most-watched {
-        height: 25rem; /* Ajustar altura para pantallas pequeñas */
-        margin-left: 0; /* Eliminar margen en pantallas pequeñas */
+        height: 25rem;
+        margin-left: 0;
     }
 
     .swiper-button-next,
     .swiper-button-prev {
-        width: 30px; /* Reducir tamaño de botones */
-        height: 30px; 
-        top: 50%; 
-        transform: translateY(-50%); /* Centrar verticalmente */
+        width: 30px;
+        height: 30px;
     }
 
-    /* Ajustar tamaño de iconos */
     .swiper-button-next::after,
     .swiper-button-prev::after {
-        font-size: 1rem; /* Reducir tamaño del icono */
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .mySwiper-most-watched {
+        height: 22rem;
+        margin-left: 0;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 28px;
+        height: 28px;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 0.9rem;
     }
 }

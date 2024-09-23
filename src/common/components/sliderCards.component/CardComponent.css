@@ -102,6 +102,44 @@
     margin-left: 15px;
 }
 
+@media screen and (max-width: 1280px) {
+    .card {
+        width: 280px; /* Reducir tamaño de tarjeta */
+        height: 360px; /* Ajustar altura */
+    }
+
+    .card-details-panel {
+        width: 240px; /* Ajustar ancho del panel de detalles */
+    }
+
+    .title-movie {
+        font-size: 1.5rem;
+    }
+}
+
+/* Pantallas pequeñas (hasta 768px) */
+@media screen and (max-width: 768px) {
+    .cards-container {
+        flex-direction: column; /* Cambiar dirección a columna en pantallas pequeñas */
+        gap: 1rem;
+    }
+
+    .card {
+        width: 90%; /* Ajustar ancho a 90% */
+        height: auto; /* Altura automática */
+        margin: 0 auto; /* Centrar las tarjetas */
+    }
+
+    .card-details-panel {
+        width: 90%; /* Ajustar el ancho del panel de detalles */
+    }
+
+    .title-movie {
+        font-size: 1.4rem;
+    }
+}
+
+/* Pantallas muy pequeñas (hasta 412px) */
 @media screen and (max-width: 412px) {
     .cards-container {
         gap: 0.5rem; /* Reducir espacio entre tarjetas */
@@ -117,6 +155,6 @@
     }
 
     .title-movie {
-        font-size: 1.4rem; /* Ajustar tamaño de fuente */
+        font-size: 1.2rem; /* Ajustar tamaño de fuente */
     }
 }

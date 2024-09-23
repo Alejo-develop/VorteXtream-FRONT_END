@@ -136,7 +136,7 @@ export default function LandingPage() {
           <MostWatchedMediaComponent />
         </MotionTransition>
 
-        <MotionTransition position="right" className="">
+        <MotionTransition position="right" className="trasition-css">
           <MostWatchedStreamComponent />
         </MotionTransition>
       </div>
