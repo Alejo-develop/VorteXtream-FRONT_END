@@ -84,7 +84,7 @@
 
 @media screen and (max-width: 412px) {
     .container-card-large {
-        width: 25rem; /* Ajustar al 90% del ancho */
+        width: 20rem; /* Ajustar al 90% del ancho */
         height: auto; /* Permitir que la altura sea automática */
         grid-template-columns: 1fr; /* Cambiar a una columna */
         margin-top: 1rem;
@@ -110,11 +110,13 @@
 
     .container-buttons-addREcently {
         display: flex;
+        width: 100%;
         height: 10rem;
         flex-direction: column;
         margin-top: 0;
         margin-bottom: 1rem;
         justify-content: space-around;
+        align-items: center;
     }
 }
 
