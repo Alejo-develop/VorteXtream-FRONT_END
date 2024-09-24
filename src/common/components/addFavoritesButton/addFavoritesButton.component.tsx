@@ -161,6 +161,10 @@ const StyledButton = styled.button<AddFavoritesButtonProps>`
     background: linear-gradient(270deg, #bcece0, #e0f0f0);
     color: black; /* Mantiene el texto oscuro en hover */
   }
+
+  @media screen and (width:412px){
+    margin-left:0;
+  }
 `;
 
 export default AddFavoritesButtonComponent;

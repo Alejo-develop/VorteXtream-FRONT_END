@@ -201,3 +201,9 @@
     color: white;
 } 
 
+@media screen and (width:412px) {
+    .custom-popup{
+        width: 20rem;
+        margin-right: 2.7rem;
+    }
+}

@@ -162,21 +162,21 @@
     }
 
     .container-recently-adde{
-        width: 29rem;
+        width: 25.7rem;
     }
 
     .recently-added-title{
-        margin-left: 5.7rem;
+        margin-left: 3rem;
     }
 
     .container-card-large{
         display: flex;
         flex-direction: column;
-        width: 25rem;
+        width: 20rem;
     }
 
     .footer{
-        width: 100%;
+        width: 25.7rem;
     }
 
     .image-footer{
