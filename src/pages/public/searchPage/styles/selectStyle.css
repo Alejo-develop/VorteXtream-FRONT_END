@@ -66,4 +66,8 @@
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
-
+@media (max-width: 430px){
+    .select-container{
+        margin-right: 140px;
+    }
+}
