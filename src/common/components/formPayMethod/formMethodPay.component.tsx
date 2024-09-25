@@ -317,6 +317,17 @@ const StyledWrapper = styled.div`
   .input_field[type="number"] {
     -moz-appearance: textfield;
   }
+
+  @media screen and (max-width: 412px){
+    .modal{
+      background-color: none !important;
+    }
+
+    .form{
+      width:20rem;
+      margin-right:10rem;
+    }
+  }
 `;
 
 export default FormMethodPay;

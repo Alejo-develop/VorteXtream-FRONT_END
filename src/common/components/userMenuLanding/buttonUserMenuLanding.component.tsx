@@ -113,6 +113,12 @@ const StyledWrapper = styled.div<ButtonMenuLandingProps>`
     background-color: #f08080; /* Color de fondo en estado hover */
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
   }
+
+  @media screen and (width: 412px) {
+    .button2{
+      width: 100%;
+    }
+  } 
 `;
 
 export default ButtonUserMenuLandingComponent;
