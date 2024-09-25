@@ -175,6 +175,7 @@ const StyledButton = styled.button<AddFavoritesButtonProps>`
 
   @media screen and (width:412px){
     margin-left:0;
+    margin-right:10px;
   }
 `;
 

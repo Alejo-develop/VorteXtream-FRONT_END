@@ -14,8 +14,8 @@
     background-color: #ce7272;
 }
 
-@media screen and (width <= 412px) {
+@media screen and (width: 412px) {
     .button-watch{
-        margin-left: 0;
+        margin-right: 10px !important;
     }
 }
