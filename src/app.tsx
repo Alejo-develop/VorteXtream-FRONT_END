@@ -24,6 +24,8 @@ import TransitionPage from "./common/utils/transitionPage";
 import React from "react";
 import { PremiumProtectedRoute } from "./auth/protectedRoutesPremium.auth";
 import { IsNotPremiumProtectedRoute } from "./auth/isNotPremium.auth";
+import { AdminCrudSubCategories } from "./pages/private/adminPage/AdminCRUDsubcategories";
+import { AdminCrudStudios } from "./pages/private/adminPage/AdminCRUDStudio";
 
 export const appRouter = createBrowserRouter([
   {
@@ -103,6 +105,14 @@ export const appRouter = createBrowserRouter([
       {
         path: "crudirectors",
         element: <AdminCrudDirectorsPage />,
+      },
+      {
+        path: "crudsubcategories",
+        element: <AdminCrudSubCategories />,
+      },
+      {
+        path: "crudstudios",
+        element: <AdminCrudStudios />,
       },
     ],
   },

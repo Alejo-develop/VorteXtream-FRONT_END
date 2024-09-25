@@ -3,76 +3,96 @@ import ContentDeleteAndEdit from "./components/ContentDeleteAndEdit";
 import FormCrudCastComponent from "./components/CrudCast/Form.cast";
 import GridCrudComponent from "./components/GridCrud.component";
 import NavBarAdmin from "./components/NavbarAdmin.component";
-import useAlert from "../../private/userMenu/components/alert.component"; // Importar useAlert
+import useAlert from "../../private/userMenu/components/alert.component";
 
-// Definir la interfaz para los ítems
-interface Item {
+interface Cast {
   id: string;
   name: string;
+  imageUrl?: string;
 }
 
 export function AdminCrudCastPage() {
-  const [items, setItems] = useState<Item[]>([]);
-  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
-
-  // Usar el hook para mostrar alertas
+  const [items, setItems] = useState<Cast[]>([]);
+  const [selectedItem, setSelectedItem] = useState<Cast | null>(null);
   const { showAlert } = useAlert();
 
-  // Realizar el fetch de los datos de la API
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await fetch("https://jsonplaceholder.typicode.com/users");
-        const data = await response.json();
-        const formattedItems = data.map((user: any) => ({
-          id: user.id.toString(),
-          name: user.name,
-        }));
-        setItems(formattedItems);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  // Base URL desde .env
+  const API_BASE_URL = `${import.meta.env.VITE_BACKEND_URL_JAVA}/casts`
+  const IMAGES_URL = import.meta.env.VITE_BACKEND_URL_IMAGES;
 
+  const fetchItems = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/readAll`);
+      if (!response.ok) throw new Error("Error fetching data");
+      const data = await response.json();
+      setItems(data);
+    } catch (error) {
+      showAlert("error", "Error fetching items", "Could not fetch data from the API.");
+    }
+  };
+
+  useEffect(() => {
     fetchItems();
   }, []);
 
-  // Función para manejar la eliminación de un ítem
-  const handleDelete = (id: string) => {
-    const filteredItems = items.filter((item) => item.id !== id);
-    setItems(filteredItems);
-    showAlert("success", "Deleted", "Item deleted successfully.");
-  };
+  const handleSave = async (name: string, image: File | null): Promise<void> => {
+    try {
+      let imageUrl = "";
 
-  // Función para manejar la edición de un ítem
-  const handleEdit = (id: string) => {
-    const itemToEdit = items.find((item) => item.id === id);
-    setSelectedItem(itemToEdit || null);
-  };
+      if (image) {
+        const formData = new FormData();
+        formData.append("multipartFile", image);
 
-  // Función para manejar el guardado de un ítem
-  const handleSave = (name: string) => {
-    if (selectedItem) {
-      // Editar ítem existente
-      const updatedItems = items.map((item) =>
-        item.id === selectedItem.id ? { ...item, name } : item
-      );
-      setItems(updatedItems);
-      showAlert("success", "Updated", "Item updated successfully.");
-    } else {
-      // Crear nuevo ítem
-      const newItem: Item = { id: (items.length + 1).toString(), name };
-      setItems([...items, newItem]);
-      showAlert("success", "Created", "Item created successfully.");
+        const imageResponse = await fetch(`${IMAGES_URL}/uploadImage`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!imageResponse.ok) throw new Error("Error uploading image");
+        const imageData = await imageResponse.json();
+        imageUrl = imageData.url;
+      }
+
+      const castData = { name, imageUrl };
+
+      if (selectedItem) {
+        const response = await fetch(`${API_BASE_URL}/update/${selectedItem.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(castData),
+        });
+        if (!response.ok) throw new Error("Error updating cast");
+        showAlert("success", "Cast updated", "The cast has been successfully updated.");
+      } else {
+        const response = await fetch(`${API_BASE_URL}/create`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(castData),
+        });
+        if (!response.ok) throw new Error("Error creating cast");
+        showAlert("success", "Cast created", "The cast has been successfully created.");
+      }
+
+      fetchItems();
+    } catch (error) {
+      showAlert("error", "Error saving item", '');
     }
-    setSelectedItem(null);
+  };
+
+  const deleteItem = async (item: Cast) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/delete/${item.id}`, { method: "DELETE" });
+      if (!response.ok) throw new Error("Error deleting cast");
+      showAlert("success", "Cast deleted", "The cast has been successfully deleted.");
+      fetchItems();
+    } catch (error) {
+      showAlert("error", "Error deleting item", '');
+    }
   };
 
   return (
     <div className="admin-page-container">
-      <div className="navbar-container">
-        <NavBarAdmin />
-      </div>
+      <NavBarAdmin />
       <section className="container-all-crud">
         <GridCrudComponent
           formContent={<FormCrudCastComponent selectedItem={selectedItem} onSave={handleSave} />}
@@ -81,8 +101,8 @@ export function AdminCrudCastPage() {
               key={item.id}
               name={item.name}
               id={item.id}
-              onClickDelete={() => handleDelete(item.id)}
-              onClickEdit={() => handleEdit(item.id)}
+              onClickEdit={() => setSelectedItem(item)}
+              onClickDelete={() => deleteItem(item)}
             />
           ))}
         />
