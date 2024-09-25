@@ -184,3 +184,20 @@
 .button-categoryCard-stream:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Agrega una sombra sutil */
 }
+
+
+@media (max-width: 430px){
+
+    .search-stream-title{
+        margin-right: 50px;
+    }
+
+    .rooms-container-searchStreams{
+        margin-right: 50px;
+    }
+    .category-streams-container{
+        margin-right: 100px;
+        width: 350px;
+    }
+
+}
