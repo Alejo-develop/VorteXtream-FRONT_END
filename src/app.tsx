@@ -74,6 +74,7 @@ export const appRouter = createBrowserRouter([
         <NavBarLayout>
           <TransitionPage />
           <AnimePage />
+          <FooterComponent />
         </NavBarLayout>
       </React.StrictMode>
     ),
@@ -124,6 +125,7 @@ export const appRouter = createBrowserRouter([
             <NavBarLayout>
               <TransitionPage />
               <FavoritesHistoryPage />
+              <FooterComponent />
             </NavBarLayout>
           </React.StrictMode>
         ),

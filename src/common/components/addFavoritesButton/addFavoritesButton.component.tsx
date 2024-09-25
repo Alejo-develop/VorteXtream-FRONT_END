@@ -12,6 +12,7 @@ interface AddFavoritesButtonProps {
   title: string;
   overview: string;
   vote_average: number;
+  typeMedia?: string
 }
 
 interface FavoritesResponseInterface {
@@ -22,6 +23,7 @@ interface FavoritesResponseInterface {
   title: string;
   overview: string;
   vote_average: number;
+  typeMedia?: string
 }
 
 interface FavoriteDto {
@@ -31,6 +33,7 @@ interface FavoriteDto {
   title: string;
   overview: string;
   vote_average: number;
+  typeMedia?: string
 }
 
 const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
@@ -42,6 +45,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
   vote_average,
   overview,
   backdrop_path,
+  typeMedia
 }) => {
   const auth = useAuth();
   const token = auth.getToken();
@@ -69,6 +73,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
           title,
           overview,
           vote_average,
+          typeMedia
         };
 
         try {
@@ -84,7 +89,13 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
             }
           );
 
-          if (!createFavorite.ok) throw new Error(createFavorite.statusText);
+          if (!createFavorite.ok){
+            const errorToJson = await createFavorite.json()
+            console.log(errorToJson);
+            
+            showAlert('error', 'Cannot add a favorites :C', 'Try again at few minutes')
+            throw new Error(errorToJson)
+          };
 
           showAlert("success", "added favorite", "this title has been successfully added to favorites")
         } catch (err) {

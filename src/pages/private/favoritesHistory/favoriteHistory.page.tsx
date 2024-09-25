@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CardProps, HistoryResponse } from "../../../common/interfaces/media.interface";
+import { FavoritesResponse, HistoryResponse } from "../../../common/interfaces/media.interface";
 import "./styles/styles.css";
 import CardComponent from "../../../common/components/sliderCards.component/sliderCard.component";
 import { useAuth } from "../../../auth/auth.provider";
@@ -16,22 +16,24 @@ const fetchJsonWithAuth = async (url: string, token: string) => {
   if (!res.ok) {
     throw new Error("Fetch error");
   }
-  return res.json();
+  return res;
 };
 
 export default function FavoritesHistoryPage() {
-  const [favorites, setFavorites] = useState<CardProps[]>([]);
+  const [favorites, setFavorites] = useState<FavoritesResponse []>([]);
   const [historyUser, setHistoryUser] = useState<HistoryResponse[]>([]);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const [visibleFavorites, setVisibleFavorites] = useState(8);
   const [visibleHistory, setVisibleHistory] = useState(6);
   const [showAllFavorites, setShowAllFavorites] = useState(false);
   const [showAllHistory, setShowAllHistory] = useState(false);
-  const { getToken } = useAuth();
+  const { getToken, getUser } = useAuth()
 
+  const user = getUser()
   useEffect(() => {
     const fetchFavoritesAndHistory = async () => {
       const token = getToken();
+  
       if (!token) {
         setErrorMessage("User not authenticated");
         return;
@@ -41,19 +43,9 @@ export default function FavoritesHistoryPage() {
         // Obtener favoritos
         const favoritesUrl = `${import.meta.env.VITE_BACKEND_URL}/favorite`;
         const favoritesData = await fetchJsonWithAuth(favoritesUrl, token);
+        const favoritesToJson = await favoritesData.json() as FavoritesResponse []
 
-        const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
-        const formattedFavorites = favoritesData
-          .filter((media: CardProps) => media.backdrop_path && media.overview)
-          .map((media: CardProps) => ({
-            id: media.id,
-            imageUrl: `${imageBaseUrl}${media.backdrop_path}`,
-            overview: media.overview,
-            title: media.title,
-            vote_average: media.vote_average,
-          }));
-
-        setFavorites(formattedFavorites);
+        setFavorites(favoritesToJson);
 
         const fetchHistory = await fetch(
           `${import.meta.env.VITE_BACKEND_URL}/historyuser`,
@@ -96,17 +88,18 @@ export default function FavoritesHistoryPage() {
 
   return (
     <div className="container-favorites-page">
-      <h1 className="titleFavorite">My Favorites</h1>
+      <h1 className="titleFavorite">Your favorites <span>{user.username}</span></h1>
 
       <div className="favorites-grid">
         {favorites.slice(0, visibleFavorites).map((item) => (
           <CardComponent
             key={item.id}
             id={item.id}
-            backdrop_path={item.imageUrl}
+            backdrop_path={item.backdrop_path}
             overview={item.overview}
             title={item.title}
             vote_average={item.vote_average}
+            
           />
         ))}
       </div>
@@ -119,7 +112,7 @@ export default function FavoritesHistoryPage() {
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <h1 className="continue-watching">History</h1>
+      <h1 className="titleFavorite">History</h1>
 
       <div className="history-grid">
         {historyUser.slice(0, visibleHistory).map((movie) => (

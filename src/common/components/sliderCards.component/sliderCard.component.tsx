@@ -10,11 +10,12 @@ interface CardProps {
     overview: string;
     title: string;
     vote_average: number;
+    typeMedia?: string;
 }
 
-const CardComponent: React.FC<CardProps> = ({ id, backdrop_path, overview, title, vote_average }) => {
+const CardComponent: React.FC<CardProps> = ({ typeMedia ,id, backdrop_path, overview, title, vote_average }) => {
     const [hovered, setHovered] = useState(false);
-    const imageUrl = backdrop_path ? `https://image.tmdb.org/t/p/w1280${backdrop_path}` : '';
+    const imageUrl = typeMedia  ?  `https://image.tmdb.org/t/p/w1280${backdrop_path}` :  backdrop_path;
 
     const truncateText = (text: string, maxLength: number) => {
         return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
