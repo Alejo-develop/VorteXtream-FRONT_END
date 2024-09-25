@@ -14,9 +14,8 @@ const UserMenuLandingComponent = ({ className }: UserMenuLandingProps) => {
         <div className={className}>
             <div>
                 <img src={user.urlprofile} alt="imgUser-menuUser-landign" className="imgUser-menuUser-landign" />
-                
-                <h3 className="username-menuUser-landing">{user.username}</h3>
             </div>
+                <h3 className="username-menuUser-landing">{user.username}</h3>
 
             <div className="options-userMenu-landing">
                 <ButtonUserMenuLandingComponent color="2F3241" width="19.8"  text="Settings profile" path="/usermenu" />

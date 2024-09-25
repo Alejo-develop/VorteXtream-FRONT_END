@@ -1,22 +1,37 @@
 .container-favorites-page{
     display: flex;
     flex-direction: column;
+    width:93rem;
     align-items: center;
-    margin-left: 5%;
+    margin-left: 3%;
+    border: black solid 1px;
 }
 
 .titleFavorite{
-    font-size: 4rem;
+    font-size: 3rem;
     padding: 2%;
     margin: 0;
+    margin-bottom: 1rem;
     color: #F08080;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.titleFavorite span{
+    color: #BCECE0
+}
+
+.titleFavorite:hover{
+    transform: translateY(-5px);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);  
+    letter-spacing: 1px; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
 }
 
 .favorites-grid {
     display: grid;
-    grid-template-columns: repeat(4, 20%);
-    grid-auto-rows: 1fr;
-    gap: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 19px;
     width: 90%;
     margin: auto;
 }

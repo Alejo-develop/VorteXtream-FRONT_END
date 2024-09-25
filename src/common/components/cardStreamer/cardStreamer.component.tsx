@@ -61,12 +61,6 @@ const CardStreamerComponent = ({
           </div>
         </div>
         <div className="btns">
-          <div className="likes">
-            <svg className="likes_svg" viewBox="-2 0 105 92">
-              <path d="M85.24 2.67C72.29-3.08 55.75 2.67 50 14.9 44.25 2 27-3.8 14.76 2.67 1.1 9.14-5.37 25 5.42 44.38 13.33 58 27 68.11 50 86.81 73.73 68.11 87.39 58 94.58 44.38c10.79-18.7 4.32-35.24-9.34-41.71Z" />
-            </svg>
-            <span className="likes_text">22</span>
-          </div>
           <div className="views">
             <svg className="views_svg" viewBox="0 0 30.5 16.5">
               <path d="M15.3 0C8.9 0 3.3 3.3 0 8.3c3.3 5 8.9 8.3 15.3 8.3s12-3.3 15.3-8.3C27.3 3.3 21.7 0 15.3 0zm0 14.5c-3.4 0-6.2-2.8-6.2-6.2C9 4.8 11.8 2 15.3 2c3.4 0 6.2 2.8 6.2 6.2 0 3.5-2.8 6.3-6.2 6.3z" />

@@ -6,7 +6,7 @@
     max-height: 18rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-    border-radius: 0px 0px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5)
 }
 
@@ -19,10 +19,12 @@
 .img-small-card{
     width: 100%;
     height: 100%;
+    border-radius: 20px 20px 0px 0px;
 }
 
 .container-img-card-small{
     height: 10rem;
+    border-radius: 20px 20px 0px 0px;
 }
 
 .info-container-samll-card{
