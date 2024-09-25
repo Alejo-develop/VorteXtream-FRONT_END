@@ -163,4 +163,8 @@
         width: 100%;
         height: 2rem;
     }
+
+    .container-menuUser-landing{
+        margin-right: 1.2rem;
+    }
 }

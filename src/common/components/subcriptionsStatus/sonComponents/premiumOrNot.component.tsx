@@ -55,6 +55,14 @@ const StyledWrapper = styled.div<IfPremiumProps>`
   background-position: right;
 }
 
+@media screen and (max-width: 412px) {
+  .Btn {
+    font-size: 0.8em;
+    width: 90%;
+    margin-left: 0.7rem;
+  }
+}
+
 `;
 
 export default IfPremum;

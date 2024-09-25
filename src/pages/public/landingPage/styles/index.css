@@ -207,6 +207,15 @@
     .image-footer{
         size: 50px;
     }
+
+    .continue-watiching-title{
+        margin-left: 30rem;
+        font-size: 2rem;
+    }
+
+    .container-continueWatching{
+        width: 100%;
+    }
 }
 
 
