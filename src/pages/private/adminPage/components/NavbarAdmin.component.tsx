@@ -1,4 +1,4 @@
-import { House, Clapperboard, Projector, UserPen, Layers2, Layers3, LogOut } from "lucide-react";
+import { House, Clapperboard, Projector, UserPen, Layers2, Layers3, LogOut, Building2 } from "lucide-react";
 import ButtonAdmin from "./ButtonAdmin";
 import '../styles/navbarAdmin.css';
 import { useAuth } from '../../../../auth/auth.provider'; 
@@ -47,9 +47,15 @@ const NavBarAdmin = () => {
                     className="icon-link-admin"
                 />
                 <ButtonAdmin
-                    path="/crudsubcategories"
+                    path="/adminpage/crudsubcategories"
                     icono={<Layers2 size={28} />}
                     text="Sub category" 
+                    className="icon-link-admin"
+                />
+                <ButtonAdmin
+                    path="/adminpage/crudstudios"
+                    icono={<Building2  size={28} />}
+                    text="Studios" 
                     className="icon-link-admin"
                 />
 

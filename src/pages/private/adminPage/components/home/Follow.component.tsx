@@ -17,8 +17,8 @@ const data = {
       'rgba(0, 0, 0, 0.2)'      // Negro claro para inactivas
     ],
     borderColor: [
-      
-    
+      'rgba(255, 99, 132, 1)',   // Borde para activas
+      'rgba(0, 0, 0, 1)'        // Borde para inactivas
     ],
     borderWidth: 1
   }]

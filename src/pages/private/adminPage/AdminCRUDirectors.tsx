@@ -7,49 +7,72 @@ import ContentDeleteAndEdit from "./components/ContentDeleteAndEdit";
 import useAlert from "../../private/userMenu/components/alert.component"; // Importa el hook useAlert
 import { DirectorData } from "./components/CrudDirectors/FormDirectors"; // Importa la interfaz
 
-// Aquí puedes definir el endpoint si está disponible, si no puedes manejar datos locales
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-const API_URL = `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en-US&page=1`;
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL_JAVA}/directors`;
 
 export function AdminCrudDirectorsPage() {
     const [directors, setDirectors] = useState<DirectorData[]>([]);
     const [selectedDirector, setSelectedDirector] = useState<DirectorData | null>(null);
     const { showAlert } = useAlert();
 
-    // Obtener datos de directores desde TMDb (o manejar datos locales)
-    useEffect(() => {
-        const fetchDirectors = async () => {
-            try {
-                const response = await fetch(API_URL);
-                const data = await response.json();
-                const formattedDirectors: DirectorData[] = data.results.map((person: any) => ({
-                    id: person.id.toString(),
-                    name: person.name,
-                    age: 0, // TMDb no proporciona la edad, puedes agregar esta información manualmente o buscar otra fuente
-                    synopsis: "", // TMDb no proporciona una sinopsis para directores
-                    image: null,
-                }));
-                setDirectors(formattedDirectors);
-            } catch (error) {
-                console.error("Error fetching directors from TMDb:", error);
-            }
-        };
+    // Obtener todos los directores
+    const fetchDirectors = async () => {
+        try {
+            const response = await fetch(`${BASE_URL}/readAll`);
+            const data = await response.json();
+            setDirectors(data);
+        } catch (error) {
+            console.error("Error fetching directors:", error);
+        }
+    };
 
+    useEffect(() => {
         fetchDirectors();
     }, []);
 
     // Función para guardar o editar un director
-    const handleSaveDirector = (directorData: Omit<DirectorData, "id">) => {
+    const handleSaveDirector = async (directorData: Omit<DirectorData, "id">) => {
         if (selectedDirector) {
             // Editar director
-            setDirectors(directors.map(director => director.id === selectedDirector.id ? { ...selectedDirector, ...directorData } : director));
-            setSelectedDirector(null);
-            showAlert("success", "Director Edited", "The director was edited successfully.");
+            try {
+                const response = await fetch(`${BASE_URL}/update/${selectedDirector.id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(directorData),
+                });
+
+                if (response.ok) {
+                    setDirectors(directors.map(director => director.id === selectedDirector.id ? { ...selectedDirector, ...directorData } : director));
+                    setSelectedDirector(null);
+                    showAlert("success", "Director Edited", "The director was edited successfully.");
+                } else {
+                    showAlert("error", "Edit Failed", "Failed to edit the director.");
+                }
+            } catch (error) {
+                console.error("Error editing director:", error);
+            }
         } else {
             // Crear nuevo director
-            const newDirector: DirectorData = { id: Date.now().toString(), ...directorData };
-            setDirectors([...directors, newDirector]);
-            showAlert("success", "Director Created", "The director was created successfully.");
+            try {
+                const response = await fetch(`${BASE_URL}/create`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(directorData),
+                });
+
+                if (response.ok) {
+                    const newDirector = await response.json();
+                    setDirectors([...directors, newDirector]);
+                    showAlert("success", "Director Created", "The director was created successfully.");
+                } else {
+                    showAlert("error", "Creation Failed", "Failed to create the director.");
+                }
+            } catch (error) {
+                console.error("Error creating director:", error);
+            }
         }
     };
 
@@ -66,8 +89,20 @@ export function AdminCrudDirectorsPage() {
         });
 
         if (result.isConfirmed) {
-            setDirectors(directors.filter(director => director.id !== id));
-            showAlert("success", "Director Deleted", "The director was deleted successfully.");
+            try {
+                const response = await fetch(`${BASE_URL}/delete/${id}`, {
+                    method: "DELETE",
+                });
+
+                if (response.ok) {
+                    setDirectors(directors.filter(director => director.id !== id));
+                    showAlert("success", "Director Deleted", "The director was deleted successfully.");
+                } else {
+                    showAlert("error", "Delete Failed", "Failed to delete the director.");
+                }
+            } catch (error) {
+                console.error("Error deleting director:", error);
+            }
         }
     };
 

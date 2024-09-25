@@ -1,4 +1,3 @@
-// MonthlyUsersChart.tsx
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -9,19 +8,18 @@ import {
   LineElement,
   CategoryScale,
   LinearScale,
+  PointElement, // Asegúrate de importar el PointElement
   ChartOptions,
   AnimationOptions
 } from 'chart.js';
 
-// Registra los componentes de Chart.js necesarios
-ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale);
+// Registra los componentes de Chart.js necesarios, incluyendo PointElement
+ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement);
 
-// Datos de ejemplo
-const data1 = [10, 20, 30, 40, 50, 60, 70]; // Datos para la primera línea
-const data2 = [15, 25, 35, 45, 55, 65, 75]; // Datos para la segunda línea
-const labels = [1, 2, 3, 4, 5, 6, 7]; // Etiquetas del eje x
+const data1 = [10, 20, 30, 40, 50, 60, 70];
+const data2 = [15, 25, 35, 45, 55, 65, 75];
+const labels = [1, 2, 3, 4, 5, 6, 7];
 
-// Configuración de la gráfica
 const config = {
   type: 'line',
   data: {
@@ -44,45 +42,44 @@ const config = {
   },
   options: {
     animation: {
-      duration: 2000, // Duración de 2 segundos para la animación
-      easing: 'easeOutQuart', // Tipo de animación más suave
+      duration: 2000,
+      easing: 'easeOutQuart',
     } as unknown as AnimationOptions<'line'>,
     interaction: {
       intersect: false
     },
     plugins: {
       legend: {
-        display: false // Oculta la leyenda
+        display: false
       },
       title: {
         display: true,
         text: 'Monthly Users',
-        color: '#ffffff' // Color del título
+        color: '#ffffff'
       }
     },
     scales: {
       x: {
-        type: 'linear' as const, // Define el tipo como 'linear'
+        type: 'linear' as const,
         ticks: {
-          color: '#ffffff' // Color de los ticks del eje x
+          color: '#ffffff'
         },
         grid: {
-          color: '#ffffff' // Color de las líneas de la cuadrícula del eje x
+          color: '#ffffff'
         }
       },
       y: {
         ticks: {
-          color: '#ffffff' // Color de los ticks del eje y
+          color: '#ffffff'
         },
         grid: {
-          color: '#ffffff' // Color de las líneas de la cuadrícula del eje y
+          color: '#ffffff'
         }
       }
     }
   } as ChartOptions<'line'>
 };
 
-// Componente de la gráfica
 const MonthlyUsersChart: React.FC = () => {
   return (
     <div>

@@ -6,64 +6,79 @@ import { FormCrudCategories } from "./components/CrudCategories/FormCategegories
 import ContentDeleteAndEdit from "./components/ContentDeleteAndEdit";
 import useAlert from "../../private/userMenu/components/alert.component";
 
-// Definimos el tipo de los datos de categoría
+// Define the type of category data
 type CategoryData = {
     id: string;
     name: string;
     description: string;
 };
 
-// API para obtener categorías desde TMDb
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-const API_URL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
+const API_BASE_URL = `${import.meta.env.VITE_BACKEND_URL_JAVA}/categories`;
 
 export function AdminCrudCategoriesPage() {
     const [categories, setCategories] = useState<CategoryData[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<CategoryData | null>(null);
     const { showAlert } = useAlert();
 
-    // Obtener las categorías desde TMDb
+    // Fetch categories from the API
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await fetch(API_URL);
+                const response = await fetch(`${API_BASE_URL}/readAll`);
                 const data = await response.json();
-                const formattedCategories: CategoryData[] = data.genres.map((genre: any) => ({
-                    id: genre.id.toString(),
-                    name: genre.name,
-                    description: "", // TMDb no proporciona una descripción
-                }));
-                setCategories(formattedCategories);
+                setCategories(data); // Assuming the response is an array of categories
             } catch (error) {
-                console.error("Error fetching categories from TMDb:", error);
+                console.error("Error fetching categories:", error);
             }
         };
 
         fetchCategories();
     }, []);
 
-    // Función para guardar o editar una categoría
-    const handleSaveCategory = (categoryData: Omit<CategoryData, "id">) => {
+    // Save or edit a category
+    const handleSaveCategory = async (categoryData: Omit<CategoryData, "id">) => {
         if (selectedCategory) {
-            // Editar categoría
-            setCategories(categories.map(category => category.id === selectedCategory.id ? { ...selectedCategory, ...categoryData } : category));
-            setSelectedCategory(null); // Limpiar la categoría seleccionada después de editar
-            showAlert("success", "Category Edited", "The category was edited successfully.");
+            // Edit category
+            try {
+                await fetch(`${API_BASE_URL}/update/${selectedCategory.id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ ...categoryData, id: selectedCategory.id }),
+                });
+                setCategories(categories.map(category => category.id === selectedCategory.id ? { ...selectedCategory, ...categoryData } : category));
+                setSelectedCategory(null);
+                showAlert("success", "Category Edited", "The category was edited successfully.");
+            } catch (error) {
+                console.error("Error updating category:", error);
+            }
         } else {
-            // Crear nueva categoría
-            const newCategory: CategoryData = { id: Date.now().toString(), ...categoryData };
-            setCategories([...categories, newCategory]);
-            showAlert("success", "Category Created", "The category was created successfully.");
+            // Create new category
+            try {
+                const response = await fetch(`${API_BASE_URL}/create`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(categoryData),
+                });
+                const newCategory: CategoryData = await response.json(); // Assuming the API returns the new category
+                setCategories([...categories, newCategory]);
+                showAlert("success", "Category Created", "The category was created successfully.");
+            } catch (error) {
+                console.error("Error creating category:", error);
+            }
         }
     };
 
-    // Función para seleccionar una categoría para editar
+
     const handleEditCategory = (id: string) => {
         const category = categories.find(category => category.id === id);
-        setSelectedCategory(category || null); // Establecer la categoría seleccionada
+        setSelectedCategory(category || null);
     };
 
-    // Función para eliminar una categoría
+    // Delete a category
     const handleDeleteCategory = async (id: string) => {
         const result = await Swal.fire({
             title: "Are you sure?",
@@ -76,8 +91,15 @@ export function AdminCrudCategoriesPage() {
         });
 
         if (result.isConfirmed) {
-            setCategories(categories.filter(category => category.id !== id));
-            showAlert("success", "Category Deleted", "The category was deleted successfully.");
+            try {
+                await fetch(`${API_BASE_URL}/delete/${id}`, {
+                    method: "DELETE",
+                });
+                setCategories(categories.filter(category => category.id !== id));
+                showAlert("success", "Category Deleted", "The category was deleted successfully.");
+            } catch (error) {
+                console.error("Error deleting category:", error);
+            }
         }
     };
 
@@ -96,7 +118,7 @@ export function AdminCrudCategoriesPage() {
                                 name={category.name}
                                 id={category.id}
                                 onClickDelete={() => handleDeleteCategory(category.id)}
-                                onClickEdit={() => handleEditCategory(category.id)} // Llamar a la función de edición
+                                onClickEdit={() => handleEditCategory(category.id)}
                             />
                         ))
                     }
