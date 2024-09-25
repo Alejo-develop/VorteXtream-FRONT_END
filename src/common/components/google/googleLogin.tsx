@@ -13,14 +13,8 @@ export const useGoogleLogin = () => {
 
     try {
       const credentials = await signInWithPopup(auth, provider);
-      const googleToken = await credentials.user.getIdToken();
       const googleUserName = credentials.user.displayName;
       const googleEmail = credentials.user.email;
-
-      console.log("Token de usuario de Google:", googleToken,
-        "Nombre de usuario:", googleUserName,
-        "Correo electrónico:", googleEmail
-      );
 
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/google-auth/register`, {
         method: 'POST',
@@ -52,7 +46,6 @@ export const useGoogleLogin = () => {
 
     } catch (err) {
       console.error("Error signing in with Google or fetching backend", err);
-      // Optionally, show a user-friendly alert or notification
       alert('An error occurred during the login process. Please try again.');
     }
   };
