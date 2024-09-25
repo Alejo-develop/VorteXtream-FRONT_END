@@ -84,7 +84,7 @@
 
 @media screen and (max-width: 412px) {
     .container-card-large {
-        width: 20rem; /* Ajustar al 90% del ancho */
+        width: auto; /* Ajustar al 90% del ancho */
         height: auto; /* Permitir que la altura sea automática */
         grid-template-columns: 1fr; /* Cambiar a una columna */
         margin-top: 1rem;
@@ -92,8 +92,7 @@
     }
 
     .info-media-container {
-        margin-left: 0;
-        width: 100%; /* Reducir margen izquierdo */
+        width: auto;
     }
 
     .media-title-cardLarge {
@@ -124,7 +123,7 @@
 @media screen and (max-width: 915px) {
     .container-card-large {
         margin-left: 1rem; /* Reducir margen en pantallas medianas */
-        width: 95%; /* Ajustar al 95% del ancho */
+        width: 50%; /* Ajustar al 95% del ancho */
         height: auto; /* Permitir que la altura sea automática */
     }
 }
