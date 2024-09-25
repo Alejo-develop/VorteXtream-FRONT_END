@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { PayMethodResponse } from "../../interfaces/paymethod.interface";
 import { useAuth } from "../../../auth/auth.provider";
 import { BankResponse } from "../../interfaces/bank.interface";
+import useAlert from "../../../pages/private/userMenu/components/alert.component";
 
 interface PayMethodDto {
   userId: string;
@@ -26,11 +27,12 @@ const FormMethodPay = () => {
   const auth = useAuth();
   const user = auth.getUser();
   const token = auth.getToken();
+  const { showAlert } = useAlert();
 
   // Fetch Banks Data
   const fetchBanks = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/vortextream/bank`);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/bank`);
       if (!res.ok) throw new Error("Banks not found");
 
       const resToJson = (await res.json()) as BankResponse[];
@@ -50,7 +52,7 @@ const FormMethodPay = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/vortextream/paymethod/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/paymethod/${user.id}`,
         {
           method: "GET",
           headers: {
@@ -66,7 +68,6 @@ const FormMethodPay = () => {
 
       const resToJson = (await res.json()) as PayMethodResponse;
       setPayMethodInfo(resToJson);
-      console.log("Fetched pay method:", resToJson);
     } catch (err) {
       console.error("Error fetching pay method:", err);
     }
@@ -81,7 +82,7 @@ const FormMethodPay = () => {
     e.preventDefault();
 
     if (!nameCard || !cardNumber || !cvv || !expirationDate || !bank) {
-      alert("All inputs are required");
+      showAlert( "error", "All inputs are required", '') ;
       return;
     }
 
@@ -94,12 +95,10 @@ const FormMethodPay = () => {
       expirationDate,
     };
 
-    console.log("Payload to be sent:", payload);
-
     try {
       const url = payMethodInfo
-        ? `http://localhost:3000/vortextream/paymethod/${user.id}`
-        : `http://localhost:3000/vortextream/paymethod`;
+        ? `${import.meta.env.VITE_BACKEND_URL}/paymethod/${user.id}`
+        : `${import.meta.env.VITE_BACKEND_URL}/paymethod`;
 
       const method = payMethodInfo ? "PATCH" : "POST";
 
@@ -114,17 +113,14 @@ const FormMethodPay = () => {
 
       if (!res.ok) {
         const errorText = await res.text(); 
+        showAlert("error", "Error connect with the server", "Error with server");
         throw new Error(errorText || (payMethodInfo ? "Cannot update payment" : "Cannot create payment"));
       }
 
-      const resToJson = await res.json();
-      console.log("Response from server:", resToJson);
-
-      alert(payMethodInfo ? "Payment updated successfully" : "Payment created successfully");
       fetchPayMethod();
+      showAlert("success", payMethodInfo ? "Payment updated successfully" : "Payment created successfully", "Sucessfully");
     } catch (err) {
       console.error("Error handling form submit:", err);
-      alert("An error occurred: " + err); 
     }
   };
 
@@ -320,6 +316,17 @@ const StyledWrapper = styled.div`
 
   .input_field[type="number"] {
     -moz-appearance: textfield;
+  }
+
+  @media screen and (max-width: 412px){
+    .modal{
+      background-color: none !important;
+    }
+
+    .form{
+      width:20rem;
+      margin-right:10rem;
+    }
   }
 `;
 

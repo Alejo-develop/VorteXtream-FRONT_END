@@ -53,7 +53,7 @@ export default function StreamPage() {
     const putInHistory = async () => {
 
       try {
-        const res = await fetch(`http://localhost:3000/vortextream/history-user`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/historyuser`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +65,8 @@ export default function StreamPage() {
             imgMedia: imgMedia,
             mediaTitle: mediaTitle,
             synopsis: synopsis,
-            rating: rating
+            rating: rating,
+            typeMedia: typeMedia ? typeMedia : null 
           })
         });
         
@@ -88,7 +89,7 @@ export default function StreamPage() {
           console.error(err);
         }
       } else {
-        const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
+        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const baseUrl = "https://api.themoviedb.org/3/movie";
         const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
@@ -140,7 +141,6 @@ export default function StreamPage() {
               title: media.title,
               vote_average: media.vote_average,
             }));
-            console.log(dataRecomended);
             
           setRecomendedData(dataRecomended);
         } catch (err) {
@@ -225,6 +225,7 @@ export default function StreamPage() {
                       title={data.title}
                       vote_average={data.vote_average}
                       overview={data.overview}
+                      typeMedia={null}
                     />
                   ))}
                 </SwiperComponent>

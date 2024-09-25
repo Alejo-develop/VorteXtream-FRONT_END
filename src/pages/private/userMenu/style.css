@@ -92,6 +92,16 @@
     margin-left: 0.5rem;
 }
 
+.input-menuUser-profileView-country{
+    width: 22.5rem;
+    height: 30px;
+    border-radius: 18px;
+    font-size: 1rem;
+    padding-left: 2.5rem;
+    padding-top: 1px;
+    margin-left: 0.5rem;
+}
+
 .container-form-settingsProfileView{
     width: 100%;
     gap: 25px;
@@ -191,3 +201,55 @@
     color: white;
 } 
 
+@media (max-width: 412px) {
+    .menuPage-user-container{
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .body-menuUser-page {
+        width: 70%;
+        left: 5%;
+    }
+
+    .img-menuUser-page {
+        width: 6rem;
+    }
+
+    .input-menuUser-profileView{
+        width: 70%;
+    }
+
+    .input-menuUser-profileView-country{
+        width: 87%;
+    }
+
+    .file-upload-wrapper {
+        width: 80%;
+    }
+
+    .custom-button {
+        width: 80%;
+    }
+
+    .container-options-menuUser{
+        width: 6rem;
+    }
+
+    .containerViews{
+        width: 17rem;
+    }
+
+    .img-menuUser-page{
+        width: 4rem;
+    }
+
+    h2{
+        font-size: 1.2rem;
+    }
+
+    .container-form-settingsProfileView{
+        margin-top: 20px;
+        gap: 15px;
+    }
+}

@@ -2,7 +2,6 @@ import LoginButtonComponent from "../loginButton/loginButton.component";
 import SignUpButtonComponent from "../SignUpButton/signUpButton.component";
 import Logo from "../../../assets/img/Logo.png";
 import "./styles/styleHeader.css";
-import ExplorerButtonComponent from "../explorerButton/explorerButton.component";
 import { useAuth } from "../../../auth/auth.provider";
 import UserConfigComponent from "../userConfig/userConfig.component";
 import { useLocation } from "react-router-dom";
@@ -22,7 +21,6 @@ const HeaderComponent = () => {
         <div className="container-logo">
           <img src={Logo} alt="LogoImg" className="logo" />
         </div>
-        <ExplorerButtonComponent />
       </div>
 
       <div className="container-search">

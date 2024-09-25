@@ -4,10 +4,16 @@
     width: 36rem;
     height: 25rem;
     border-radius: 20px;
-    border: 2px solid black;
     background-color: #2F3241;
     overflow: hidden; /* Asegura que el contenido no sobresalga del contenedor */
     position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra moderna */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.container:hover {
+    transform: translateY(-5px); /* Mueve el contenedor hacia arriba */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Aumenta la sombra */
 }
 
 .mostPopular-container {
@@ -62,3 +68,62 @@
     margin-left: 1.5rem;
 }
 
+@media screen and (max-width: 1280px) {
+    .container {
+        width: 80%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 15px;
+    }
+
+    .banner-image {
+        border-radius: 15px;
+    }
+
+    .container-info-movie {
+        height: auto;
+        padding: 1rem;
+    }
+
+    .movie-title {
+        margin-left: 10px;
+    }
+
+    .movie-sinopsis {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+    }
+
+    .sinopsis-container {
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .banner-image {
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .container {
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .container-info-movie{
+        width: 90%;
+    }
+
+    .mostWatched-title{
+        width: 90%;
+    }
+}

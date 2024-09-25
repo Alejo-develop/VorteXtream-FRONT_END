@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface IfPremiumProps{
@@ -54,6 +53,14 @@ const StyledWrapper = styled.div<IfPremiumProps>`
   transition-duration: 3s;
   animation: gradient 5s ease infinite;
   background-position: right;
+}
+
+@media screen and (max-width: 412px) {
+  .Btn {
+    font-size: 0.8em;
+    width: 90%;
+    margin-left: 0.7rem;
+  }
 }
 
 `;

@@ -48,3 +48,57 @@
 .swiper-button-prev:hover::after {
     color: #F08080; 
 }
+
+@media screen and (max-width: 1280px) {
+    .mySwiper-most-watched {
+        height: 27rem;
+        margin-left: 1rem;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 34px;
+        height: 34px;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mySwiper-most-watched {
+        height: 25rem;
+        margin-left: 0;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 412px) {
+    .mySwiper-most-watched {
+        height: 22rem;
+        margin-left: 0;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 28px;
+        height: 28px;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 0.9rem;
+    }
+}

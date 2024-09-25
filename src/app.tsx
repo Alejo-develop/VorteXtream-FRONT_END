@@ -19,10 +19,13 @@ import { AdminProtectedRoute } from "./auth/protectAdmin.auth"; // Add this line
 import { AdminCrudMovie } from "./pages/private/adminPage/AdminCRUDMovie.page";
 import { AdminCrudCastPage } from "./pages/private/adminPage/AdminCRUDCast";
 import { AdminCrudCategoriesPage } from "./pages/private/adminPage/AdminCRUDCategories";
-import { AdminCrudSubcategoriesPage } from "./pages/private/adminPage/AdminCRUDSubcategories";
 import { AdminCrudDirectorsPage } from "./pages/private/adminPage/AdminCRUDirectors";
 import TransitionPage from "./common/utils/transitionPage";
 import React from "react";
+import { PremiumProtectedRoute } from "./auth/protectedRoutesPremium.auth";
+import { IsNotPremiumProtectedRoute } from "./auth/isNotPremium.auth";
+import { AdminCrudSubCategories } from "./pages/private/adminPage/AdminCRUDsubcategories";
+import { AdminCrudStudios } from "./pages/private/adminPage/AdminCRUDStudio";
 
 export const appRouter = createBrowserRouter([
   {
@@ -73,18 +76,12 @@ export const appRouter = createBrowserRouter([
         <NavBarLayout>
           <TransitionPage />
           <AnimePage />
+          <FooterComponent />
         </NavBarLayout>
       </React.StrictMode>
     ),
   },
-  {
-    path: "/checkout",
-    element: (
-      <NavBarLayout>
-        <CheckoutPage />
-      </NavBarLayout>
-    ),
-  },
+
   {
     path: "/adminpage",
     element: <AdminProtectedRoute />,
@@ -106,12 +103,16 @@ export const appRouter = createBrowserRouter([
         element: <AdminCrudCategoriesPage />,
       },
       {
-        path: "crudsubcategories",
-        element: <AdminCrudSubcategoriesPage />,
-      },
-      {
         path: "crudirectors",
         element: <AdminCrudDirectorsPage />,
+      },
+      {
+        path: "crudsubcategories",
+        element: <AdminCrudSubCategories />,
+      },
+      {
+        path: "crudstudios",
+        element: <AdminCrudStudios />,
       },
     ],
   },
@@ -134,13 +135,20 @@ export const appRouter = createBrowserRouter([
             <NavBarLayout>
               <TransitionPage />
               <FavoritesHistoryPage />
+              <FooterComponent />
             </NavBarLayout>
           </React.StrictMode>
         ),
       },
       {
-        path: "/watch/:id",
-        element: <MediaPlayerPage />,
+        path: "/watch",
+        element: <PremiumProtectedRoute />,
+        children: [
+          {
+            path: ":id",
+            element: <MediaPlayerPage />,
+          },
+        ],
       },
       {
         path: "/watchstream/:user_name",
@@ -160,14 +168,20 @@ export const appRouter = createBrowserRouter([
           </NavBarLayout>
         ),
       },
+    ],
+  },
+  {
+    path: '/',
+    element: <IsNotPremiumProtectedRoute />,
+    children: [
       {
-        path: "/viewer",
+        path: "/checkout",
         element: (
           <NavBarLayout>
-            <FavoritesHistoryPage />
+            <CheckoutPage />
           </NavBarLayout>
         ),
       },
-    ],
-  },
+    ]
+  }
 ]);

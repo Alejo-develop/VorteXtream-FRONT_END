@@ -23,7 +23,7 @@ const EmailView = () => {
     }
     try {
       const res = await fetch(
-        `http://localhost:3000/vortextream/auth/changeemail/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/changeemail/${user.id}`,
         {
           method: "PATCH",
           headers: {
@@ -36,10 +36,10 @@ const EmailView = () => {
         }
       );
 
-      const resToJson = await res.json();
-      console.log(resToJson);
-
-      if (!res.ok) throw new Error("Cannot posible changed email");
+      if (!res.ok) {
+        showAlert("error", "Cannot change email", "Email not changed");
+        throw new Error("Cannot posible changed email")
+      };
 
       showAlert("success", "Success email sent", "the email has been successfully"); 
     } catch (err) {

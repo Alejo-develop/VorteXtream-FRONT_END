@@ -9,7 +9,7 @@ interface registerProps {
   onChange: React.Dispatch<SetStateAction<boolean>>;
 }
 
-interface Country {
+export interface Country {
   name: string;
   code: string;
 }
@@ -42,10 +42,10 @@ const RegisterComponent = (props: registerProps) => {
             .sort((a: Country, b: Country) => a.name.localeCompare(b.name));
           setCountries(countryList);
         } else {
-          setErrorMessage("Cannot get countrys.");
+          setErrorMessage("Cannot get countries.");
         }
       } catch (error) {
-        setErrorMessage("Error al obtener la lista de países.");
+        setErrorMessage("Cannot get countries.");
       }
     };
 
@@ -67,7 +67,7 @@ const RegisterComponent = (props: registerProps) => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/vortextream/auth/register",
+        `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
         {
           method: "POST",
           headers: {
@@ -77,7 +77,8 @@ const RegisterComponent = (props: registerProps) => {
             username,
             email,
             password,
-            country: country.code,
+            country: country.name,
+            prefixCountry: country.code,
           }),
         }
       );
@@ -85,9 +86,7 @@ const RegisterComponent = (props: registerProps) => {
       if (!response.ok) {
         const errorToJson = (await response.json()) as AuthResponseError;
 
-        setErrorMessage(
-          errorToJson ? errorToJson.message : "Error desconocido"
-        );
+        setErrorMessage(errorToJson ? errorToJson.message : "Unknow error");
         throw new Error(errorMessage);
       }
       showAlert("success", "Success register", "Has registration successfully");

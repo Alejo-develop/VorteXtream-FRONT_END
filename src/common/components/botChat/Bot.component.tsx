@@ -8,7 +8,7 @@ const BotpressChat: React.FC = () => {
     const initializeChat = () => {
       if (window.botpressWebChat) {
         window.botpressWebChat.init({
-          botId: '33ce0e43-132f-4ed9-8d1b-74c86e8cba21',
+          botId: import.meta.env.VITE_BOT_ID,
           hostUrl: 'https://cdn.botpress.cloud/webchat/v2',
         });
       } else {

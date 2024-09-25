@@ -7,7 +7,9 @@ const TransitionPage = () => {
     const [isVisible, setIsVisible] = useState(true);
 
     const handleExitComplete = () => {
-        setIsVisible(false); 
+        setIsVisible(false);
+        console.log(isVisible);
+         
     };
 
     return (

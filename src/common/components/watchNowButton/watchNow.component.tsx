@@ -13,7 +13,7 @@ interface WatchButtonProps {
   height: string;
   fontweight: string;
   type?: string;
-  typeMedia?: string;
+  typeMedia?: string | null;
 }
 
 const StyledButton = styled.button<WatchButtonProps>`
@@ -43,6 +43,11 @@ const StyledButton = styled.button<WatchButtonProps>`
       #ffb6b6
     ); /* Gradiente al pasar el cursor */
     color: black; /* Mantiene el texto oscuro en hover */
+  }
+
+  @media screen and (width <= 412px){
+    margin-left:0;
+    margin-right:10px;
   }
 `;
 

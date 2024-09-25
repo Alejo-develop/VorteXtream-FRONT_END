@@ -1,11 +1,41 @@
+import { useEffect, useState } from "react";
 import { useAuth } from "../../../auth/auth.provider";
 import ButtonMenuUserComponent from "../../../pages/private/userMenu/components/buttonMenuUser.component";
 import IfPremum from "./sonComponents/premiumOrNot.component";
 import "./style.css";
+import { SubscriptionResponse } from "../../interfaces/subcription.interface";
 
 const PremiumContainerComponent = () => {
   const auth = useAuth();
   const user = auth.getUser();
+  const token = auth.getToken()
+
+  const [subscriptionUser, setSubcriptionUser] = useState<SubscriptionResponse>()
+
+  useEffect(() => {
+    const fetchSubscription = async () => {
+      try {
+        const subscription = await fetch(`${import.meta.env.VITE_BACKEND_URL}/subcriptions/${user.id}`, {
+          method: 'GET',
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+
+        if(!subscription) throw new Error('Subscription not found')
+
+        const subscriptionToJson = await subscription.json() as SubscriptionResponse
+        setSubcriptionUser(subscriptionToJson)
+        console.log(subscriptionToJson);
+        
+      }catch (err) {
+        console.error(err)
+      }
+    }
+
+    fetchSubscription()
+  }, [user, token])
 
   return (
     <div className="container-subcription-status">
@@ -21,7 +51,7 @@ const PremiumContainerComponent = () => {
       <div className="container-duration-canelSubcription">
         <div>
           <h3 className="title-duration-subcription">Duration:</h3>
-          <p className="duration-subcription-info">3 Months</p>
+          <p className="duration-subcription-info">{subscriptionUser?.duration}</p>
         </div>
 
         <div className="cancel-subcription-container">

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 const SocialNetworkComponent = () => {
@@ -121,6 +120,12 @@ const StyledWrapper = styled.div`
   100% {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@media screen and (width:915px){
+  .card{
+    padding:25px 0;
   }
 }
 

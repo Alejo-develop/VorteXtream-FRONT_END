@@ -13,8 +13,8 @@ export default function StreamPage() {
   const [streamerData, setStreamerData] = useState<Streamer[]>([]);
   const [imgProfileStreamer, setImgProfileStreamer] = useState<string | undefined>(profile_image_url);
   
-  const clientId = "okkzkyh8ogfm1kt5aukaaxow9owi2w";
-  const accessToken = "cwo0te7eacxhmu608bi92yzz73lt6r";
+  const clientId = import.meta.env.VITE_TWITCH_CLIENT_ID
+  const accessToken = import.meta.env.VITE_TWITCH_ACCESS_TOKEN;
 
   const usersUrl = "https://api.twitch.tv/helix/users";
 
@@ -37,7 +37,7 @@ export default function StreamPage() {
 
         const resToJson = await streamsResponse.json();
         const userData = resToJson.data[0];
-        setImgProfileStreamer(userData.profile_image_url); // Actualiza la imagen de perfil aquí
+        setImgProfileStreamer(userData.profile_image_url); 
 
         const gamesResponse = await fetch(
           `https://api.twitch.tv/helix/games?name=${game_name}`,
@@ -114,7 +114,7 @@ export default function StreamPage() {
         <div className="container-streamer-live">
           <iframe
             className="iframe-streamTwitch"
-            src={`https://player.twitch.tv/?channel=${user_name}&parent=localhost`}
+            src={`https://player.twitch.tv/?channel=${user_name}&parent=vortextreaming.netlify.app`}
             allowFullScreen
           ></iframe>
         </div>

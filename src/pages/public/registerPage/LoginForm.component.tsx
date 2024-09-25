@@ -34,7 +34,7 @@ const LoginComponent = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/vortextream/auth/login",
+        `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
         {
           method: "POST",
           headers: {
@@ -60,12 +60,14 @@ const LoginComponent = () => {
 
       const token = resToJson.token;
       const user = resToJson.user as UserPayload;
+      console.log(user);
+      
 
       // Guardar información de sesión
       auth.saveSessionInfo(user, token, resToJson.isPremium);
 
       // Mostrar alerta de éxito
-      showAlert('success', 'Login Success', 'Login completed successfully');
+      showAlert('success', 'Login Success', `Welcome ${username} :)`);
 
       if (user.role === 'admin') {
         goTo("/adminpage");

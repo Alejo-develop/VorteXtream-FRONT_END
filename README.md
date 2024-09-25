@@ -1,4 +1,191 @@
 # **VorteXtream**
+## Repository usage
+Here we explain how to use the project if you are a developer and you are using the program in general terms.
+
+- ### **git clone:**
+Here you get the entire repository on your device.
+- ### **npm install or npm i:**
+ Here you install all the dependencies that are used in the project.
+- ###  **Environmental variables:**
+## Twitch
+VITE_TWITCH_CLIENT_ID=okkzkyh8ogfm1kt5aukaaxow9owi2w
+VITE_TWITCH_ACCESS_TOKEN=cwo0te7eacxhmu608bi92yzz73lt6r
+VITE_TWITCH_STREAMS_URL=https://api.twitch.tv/helix/streams?first=5&sort=viewer_count
+VITE_TWITCH_USERS_URL=https://api.twitch.tv/helix/users
+
+VITE_BOT_ID=33ce0e43-132f-4ed9-8d1b-74c86e8cba21
+VITE_BACKEND_URL=https://vortexstream-backend-nestjs-production.up.railway.app/vortextream
+
+## stream 
+VITE_STREAM_API_KEY=mmhfdzb5evj2
+VITE_STREAM_USER_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3Byb250by5nZXRzdHJlYW0uaW8iLCJzdWIiOiJ1c2VyL1NhdmFnZV9PcHJlc3MiLCJ1c2VyX2lkIjoiU2F2YWdlX09wcmVzcyIsInZhbGlkaXR5X2luX3NlY29uZHMiOjYwNDgwMCwiaWF0IjoxNzI2NDg3NzY3LCJleHAiOjE3MjcwOTI1Njd9.R9P-6h2n2Mxjq4DTsraWzj4r3Z8tQMBq9BUuwxECv7I
+
+## Firebase Google
+VITE_FIREBASE_API_KEY=AIzaSyBO24ZOFlFIvpxGHuWUdiNxYNzOGx_TB1c
+VITE_FIREBASE_AUTH_DOMAIN=vortextream-ed5f6.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=vortextream-ed5f6
+VITE_FIREBASE_STORAGE_BUCKET=vortextream-ed5f6.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=99068148975
+VITE_FIREBASE_APP_ID=1:99068148975:web:583b401d2b10b486eaef1a
+
+## TMDB
+VITE_TMDB_API_KEY=a3c97fc58c271f7b5b5cc1c31b8ef888
+
+## Stream User
+VITE_STREAM_USER_API_KEY=mmhfdzb5evj2
+VITE_STREAM_USER_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+VITE_STREAM_USER_ID=Savage_Opress
+VITE_STREAM_CALL_ID=4UQsholJCIMK
+
+
+- ### **URL Documentation:**
+### Swagger:
+* [**VorteXtream API NestJs**](https://vortexstream-backend-nestjs-production.up.railway.app/api-docs#/default)
+* [**VorteXtream API Java**](https://vortextreambackendspringboot.onrender.com)
+
+## Dependencies
+
+### @fortawesome/free-solid-svg-icons:
+- **Type**: Library.
+- **Usage**: Part of the Font Awesome package, providing free solid SVG icons for use in web applications.
+
+### @fortawesome/react-fontawesome:
+- **Type**: Library.
+- **Usage**: Provides React components to easily integrate Font Awesome icons into your React applications.
+
+### @stream-io/video-react-sdk:
+- **Type**: SDK (Software Development Kit).
+- **Usage**: Used to build real-time video applications using the Stream.io service. It facilitates the integration of video functionalities into a React application.
+
+### agora-rtc-react:
+- **Type**: Library.
+- **Usage**: React wrapper for the Agora SDK, which simplifies the implementation of real-time video and voice calls in React applications.
+
+### agora-rtc-sdk-ng:
+- **Type**: SDK.
+- **Usage**: Agora SDK that enables the creation of real-time communication applications with high-quality video and audio.
+
+### chart.js:
+- **Type**: Library.
+- **Usage**: Used to create interactive and animated charts in web applications.
+
+### firebase:
+- **Type**: API/Platform.
+- **Usage**: Google platform for real-time backend. Provides real-time databases, authentication, storage, and more.
+
+### framer-motion:
+- **Type**: Library.
+- **Usage**: Provides easy and flexible animations for React components.
+
+### hls.js:
+- **Type**: Library.
+- **Usage**: Facilitates video streaming using HTTP Live Streaming (HLS) in browsers that do not natively support it.
+
+### jwt-decode:
+- **Type**: Library.
+- **Usage**: Used to decode JWT (JSON Web Tokens) on the client side without needing validation.
+
+### lucide:
+- **Type**: Library.
+- **Usage**: A collection of modern open-source icons.
+
+### lucide-react:
+- **Type**: Library.
+- **Usage**: React components for using Lucide icons within React applications.
+
+### react:
+- **Type**: Library.
+- **Usage**: JavaScript library for building interactive user interfaces. It is the core of most modern web applications.
+
+### react-chartjs-2:
+- **Type**: Library.
+- **Usage**: React wrapper for Chart.js, making it easier to integrate charts into React applications.
+
+### react-dom:
+- **Type**: Library.
+- **Usage**: Library that allows React components to be rendered in the browser’s Document Object Model (DOM).
+
+### react-router-dom:
+- **Type**: Library.
+- **Usage**: Used for navigation and routing in React applications based on the DOM. Facilitates the creation of routes and navigation between pages.
+
+### react-select:
+- **Type**: Library.
+- **Usage**: Provides a customizable and accessible select component for forms in React applications.
+
+### styled-components:
+- **Type**: Library.
+- **Usage**: Used to apply CSS styles to components in React applications using a JavaScript-based syntax.
+
+### sweetalert2:
+- **Type**: Library.
+- **Usage**: Used to display customizable alerts and dialogs with modern styles and animations in web applications.
+
+### swiper:
+- **Type**: Library.
+- **Usage**: Used to create responsive sliders and carousels with touch support.
+
+### video.js:
+- **Type**: Library.
+- **Usage**: JavaScript framework for playing videos online, compatible with various formats and video sources.
+
+
+## Dev Dependencies
+
+### @eslint/js:
+- **Type**: Tool.
+- **Usage**: Engine to configure ESLint rules, which helps find and fix errors in JavaScript/TypeScript code.
+
+### @types/chart.js:
+- **Type**: TypeScript Definitions.
+- **Usage**: Provides types to use Chart.js in TypeScript projects.
+
+### @types/react:
+- **Type**: TypeScript Definitions.
+- **Usage**: Provides types to work with React in TypeScript.
+
+### @types/react-dom:
+- **Type**: TypeScript Definitions.
+- **Usage**: Provides types to work with React-DOM in TypeScript.
+
+### @types/video.js:
+- **Type**: TypeScript Definitions.
+- **Usage**: Provides types to work with Video.js in TypeScript.
+
+### @vitejs/plugin-react-swc:
+- **Type**: Plugin.
+- **Usage**: Vite plugin to compile React applications using SWC, an ultra-fast JavaScript compiler.
+
+### eslint:
+- **Type**: Tool.
+- **Usage**: Linter to find and fix issues in JavaScript and TypeScript code.
+
+### eslint-plugin-react-hooks:
+- **Type**: Plugin.
+- **Usage**: Specific rules to ensure the correct use of hooks in React.
+
+### eslint-plugin-react-refresh:
+- **Type**: Plugin.
+- **Usage**: Plugin to enable fast refresh in React applications with ESLint.
+
+### globals:
+- **Type**: Library.
+- **Usage**: Provides a list of global variables for JavaScript environments.
+
+### typescript:
+- **Type**: Language.
+- **Usage**: Superset of JavaScript that adds optional static typing, helping to catch errors during compilation.
+
+### typescript-eslint:
+- **Type**: Tool.
+- **Usage**: Set of tools that integrates ESLint with TypeScript, allowing static code analysis for TypeScript.
+
+### vite:
+- **Type**: Development Tool.
+- **Usage**: A fast and modern build tool that supports ES modules and enables the development of React applications with Hot Module Replacement (HMR).
+  
+## Diagram UML
+[Here is attached the UML diagram of the VorteXtream page, this is made on the Lucid page](https://lucid.app/lucidchart/acb8ffe2-0685-4dc2-8219-b41c9daf57f7/edit?viewport_loc=-812%2C-75%2C6681%2C3038%2C0_0&invitationId=inv_c66fc923-7ae7-4895-8404-20eb56cf8f0e)
 ## Why? / ¿Por qué?
 ### Why?
 VorteXtream was born from the need to simplify access to multimedia content, which is currently scattered across multiple platforms. Users face a fragmented landscape where, in order to watch a movie, series, or anime, they must subscribe to different services or visit several websites. VorteXtream aims to solve this problem by offering a unique and centralized solution, eliminating the need to search across different sites or pay for multiple subscriptions. Additionally, the platform’s creators recognize the growing popularity of live streaming and consider it essential to integrate this feature, giving users the ability not only to consume content but also to interact with live streams and create their own.
@@ -55,10 +242,6 @@ This unified entertainment approach responds to the growing demand from users fo
 * Damian Alejandro García Agudelo
 * Alejandro Vergara Zapata
 * Julian Andres Villacis Rodriguez(julianvillacis.02@gmail.com)
-## URL Documetations
-### Swagger:
-* [**VorteXtream API NestJs**](https://vortexstream-backend-nestjs-production.up.railway.app/api-docs#/default)
-* [**VorteXtream API Java**](https://vortextreambackendspringboot.onrender.com)
 # Models-Project design
 ## UX diagram
 * [**VorteXtream UX**](https://excalidraw.com/#room=0a7bdf8be073d5fa5f9d,By3w40n3_qE1zM9bEgjmXg)
@@ -66,3 +249,285 @@ This unified entertainment approach responds to the growing demand from users fo
 * [**VorteXtream UI**](https://www.figma.com/design/e9NPXRNetLxpFFVkSECJdn/VorteXtream?node-id=0-1&node-type=canvas&t=pW27RilzQlVEio3s-0)
 ## Link to project management dashboard
 * [**VorteXtream Jira**](https://alejo-develop.atlassian.net/jira/software/projects/VOR/boards/3/timeline)
+## **Funtionals and not funtionals requeriment** 
+## Functional Requirements
+
+1. **Log in**:
+   - Allows users to authenticate using credentials or external services (Google, Facebook, etc.).
+
+2. **Register**:
+   - Enables new users to create an account by providing required information or through third-party authentication.
+
+3. **Watch Streaming Content (Movies, Series, and Live Streams)**:
+   - Users can explore and watch movies, series, and live streams with search, filter, and recommendation options.
+
+4. **AI Assistant**:
+   - Provides AI-powered assistance for content recommendations and help with common tasks.
+
+5. **Update Personal Data**:
+   - Allows users to update personal information such as name and avatar.
+
+6. **Change Password and Email**:
+   - Enables users to securely change their email address and password with two-factor authentication.
+
+7. **Favorites and History**:
+   - Allows users to save favorite content and access their viewing history.
+
+8. **Create or Participate in Live Streaming**:
+   - Allows users to create live streams or join existing streams with real-time interaction features.
+
+## Non-Functional Requirements
+
+1. **Security**:
+   - Ensures user data is protected with encryption and multi-factor authentication (applicable to log in and password changes).
+
+2. **Usability**:
+   - The platform should be easy to use and intuitive, with seamless navigation and accurate recommendations (especially in AI Assistant).
+
+3. **Performance**:
+   - Streaming content should load quickly and run smoothly, even with limited bandwidth (applicable to streaming).
+
+4. **Scalability**:
+   - The platform should be able to handle a large number of users simultaneously without significant performance loss.
+
+5. **Reliability**:
+   - The platform must have minimal downtime and ensure reliable video streaming and service availability.
+
+6. **Compatibility**:
+   - The website should be compatible with various browsers, devices, and operating systems.
+
+7. **Responsiveness**:
+   - The user interface should be responsive, adapting to different screen sizes such as mobile phones, tablets, and desktops.
+
+## DataBase Model
+
+This document describes the database model for the application, which includes the following entities:
+
+## 1. User
+
+Represents a user in the platform.
+
+
+```typescript
+@Entity()
+export class User {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @Column({ nullable: true })
+    name?: string;
+
+    @Column({ nullable: true })
+    secondName?: string;
+
+    @Column({ nullable: true })
+    lastName?: string;
+
+    @Column({ nullable: true })
+    bornDate?: Date;
+
+    @Column({ unique: true, nullable: false })
+    email: string;
+
+    @Column({ unique: true })
+    username: string;
+
+    @Column({ nullable: false, select: false })
+    password: string;
+
+    @Column({ nullable: true })
+    country: string;
+
+    @Column({ nullable: true })
+    prefixCountry: string;
+
+    @Column({ nullable: true })
+    phoneNumber?: string;
+
+    @Column({ type: 'enum', enum: Role, default: Role.USER })
+    role: Role;
+
+    @Column({ default: true, select: false })
+    status?: boolean;
+
+    @Column({ nullable: true })
+    urlprofile?: string;
+
+    @CreateDateColumn({ select: false })
+    createdAt: Date;
+
+    @UpdateDateColumn({ select: false })
+    updatedAt: Date;
+
+    @OneToOne(() => PayMethod, (payMethod) => payMethod.user)
+    payMethods: PayMethod[];
+
+    @OneToOne(() => Subscription, (subcription) => subcription.user)
+    subcription: Subscription[];
+}
+```
+### Favorite
+```
+@Entity()
+export class Favorite {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
+    user: User;
+
+    @Column({ nullable: false })
+    userId: string;
+
+    @Column({ nullable: false })
+    mediaId: string;
+
+    @Column()
+    backdrop_path: string;
+
+    @Column()
+    title: string;
+
+    @Column({ length: 1200 })
+    overview: string;
+
+    @Column()
+    vote_average: number;
+
+    @CreateDateColumn({ select: false })
+    createdAt: Date;
+
+    @UpdateDateColumn({ select: false })
+    updatedAt: Date;
+}
+```
+### History
+```
+@Entity()
+export class HistoryUser {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
+    user: User;
+
+    @Column({ nullable: false })
+    userId: string;
+
+    @Column({ nullable: false })
+    mediaId: string;
+
+    @Column()
+    imgMedia: string;
+
+    @Column()
+    mediaTitle: string;
+
+    @Column({ length: 1200 })
+    synopsis: string;
+
+    @Column()
+    rating: number;
+
+    @Column({ nullable: true })
+    typeMedia?: string;
+
+    @CreateDateColumn({ select: false })
+    createdAt: Date;
+
+    @UpdateDateColumn({ select: true })
+    updatedAt: Date;
+}
+```
+### Bank
+```
+@Entity()
+export class Bank {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @Column()
+    name: string;
+
+    @Column()
+    country: string;
+
+    @Column()
+    phoneNumber: string;
+
+    @OneToMany(() => PayMethod, (payMethod) => payMethod.bank)
+    payMethods?: PayMethod[];
+}
+```
+### PayMethod
+```
+@Entity()
+export class PayMethod {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @OneToOne(() => User)
+    @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
+    user: User;
+
+    @Column()
+    userId: string;
+
+    @Column()
+    nameCardHolder: string;
+
+    @ManyToOne(() => Bank)
+    @JoinColumn({ name: 'bankId', referencedColumnName: 'id' })
+    bank: Bank;
+
+    @Column()
+    bankId: string;
+
+    @Column()
+    cardNumber: string;
+
+    @Column()
+    cvv: string;
+
+    @Column()
+    expirationDate: string;
+
+    @OneToOne(() => Subscription, (subcription) => subcription.payMethod)
+    subcription: Subscription;
+}
+```
+### Subscription
+```
+@Entity()
+export class Subscription {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
+
+    @OneToOne(() => User)
+    @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
+    user?: User;
+
+    @Column({ nullable: false })
+    userId: string;
+
+    @OneToOne(() => PayMethod)
+    @JoinColumn({ name: 'payMethodId', referencedColumnName: 'id' })
+    payMethod?: PayMethod;
+
+    @Column({ default: null })
+    payMethodId?: string;
+
+    @Column({ nullable: true })
+    duration?: string;
+
+    @Column({ default: false })
+    status: boolean;
+
+    @CreateDateColumn({ select: false })
+    createdAt: Date;
+
+    @UpdateDateColumn({ select: false })
+    updatedAt: Date;
+}

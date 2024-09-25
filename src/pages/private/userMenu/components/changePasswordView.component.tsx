@@ -32,7 +32,7 @@ const PasswordView = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/vortextream/auth/changepassword/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/changepassword/${user.id}`,
         {
           method: "PATCH",
           headers: {
@@ -45,14 +45,12 @@ const PasswordView = () => {
         }
       );
 
-      const resToJson = await res.json();
-
       if (!res.ok) {
-        alert(JSON.stringify(resToJson))
+        showAlert("error", "Cannot updated :(", "something that wrong at the server");
         throw new Error("Cannot posible changed password")
       }
 
-      alert("Password changed successfully");
+      showAlert("success", "Updated succesfully", "Updated your info!");
       setCurrentPassword(' ')
       setNewConfirmPassword(' ')
       setNewPassword(' ')

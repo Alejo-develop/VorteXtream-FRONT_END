@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useAuth } from "../../../auth/auth.provider";
-import useAlert from "../alert/alert.component";
+import useAlert from "../../../pages/private/userMenu/components/alert.component";
 
 interface AddFavoritesButtonProps {
   size: string;
@@ -12,6 +12,7 @@ interface AddFavoritesButtonProps {
   title: string;
   overview: string;
   vote_average: number;
+  typeMedia?: string
 }
 
 interface FavoritesResponseInterface {
@@ -22,6 +23,7 @@ interface FavoritesResponseInterface {
   title: string;
   overview: string;
   vote_average: number;
+  typeMedia?: string
 }
 
 interface FavoriteDto {
@@ -31,6 +33,7 @@ interface FavoriteDto {
   title: string;
   overview: string;
   vote_average: number;
+  typeMedia?: string
 }
 
 const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
@@ -42,6 +45,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
   vote_average,
   overview,
   backdrop_path,
+  typeMedia
 }) => {
   const auth = useAuth();
   const token = auth.getToken();
@@ -51,7 +55,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
   const handleClick = async () => {
     try {
       const getFavorites = await fetch(
-        `http://localhost:3000/vortextream/favorite/${mediaId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/favorite/${mediaId}`,
         {
           method: "GET",
           headers: {
@@ -69,11 +73,12 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
           title,
           overview,
           vote_average,
+          typeMedia
         };
 
         try {
           const createFavorite = await fetch(
-            `http://localhost:3000/vortextream/favorite`,
+            `${import.meta.env.VITE_BACKEND_URL}/favorite`,
             {
               method: "POST",
               headers: {
@@ -83,10 +88,14 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
               body: JSON.stringify(favoriteDto),
             }
           );
-          const createFavoriteToJson = await createFavorite.json()
-          console.log('res', createFavoriteToJson);
-          
-          if (!createFavorite.ok) throw new Error(createFavorite.statusText);
+
+          if (!createFavorite.ok){
+            const errorToJson = await createFavorite.json()
+            console.log(errorToJson);
+            
+            showAlert('error', 'Cannot add a favorites :C', 'Try again at few minutes')
+            throw new Error(errorToJson)
+          };
 
           showAlert("success", "added favorite", "this title has been successfully added to favorites")
         } catch (err) {
@@ -98,7 +107,7 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
 
         try {
           const removeFavorite = await fetch(
-            `http://localhost:3000/vortextream/favorite/${favoriteToJson.id}`,
+            `${import.meta.env.VITE_BACKEND_URL}/favorite/${favoriteToJson.id}`,
             {
               method: "DELETE",
               headers: {
@@ -111,7 +120,6 @@ const AddFavoritesButtonComponent: React.FC<AddFavoritesButtonProps> = ({
           if (!removeFavorite.ok) throw new Error(removeFavorite.statusText);
 
           showAlert("success", "Remove successfully", "the title of the favorites has been successfully removed")
-          console.log(removeFavorite.json());
         } catch (err) {
           console.error(err);
         }
@@ -163,6 +171,11 @@ const StyledButton = styled.button<AddFavoritesButtonProps>`
   &:hover {
     background: linear-gradient(270deg, #bcece0, #e0f0f0);
     color: black; /* Mantiene el texto oscuro en hover */
+  }
+
+  @media screen and (width:412px){
+    margin-left:0;
+    margin-right:10px;
   }
 `;
 
