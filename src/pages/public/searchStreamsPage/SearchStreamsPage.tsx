@@ -29,6 +29,7 @@ export default function SearchStreamsPage() {
 
   const fetchStreams = async (cursor?: string) => {
     try {
+      //dynamic url needed to know what kind of endpoint I want to attack based on user's decisions
       const url = cursor
         ? `https://api.twitch.tv/helix/streams?first=10&sort=viewer_count&after=${cursor}&game_id=${selectedCategoryIds.join('&game_id=')}`
         : searchQuery
@@ -47,7 +48,7 @@ export default function SearchStreamsPage() {
       const dataTojson: StreamsResponse = await streamsResponse.json();
       const updatedStreamersData = cursor ? [...streamersData, ...dataTojson.data] : dataTojson.data;
 
-      // Solo recolectar IDs después de actualizar streamersData
+      // Only collect IDs after updating streamersData
       const streamDataForImgProfile = updatedStreamersData.map((streamer) => streamer.user_id).join('&id=');
       const streamersUserResponse = await fetch(`https://api.twitch.tv/helix/users?id=${streamDataForImgProfile}`, {
         headers: {
@@ -64,7 +65,7 @@ export default function SearchStreamsPage() {
         return acc;
       }, {});
 
-      // Actualiza los streamersData con las imágenes de perfil
+      // Update streamersData with profile pictures
       setStreamersData(updatedStreamersData.map((streamer) => ({
         ...streamer,
         profile_image_url: profiles[streamer.user_id] || '',

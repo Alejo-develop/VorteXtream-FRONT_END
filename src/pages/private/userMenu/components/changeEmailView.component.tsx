@@ -7,45 +7,46 @@ import useAlert from "./alert.component";
 const EmailView = () => {
   const [newEmail, setNewEmail] = useState("");
 
-  const auth = useAuth();
-  const user = auth.getUser();
-  const token = auth.getToken();
+  const auth = useAuth(); // Get authentication context
+  const user = auth.getUser(); // Retrieve the current user's data
+  const token = auth.getToken(); // Get the user's authentication token
 
-  const { showAlert } = useAlert();
+  const { showAlert } = useAlert(); 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
     if (!newEmail) {
       showAlert("error", "Email is required", "Please enter a valid email");
-
-      return;
+      return; // Exit if no email is provided
     }
+
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/auth/changeemail/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/changeemail/${user.id}`, 
         {
-          method: "PATCH",
+          method: "PATCH", 
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, 
           },
           body: JSON.stringify({
-            email: newEmail,
+            email: newEmail, 
           }),
         }
       );
 
       if (!res.ok) {
         showAlert("error", "Cannot change email", "Email not changed");
-        throw new Error("Cannot posible changed email")
-      };
+        throw new Error("Cannot change email"); // Throw an error if the request fails
+      }
 
-      showAlert("success", "Success email sent", "the email has been successfully"); 
+      showAlert("success", "Success", "The email has been successfully changed"); // Show success message
     } catch (err) {
-      console.error(err);
+      console.error(err); 
     }
   };
+
 
   return (
     <div className="containerViews">

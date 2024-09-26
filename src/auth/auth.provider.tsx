@@ -14,6 +14,7 @@ interface AuthContextProps {
   getToken: () => string;
 }
 
+//context created for use in the application to obtain information from the user anywhere in the project
 const AuthContext = createContext<AuthContextProps>({
   isAuthenticated: false,
   isPremium: false,

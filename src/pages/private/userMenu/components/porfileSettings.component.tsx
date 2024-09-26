@@ -7,9 +7,9 @@ import useAlert from "./alert.component";
 import { Country } from "../../../public/registerPage/registerForm.component";
 
 const ProfileSettingsView = () => {
-  const auth = useAuth();
-  const user = auth.getUser();
-  const token = auth.getToken();
+  const auth = useAuth(); //get context
+  const user = auth.getUser(); //get user log
+  const token = auth.getToken(); // get token of user
 
   const [userInfo, setUserInfo] = useState<UserResponse>({
     bornDate: null,
@@ -39,6 +39,7 @@ const ProfileSettingsView = () => {
 
   const { showAlert } = useAlert();
 
+  //when user choose image, the page render image
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -53,6 +54,7 @@ const ProfileSettingsView = () => {
     }
   };
 
+  //fetch info user of data base
   const fetchInfoUser = async () => {
     try {
       const res = await fetch(
@@ -67,13 +69,14 @@ const ProfileSettingsView = () => {
       );
 
       const resToJson = (await res.json()) as UserResponse;
-      setUserInfo(resToJson);
-      return resToJson; // Retorna la información del usuario
+      setUserInfo(resToJson); //put info in user state
+      return resToJson;
     } catch (err) {
       console.error(err);
     }
   };
 
+  //whe user submit change info user in data base
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -84,6 +87,7 @@ const ProfileSettingsView = () => {
 
     const formData = new FormData();
 
+    //if there is a image, formdata image
     if (selectedImage) {
       formData.append("profileimage", selectedImage);
     }
@@ -112,6 +116,8 @@ const ProfileSettingsView = () => {
       if (!res.ok) {
         const errorToJson = await res.json();
         setErrorMessage(errorToJson)
+        console.log(errorToJson);
+        
         showAlert("error", "Error updating", errorToJson.message || "Error updating");
         throw new Error(errorMessage);
       }
@@ -123,6 +129,7 @@ const ProfileSettingsView = () => {
   };
 
   useEffect(() => {
+    //fetch countries for show option a user
     const fetchCountries = async () => {
       try {
         const response = await fetch("https://restcountries.com/v3.1/all");

@@ -5,7 +5,7 @@ import { useAuth } from "../../../../auth/auth.provider"
 
 const SubcriptionView = () => {
     const auth = useAuth()
-    const RenderForm = auth.isPremium ? PremiumContainerComponent : IsNotPremiumContainer
+    const RenderForm = auth.isPremium ? PremiumContainerComponent : IsNotPremiumContainer // if user is premium show premium component, if not, isNotPremiumComponent
 
     return (
         <div className="containerViews">

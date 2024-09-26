@@ -10,19 +10,22 @@ export default function StreamPage() {
   const location = useLocation();
   const { user_name, game_name, title, viewer_count, profile_image_url } = location.state || {};
   
-  const [streamerData, setStreamerData] = useState<Streamer[]>([]);
-  const [imgProfileStreamer, setImgProfileStreamer] = useState<string | undefined>(profile_image_url);
+  const [streamerData, setStreamerData] = useState<Streamer[]>([]); // Array to hold data of other streamers
+  const [imgProfileStreamer, setImgProfileStreamer] = useState<string | undefined>(profile_image_url); // Profile image of the selected streamer
   
-  const clientId = import.meta.env.VITE_TWITCH_CLIENT_ID
-  const accessToken = import.meta.env.VITE_TWITCH_ACCESS_TOKEN;
+  // Environment variables for Twitch API
+  const clientId = import.meta.env.VITE_TWITCH_CLIENT_ID; // Client ID from environment variables
+  const accessToken = import.meta.env.VITE_TWITCH_ACCESS_TOKEN; // Access token from environment variables
 
-  const usersUrl = "https://api.twitch.tv/helix/users";
+  const usersUrl = "https://api.twitch.tv/helix/users"; // Base URL for user API endpoint
 
+  // Effect to fetch streamer data when component mounts or user_name changes
   useEffect(() => {
-    window.scrollTo(0, 0);
- 
+    window.scrollTo(0, 0); // Scroll to the top of the page
+
     const fetchDataStreamer = async () => {
       try {
+        // Fetch user data for the specified user_name
         const streamsResponse = await fetch(
           `https://api.twitch.tv/helix/users?login=${user_name}`,
           {
@@ -35,10 +38,11 @@ export default function StreamPage() {
 
         if (!streamsResponse.ok) throw new Error(streamsResponse.statusText);
 
-        const resToJson = await streamsResponse.json();
-        const userData = resToJson.data[0];
-        setImgProfileStreamer(userData.profile_image_url); 
+        const resToJson = await streamsResponse.json(); // Parse response to JSON
+        const userData = resToJson.data[0]; // Get user data
+        setImgProfileStreamer(userData.profile_image_url); // Update profile image state
 
+        // Fetch game data for the specified game_name
         const gamesResponse = await fetch(
           `https://api.twitch.tv/helix/games?name=${game_name}`,
           {
@@ -51,9 +55,10 @@ export default function StreamPage() {
 
         if (!gamesResponse.ok) throw new Error(gamesResponse.statusText);
 
-        const gamesResponseToJson = await gamesResponse.json();
-        const gameId = gamesResponseToJson.data[0]?.id;
+        const gamesResponseToJson = await gamesResponse.json(); 
+        const gameId = gamesResponseToJson.data[0]?.id; // Get game ID
 
+        // Fetch streams related to the game using the game ID
         const matchContentData = await fetch(
           `https://api.twitch.tv/helix/streams?game_id=${gameId}&first=5`,
           {
@@ -66,20 +71,23 @@ export default function StreamPage() {
 
         if (!matchContentData.ok) throw new Error(matchContentData.statusText);
 
-        const matchContentDataToJson = await matchContentData.json();
+        const matchContentDataToJson = await matchContentData.json(); 
 
+        // Filter out the current streamer from the results
         if (matchContentDataToJson.data) {
           const filteredStreamers = matchContentDataToJson.data.filter(
             (streamer: any) => streamer.user_name !== user_name
           );
-          setStreamerData(filteredStreamers);
+          setStreamerData(filteredStreamers); // Update state with other streamers
         } else {
           throw new Error(matchContentData.statusText);
         }
 
+        // Prepare to fetch additional user data for the filtered streamers
         const streamers = matchContentDataToJson.data || [];
-        const userIds = streamers.map((streamer: any) => streamer.user_id).join('&id=');
+        const userIds = streamers.map((streamer: any) => streamer.user_id).join('&id='); // Create a list of user IDs for the next request
       
+        // Fetch user data for the filtered streamers
         const usersResponse = await fetch(`${usersUrl}?id=${userIds}`, {
           headers: {
             "Client-ID": clientId,
@@ -91,21 +99,22 @@ export default function StreamPage() {
 
         const usersData = await usersResponse.json();
         const profiles = (usersData.data || []).reduce((acc: any, user: any) => {
-          acc[user.id] = user.profile_image_url;
+          acc[user.id] = user.profile_image_url; // Map user IDs to their profile image URLs
           return acc;
         }, {});
 
+        // Update the streamer data with the profile images
         setStreamerData(streamers.map((streamer: any) => ({
           ...streamer,
-          profile_image_url: profiles[streamer.user_id] || '',
+          profile_image_url: profiles[streamer.user_id] || '', // Assign profile image if available
         })));
       } catch (err) {
-        console.log(err);
+        console.log(err); 
       }
     };
 
-    fetchDataStreamer();
-  }, [user_name]);
+    fetchDataStreamer(); // Call the function to fetch data
+  }, [user_name]); 
 
   return (
     <div className="container-streamerViewer-page">

@@ -9,53 +9,52 @@ const PasswordView = () => {
   const [newPassword, setNewPassword] = useState("");
   const [newConfirmPassword, setNewConfirmPassword] = useState("");
 
-  const auth = useAuth();
-  const user = auth.getUser();
-  const token = auth.getToken();
+  const auth = useAuth(); // Get authentication context
+  const user = auth.getUser(); // Retrieve current user data
+  const token = auth.getToken(); // Get authentication token
 
-  const {showAlert} = useAlert();
+  const { showAlert } = useAlert(); // Get alert function for user notifications
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!currentPassword && !newPassword && !newConfirmPassword) {
-      showAlert("error", "All required", "Please enter all required information")
-
-      return;
+    if (!currentPassword || !newPassword || !newConfirmPassword) {
+      showAlert("error", "All required", "Please enter all required information");
+      return; // Exit if validation fails
     }
 
-    if(newPassword !== newConfirmPassword){
-        showAlert("success", "password already", "the password and confirm password save successfully")
-
-        return
+    if (newPassword !== newConfirmPassword) {
+      showAlert("error", "Password mismatch", "New password and confirm password do not match");
+      return; // Exit if passwords do not match
     }
 
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/auth/changepassword/${user.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/changepassword/${user.id}`, // Endpoint for changing password
         {
-          method: "PATCH",
+          method: "PATCH", 
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, 
           },
           body: JSON.stringify({
-            password: newPassword,
+            password: newPassword, 
           }),
         }
       );
 
       if (!res.ok) {
-        showAlert("error", "Cannot updated :(", "something that wrong at the server");
-        throw new Error("Cannot posible changed password")
+        showAlert("error", "Cannot update", "Something went wrong on the server");
+        throw new Error("Unable to change password"); // Handle server errors
       }
 
-      showAlert("success", "Updated succesfully", "Updated your info!");
-      setCurrentPassword(' ')
-      setNewConfirmPassword(' ')
-      setNewPassword(' ')
+      showAlert("success", "Updated successfully", "Your password has been updated!");
+      // Reset input fields after successful update
+      setCurrentPassword('');
+      setNewPassword('');
+      setNewConfirmPassword('');
     } catch (err) {
-      console.error(err);
+      console.error(err); 
     }
   };
 

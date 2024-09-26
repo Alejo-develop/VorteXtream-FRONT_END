@@ -10,21 +10,23 @@ interface FormCheckoutProps {
 }
 
 const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
-  const auth = useAuth()
+  const auth = useAuth() //get auth context
   const user = auth.getUser()
   const token = auth.getToken()
   const goTo = useNavigate()
 
-  const { nameCardHolder, cardNumber } = payMethod || {};
+  const { nameCardHolder, cardNumber } = payMethod || {}; //extract name card and card number of payMethod 
   const { showAlert } = useAlert();
   
   const [totalPrice, setTotalPrice] = useState(7.99);
   const [duration, setDuration] = useState("");
 
+  //change price if user choose a month
   const handleDurationChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedDuration = event.target.value;
     let price = 0;
 
+    //price of premium plans
     switch (selectedDuration) {
       case "1 Month":
         price = 7.99;
@@ -43,6 +45,7 @@ const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
     setTotalPrice(price);
   };
 
+  //when user push checkout, buy and change status subscription
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
@@ -60,10 +63,7 @@ const FormCheckout = ({ payMethod }: FormCheckoutProps) => {
         })
       })
 
-      if(!changeSubscription.ok){
-        const errrrrr = await changeSubscription.json()
-        console.log(errrrrr);
-        
+      if(!changeSubscription.ok){   
         showAlert('error', 'Subcription cannot be pay', 'error')
         throw new Error('Cannot')
       }

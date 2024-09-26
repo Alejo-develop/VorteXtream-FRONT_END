@@ -9,9 +9,7 @@ import { useLocation } from "react-router-dom";
 const HeaderComponent = () => {
   const auth = useAuth();
   const location = useLocation();
-  const pathname = location.pathname
   const isWatchStream = location.pathname.startsWith("/watchstream")
-  console.log(pathname);
   
   const RenderForm2 = auth.isAuthenticated ? UserConfigComponent : LoginButtonComponent;
 
