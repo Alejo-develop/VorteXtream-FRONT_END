@@ -11,11 +11,14 @@ import { useNavigate } from "react-router-dom";
 export default function CheckoutPage() {
   const [payMethodInfo, setPayMethodInfo] = useState<PayMethodResponse | null>(null);
   
+  //array with information basic plan
   const basicPlan: any = [
     "Access to all stream-related content",
     "Limited content",
     "Broadcast whenever you want!",
   ];
+
+  //array with information premium plan
   const premiumPlan: any = [
     "Access to all stream-related content",
     "Ilimited content",
@@ -23,15 +26,19 @@ export default function CheckoutPage() {
     "Broadcast whenever you want!",
   ];
 
-  const auth = useAuth()
+  const auth = useAuth() //get auth context
   const user = auth.getUser()
   const token = auth.getToken()
   const {showAlert} = useAlert()
   const goTo = useNavigate()
 
+  //get paymethod user  
   useEffect(() => {
     const fetchPayMethod = async () => {
-      if (!user?.id) return;
+      if (!user?.id){
+        goTo('/')  // if not user, go to landing
+        return 
+      };
   
       try {
         const res = await fetch(

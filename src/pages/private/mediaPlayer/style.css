@@ -41,7 +41,7 @@
 
 .banner-img-watchMedia{
     height: 40%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves para el escalado y sombra */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
     margin-top: 1rem;
     display: flex;
@@ -82,7 +82,7 @@
 }
 
 .titleMovie-watchMedia{
-    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; 
     color: #F08080;
     font-size: 2.6rem;
 }
@@ -95,7 +95,7 @@
 }
 
 .titleContieWatching-watchMedia{
-    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; 
     color: #F08080;   font-size: 2rem;
 }
 
@@ -156,16 +156,16 @@
     height: 8rem;
     border: 0;
     color: transparent;
-    background-color: rgba(0, 0, 0, 0); /* Fondo inicial transparente */
+    background-color: rgba(0, 0, 0, 0);
     display: flex;
     justify-content: end;
-    transition: background-color 0.3s ease, opacity 0.3s ease; /* Transición suave */
-    opacity: 0.8; /* Opacidad inicial (ajusta según sea necesario) */
+    transition: background-color 0.3s ease, opacity 0.3s ease; 
+    opacity: 0.8;
 }
 
 .trigger:hover {
-    background-color: rgba(0, 0, 0, 0.7); /* Negro con opacidad */
-    opacity: 1; /* Opacidad máxima al hacer hover */
+    background-color: rgba(0, 0, 0, 0.7); 
+    opacity: 1;
 }
 
 .smallLogo-watchMedia{
@@ -188,7 +188,7 @@
 }
 
 .title-not-foundTitleMedia{
-    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease; /* Transiciones suaves */
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, letter-spacing 0.3s ease;
     color: #F08080;
 }
 
@@ -201,11 +201,11 @@
 
 @keyframes slideDown {
     from {
-        transform: translateY(-20px); /* Desde arriba */
-        opacity: 0; /* Invisible al principio */
+        transform: translateY(-20px); 
+        opacity: 0; 
     }
     to {
-        transform: translateY(0); /* En su posición original */
-        opacity: 1; /* Visible al final */
+        transform: translateY(0); 
+        opacity: 1; 
     }
 }

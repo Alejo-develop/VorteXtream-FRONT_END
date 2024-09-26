@@ -63,10 +63,8 @@ const LoginComponent = () => {
       console.log(user);
       
 
-      // Guardar información de sesión
+      // Save session information in a authContext
       auth.saveSessionInfo(user, token, resToJson.isPremium);
-
-      // Mostrar alerta de éxito
       showAlert('success', 'Login Success', `Welcome ${username} :)`);
 
       if (user.role === 'admin') {
@@ -77,7 +75,6 @@ const LoginComponent = () => {
 
     } catch (err) {
       console.error(err);
-      // Muestra la alerta aquí si hay un error en la conexión o en el proceso
       showAlert('error', 'Login Failed', errorResponse);
     }
   };

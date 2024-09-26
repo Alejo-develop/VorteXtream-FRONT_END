@@ -1,30 +1,33 @@
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom"; 
+import styled from "styled-components"; 
 
 interface ButtonsInterface {
-  text: string;
-  path: string;
+  text: string; // The text to display on the button
+  path: string; // The path to navigate to when the button is clicked
 }
 
 const ButtonHeaderComponent = ({ path, text }: ButtonsInterface) => {
-  const goTo = useNavigate();
+  const goTo = useNavigate(); // Initialize the navigate function
 
+  // Handle click event for the button
   const handleClick = () => {
     if (path === 'back') {
-        goTo(-1); 
+      goTo(-1); // Go back to the previous page if path is 'back'
     } else {
-        goTo(path); 
+      goTo(path); // Navigate to the specified path
     }
   };
 
   return (
     <StyledWrapper>
-      <button onClick={handleClick}>
-        <span>{text}</span>
+      <button onClick={handleClick}> {/* Attach the click handler to the button */}
+        <span>{text}</span> {/* Display the button text */}
       </button>
     </StyledWrapper>
   );
 };
+
+// Styled component for wrapping the button
 
 const StyledWrapper = styled.div`
   /* From uiverse.io by @Ali-Tahmazi99 */

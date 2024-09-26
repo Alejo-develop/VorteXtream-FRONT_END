@@ -10,28 +10,32 @@ import PasswordView from './components/changePasswordView.component'
 export default function UserMenuPage(){
     const [activeView, setActiveView] = useState('profile');
 
-    const auth = useAuth()
-    const user = auth.getUser()
+    const auth = useAuth(); // Get authentication context
+    const user = auth.getUser(); // Retrieve the current user
 
     const switchView = (component: any) => {
-        setActiveView(component)
-    }
+        setActiveView(component); // Update the active view based on user selection
+    };
 
     const renderComponent = () => {
-        switch(activeView){
+        // Render the appropriate component based on activeView state
+        switch (activeView) {
             case 'profile':
-                return <PorfileSettingsView />;
+                return <PorfileSettingsView />; // Render profile settings view
 
             case 'subcription':
-                return <SubcriptionView />
+                return <SubcriptionView />; // Render subscription view
 
             case 'email':
-                return <EmailView />
+                return <EmailView />; // Render email view
 
             case 'password':
-                return <PasswordView />
+                return <PasswordView />; // Render password view
+
+            default:
+                return null; // Default case returns nothing
         }
-    }
+    };
 
     return(
         <div className="menuPage-user-container">

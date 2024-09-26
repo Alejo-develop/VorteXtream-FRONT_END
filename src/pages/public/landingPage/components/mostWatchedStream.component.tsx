@@ -24,7 +24,7 @@ const MostWatchedStreamComponent = () => {
 
     useEffect(() => {
       const fetchMovies = async () => {
-        const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
+        const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
         const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key=";
         const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
   
@@ -53,6 +53,7 @@ const MostWatchedStreamComponent = () => {
       fetchMovies();
     }, []);
 
+      //formats the text to give it a maximum number of characters
     const truncateText = (text: string, maxLength: number) => {
       return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   };
@@ -65,8 +66,8 @@ const MostWatchedStreamComponent = () => {
             pagination={{ clickable: true }}
             modules={[Pagination, Autoplay]}
             autoplay={{
-              delay: 5000, // Cambia la imagen cada 5 segundos
-              disableOnInteraction: false, // No desactivar autoplay si el usuario interactúa
+              delay: 5000, 
+              disableOnInteraction: false, 
             }}
             className="mySwiper"
           >

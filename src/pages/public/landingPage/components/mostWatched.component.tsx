@@ -15,7 +15,7 @@ type Movie = {
 };
 
 type MovieData = {
-  id: string; // Asegúrate de incluir `id` en MovieData para usarlo en `key`
+  id: string;
   imageUrl: string;
   overview: string ;
   title: string;
@@ -25,37 +25,39 @@ type MovieData = {
 const MostWatchedMediaComponent = () => {
   const [data, setData] = useState<MovieData[]>([]);
 
+  //for print movies most watched
+  const fetchMoviesMostWatched = async () => {
+    const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+    const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key=";
+    const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
+
+    try {
+      const response = await fetch(
+        `${baseUrl}${API_KEY}&language=en-US&page=5`
+      );
+      const data = await response.json();
+
+      const movieData = data.results
+        .filter((movie: Movie) => movie.backdrop_path && movie.overview)
+        .map((movie: Movie) => ({
+          id: movie.id,
+          imageUrl: `${imageBaseUrl}${movie.backdrop_path}`,
+          overview: movie.overview,
+          title: movie.title,
+          vote_average: movie.vote_average
+        }));
+
+      setData(movieData);
+    } catch (error) {
+      console.error("Error fetching the banners:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchMovies = async () => {
-      const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
-      const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key=";
-      const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
-
-      try {
-        const response = await fetch(
-          `${baseUrl}${API_KEY}&language=en-US&page=5`
-        );
-        const data = await response.json();
-
-        const movieData = data.results
-          .filter((movie: Movie) => movie.backdrop_path && movie.overview)
-          .map((movie: Movie) => ({
-            id: movie.id, // Incluye `id` en el objeto de datos
-            imageUrl: `${imageBaseUrl}${movie.backdrop_path}`,
-            overview: movie.overview,
-            title: movie.title,
-            vote_average: movie.vote_average
-          }));
-
-        setData(movieData);
-      } catch (error) {
-        console.error("Error fetching the banners:", error);
-      }
-    };
-
-    fetchMovies();
+    fetchMoviesMostWatched();
   }, []);
 
+  //formats the text to give it a maximum number of characters
   const truncateText = (text: string, maxLength: number) => {
     return text.length > maxLength
       ? `${text.substring(0, maxLength)}...`
@@ -69,19 +71,17 @@ const MostWatchedMediaComponent = () => {
           pagination={{ clickable: true }}
           modules={[Pagination, Autoplay]}
           autoplay={{
-            delay: 5000, // Cambia la imagen cada 5 segundos
-            disableOnInteraction: false, // No desactivar autoplay si el usuario interactúa
+            delay: 5000,
+            disableOnInteraction: false, 
           }}
           className="mySwipe"
         >
           {data.map((movie) => (
             <SwiperSlide key={movie.id}>
-              {" "}
-              {/* Usa el `id` como `key` */}
               <div className="mostPopular-container">
                 <img
                   src={movie.imageUrl}
-                  alt={`Movie Banner ${movie.id}`} // Usa el `id` en el alt para la accesibilidad
+                  alt={`Movie Banner ${movie.id}`} 
                   className="banner-image"
                 />
                 <div className="container-info-movie">

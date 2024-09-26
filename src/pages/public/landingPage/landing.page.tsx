@@ -22,14 +22,17 @@ export default function LandingPage() {
     undefined
   );
 
-  const auth = useAuth();
+  const auth = useAuth(); //get auth context
   const token = auth.getToken();
   const user = auth.getUser();
-  const prefixCountry = user?.prefixCountry || "CO";
+  const prefixCountry = user?.prefixCountry || "CO"; 
 
   const country = auth.getUser()?.country || "United States";
 
   useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+
+    //fetch movies and series data
     const fetchData = async () => {
       const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
       const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key="; 
@@ -91,6 +94,7 @@ export default function LandingPage() {
   }, [user]);
 
   useEffect(() => {
+    //fetch movies adds recently of tmbd api
     const fetchDataAddRecently = async () => {
       const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
       const baseUrl = "https://api.themoviedb.org/3/movie/now_playing?api_key=";  
