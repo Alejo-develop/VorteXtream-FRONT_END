@@ -1,13 +1,13 @@
 import React from "react";
 import ButtonEditAdmin from "./EditButtonAdmin";
 import ButtonDeleteComponent from "./ButtonDeleteAdmin";
-import '../styles/ContentDeleteAndEdit.css'; // Importar el archivo de estilos
+import '../styles/ContentDeleteAndEdit.css'; 
 
 interface ContentDeleteAndEditProps {
   name: string;
   id: string;
-  onClickDelete?: () => void; // Hacer que la función sea opcional
-  onClickEdit?: () => void;   // Hacer que la función sea opcional
+  onClickDelete?: () => void; 
+  onClickEdit?: () => void;   
 }
 
 const ContentDeleteAndEdit: React.FC<ContentDeleteAndEditProps> = ({ name, onClickDelete = () => {}, onClickEdit = () => {} }) => {

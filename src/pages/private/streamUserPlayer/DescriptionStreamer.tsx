@@ -8,10 +8,10 @@ const DescriptionStreamerComponent = () => {
     useEffect(() => {
         const fetchDescription = async () => {
             try {
-                // Solicitar 2 párrafos para obtener alrededor de 200 palabras
+         
                 const response = await fetch('https://baconipsum.com/api/?type=all-meat&paras=2&format=json');
                 const data = await response.json();
-                setDescription(data[0]); // El texto está en el primer elemento del array
+                setDescription(data[0]); 
             } catch (error) {
                 console.error('Error fetching description:', error);
             }

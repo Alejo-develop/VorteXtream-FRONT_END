@@ -3,10 +3,10 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
-// Registrar componentes necesarios
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-// Definir tipos para los datos y opciones del gráfico
+
 interface ChartData {
   labels: string[];
   datasets: {
@@ -54,7 +54,7 @@ interface ChartOptions {
   };
 }
 
-// Datos del gráfico
+
 const data: ChartData = {
   labels: ['Action', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Romance', 'Sci-Fi'],
   datasets: [
@@ -62,13 +62,13 @@ const data: ChartData = {
       label: 'Views',
       data: [120, 150, 180, 130, 90, 110, 140],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',  // Color para Action
-        'rgba(54, 162, 235, 0.2)',  // Color para Comedy
-        'rgba(255, 206, 86, 0.2)',  // Color para Drama
-        'rgba(75, 192, 192, 0.2)',  // Color para Fantasy
-        'rgba(153, 102, 255, 0.2)', // Color para Horror
-        'rgba(255, 159, 64, 0.2)',  // Color para Romance
-        'rgba(255, 99, 132, 0.2)'   // Color para Sci-Fi
+        'rgba(255, 99, 132, 0.2)',  
+        'rgba(54, 162, 235, 0.2)',  
+        'rgba(255, 206, 86, 0.2)', 
+        'rgba(75, 192, 192, 0.2)',  
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',  
+        'rgba(255, 99, 132, 0.2)'  
       ],
       borderColor: [
         'rgba(255, 99, 132, 1)',
@@ -84,20 +84,20 @@ const data: ChartData = {
   ],
 };
 
-// Opciones del gráfico
+
 const options: ChartOptions = {
   responsive: true,
   plugins: {
     legend: {
       position: 'top',
       labels: {
-        color: '#ffffff' // Color del texto de los labels en la leyenda (blanco)
+        color: '#ffffff' 
       }
     },
     title: {
       display: true,
       text: 'Genre Popularity',
-      color: '#ffffff' // Color del texto del título (blanco)
+      color: '#ffffff' 
     },
     tooltip: {
       callbacks: {
@@ -111,19 +111,19 @@ const options: ChartOptions = {
     x: {
       beginAtZero: true,
       ticks: {
-        color: '#ffffff' // Color del texto del eje x (blanco)
+        color: '#ffffff' 
       }
     },
     y: {
       beginAtZero: true,
       ticks: {
-        color: '#ffffff' // Color del texto del eje y (blanco)
+        color: '#ffffff' 
       }
     }
   }
 };
 
-// Componente del gráfico
+
 const GenreChart: React.FC = () => {
   return <Bar data={data} options={options} />;
 };

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-// Definir la interfaz para las propiedades del componente Input
+
 interface inputAdminProps {
   type?: string;
   placeholder: string;
   label: string;
   value?: string | number;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; // Función de cambio (opcional)
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void; 
 }
 
 const Input: React.FC<inputAdminProps> = ({ type = "text", placeholder, label, value, onChange }) => {

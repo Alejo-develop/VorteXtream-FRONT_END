@@ -1,6 +1,6 @@
 import GridComponent from "./components/Grid.component";
 import NavBarAdmin from "./components/NavbarAdmin.component";
-import './styles/pageAdmin.css'; // Asegúrate de importar el archivo CSS
+import './styles/pageAdmin.css'; 
 
 export function AdminPage() {
     return (

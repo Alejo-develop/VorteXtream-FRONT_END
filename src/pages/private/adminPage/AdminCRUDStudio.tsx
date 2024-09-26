@@ -22,13 +22,12 @@ export function AdminCrudStudios() {
     const [selectedStudio, setSelectedStudio] = useState<StudioData | null>(null);
     const { showAlert } = useAlert();
 
-    // Fetch studios from the API
     useEffect(() => {
         const fetchStudios = async () => {
             try {
                 const response = await fetch(`${API_BASE_URL}/readAll`);
                 const data = await response.json();
-                setStudios(data); // Assuming response is an array of studios
+                setStudios(data); 
             } catch (error) {
                 console.error("Error fetching studios:", error);
             }
@@ -37,35 +36,34 @@ export function AdminCrudStudios() {
         fetchStudios();
     }, []);
 
-    // Function to save or edit a studio
     const handleSaveStudio = async (studioData: Omit<StudioData, "id">) => {
         if (selectedStudio) {
-            // Edit studio
+         
             try {
                 await fetch(`${API_BASE_URL}/update/${selectedStudio.id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ ...studioData, id: selectedStudio.id }), // Include id
+                    body: JSON.stringify({ ...studioData, id: selectedStudio.id }), 
                 });
                 setStudios(studios.map(studio => studio.id === selectedStudio.id ? { ...selectedStudio, ...studioData } : studio));
-                setSelectedStudio(null); // Clear selected studio after editing
+                setSelectedStudio(null); 
                 showAlert("success", "Studio Edited", "The studio was edited successfully.");
             } catch (error) {
                 console.error("Error updating studio:", error);
             }
         } else {
-            // Create new studio
+       
             try {
                 const response = await fetch(`${API_BASE_URL}/create`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(studioData), // Without id, as backend generates one
+                    body: JSON.stringify(studioData), 
                 });
-                const newStudio: StudioData = await response.json(); // Assuming API returns the new studio
+                const newStudio: StudioData = await response.json(); 
                 setStudios([...studios, newStudio]);
                 showAlert("success", "Studio Created", "The studio was created successfully.");
             } catch (error) {
@@ -74,13 +72,12 @@ export function AdminCrudStudios() {
         }
     };
 
-    // Function to select a studio for editing
     const handleEditStudio = (id: string) => {
         const studio = studios.find(studio => studio.id === id);
-        setSelectedStudio(studio || null); // Set selected studio
+        setSelectedStudio(studio || null); 
     };
 
-    // Function to delete a studio
+
     const handleDeleteStudio = async (id: string) => {
         const result = await Swal.fire({
             title: "Are you sure?",
@@ -120,7 +117,7 @@ export function AdminCrudStudios() {
                                 name={studio.name}
                                 id={studio.id}
                                 onClickDelete={() => handleDeleteStudio(studio.id)}
-                                onClickEdit={() => handleEditStudio(studio.id)} // Call edit function
+                                onClickEdit={() => handleEditStudio(studio.id)} 
                             />
                         ))
                     }

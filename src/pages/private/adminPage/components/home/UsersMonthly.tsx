@@ -8,12 +8,12 @@ import {
   LineElement,
   CategoryScale,
   LinearScale,
-  PointElement, // Asegúrate de importar el PointElement
+  PointElement, 
   ChartOptions,
   AnimationOptions
 } from 'chart.js';
 
-// Registra los componentes de Chart.js necesarios, incluyendo PointElement
+
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement);
 
 const data1 = [10, 20, 30, 40, 50, 60, 70];

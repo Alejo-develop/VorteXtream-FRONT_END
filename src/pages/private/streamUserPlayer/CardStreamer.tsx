@@ -4,8 +4,8 @@ import styled from "styled-components";
 interface CardStreamerProps {
   description?: string;
   text: string;
-  textSize?: string; // Tamaño de texto opcional
-  component?: React.ReactNode; // Componente opcional
+  textSize?: string;
+  component?: React.ReactNode;
 }
 
 const CardStreamer = ({ description, text, textSize = "16px", component }: CardStreamerProps) => {

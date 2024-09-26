@@ -4,35 +4,38 @@ import GridCrudComponent from "./components/GridCrud.component";
 import NavBarAdmin from "./components/NavbarAdmin.component";
 import FormCrudDirectors from "./components/CrudDirectors/FormDirectors";
 import ContentDeleteAndEdit from "./components/ContentDeleteAndEdit";
-import useAlert from "../../private/userMenu/components/alert.component"; // Importa el hook useAlert
-import { DirectorData } from "./components/CrudDirectors/FormDirectors"; // Importa la interfaz
+import useAlert from "../../private/userMenu/components/alert.component";
+import { DirectorData } from "./components/CrudDirectors/FormDirectors"; 
 
+// Base API URL for the directors
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL_JAVA}/directors`;
 
 export function AdminCrudDirectorsPage() {
+    // State to hold the list of directors and the currently selected director for editing
     const [directors, setDirectors] = useState<DirectorData[]>([]);
     const [selectedDirector, setSelectedDirector] = useState<DirectorData | null>(null);
     const { showAlert } = useAlert();
 
-    // Obtener todos los directores
+    // Function to fetch all directors from the API
     const fetchDirectors = async () => {
         try {
             const response = await fetch(`${BASE_URL}/readAll`);
             const data = await response.json();
-            setDirectors(data);
+            setDirectors(data); // Update state with fetched directors
         } catch (error) {
             console.error("Error fetching directors:", error);
         }
     };
 
+    // useEffect hook to fetch the directors when the component mounts
     useEffect(() => {
         fetchDirectors();
     }, []);
 
-    // Función para guardar o editar un director
+    // Handle saving a director (either creating a new one or updating an existing one)
     const handleSaveDirector = async (directorData: Omit<DirectorData, "id">) => {
         if (selectedDirector) {
-            // Editar director
+            // If a director is selected, update the existing director
             try {
                 const response = await fetch(`${BASE_URL}/update/${selectedDirector.id}`, {
                     method: "PATCH",
@@ -43,17 +46,18 @@ export function AdminCrudDirectorsPage() {
                 });
 
                 if (response.ok) {
+                    // Update the list of directors after successful edit
                     setDirectors(directors.map(director => director.id === selectedDirector.id ? { ...selectedDirector, ...directorData } : director));
-                    setSelectedDirector(null);
+                    setSelectedDirector(null); // Clear the selected director
                     showAlert("success", "Director Edited", "The director was edited successfully.");
                 } else {
                     showAlert("error", "Edit Failed", "Failed to edit the director.");
                 }
             } catch (error) {
-                console.error("Error editing director:", error);
+                console.error("Error editing director:", error); 
             }
         } else {
-            // Crear nuevo director
+            // Otherwise, create a new director
             try {
                 const response = await fetch(`${BASE_URL}/create`, {
                     method: "POST",
@@ -65,6 +69,7 @@ export function AdminCrudDirectorsPage() {
 
                 if (response.ok) {
                     const newDirector = await response.json();
+                    // Add the new director to the list
                     setDirectors([...directors, newDirector]);
                     showAlert("success", "Director Created", "The director was created successfully.");
                 } else {
@@ -76,7 +81,7 @@ export function AdminCrudDirectorsPage() {
         }
     };
 
-    // Función para eliminar un director
+    // Handle deleting a director
     const handleDeleteDirector = async (id: string) => {
         const result = await Swal.fire({
             title: "Are you sure?",
@@ -89,12 +94,14 @@ export function AdminCrudDirectorsPage() {
         });
 
         if (result.isConfirmed) {
+            // If the user confirms, proceed with the deletion
             try {
                 const response = await fetch(`${BASE_URL}/delete/${id}`, {
                     method: "DELETE",
                 });
 
                 if (response.ok) {
+                    // Update the list of directors after successful deletion
                     setDirectors(directors.filter(director => director.id !== id));
                     showAlert("success", "Director Deleted", "The director was deleted successfully.");
                 } else {
@@ -106,10 +113,10 @@ export function AdminCrudDirectorsPage() {
         }
     };
 
-    // Función para seleccionar un director para editar
+    // Handle selecting a director for editing
     const handleEditDirector = (id: string) => {
         const director = directors.find(director => director.id === id);
-        setSelectedDirector(director || null);
+        setSelectedDirector(director || null); // Set the selected director for editing
     };    
 
     return (
@@ -118,6 +125,7 @@ export function AdminCrudDirectorsPage() {
                 <NavBarAdmin />
             </div>
             <section className="container-all-crud">
+                {/* Grid component that displays the form and the list of directors */}
                 <GridCrudComponent
                     formContent={<FormCrudDirectors selectedItem={selectedDirector} onSave={handleSaveDirector} />}
                     contentDeleteAndEdit={

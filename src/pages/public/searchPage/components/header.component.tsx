@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "../styles/headerSearchPage.css";
 
 type HeaderSearchPageProps = {
-  onSearch: (query: string) => void; // Prop para manejar el input de búsqueda
+  onSearch: (query: string) => void; 
 };
 
 export const HeaderSearchPage: React.FC<HeaderSearchPageProps> = ({ onSearch }) => {
@@ -15,7 +15,7 @@ export const HeaderSearchPage: React.FC<HeaderSearchPageProps> = ({ onSearch }) 
 
   React.useEffect(() => {
     const fetchBanners = async () => {
-      const API_KEY = "a3c97fc58c271f7b5b5cc1c31b8ef888";
+      const API_KEY =import.meta.env.VITE_TMDB_API_KEY
       const baseUrl = "https://api.themoviedb.org/3/movie/popular?api_key=";
       const imageBaseUrl = "https://image.tmdb.org/t/p/w1280";
 
@@ -52,7 +52,7 @@ export const HeaderSearchPage: React.FC<HeaderSearchPageProps> = ({ onSearch }) 
               <div className="banner-container-searchPage">
                 <img src={bannerUrl} alt={`Movie Banner ${index + 1}`} className="banner-image" />
                 <div className="overlay">
-                  <InputSearch onSearch={onSearch} /> {/* Input de búsqueda */}
+                  <InputSearch onSearch={onSearch} /> 
                 </div>
               </div>
             </SwiperSlide>
