@@ -1,4 +1,4 @@
-/* Aseguramos que el contenedor principal esté bien alineado con el header */
+
 .container-stream {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -6,11 +6,11 @@
     height: 120vh;
     width: 100%;
     gap: 10px;
-    margin-top: 90px; /* Reducimos el margen superior */
-    align-items: start; /* Alineamos los elementos de la cámara y la descripción al inicio */
+    margin-top: 90px; 
+    align-items: start; 
 }
 
-/* Ajustamos el tamaño y posición de la cámara */
+
 .container-camera {
     border-radius: 10px;
     max-width: 850px;
@@ -21,22 +21,20 @@
     font-size: x-large;
 }
 
-/* Barra de estado del livestream */
 .status-bar {
-    margin-top: 10px; /* Espaciado adicional para el texto del estado */
+    margin-top: 10px; 
     font-size: 16px;
     color: #fff;
 }
 
-/* Contador de espectadores */
 .viewers-count {
-    margin-top: 10px; /* Espaciado adicional para el contador */
+    margin-top: 10px; 
     font-size: 18px;
     color: #ffffff;
     text-align: start;
 }
 
-/* Contenedor de descripción */
+
 .container-description {
     padding: 20px;
     border-radius: 10px;
@@ -46,10 +44,9 @@
     justify-content: start;
     gap: 10px;
     width: 100%;
-    height: 100%; /* Aseguramos que ocupe la misma altura que el contenedor de la cámara */
+    height: 100%;
 }
 
-/* Botones para iniciar y detener el livestream */
 .button-group {
     margin-top: 20px;
     display: flex;
@@ -65,11 +62,11 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Mejorar la transición */
+    transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 .start-button {
-    background-color: #F08080; /* Color verde */
+    background-color: #F08080;
     color: white;
 }
 
@@ -79,7 +76,7 @@
 }
 
 .stop-button {
-    background-color: #F08080; /* Color rojo */
+    background-color: #F08080; 
     color: white;
 }
 
@@ -98,26 +95,24 @@
     overflow: hidden;
 }
 
-/* Estilos para la vista del participante */
 .participant-view {
-    width: 100%; /* Ajusta el ancho */
-    height: 90%; /* Ajusta la altura */
-    border: 2px solid #ce889c; /* Borde azul */
-    border-radius: 10px; /* Esquinas redondeadas */
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3); /* Sombra */
-    overflow: hidden; /* Asegúrate de que el contenido no se desborde */
+    width: 100%; 
+    height: 90%;
+    border: 2px solid #ce889c; 
+    border-radius: 10px; 
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden; 
 }
 
-/* Efecto de animación para el participante */
 
 
 
-.participant-view h2, .participant-view p { /* Estilo de texto dentro de participant-view */
-    color: #fff; /* Color del texto */
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); /* Sombra de texto para destacar */
+
+.participant-view h2, .participant-view p { 
+    color: #fff; 
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
-/* Estilos para el modal */
 .modal {
     position: fixed;
     top: 0;

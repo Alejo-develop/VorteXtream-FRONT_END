@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Definir la interfaz AnimeInfo
+
 export interface AnimeInfo {
     id: string;
     title_japonese: string;

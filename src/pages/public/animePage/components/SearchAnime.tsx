@@ -10,7 +10,7 @@ const SearchAnime: React.FC<SearchAnimeProps> = ({ onSearch }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
-    onSearch(event.target.value); // Llamar a la función de búsqueda al mismo tiempo
+    onSearch(event.target.value); 
   };
 
   return (

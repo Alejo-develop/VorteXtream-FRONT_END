@@ -73,10 +73,10 @@ export function AdminCrudSubCategories() {
         }
     };
 
-    // Function to select a subcategory for editing
+    
     const handleEditSubcategory = (id: string) => {
         const subcategory = subcategories.find(subcategory => subcategory.id === id);
-        setSelectedSubcategory(subcategory || null); // Set selected subcategory
+        setSelectedSubcategory(subcategory || null); 
     };
 
     // Function to delete a subcategory
@@ -119,7 +119,7 @@ export function AdminCrudSubCategories() {
                                 name={subcategory.name}
                                 id={subcategory.id}
                                 onClickDelete={() => handleDeleteSubcategory(subcategory.id)}
-                                onClickEdit={() => handleEditSubcategory(subcategory.id)} // Call edit function
+                                onClickEdit={() => handleEditSubcategory(subcategory.id)} 
                             />
                         ))
                     }

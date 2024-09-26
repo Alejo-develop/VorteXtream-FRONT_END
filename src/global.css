@@ -14,11 +14,11 @@ p, section, article, div, button, input, select{
 }
 
 ::-webkit-scrollbar {
-    display: none; /* Oculta la barra de desplazamiento */
+    display: none; 
 }
 
 select{
-    -webkit-appearance: none; /* Elimina el estilo predeterminado en Webkit (Chrome, Safari) */
-    -moz-appearance: none; /* Elimina el estilo predeterminado en Mozilla Firefox */
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
     appearance: none;
 }

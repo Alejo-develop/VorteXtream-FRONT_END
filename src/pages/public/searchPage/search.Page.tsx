@@ -5,7 +5,7 @@ import GenreSelect from "./components/GenreSelect";
 import { CardProps } from "../../../common/interfaces/media.interface";
 import FooterComponent from "../../../common/components/footer/footer.component";
 import HeaderComponent from "../../../common/components/header/header.component";
-import CardComponent from '../../../common/components/sliderCards.component/sliderCard.component'; // Importar tu componente de carta
+import CardComponent from '../../../common/components/sliderCards.component/sliderCard.component'; 
 
 type Genre = {
     genreId: number;
@@ -27,12 +27,12 @@ export default function SearchPage() {
     const [genres, setGenres] = useState<Genre[]>([]);
     const [selectedGenre, setSelectedGenre] = useState<number>(0);
     const [moviesByGenre, setMoviesByGenre] = useState<{ [key: number]: CardProps[] }>({});
-    const [searchResults, setSearchResults] = useState<CardProps[]>([]); // Estado para resultados de búsqueda
+    const [searchResults, setSearchResults] = useState<CardProps[]>([]); 
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
-    // Función de búsqueda de películas
+
     const searchMovies = useCallback(async (query: string) => {
-        if (!query) return; // Si no hay query, no buscar
+        if (!query) return; 
 
         try {
             const searchUrl = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`;
@@ -107,12 +107,11 @@ export default function SearchPage() {
 
     return (
         <div className="container-search-page">
-            {/* Mueve el HeaderComponent aquí si debe aparecer en la parte superior */}
+        
             <HeaderComponent />
 
-            <HeaderSearchPage onSearch={searchMovies} /> {/* Asegúrate de que este componente ocupe todo el ancho */}
+            <HeaderSearchPage onSearch={searchMovies} /> 
 
-            {/* Resultados de búsqueda */}
             {searchResults.length > 0 && (
                 <div className="search-results">
                     {searchResults.map((movie) => (

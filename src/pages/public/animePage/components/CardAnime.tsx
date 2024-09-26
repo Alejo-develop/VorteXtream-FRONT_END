@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/cardanime.css'; // Asegúrate de que el archivo de estilos esté correctamente importado
+import '../styles/cardanime.css';
 import WatchNowButtonComponent from '../../../../common/components/watchNowButton/watchNow.component';
 import AddFavoritesButtonComponent from '../../../../common/components/addFavoritesButton/addFavoritesButton.component';
 

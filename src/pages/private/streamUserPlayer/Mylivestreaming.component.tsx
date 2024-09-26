@@ -44,7 +44,7 @@ export const MylivestreamUi = () => {
         try {
             await call?.goLive({ start_hls: true });
             console.log("Livestream started with HLS");
-            setIsModalOpen(false); // Cierra el modal al iniciar el stream
+            setIsModalOpen(false); 
         } catch (error) {
             console.error("Error starting livestream:", error);
         }
@@ -80,16 +80,16 @@ export const MylivestreamUi = () => {
     };
 
     const openModal = () => {
-        setIsModalOpen(true); // Abre el modal
+        setIsModalOpen(true); 
     };
 
     const closeModal = () => {
-        setIsModalOpen(false); // Cierra el modal
+        setIsModalOpen(false); 
     };
 
     const handleStartStream = () => {
         if (streamTitle && streamTheme) {
-            handleGoLive(); // Solo empieza el stream si hay título y temática
+            handleGoLive(); 
         } else {
             alert("Por favor completa el título y la temática del stream");
         }

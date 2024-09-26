@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 interface ButtonDeleteComponentProps {
-  onClickDelete: () => void; // Añadir la prop onClick
+  onClickDelete: () => void; 
 }
 
 const ButtonDeleteComponent: React.FC<ButtonDeleteComponentProps> = ({ onClickDelete }) => {
   return (
     <StyledWrapper>
-      <button className="button" onClick={onClickDelete}> {/* Usar la prop onClick aquí */}
+      <button className="button" onClick={onClickDelete}> 
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

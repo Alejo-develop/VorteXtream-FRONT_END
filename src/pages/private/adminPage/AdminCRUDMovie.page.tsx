@@ -5,13 +5,13 @@ import NavBarAdmin from "./components/NavbarAdmin.component";
 import './styles/crudmovies.css';
 import FormCrudMovies from "./components/CrudMovies/Form.Movies";
 import ContentDeleteAndEdit from "./components/ContentDeleteAndEdit";
-import useAlert from "../../private/userMenu/components/alert.component"; // Importa el hook useAlert
+import useAlert from "../../private/userMenu/components/alert.component";
 
-// API Key de TMDb
+
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
 
-// Definir la interfaz para las propiedades de la película
+// Define MovieData interface to describe movie properties
 interface MovieData {
     id: string;
     title: string;
@@ -29,14 +29,16 @@ interface MovieData {
 export function AdminCrudMovie() {
     const [movies, setMovies] = useState<MovieData[]>([]);
     const [selectedMovie, setSelectedMovie] = useState<MovieData | null>(null);
-    const { showAlert } = useAlert(); // Usa el hook useAlert
+    const { showAlert } = useAlert(); 
 
-    // Obtener datos de películas populares desde TMDb
+    // Fetch popular movies from TMDb API on component mount
     useEffect(() => {
         const fetchMovies = async () => {
             try {
                 const response = await fetch(API_URL);
                 const data = await response.json();
+
+                // Map fetched movies to MovieData structure
                 const formattedMovies: MovieData[] = data.results.map((movie: any) => ({
                     id: movie.id.toString(),
                     title: movie.title,
@@ -59,22 +61,21 @@ export function AdminCrudMovie() {
         fetchMovies();
     }, []);
 
-    // Función para guardar o editar una película
+     // Function to save or edit a movie
     const handleSaveMovie = (movieData: Omit<MovieData, "id">) => {
         if (selectedMovie) {
-            // Editar película
+
             setMovies(movies.map(movie => movie.id === selectedMovie.id ? { ...selectedMovie, ...movieData } : movie));
             setSelectedMovie(null);
             showAlert("success", "Movie Edited", "The movie was edited successfully.");
         } else {
-            // Crear nueva película
             const newMovie: MovieData = { id: Date.now().toString(), ...movieData };
             setMovies([...movies, newMovie]);
             showAlert("success", "Movie Created", "The movie was created successfully.");
         }
     };
 
-    // Función para eliminar una película
+   // Function to delete a movie
     const handleDeleteMovie = async (id: string) => {
         const result = await Swal.fire({
             title: "Are you sure?",
@@ -92,7 +93,7 @@ export function AdminCrudMovie() {
         }
     };
 
-    // Función para seleccionar una película para editar
+    // Function to select a movie for editing
     const handleEditMovie = (id: string) => {
         const movie = movies.find(movie => movie.id === id);
         setSelectedMovie(movie || null);
